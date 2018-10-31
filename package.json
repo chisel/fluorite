@@ -1,0 +1,33 @@
+{
+  "name": "fluorite",
+  "version": "0.0.0",
+  "description": "An easy-to-use API documentation generator.",
+  "main": "fluorite.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/chisel/fluorite.git"
+  },
+  "keywords": [
+    "chisel",
+    "fluorite",
+    "markdown",
+    "api",
+    "restful",
+    "rest",
+    "documentation",
+    "doc",
+    "docs",
+    "generator",
+    "tool",
+    "easy"
+  ],
+  "author": "Ramtin Soltani <ramtin@chiselpowered.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chisel/fluorite/issues"
+  },
+  "homepage": "https://github.com/chisel/fluorite#readme"
+}

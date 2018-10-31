@@ -1,0 +1,43 @@
+{
+  "title": "Fluorite",
+  "subtitle": "Make API documentations with ease",
+  "logo": "images/logo.svg",
+  "theme": "onyx",
+  "skeleton": [
+    {
+      "title": "What is Fluorite?",
+      "doc": "docs/index.md"
+    },
+    {
+      "title": "Installation",
+      "doc": "docs/installation.md"
+    },
+    {
+      "title": "Usage",
+      "doc": "docs/usage/index.md",
+      "children": [
+        {
+          "title": "Build",
+          "doc": "docs/usage/build.md"
+        },
+        {
+          "title": "Serve",
+          "doc": "docs/usage/serve.md"
+        }
+      ]
+    },
+    {
+      "title": "Examples",
+      "doc": "docs/examples.md",
+      "children": [
+        {
+          "title": "RESTful API Route",
+          "route": [
+            "routes/examples/get.json",
+            "routes/examples/post.json"
+          ]
+        }
+      ]
+    },
+  ]
+}
