@@ -3,3 +3,7 @@ notes.md
 themes/*/flavors/_final.scss
 dist
 test
+*.json
+!package.json
+!package-lock.json
+!themes/*/config.json
