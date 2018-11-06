@@ -34,6 +34,7 @@
   },
   "homepage": "https://github.com/chisel/fluorite#readme",
   "dependencies": {
+    "autoprefixer": "^9.3.1",
     "chalk": "^2.4.1",
     "cli-spinner": "^0.2.8",
     "commander": "^2.19.0",
@@ -42,6 +43,7 @@
     "handlebars": "^4.0.12",
     "lodash": "^4.17.11",
     "marked": "^0.5.1",
+    "postcss": "^7.0.5",
     "prismjs": "^1.15.0",
     "sass": "^1.14.3"
   }

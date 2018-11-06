@@ -86,6 +86,7 @@ class Fluorite {
     const flavorName = this._config.rendererOptions.flavor;
     let themeConfig = {};
     let css;
+    let warnings = [];
 
     // See if index.hbs exists
     if ( ! fs.existsSync(path.join(__dirname, 'themes', themeName, 'index.hbs')) )
@@ -142,7 +143,12 @@ class Fluorite {
     // Compile SASS to CSS
     try {
 
-      css = this._renderer.compileSass(path.join(__dirname, 'themes', themeName, 'styles.scss')).css;
+      let result = await this._renderer.compileSass(path.join(__dirname, 'themes', themeName, 'styles.scss'));
+
+      // Save warnings
+      warnings = result.warnings().map(warning => warning.toString());
+
+      css = result.css;
 
     }
     catch (error) {
@@ -287,7 +293,7 @@ class Fluorite {
 
     }
 
-    this._emit('finished');
+    this._emit('finished', warnings);
 
   }
 

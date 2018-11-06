@@ -1,9 +1,13 @@
 <html>
   <head>
-    {{#if extended.subtitle}}
-      <title>{{title}}: {{extended.subtitle}}</title>
+    {{#if multiPage}}
+      <title>{{pageTitle}}</title>
     {{else}}
-      <title>{{title}}</title>
+      {{#if extended.subtitle}}
+        <title>{{title}}: {{extended.subtitle}}</title>
+      {{else}}
+        <title>{{title}}</title>
+      {{/if}}
     {{/if}}
   </head>
   <body>

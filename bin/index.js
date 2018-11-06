@@ -25,9 +25,20 @@ program
     fl.load(cmd.config)
       .on('update', msg => spinner.setSpinnerTitle(`${chalk.yellow('%s')} ${msg}`))
       .on('ready', () => fl.generate())
-      .on('finished', () => {
+      .on('finished', warnings => {
 
         spinner.stop(true);
+
+        if ( warnings && warnings.length ) {
+
+          for ( const warn of warnings ) {
+
+            console.log(chalk.yellow(warn));
+
+          }
+
+        }
+
         console.log(chalk.greenBright('Docs generated at', path.resolve(path.join(fl.options.basePath, fl.config.outputDir))));
 
       })

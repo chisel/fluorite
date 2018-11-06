@@ -2,6 +2,8 @@ const marked = require('marked');
 const Prism = require('prismjs');
 const loadLanguages = require('prismjs/components/');
 const sass = require('sass');
+const postcss = require('postcss');
+const autoprefixer = require('autoprefixer');
 const Handlebars = require('handlebars');
 const _ = require('lodash');
 
@@ -324,9 +326,9 @@ class Renderer {
 
   }
 
-  compileSass(filename) {
+  async compileSass(filename) {
 
-    return sass.renderSync({ file: filename });
+    return await postcss([autoprefixer]).process(sass.renderSync({ file: filename }).css, { from: undefined });
 
   }
 
