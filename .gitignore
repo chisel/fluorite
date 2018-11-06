@@ -1,1 +1,5 @@
 node_modules
+notes.md
+themes/*/flavors/_final.scss
+dist
+test
