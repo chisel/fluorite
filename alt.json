@@ -1,0 +1,29 @@
+{
+  "title": "Fluorite Alternative",
+  "basePath": "./test",
+  "outputDir": "./dist",
+  "rootContent": "welcome.md",
+  "blueprint": [
+    { "title": "Markdown Test", "content": "markdown.md", "sub": [
+      { "title": "Markdown Test 2", "content": "markdown.md", "sub": [
+        { "title": "Markdown Test 3", "content": "markdown.md", "version": ">=1.0.0" }
+      ]}
+    ]},
+    { "title": "API Test", "content": "api.json" }
+  ],
+  "rendererOptions": {
+    "theme": "onyx",
+    "multiPage": false,
+    "versions": [
+      "*"
+    ]
+  },
+  "serverOptions": {
+    "port": 6001
+  },
+  "themeOptions": {
+    "subtitle": "Make API documentations with ease",
+    "logo": "images/logo.svg",
+    "hideFluoriteLogo": true
+  }
+}

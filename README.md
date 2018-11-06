@@ -1,20 +1,19 @@
 # Fluorite
 
-Fluorite is an easy-to-use API documentation generator, built to allow rapid development of single-page API documentations (RESTful and other types of APIs) while being flexible in design.
+Fluorite is an easy-to-use API documentation generator, built to allow rapid development of API documentations (RESTful and other types of APIs) while being flexible in design.
 
-Fluorite encourages modular structures, therefore, the documentation is made of different modules glued together using a JSON configuration file, called the skeleton. Modules are either JSON files (for defining RESTful API routes) or pure Markdown (for other documentations), all loaded into one HTML page to form the documentation.
+Fluorite encourages modular structures, therefore, the documentation is made of different modules glued together using a JSON configuration file (flconfig.json). Modules are either JSON files (for defining RESTful API routes) or pure Markdown (for other documentations), all loaded into one or more HTML pages to form the documentation.
 
 # Installation
 
   - Make sure you have Node.js and NPM installed
-  - Clone this repo inside a terminal: `git clone git@github.com:chisel/fluorite.git`
-  - cd into the cloned repo: `cd fluorite`
-  - Install dependencies: `npm install`
+  - Install Fluorite globally: `npm install @chisel/fluorite -g`
 
-# Building
+# Quick Start
 
-  - Build the documentation: `npm run build`
-  - Serve: `npm run serve`
+  - Create a new project: `fl new <name>` (example `fl new docs`)
+  - Inside the project directory run: `fl build`
+  - Serve: `fl serve`
   - Visit `http://localhost:6001`
 
 # Configuration

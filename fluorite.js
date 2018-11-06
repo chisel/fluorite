@@ -1,13 +1,7 @@
-const fs = require('fs');
-const fsx = require('fs-extra');
-const rimraf = require('rimraf');
-const { promisify } = require('es6-promisify');
-const readFile = promisify(fs.readFile);
-const writeFile = promisify(fs.writeFile);
-const deleteDir = promisify(rimraf);
-const createDir = promisify(fs.mkdir);
+const fs = require('fs-extra');
 const path = require('path');
 const Renderer = require(path.join(__dirname, 'renderer.js'));
+const Server = require(path.join(__dirname, 'server.js'));
 
 class Fluorite {
 
@@ -17,17 +11,39 @@ class Fluorite {
 
   }
 
+  get config() {
+
+    return this._config;
+
+  }
+
+  get options() {
+
+    return {
+      basePath: this._basePath
+    };
+
+  }
+
   load(configPath) {
 
-    this._readConfig(configPath || path.join('.', 'flconfig.json'))
+    this._basePath = configPath ? path.dirname(configPath) : '.';
+
+    this._readConfig(configPath ? path.basename(configPath) : 'flconfig.json')
     .then(config => {
 
+      this._emit('update', 'Config was loaded');
+
       this._config = config;
+      this._server = new Server(config.serverOptions);
+      this._config.serverOptions = this._server.options;
 
       this._emit('ready');
 
     })
     .catch(error => this._emit('error', error));
+
+    return this;
 
   }
 
@@ -42,6 +58,8 @@ class Fluorite {
   }
 
   async generate() {
+
+    this._emit('update', 'Generating the docs...');
 
     // See if outputDir is set
     if ( ! this._config.outputDir || typeof this._config.outputDir !== 'string' || ! this._config.outputDir.trim() )
@@ -96,7 +114,7 @@ class Fluorite {
       // Copy flavor file to _final.scss
       try {
 
-        await writeFile(path.join(__dirname, 'themes', themeName, 'flavors', '_final.scss'), await readFile(path.join(__dirname, 'themes', themeName, 'flavors', `_${selectedFlavor}.scss`), { encoding: 'utf8' }));
+        await fs.writeFile(path.join(__dirname, 'themes', themeName, 'flavors', '_final.scss'), await fs.readFile(path.join(__dirname, 'themes', themeName, 'flavors', `_${selectedFlavor}.scss`), { encoding: 'utf8' }));
 
       }
       catch (error) {
@@ -112,7 +130,7 @@ class Fluorite {
     // Read index.hbs
     try {
 
-      template = await readFile(path.join(__dirname, 'themes', themeName, 'index.hbs'), { encoding: 'utf8' });
+      template = await fs.readFile(path.join(__dirname, 'themes', themeName, 'index.hbs'), { encoding: 'utf8' });
 
     }
     catch (error) {
@@ -134,17 +152,11 @@ class Fluorite {
     }
 
     // Create output directory if needed or delete it's content if already exists
-    const outputDirPath = path.resolve(path.join('.', this._config.outputDir));
+    const outputDirPath = path.resolve(path.join(this._basePath, this._config.outputDir));
 
     try {
 
-      if ( fs.existsSync(outputDirPath) ) {
-
-        await deleteDir(outputDirPath);
-
-      }
-
-      await createDir(outputDirPath);
+      await fs.emptyDir(outputDirPath);
 
     }
     catch (error) {
@@ -188,7 +200,7 @@ class Fluorite {
       // Create version directory if needed
       try {
 
-        if ( hasVersions ) await createDir(finalPath);
+        if ( hasVersions ) await fs.ensureDir(finalPath);
 
       }
       catch (error) {
@@ -200,7 +212,7 @@ class Fluorite {
       // Write styles.css
       try {
 
-        await writeFile(path.join(finalPath, 'styles.css'), css);
+        await fs.writeFile(path.join(finalPath, 'styles.css'), css);
 
       }
       catch (error) {
@@ -235,7 +247,7 @@ class Fluorite {
         // Render and write index.html
         try {
 
-          await writeFile(path.join(finalPath, 'index.html'), this._renderer.renderHandlebars(template, templateData[i]));
+          await fs.writeFile(path.join(finalPath, 'index.html'), this._renderer.renderHandlebars(template, templateData[i]));
 
         }
         catch (error) {
@@ -250,7 +262,7 @@ class Fluorite {
         // Render and write the root index.html
         try {
 
-          await writeFile(path.join(finalPath, 'index.html'), this._renderer.renderHandlebars(template, templateData[i][0]));
+          await fs.writeFile(path.join(finalPath, 'index.html'), this._renderer.renderHandlebars(template, templateData[i][0]));
 
         }
         catch (error) {
@@ -291,7 +303,7 @@ class Fluorite {
       // Create directory
       try {
 
-        await createDir(path.join(finalPath, dirPath));
+        await fs.ensureDir(path.join(finalPath, dirPath));
 
       }
       catch (error) {
@@ -303,7 +315,7 @@ class Fluorite {
       // Render and write index.html
       try {
 
-        await writeFile(path.join(finalPath, dirPath, 'index.html'), this._renderer.renderHandlebars(template, pageData));
+        await fs.writeFile(path.join(finalPath, dirPath, 'index.html'), this._renderer.renderHandlebars(template, pageData));
 
       }
       catch (error) {
@@ -361,6 +373,29 @@ class Fluorite {
 
   }
 
+  async serve(port) {
+
+    this._emit('update', 'Serving the docs...');
+
+    // See if outputDir is set
+    if ( ! this._config.outputDir || typeof this._config.outputDir !== 'string' || ! this._config.outputDir.trim() )
+      return this._emit('error', new Error('No outputDir set on config!'));
+
+    try {
+
+      port = await this._server.serve(path.resolve(path.join(this._basePath, this._config.outputDir)), port);
+
+      this._emit('finished', port);
+
+    }
+    catch (error) {
+
+      return this._emit('error', new Error(`Could not serve the docs!\n${error}`));
+
+    }
+
+  }
+
   async _readConfig(configPath) {
 
     let config;
@@ -368,12 +403,12 @@ class Fluorite {
     // Load flconfig.json
     try {
 
-      config = require(path.resolve(configPath));
+      config = require(path.resolve(path.join(this._basePath, configPath)));
 
     }
     catch (error) {
 
-      throw new Error(`Could not load config file at ${path.resolve(configPath)}!\n${error}`);
+      throw error;
 
     }
 
@@ -491,8 +526,8 @@ class Fluorite {
     // Load the content from file
     try {
 
-      if ( ext.toLowerCase() === '.md' ) return await readFile(path.resolve(path.join('.', basePath || '', contentPath)), { encoding: 'utf8' });
-      if ( ext.toLowerCase() === '.json' ) return require(path.resolve(path.join('.', basePath || '', contentPath)));
+      if ( ext.toLowerCase() === '.md' ) return await fs.readFile(path.resolve(path.join(this._basePath, basePath || '', contentPath)), { encoding: 'utf8' });
+      if ( ext.toLowerCase() === '.json' ) return require(path.resolve(path.join(this._basePath, basePath || '', contentPath)));
 
     }
     catch (error) {
@@ -705,8 +740,8 @@ class Fluorite {
 
         try {
 
-          if ( ext === '.json' ) body.model = require(path.join(__dirname, body.externalFile));
-          if ( ext === '.xml' ) body.model = (await readFile(path.join(__dirname, body.externalFile), { encoding: 'utf8' })).trim();
+          if ( ext === '.json' ) body.model = require(path.resolve(path.join(this._basePath, body.externalFile)));
+          if ( ext === '.xml' ) body.model = (await fs.readFile(path.resolve(path.join(this._basePath, body.externalFile)), { encoding: 'utf8' })).trim();
 
         }
         catch (error) {
@@ -1044,15 +1079,4 @@ class Fluorite {
 
 }
 
-const fluorite = new Fluorite();
-
-fluorite.load();
-
-fluorite
-.on('ready', () => fluorite.generate())
-.on('finished', () => console.log('Docs generated!'))
-.on('error', error => {
-
-  console.log(error);
-
-});
+module.exports = Fluorite;
