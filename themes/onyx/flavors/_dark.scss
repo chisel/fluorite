@@ -76,3 +76,6 @@ $color-box-warning-icon:          map-get($colors, dark-yellow);
 $color-box-success-background:    map-get($colors, light-green);
 $color-box-success-text:          map-get($colors, dark-green);
 $color-box-success-icon:          map-get($colors, dark-green);
+$color-side-panes-background:     map-get($colors, primary6);
+$color-dropdown-background:       map-get($colors, primary6);
+$color-dropdown-hover:            map-get($colors, primary7);

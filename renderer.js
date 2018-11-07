@@ -175,6 +175,29 @@ class Renderer {
       highlight: (code, lang) => Prism.highlight(code, Prism.languages[lang || 'markup'], lang || 'markup')
     });
 
+    // Define Handlebars helpers
+    Handlebars.registerHelper('rootPrefix', (path) => {
+
+      if ( ! path ) return '.';
+
+      return '../'.repeat(path.split('/').length).slice(0, -1);
+
+    });
+
+  }
+
+  registerHelpers(helpers) {
+
+    if ( ! helpers ) return;
+
+    for ( const helperName in helpers ) {
+
+      if ( typeof helpers[helperName] !== 'function' ) continue;
+
+      Handlebars.registerHelper(helperName, helpers[helperName]);
+
+    }
+
   }
 
   get options() {

@@ -85,7 +85,7 @@ class Fluorite {
     const themeName = this._config.rendererOptions.theme;
     const flavorName = this._config.rendererOptions.flavor;
     let themeConfig = {};
-    let css;
+    let css, template, helpers;
     let warnings = [];
 
     // See if index.hbs exists
@@ -126,8 +126,6 @@ class Fluorite {
 
     }
 
-    let template;
-
     // Read index.hbs
     try {
 
@@ -137,6 +135,25 @@ class Fluorite {
     catch (error) {
 
       return this._emit('error', new Error(`Could not read index.hbs!\n${error}`));
+
+    }
+
+    // Register theme's Handlebars helpers (if any)
+    if ( fs.existsSync(path.join(__dirname, 'themes', themeName, 'hbs-helpers.js')) ) {
+
+      try {
+
+        helpers = require(path.join(__dirname, 'themes', themeName, 'hbs-helpers.js'));
+
+        // Register helpers
+        this._renderer.registerHelpers(helpers);
+
+      }
+      catch (error) {
+
+        return this._emit('error', new Error(`Could not import theme's Handlebars helpers!\n${error}`));
+
+      }
 
     }
 
@@ -181,18 +198,20 @@ class Fluorite {
       // Generate template data
       if ( this._config.rendererOptions.multiPage ) {
 
-        versionTemplateData = this._generateMultiPageTemplateData(version, this._config.blueprint);
+        versionTemplateData = this._generateMultiPageTemplateData(this._config.rendererOptions, version, this._config.blueprint);
 
       }
       else {
 
-        versionTemplateData = this._generateTemplateData(version);
+        versionTemplateData = this._generateTemplateData(this._config.rendererOptions, version);
 
       }
 
       templateData.push(versionTemplateData);
 
     }
+
+    await fs.writeJson('templateData.json', templateData, { spaces: 2 });
 
     let hasVersions = this._config.rendererOptions.versions.length > 1 || this._config.rendererOptions.versions[0] !== '*';
 
@@ -201,7 +220,7 @@ class Fluorite {
 
       const version = this._config.rendererOptions.versions[i];
 
-      let finalPath = path.join(outputDirPath, hasVersions ? version : '');
+      let finalPath = path.join(outputDirPath, hasVersions ? (version === '*' ? 'all' : version) : '');
 
       // Create version directory if needed
       try {
@@ -234,14 +253,14 @@ class Fluorite {
 
           for ( const asset of themeConfig.assets ) {
 
-            await fsx.copy(path.join(__dirname, 'themes', themeName, asset), path.join(finalPath, asset));
+            await fs.copy(path.join(__dirname, 'themes', themeName, asset), path.join(finalPath, asset));
 
           }
 
         }
         catch (error) {
 
-          return this._emit(`Could not copy theme assets!\n${error}`);
+          return this._emit('error', `Could not copy theme assets!\n${error}`);
 
         }
 
@@ -344,7 +363,7 @@ class Fluorite {
       if ( selectedSection.constructor === Array ) selectedSection = selectedSection[index];
       else selectedSection = selectedSection.sub[index];
 
-      resolved = path.join(resolved, this._renderer.urlFriendly(selectedSection.title));
+      resolved = resolved + '/' + this._renderer.urlFriendly(selectedSection.title);
 
     }
 
@@ -764,7 +783,7 @@ class Fluorite {
 
   }
 
-  _generateMultiPageTemplateData(version, blueprint, pathPrefix, rootGenerated) {
+  _generateMultiPageTemplateData(rendererOptions, version, blueprint, pathPrefix, rootGenerated) {
 
     // Empty array for path prefix if it's the outer call
     pathPrefix = pathPrefix || [];
@@ -773,7 +792,7 @@ class Fluorite {
     let index = 0;
 
     // Generate a template data for root
-    if ( ! rootGenerated ) data.push(this._generateTemplateData(version, []));
+    if ( ! rootGenerated ) data.push(this._generateTemplateData(rendererOptions, version, []));
 
     // Generate a template data for each section with links relative to that section
     for ( const section of blueprint ) {
@@ -781,11 +800,11 @@ class Fluorite {
       // If not included in version
       if ( ! this._isIncludedInVersion(section.version, version) ) continue;
 
-      data.push(this._generateTemplateData(version, pathPrefix.concat(index)));
+      data.push(this._generateTemplateData(rendererOptions, version, pathPrefix.concat(index)));
 
       if ( section.sub ) {
 
-        data = data.concat(this._generateMultiPageTemplateData(version, section.sub, pathPrefix.concat(index), true));
+        data = data.concat(this._generateMultiPageTemplateData(rendererOptions, version, section.sub, pathPrefix.concat(index), true));
 
       }
 
@@ -797,13 +816,26 @@ class Fluorite {
 
   }
 
-  _generateTemplateData(version, linksRelativeTo) {
+  _generateTemplateData(rendererOptions, version, linksRelativeTo) {
 
     const data = {};
 
     data.title = this._config.title || '';
     data.multiPage = this._config.rendererOptions.multiPage;
-    data.version = version;
+    data.version = version === '*' ? 'All' : version;
+
+    if ( linksRelativeTo ) {
+
+      data.versions = rendererOptions.versions.map(version => {
+
+        return {
+          version: version === '*' ? 'All' : version,
+          link: '../'.repeat(linksRelativeTo.length + 1) + (version === '*' ? 'all' : version) + (linksRelativeTo.length ? this._resolveSectionPath(linksRelativeTo.join('/')) : '/')
+        };
+
+      });
+
+    }
 
     if ( data.multiPage ) data.path = linksRelativeTo.join('/');
 

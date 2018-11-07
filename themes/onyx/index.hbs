@@ -1,16 +1,50 @@
 <html>
   <head>
+    <link rel="stylesheet" href="{{rootPrefix path}}/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{rootPrefix path}}/styles.css">
+    <script src="{{rootPrefix path}}/assets/jquery/jquery.min.js" charset="utf-8"></script>
+    <script src="{{rootPrefix path}}/assets/bootstrap/js/bootstrap.bundle.min.js" charset="utf-8"></script>
     {{#if multiPage}}
-      <title>{{pageTitle}}</title>
+      <title>{{title}} - {{pageTitle}}</title>
     {{else}}
       {{#if extended.subtitle}}
-        <title>{{title}}: {{extended.subtitle}}</title>
+        <title>{{title}} - {{extended.subtitle}}</title>
       {{else}}
         <title>{{title}}</title>
       {{/if}}
     {{/if}}
   </head>
   <body>
-
+    <nav class="navbar">
+      <div class="navbar-brand d-flex align-items-center">
+        <img src="{{rootPrefix path}}/assets/images/logo.svg" width="50" height="50">
+        <span class="navbar-title">{{title}}</span>
+        {{#if extended.subtitle}}
+          <span class="navbar-subtitle d-none d-md-block">{{extended.subtitle}}</span>
+        {{/if}}
+      </div>
+      {{#if versions}}
+        <div class="dropdown d-none d-lg-block">
+          <button class="btn btn-secondary version-list-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span>{{version}}</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 10.4" width="16">
+              <path fill="#bfc8d6" d="M8,14.9l-8-8L2.4,4.5l5.6,6,5.6-6L16,6.9Z" transform="translate(0 -4.5)"/>
+            </svg>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right version-list" aria-labelledby="dropdownMenuButton">
+            {{#each versions}}
+              <a class="dropdown-item" href="{{this.link}}">{{this.version}}</a>
+            {{/each}}
+          </div>
+        </div>
+      {{/if}}
+    </nav>
+    <div class="container-fluid main-container">
+      <div class="row no-gutters">
+        <div class="col-lg-2 col-md-3 col-sm-4 d-none d-sm-flex left-pane"></div>
+        <div class="col-lg-7 col-md-9 col-sm-8 col-xs-12"></div>
+        <div class="col-lg-3 d-none d-lg-flex right-pane"></div>
+      </div>
+    </div>
   </body>
 </html>
