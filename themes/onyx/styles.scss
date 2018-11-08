@@ -7,31 +7,59 @@
   left: auto;
 }
 
+// For indenting buttons inside section list
+@mixin indentSection($levels) {
+
+  @for $i from 0 through $levels {
+    &.level-#{$i} {
+      padding-left: 30px + (15px * $i);
+    }
+  }
+
+}
+
 html, body {
   font-family: 'Titillium Web', sans-serif;
   background-color: $color-background;
 }
 
 nav.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   height: 100px;
   background-color: $color-header-background;
   padding-left: 50px;
   padding-right: 50px;
   border-bottom: 1px solid $color-line-dark;
 
-  span.navbar-title {
+  // The header content width when versions dropbox is present
+  & > .w-100-versions { width: calc(100% - 240px); }
+
+  // The header content width when versions dropbox is hidden
+  @media (max-width: 768px) {
+    & > .w-100-versions { width: 100%; }
+  }
+
+  .navbar-title {
     color: $color-header-title;
     font-size: 40;
     font-weight: 300;
     margin-left: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
-  span.navbar-subtitle {
+  .navbar-subtitle {
     color: $color-header-subtitle;
     font-size: 25;
     font-weight: 300;
     margin-left: 20px;
     margin-bottom: -10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .version-list-toggle {
@@ -82,19 +110,21 @@ nav.navbar {
   }
 
   .version-list {
-    background-color: $color-dropdown-background;
+    background-color: $color-menu-item-background;
     box-shadow: 0 3px 20px rgba(0, 0 ,0, .1);
     border: none;
 
+    // Links inside the version list
     & > .dropdown-item {
       color: $color-header-subtitle;
+      background-color: $color-menu-item-background;
       display: flex;
       height: 50px;
       align-items: center;
 
-      &:hover { background-color: $color-dropdown-hover; }
+      &:hover { background-color: $color-menu-item-background-hover; }
       &:active {
-        background-color: $color-dropdown-hover;
+        background-color: $color-menu-item-background-hover;
         color: $color-link-default;
       }
 
@@ -118,10 +148,15 @@ div.main-container {
 
 }
 
+div.middle-pane {
+  align-items: flex-start;
+}
+
 div.left-pane,
 div.right-pane {
   background-color: $color-side-panes-background;
   transition: max-width .2s ease-in-out, flex-basis .2s ease-in-out;
+  align-items: flex-start;
 }
 
 div.left-pane {
@@ -130,4 +165,47 @@ div.left-pane {
 
 div.right-pane {
   border-left: 1px solid $color-line-dark;
+}
+
+.section-list {
+  width: 100%;
+  margin: 20px 0;
+
+  & a { width: 100%; }
+
+  // Buttons inside the section list
+  & button {
+    background-color: $color-menu-item-background;
+    border-radius: 0;
+    min-height: 50px;
+    border: none;
+    color: $color-inline-code-text;
+    font-size: 20;
+    font-weight: 300;
+    text-align: left;
+    padding: 10px 15px;
+    padding-left: 30px;
+    white-space: normal;
+    box-shadow: none !important;
+
+    &[class*="level-"] { padding-left: 90px; }
+
+    &:hover {
+      background-color: $color-menu-item-background-hover;
+      color: $color-inline-code-text;
+    }
+
+    &:active {
+      color: $color-link-default !important;
+      background-color: $color-menu-item-background-hover !important;
+    }
+
+    &.selected {
+      color: $color-link-default;
+    }
+
+    @include indentSection(4);
+
+  }
+
 }

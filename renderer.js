@@ -176,11 +176,12 @@ class Renderer {
     });
 
     // Define Handlebars helpers
+    // Helper: Getting root-prefix for links
     Handlebars.registerHelper('rootPrefix', (path) => {
 
-      if ( ! path ) return '.';
+      if ( ! path ) return './';
 
-      return '../'.repeat(path.split('/').length).slice(0, -1);
+      return '../'.repeat(path.split('/').length);
 
     });
 
@@ -195,6 +196,18 @@ class Renderer {
       if ( typeof helpers[helperName] !== 'function' ) continue;
 
       Handlebars.registerHelper(helperName, helpers[helperName]);
+
+    }
+
+  }
+
+  registerPartials(partials) {
+
+    if ( ! partials ) return;
+
+    for ( const partialName in partials ) {
+
+      Handlebars.registerPartial(partialName, partials[partialName]);
 
     }
 

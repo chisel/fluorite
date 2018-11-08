@@ -1,5 +1,22 @@
 {
     "hasFlavors": true,
     "defaultFlavor": "dark",
-    "assets": ["assets"]
+    "assets": ["assets"],
+    "userAssets": {
+      "logo": "assets/images/",
+      "favicon-ico": "assets/images/",
+      "favicon-16x16": "assets/images/",
+      "favicon-32x32": "assets/images/",
+      "favicon-70x70": "assets/images/",
+      "favicon-144x144": "assets/images/",
+      "favicon-150x150": "assets/images/",
+      "favicon-310x150": "assets/images/",
+      "favicon-310x310": "assets/images/",
+      "favicon-180x180": "assets/images/",
+      "favicon-192x192": "assets/images/",
+      "favicon-512x512": "assets/images/",
+      "manifest": "assets/images/",
+      "mask-icon": "assets/images/",
+      "msapplication-config": "assets/images"
+    }
 }

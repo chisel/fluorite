@@ -1,9 +1,25 @@
 <html>
   <head>
-    <link rel="stylesheet" href="{{rootPrefix path}}/assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{rootPrefix path}}/styles.css">
-    <script src="{{rootPrefix path}}/assets/jquery/jquery.min.js" charset="utf-8"></script>
-    <script src="{{rootPrefix path}}/assets/bootstrap/js/bootstrap.bundle.min.js" charset="utf-8"></script>
+    {{! Favicon }}
+    <link rel="shortcut icon" href="{{rootPrefix path}}{{#if extended.favicon-ico}}{{extended.favicon-ico}}{{else}}assets/images/favicon.ico{{/if}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{rootPrefix path}}{{#if extended.favicon-16x16}}{{extended.favicon-16x16}}{{else}}assets/images/favicon-16x16.png{{/if}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{rootPrefix path}}{{extended.favicon-32x32}}{{#if extended.favicon-32x32}}{{else}}assets/images/favicon-32x32.png{{/if}}">
+    {{#if extended.favicon-180x180}}<link rel="apple-touch-icon" sizes="180x180" href="{{rootPrefix path}}{{extended.favicon-180x180}}">{{/if}}
+    {{#if extended.manifest}}<link rel="manifest" href="{{rootPrefix path}}{{extended.manifest}}">{{/if}}
+    {{#if extended.mask-icon}}<link rel="mask-icon" href="{{rootPrefix path}}{{extended.mask-icon}}" color="#5bbad5">{{/if}}
+    {{#if extended.msapplication-TileColor}}<meta name="msapplication-TileColor" content="{{extended.msapplication-TileColor}}">{{/if}}
+    {{#if extended.msapplication-config}}<meta name="msapplication-config" content="{{rootPrefix path}}{{extended.msapplication-config}}">{{/if}}
+    {{#if extended.theme-color}}<meta name="theme-color" content="{{extended.theme-color}}">{{/if}}
+
+    {{! Bootstrap CSS }}
+    <link rel="stylesheet" href="{{rootPrefix path}}assets/css/bootstrap.min.css">
+    {{! Theme CSS }}
+    <link rel="stylesheet" href="{{rootPrefix path}}styles.css">
+    {{! JQuery and Bootstrap bundle JS }}
+    <script src="{{rootPrefix path}}assets/js/jquery.min.js" charset="utf-8"></script>
+    <script src="{{rootPrefix path}}assets/js/bootstrap.bundle.min.js" charset="utf-8"></script>
+
+    {{! Page title }}
     {{#if multiPage}}
       <title>{{title}} - {{pageTitle}}</title>
     {{else}}
@@ -13,18 +29,19 @@
         <title>{{title}}</title>
       {{/if}}
     {{/if}}
+
   </head>
   <body>
     <nav class="navbar">
-      <div class="navbar-brand d-flex align-items-center">
-        <img src="{{rootPrefix path}}/assets/images/logo.svg" width="50" height="50">
+      <div class="d-flex align-items-center w-100{{#if versions}}-versions{{/if}}">
+        <img src="{{rootPrefix path}}{{extended.logo}}" width="50" height="50">
         <span class="navbar-title">{{title}}</span>
         {{#if extended.subtitle}}
-          <span class="navbar-subtitle d-none d-md-block">{{extended.subtitle}}</span>
+          <span class="navbar-subtitle d-none d-lg-block">{{extended.subtitle}}</span>
         {{/if}}
       </div>
       {{#if versions}}
-        <div class="dropdown d-none d-lg-block">
+        <div class="dropdown d-none d-md-block">
           <button class="btn btn-secondary version-list-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span>{{version}}</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 10.4" width="16">
@@ -41,8 +58,16 @@
     </nav>
     <div class="container-fluid main-container">
       <div class="row no-gutters">
-        <div class="col-lg-2 col-md-3 col-sm-4 d-none d-sm-flex left-pane"></div>
-        <div class="col-lg-7 col-md-9 col-sm-8 col-xs-12"></div>
+        <div class="col-lg-2 col-md-3 col-sm-4 d-none d-sm-flex left-pane">
+          <div class="btn-group-vertical section-list" role="group" aria-label="sections">
+            {{#each sections}}
+              <a href="{{link}}">
+                <button class="btn btn-secondary level-{{level}}{{#if selected}} selected{{/if}}" type="button">{{title}}</button>
+              </a>
+            {{/each}}
+          </div>
+        </div>
+        <div class="col-lg-7 col-md-9 col-sm-8 col-xs-12 middle-pane"></div>
         <div class="col-lg-3 d-none d-lg-flex right-pane"></div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 const fs = require('fs-extra');
 const path = require('path');
+const _ = require('lodash');
 const Renderer = require(path.join(__dirname, 'renderer.js'));
 const Server = require(path.join(__dirname, 'server.js'));
 
@@ -84,9 +85,7 @@ class Fluorite {
 
     const themeName = this._config.rendererOptions.theme;
     const flavorName = this._config.rendererOptions.flavor;
-    let themeConfig = {};
-    let css, template, helpers;
-    let warnings = [];
+    let themeConfig = {}, css, template, helpers, partials, userAssets = {}, warnings = [];
 
     // See if index.hbs exists
     if ( ! fs.existsSync(path.join(__dirname, 'themes', themeName, 'index.hbs')) )
@@ -157,6 +156,25 @@ class Fluorite {
 
     }
 
+    // Register theme's Handlebars partials (if any)
+    if ( fs.existsSync(path.join(__dirname, 'themes', themeName, 'hbs-partials.js')) ) {
+
+      try {
+
+        partials = require(path.join(__dirname, 'themes', themeName, 'hbs-partials.js'));
+
+        // Register partials
+        this._renderer.registerPartials(partials);
+
+      }
+      catch (error) {
+
+        return this._emit('error', new Error(`Could not import theme's Handlebars partials!\n${error}`));
+
+      }
+
+    }
+
     // Compile SASS to CSS
     try {
 
@@ -211,8 +229,6 @@ class Fluorite {
 
     }
 
-    await fs.writeJson('templateData.json', templateData, { spaces: 2 });
-
     let hasVersions = this._config.rendererOptions.versions.length > 1 || this._config.rendererOptions.versions[0] !== '*';
 
     // Generate the documentation
@@ -266,13 +282,41 @@ class Fluorite {
 
       }
 
+      // Copy all user assets
+      if ( themeConfig.userAssets && this._config.themeOptions ) {
+
+        try {
+
+          for ( const assetName in themeConfig.userAssets ) {
+
+            // If asset is not provided
+            if ( ! this._config.themeOptions[assetName] ) continue;
+
+            const assetPath = path.join(themeConfig.userAssets[assetName], path.basename(this._config.themeOptions[assetName]));
+
+            await fs.copy(path.resolve(path.join(this._basePath, this._config.themeOptions[assetName])), path.join(finalPath, assetPath));
+
+            // Add asset to template data
+            userAssets[assetName] = assetPath;
+
+          }
+
+        }
+        catch (error) {
+
+          return this._emit('error', `Could not copy user assets!\n${error}`);
+
+        }
+
+      }
+
       // Single page
       if ( ! this._config.rendererOptions.multiPage ) {
 
         // Render and write index.html
         try {
 
-          await fs.writeFile(path.join(finalPath, 'index.html'), this._renderer.renderHandlebars(template, templateData[i]));
+          await fs.writeFile(path.join(finalPath, 'index.html'), this._renderer.renderHandlebars(template, this._finalizeTemplateData(templateData[i], userAssets)));
 
         }
         catch (error) {
@@ -287,7 +331,7 @@ class Fluorite {
         // Render and write the root index.html
         try {
 
-          await fs.writeFile(path.join(finalPath, 'index.html'), this._renderer.renderHandlebars(template, templateData[i][0]));
+          await fs.writeFile(path.join(finalPath, 'index.html'), this._renderer.renderHandlebars(template, this._finalizeTemplateData(templateData[i][0], userAssets)));
 
         }
         catch (error) {
@@ -299,7 +343,7 @@ class Fluorite {
         // Build the rest of the documentation recursively
         try {
 
-          await this._generateMultiPageDocs(finalPath, templateData[i], template);
+          await this._generateMultiPageDocs(finalPath, templateData[i], template, userAssets);
 
         }
         catch (error) {
@@ -312,11 +356,13 @@ class Fluorite {
 
     }
 
+    await fs.writeJson('templateData.json', templateData, { spaces: 2 });
+
     this._emit('finished', warnings);
 
   }
 
-  async _generateMultiPageDocs(finalPath, templateData, template) {
+  async _generateMultiPageDocs(finalPath, templateData, template, userAssets) {
 
     for ( const pageData of templateData ) {
 
@@ -340,7 +386,7 @@ class Fluorite {
       // Render and write index.html
       try {
 
-        await fs.writeFile(path.join(finalPath, dirPath, 'index.html'), this._renderer.renderHandlebars(template, pageData));
+        await fs.writeFile(path.join(finalPath, dirPath, 'index.html'), this._renderer.renderHandlebars(template, this._finalizeTemplateData(pageData, userAssets)));
 
       }
       catch (error) {
@@ -353,7 +399,63 @@ class Fluorite {
 
   }
 
-  _resolveSectionPath(sectionPath) {
+  _finalizeTemplateData(pageData, userAssets) {
+
+    // Flatten sections
+    let flattened = [];
+    let index = 0;
+
+    for ( const section of pageData.sections ) {
+
+      flattened.push({
+        title: section.title,
+        link: section.link,
+        level: 0,
+        path: index + '',
+        selected: (index + '') === pageData.path
+      });
+
+      if ( section.sub ) flattened = flattened.concat(this._flattenSubSections(pageData, section.sub, 1, [index]));
+
+      index++;
+
+    }
+
+    pageData.sections = flattened;
+
+    // Attach user assets
+    if ( _.keys(userAssets).length ) pageData.extended = _.merge(pageData.extended, userAssets);
+
+    return pageData;
+
+  }
+
+  _flattenSubSections(pageData, subSections, level, pathPrefix) {
+
+    let flattened = [];
+    let index = 0;
+
+    for ( const section of subSections ) {
+
+      flattened.push({
+        title: section.title,
+        link: section.link,
+        level: level,
+        path: pathPrefix.concat(index).join('/'),
+        selected: pathPrefix.concat(index).join('/') === pageData.path
+      });
+
+      if ( section.sub ) flattened = flattened.concat(this._flattenSubSections(pageData, section.sub, ++level, pathPrefix.concat(index)));
+
+      index++;
+
+    }
+
+    return flattened;
+
+  }
+
+  _resolveSectionPath(sectionPath, version) {
 
     let resolved = '';
     let selectedSection = this._config.blueprint;
@@ -362,6 +464,8 @@ class Fluorite {
 
       if ( selectedSection.constructor === Array ) selectedSection = selectedSection[index];
       else selectedSection = selectedSection.sub[index];
+
+      if ( version && ! this._isIncludedInVersion(selectedSection.version, version) ) return '/';
 
       resolved = resolved + '/' + this._renderer.urlFriendly(selectedSection.title);
 
@@ -818,19 +922,21 @@ class Fluorite {
 
   _generateTemplateData(rendererOptions, version, linksRelativeTo) {
 
+    linksRelativeTo = linksRelativeTo || [];
+
     const data = {};
 
     data.title = this._config.title || '';
     data.multiPage = this._config.rendererOptions.multiPage;
     data.version = version === '*' ? 'All' : version;
 
-    if ( linksRelativeTo ) {
+    if ( rendererOptions.versions.length > 1 ) {
 
       data.versions = rendererOptions.versions.map(version => {
 
         return {
           version: version === '*' ? 'All' : version,
-          link: '../'.repeat(linksRelativeTo.length + 1) + (version === '*' ? 'all' : version) + (linksRelativeTo.length ? this._resolveSectionPath(linksRelativeTo.join('/')) : '/')
+          link: '../'.repeat(linksRelativeTo.length + 1) + (version === '*' ? 'all' : version) + (linksRelativeTo.length && ! rendererOptions.rootVersionLinksOnly ? this._resolveSectionPath(linksRelativeTo.join('/'), version) : '/')
         };
 
       });
@@ -840,7 +946,7 @@ class Fluorite {
     if ( data.multiPage ) data.path = linksRelativeTo.join('/');
 
     if ( this._config.hasOwnProperty('themeOptions') )
-      data.extended = this._config.themeOptions;
+      data.extended = _.clone(this._config.themeOptions);
 
     data.sections = [];
     data.contents = [];
@@ -977,7 +1083,7 @@ class Fluorite {
 
   _isIncludedInVersion(version, target) {
 
-    if ( version === "*" ) return true;
+    if ( version === "*" || target === "*" ) return true;
 
     const condition = version.match(/^[<>]?[=]?/)[0];
     const semver = version.substr(condition.length).split('.');
