@@ -206,6 +206,102 @@ class Fluorite {
 
     }
 
+    // Write styles.css
+    try {
+
+      await fs.ensureDir(path.join(outputDirPath, 'assets', 'theme'));
+
+      await fs.writeFile(path.join(outputDirPath, 'assets', 'theme', 'styles.css'), css);
+
+    }
+    catch (error) {
+
+      return this._emit('error', new Error(`Could not write styles.css at ${path.join(outputDirPath, 'assets', 'styles.css')}!\n${error}`));
+
+    }
+
+    // Copy all theme assets
+    if ( themeConfig.assets ) {
+
+      try {
+
+        for ( const asset of themeConfig.assets ) {
+
+          await fs.copy(path.join(__dirname, 'themes', themeName, asset), path.join(outputDirPath, 'assets', 'theme', asset));
+
+        }
+
+      }
+      catch (error) {
+
+        return this._emit('error', `Could not copy theme assets!\n${error}`);
+
+      }
+
+    }
+
+    // Copy all user assets
+    if ( themeConfig.userAssets && this._config.themeOptions ) {
+
+      try {
+
+        for ( const assetName in themeConfig.userAssets ) {
+
+          // If asset is not provided
+          if ( ! this._config.themeOptions[assetName] ) continue;
+
+          const assetPath = path.join(themeConfig.userAssets[assetName], path.basename(this._config.themeOptions[assetName]));
+
+          await fs.copy(path.resolve(path.join(this._basePath, this._config.themeOptions[assetName])), path.join(outputDirPath, 'assets', 'theme', assetPath));
+
+          // Add asset to template data
+          userAssets[assetName] = '/assets/theme/' + assetPath.replace(/\\/g, '/');
+
+        }
+
+      }
+      catch (error) {
+
+        return this._emit('error', `Could not copy user assets!\n${error}`);
+
+      }
+
+    }
+
+    // Copy all content assets
+    if ( this._config.contentAssets ) {
+
+      try {
+
+        await fs.ensureDir(path.resolve(path.join(this._basePath, 'assets', 'contents')));
+
+      }
+      catch (error) {
+
+        return this._emit('error', new Error(`Could not create content assets directory!\n${error}`));
+
+      }
+
+      for ( const assetFilename in this._config.contentAssets ) {
+
+        const assetPath = path.resolve(path.join(this._basePath, this._config.basePath || '', assetFilename));
+        const assetDest = path.resolve(path.join(this._basePath, this._config.outputDir, 'assets', 'contents', this._config.contentAssets[assetFilename]));
+
+        try {
+
+          await fs.copy(assetPath, assetDest);
+
+        }
+        catch (error) {
+
+          return this._emit('error', new Error(`Could not copy content asset from ${assetFilename} to ${assetDest}!\n${error}`));
+
+        }
+
+      }
+
+    }
+
     let templateData = [];
 
     // Generate template data for each version
@@ -247,66 +343,6 @@ class Fluorite {
       catch (error) {
 
         return this._emit('error', new Error(`Could not create directory at ${finalPath}!`));
-
-      }
-
-      // Write styles.css
-      try {
-
-        await fs.writeFile(path.join(finalPath, 'styles.css'), css);
-
-      }
-      catch (error) {
-
-        return this._emit('error', new Error(`Could not write styles.css at ${path.join(finalPath, 'styles.css')}!\n${error}`));
-
-      }
-
-      // Copy all assets
-      if ( themeConfig.assets ) {
-
-        try {
-
-          for ( const asset of themeConfig.assets ) {
-
-            await fs.copy(path.join(__dirname, 'themes', themeName, asset), path.join(finalPath, asset));
-
-          }
-
-        }
-        catch (error) {
-
-          return this._emit('error', `Could not copy theme assets!\n${error}`);
-
-        }
-
-      }
-
-      // Copy all user assets
-      if ( themeConfig.userAssets && this._config.themeOptions ) {
-
-        try {
-
-          for ( const assetName in themeConfig.userAssets ) {
-
-            // If asset is not provided
-            if ( ! this._config.themeOptions[assetName] ) continue;
-
-            const assetPath = path.join(themeConfig.userAssets[assetName], path.basename(this._config.themeOptions[assetName]));
-
-            await fs.copy(path.resolve(path.join(this._basePath, this._config.themeOptions[assetName])), path.join(finalPath, assetPath));
-
-            // Add asset to template data
-            userAssets[assetName] = assetPath;
-
-          }
-
-        }
-        catch (error) {
-
-          return this._emit('error', `Could not copy user assets!\n${error}`);
-
-        }
 
       }
 
@@ -559,7 +595,7 @@ class Fluorite {
     }
 
     // Load root content (if any)
-    if ( config.rootContent ) {
+    if ( config.rootContent && config.rendererOptions.multiPage ) {
 
       try {
 
@@ -695,6 +731,9 @@ class Fluorite {
 
     // Root content
     if ( root ) {
+
+      // Skip if multi-page is off
+      if ( ! this._config.rendererOptions.multiPage ) return;
 
       // Markdown
       if ( typeof this._config.rootContent === 'string' ) this._config.rootContent = this._renderer.renderMarkdown(this._config.rootContent);

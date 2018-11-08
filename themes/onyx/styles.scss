@@ -7,6 +7,18 @@
   left: auto;
 }
 
+// SimpleBar override
+.simplebar-scrollbar {
+
+  width: 5px;
+  right: 5;
+
+  &:before { background-color: $color-line-dark; }
+
+  &.visible:before { opacity: 0.8 !important; }
+
+}
+
 // For indenting buttons inside section list
 @mixin indentSection($levels) {
 
@@ -21,7 +33,11 @@
 html, body {
   font-family: 'Titillium Web', sans-serif;
   background-color: $color-background;
+  color: $color-text-normal;
+  position: relative;
 }
+
+body.no-scroll { overflow-y: hidden; }
 
 nav.navbar {
   display: flex;
@@ -34,11 +50,11 @@ nav.navbar {
   border-bottom: 1px solid $color-line-dark;
 
   // The header content width when versions dropbox is present
-  & > .w-100-versions { width: calc(100% - 240px); }
+  & > .w-100-versions { width: calc(100% - 260px); }
 
   // The header content width when versions dropbox is hidden
-  @media (max-width: 768px) {
-    & > .w-100-versions { width: 100%; }
+  @media (max-width: 767px) {
+    & > .w-100-versions { width: calc(100% - 70px); }
   }
 
   .navbar-title {
@@ -49,6 +65,9 @@ nav.navbar {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+
+    &:first-child { margin-left: 0; }
+
   }
 
   .navbar-subtitle {
@@ -62,74 +81,153 @@ nav.navbar {
     white-space: nowrap;
   }
 
-  .version-list-toggle {
-    min-width: 200px;
-    height: 50px;
-    background-color: $color-side-panes-background !important;
-    border: none;
-    padding: 0 20px;
-    box-shadow: none !important;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+  .menu-toggle {
+    cursor: pointer;
 
-  .btn-secondary.version-list-toggle {
-
-    &:active,
-    &:focus {
-      color: $color-link-default;
-      border: none;
-
-      & > svg > path {
-        fill: $color-link-default;
-      }
-
+    & path {
+      fill: $color-text-normal;
+      transition: fill .15s ease-in-out;
     }
+
+    &:active path { fill: $color-link-default; }
 
   }
 
-  .version-list,
+}
+
+.dropdown-block {
+  width: 100%;
+
   .version-list-toggle {
-
-    color: $color-inline-code-text;
-    font-family: 'Titillium Web', sans-serif;
-    font-size: 20;
-    font-weight: 300;
-
-    & > svg {
-      margin-left: 20px;
-
-      & > path {
-        fill: $color-inline-code-text;
-        transition: fill .15s ease-in-out;
-      }
-
-    }
-
+    width: 100%;
+    border-radius: 0 !important;
+    background-color: $color-header-background !important;
   }
 
   .version-list {
-    background-color: $color-menu-item-background;
-    box-shadow: 0 3px 20px rgba(0, 0 ,0, .1);
+    border-radius: 0 !important;
+    margin: 0 !important;
+    left: -5 !important;
+    width: 100%;
+  }
+
+}
+
+.version-list-toggle {
+  width: 200px;
+  height: 50px;
+  background-color: $color-side-panes-background !important;
+  border: none;
+  padding: 0 20px;
+  box-shadow: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  & > span {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: left;
+  }
+
+}
+
+.btn-secondary.version-list-toggle {
+
+  &:active,
+  &:focus {
+    color: $color-link-default;
     border: none;
 
-    // Links inside the version list
-    & > .dropdown-item {
-      color: $color-header-subtitle;
-      background-color: $color-menu-item-background;
-      display: flex;
-      height: 50px;
-      align-items: center;
-
-      &:hover { background-color: $color-menu-item-background-hover; }
-      &:active {
-        background-color: $color-menu-item-background-hover;
-        color: $color-link-default;
-      }
-
+    & > svg > path {
+      fill: $color-link-default;
     }
 
+  }
+
+}
+
+.version-list,
+.version-list-toggle {
+
+  color: $color-button-text;
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 20;
+  font-weight: 300;
+
+  & > svg {
+    margin-left: 20px;
+
+    & > path {
+      fill: $color-button-text;
+      transition: fill .15s ease-in-out;
+    }
+
+  }
+
+}
+
+.version-list {
+  background-color: $color-menu-item-background;
+  box-shadow: 0 3px 20px rgba(0, 0 ,0, .1);
+  border: none;
+
+  // Links inside the version list
+  & > .dropdown-item {
+    color: $color-header-subtitle;
+    background-color: $color-menu-item-background;
+    display: flex;
+    height: 50px;
+    align-items: center;
+
+    &:hover { background-color: $color-menu-item-background-hover; }
+    &:active {
+      background-color: $color-menu-item-background-hover;
+      color: $color-link-default;
+    }
+
+  }
+
+}
+
+.slider-menu-shadow {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  background-color: $color-slider-menu-shadow;
+  position: absolute;
+  opacity: 0;
+  z-index: 1;
+  visibility: hidden;
+  transition: visibility 0s ease-in-out .25s, opacity .25s ease-in-out;
+
+  &.show {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
+  }
+
+}
+
+.slider-menu {
+  position: absolute;
+  width: 85%;
+  max-width: 500px;
+  min-height: 100%;
+  background-color: $color-side-panes-background;
+  display: flex;
+  left: -800;
+  transition: visibility .5s ease-in-out .5s, left .5s ease-in-out;
+  border-right: 1px solid $color-line-dark;
+  visibility: hidden;
+  z-index: 2;
+
+  &.show {
+    left: 0;
+    visibility: visible;
+    transition-delay: 0s;
   }
 
 }
@@ -150,6 +248,7 @@ div.main-container {
 
 div.middle-pane {
   align-items: flex-start;
+  padding: 30px 60px !important;
 }
 
 div.left-pane,
@@ -179,7 +278,7 @@ div.right-pane {
     border-radius: 0;
     min-height: 50px;
     border: none;
-    color: $color-inline-code-text;
+    color: $color-button-text;
     font-size: 20;
     font-weight: 300;
     text-align: left;
@@ -192,7 +291,7 @@ div.right-pane {
 
     &:hover {
       background-color: $color-menu-item-background-hover;
-      color: $color-inline-code-text;
+      color: $color-button-text;
     }
 
     &:active {
@@ -204,8 +303,335 @@ div.right-pane {
       color: $color-link-default;
     }
 
-    @include indentSection(4);
+    @include indentSection(5);
 
   }
 
+}
+
+h1 {
+  color: $color-text-h1;
+  font-size: 40px;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+h1:not(:first-child) {
+  margin-top: 20px;
+}
+
+@for $i from 2 through 6 {
+  h#{$i}:not(:first-child) {
+    margin-top: 10px;
+  }
+}
+
+h1:after {
+  content: '';
+  display: block;
+  background-color: $color-text-h1;
+  height: 2px;
+  margin-top: 5px;
+}
+
+h2 {
+  color: $color-text-h2;
+  font-size: 35px;
+  font-weight: 300;
+  margin-bottom: 15px;
+}
+
+h2:after {
+  content: '';
+  display: block;
+  background-color: $color-text-h2;
+  height: 2px;
+  margin-top: 5px;
+}
+
+h3 {
+  color: $color-text-h3;
+  font-size: 30px;
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
+h4 {
+  color: $color-text-h4;
+  font-size: 25px;
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
+h5 {
+  color: $color-text-h5;
+  font-size: 20px;
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
+h6 {
+  color: $color-text-h6;
+  font-size: 20px;
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 18px;
+}
+
+a {
+  color: $color-link-default;
+  transition: color .15s ease-in-out;
+
+  &:hover,
+  &:active {
+    text-decoration: underline;
+    color: $color-link-default;
+  }
+
+  &:visited { color: $color-link-default; }
+
+}
+
+code {
+  background-color: $color-inline-code-background;
+  color: $color-inline-code-text;
+  padding: 3px 8px;
+  margin: 0 5px;
+  border-radius: 5px;
+}
+
+pre {
+  max-height: 300px !important;
+  max-width: none !important;
+  background-color: $color-block-code-background;
+  color: $color-block-code-text;
+  padding: 20px;
+  overflow: visible;
+  margin-bottom: 25px;
+  margin-top: 5px;
+
+  &:before,
+  &:after {
+    content: '';
+    display: block;
+    height: 5px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    background-color: $color-block-code-background;
+  }
+
+  &:before {
+    top: -5;
+    border-radius: 5px 5px 0 0;
+  }
+
+  &:after {
+    bottom: -5;
+    border-radius: 0 0 5px 5px;
+  }
+
+  & > code {
+    background-color: inherit;
+    color: inherit;
+    padding: 0;
+    border-radius: 0;
+  }
+
+}
+
+// Syntax Highlighting
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: $color-syntax-comment;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: $color-syntax-number;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: $color-syntax-string;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+	color: $color-syntax-operator;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	color: $color-syntax-keyword;
+}
+
+.token.function {
+  color: $color-syntax-function;
+}
+
+.token.class-name {
+	color: $color-syntax-class;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+	color: $color-syntax-variable;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+
+blockquote {
+  background-color: $color-quote-background;
+  color: $color-quote-text;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border-left: 5px solid $color-quote-line;
+
+  & > p {
+    color: inherit;
+    margin: 0;
+  }
+
+}
+
+div[class*="note-"] {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin: 15px 0;
+
+  &:before {
+    display: inline-block;
+    margin-right: 10px;
+    width: 24px;
+  }
+
+}
+
+div.note-info {
+  background-color: $color-box-info-background;
+  color: $color-box-info-text;
+  svg > path { fill: $color-box-info-text; }
+
+  &:before { content: url('/assets/theme/images/info.svg') }
+
+}
+
+div.note-error {
+  background-color: $color-box-error-background;
+  color: $color-box-error-text;
+  svg > path { fill: $color-box-error-text; }
+
+  &:before { content: url('/assets/theme/images/error.svg') }
+
+}
+
+div.note-success {
+  background-color: $color-box-success-background;
+  color: $color-box-success-text;
+  svg > path { fill: $color-box-success-text; }
+
+  &:before { content: url('/assets/theme/images/success.svg') }
+
+}
+
+div.note-warning {
+  background-color: $color-box-warning-background;
+  color: $color-box-warning-text;
+  svg > path { fill: $color-box-warning-text; }
+
+  &:before { content: url('/assets/theme/images/warning.svg') }
+
+}
+
+table {
+  width: 100%;
+  margin-bottom: 20px;
+
+  td {
+    padding: 5px 10px;
+
+    &:first-child { border-radius: 5px 0 0 5px; }
+    &:last-child { border-radius: 0 5px 5px 0; }
+
+  }
+
+  tr {
+    margin: 5px 0;
+    border-radius: 5px;
+
+    &:nth-child(odd) > td { background-color: $color-table-row-background-odd; }
+    &:nth-child(even) > td { background-color: $color-table-row-background-even; }
+
+  }
+
+  th {
+    color: $color-table-header;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 0 10px 5px 10px;
+  }
+
+  thead { border-bottom: 1px solid $color-table-header; }
+
+}
+
+.powered-by {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+
+  div.label {
+    color: $color-quote-text;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 13px;
+    text-align: center;
+    margin-bottom: 5px;
+    padding-left: 10px;
+  }
+
+}
+
+img.img-block {
+  width: 100%;
+  border-radius: 5px;
 }

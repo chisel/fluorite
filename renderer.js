@@ -15,7 +15,8 @@ class Renderer {
       theme: 'onyx',
       hideEmptyColumns: false,
       multiPage: false,
-      versions: ['*']
+      versions: ['*'],
+      rootVersionLinksOnly: false
     }, options || {});
 
     // Install Prism languages
@@ -184,6 +185,10 @@ class Renderer {
       return '../'.repeat(path.split('/').length);
 
     });
+
+    // Helper: Content type awareness
+    Handlebars.registerHelper('isDoc', (type) => type === 'doc');
+    Handlebars.registerHelper('isAPI', (type) => type === 'api');
 
   }
 

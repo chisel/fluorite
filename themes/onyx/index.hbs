@@ -1,23 +1,28 @@
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     {{! Favicon }}
-    <link rel="shortcut icon" href="{{rootPrefix path}}{{#if extended.favicon-ico}}{{extended.favicon-ico}}{{else}}assets/images/favicon.ico{{/if}}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{rootPrefix path}}{{#if extended.favicon-16x16}}{{extended.favicon-16x16}}{{else}}assets/images/favicon-16x16.png{{/if}}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{rootPrefix path}}{{extended.favicon-32x32}}{{#if extended.favicon-32x32}}{{else}}assets/images/favicon-32x32.png{{/if}}">
-    {{#if extended.favicon-180x180}}<link rel="apple-touch-icon" sizes="180x180" href="{{rootPrefix path}}{{extended.favicon-180x180}}">{{/if}}
-    {{#if extended.manifest}}<link rel="manifest" href="{{rootPrefix path}}{{extended.manifest}}">{{/if}}
-    {{#if extended.mask-icon}}<link rel="mask-icon" href="{{rootPrefix path}}{{extended.mask-icon}}" color="#5bbad5">{{/if}}
+    <link rel="shortcut icon" href="{{#if extended.favicon-ico}}{{extended.favicon-ico}}{{else}}/assets/theme/images/favicon.ico{{/if}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{#if extended.favicon-16x16}}{{extended.favicon-16x16}}{{else}}/assets/theme/images/favicon-16x16.png{{/if}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{extended.favicon-32x32}}{{#if extended.favicon-32x32}}{{else}}/assets/theme/images/favicon-32x32.png{{/if}}">
+    {{#if extended.favicon-180x180}}<link rel="apple-touch-icon" sizes="180x180" href="{{extended.favicon-180x180}}">{{/if}}
+    {{#if extended.manifest}}<link rel="manifest" href="{{extended.manifest}}">{{/if}}
+    {{#if extended.mask-icon}}<link rel="mask-icon" href="{{extended.mask-icon}}" color="#5bbad5">{{/if}}
     {{#if extended.msapplication-TileColor}}<meta name="msapplication-TileColor" content="{{extended.msapplication-TileColor}}">{{/if}}
-    {{#if extended.msapplication-config}}<meta name="msapplication-config" content="{{rootPrefix path}}{{extended.msapplication-config}}">{{/if}}
+    {{#if extended.msapplication-config}}<meta name="msapplication-config" content="{{extended.msapplication-config}}">{{/if}}
     {{#if extended.theme-color}}<meta name="theme-color" content="{{extended.theme-color}}">{{/if}}
 
-    {{! Bootstrap CSS }}
-    <link rel="stylesheet" href="{{rootPrefix path}}assets/css/bootstrap.min.css">
+    {{! JQuery and Bootstrap }}
+    <link rel="stylesheet" href="/assets/theme/css/bootstrap.min.css">
+    <script src="/assets/theme/js/jquery.min.js" charset="utf-8"></script>
+    <script src="/assets/theme/js/bootstrap.bundle.min.js" charset="utf-8"></script>
+    {{! Simple Scrollbar }}
+    <link rel="stylesheet" href="/assets/theme/css/simplebar.min.css" />
+    <script src="/assets/theme/js/simplebar.min.js"></script>
     {{! Theme CSS }}
-    <link rel="stylesheet" href="{{rootPrefix path}}styles.css">
-    {{! JQuery and Bootstrap bundle JS }}
-    <script src="{{rootPrefix path}}assets/js/jquery.min.js" charset="utf-8"></script>
-    <script src="{{rootPrefix path}}assets/js/bootstrap.bundle.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="/assets/theme/styles.css">
+    <script src="/assets/theme/js/script.js" charset="utf-8"></script>
 
     {{! Page title }}
     {{#if multiPage}}
@@ -32,9 +37,34 @@
 
   </head>
   <body>
+    <div id="sliderMenuShadow" class="slider-menu-shadow d-block d-md-none" onclick="toggleMenu()"></div>
+    <div id="sliderMenu" class="slider-menu d-block d-md-none">
+      {{#if versions}}
+        <div class="dropdown dropdown-block">
+          <button class="btn btn-secondary version-list-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span>{{version}}</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 10.4" width="16">
+              <path fill="#bfc8d6" d="M8,14.9l-8-8L2.4,4.5l5.6,6,5.6-6L16,6.9Z" transform="translate(0 -4.5)"/>
+            </svg>
+          </button>
+          <div class="dropdown-menu version-list" aria-labelledby="dropdownMenuButton2">
+            {{#each versions}}
+              <a class="dropdown-item" href="{{this.link}}">{{this.version}}</a>
+            {{/each}}
+          </div>
+        </div>
+      {{/if}}
+      <div class="btn-group-vertical section-list" role="group" aria-label="sections">
+        {{#each sections}}
+          <a href="{{link}}" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-{{level}}{{#if selected}} selected{{/if}}" type="button">{{title}}</button>
+          </a>
+        {{/each}}
+      </div>
+    </div>
     <nav class="navbar">
       <div class="d-flex align-items-center w-100{{#if versions}}-versions{{/if}}">
-        <img src="{{rootPrefix path}}{{extended.logo}}" width="50" height="50">
+        {{#if extended.logo}}<img src="{{extended.logo}}" width="50" height="50">{{/if}}
         <span class="navbar-title">{{title}}</span>
         {{#if extended.subtitle}}
           <span class="navbar-subtitle d-none d-lg-block">{{extended.subtitle}}</span>
@@ -55,10 +85,15 @@
           </div>
         </div>
       {{/if}}
+      <div class="d-block d-md-none menu-toggle" onclick="toggleMenu()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 12 16">
+          <path fill-rule="evenodd" d="M11.41 9H.59C0 9 0 8.59 0 8c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zm0-4H.59C0 5 0 4.59 0 4c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zM.59 11H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1H.59C0 13 0 12.59 0 12c0-.59 0-1 .59-1z"/>
+        </svg>
+      </div>
     </nav>
     <div class="container-fluid main-container">
       <div class="row no-gutters">
-        <div class="col-lg-2 col-md-3 col-sm-4 d-none d-sm-flex left-pane">
+        <div class="col-lg-2 col-md-3 d-none d-md-flex left-pane">
           <div class="btn-group-vertical section-list" role="group" aria-label="sections">
             {{#each sections}}
               <a href="{{link}}">
@@ -67,7 +102,22 @@
             {{/each}}
           </div>
         </div>
-        <div class="col-lg-7 col-md-9 col-sm-8 col-xs-12 middle-pane"></div>
+        <div class="col-lg-7 col-md-9 col-sm-12 middle-pane">
+          {{#each contents}}
+            {{#if (isDoc type)}}
+              <h1{{#if id}} id="{{id}}"{{/if}}>{{title}}</h1>
+              {{{content}}}
+            {{else}}
+            {{/if}}
+          {{/each}}
+          {{#unless extended.hidePoweredBy}}
+            <hr>
+            <div class="powered-by">
+              <div class="label">Powered By</div>
+              <img src="/assets/theme/images/logo-white-text.svg" width="192" alt="">
+            </div>
+          {{/unless}}
+        </div>
         <div class="col-lg-3 d-none d-lg-flex right-pane"></div>
       </div>
     </div>
