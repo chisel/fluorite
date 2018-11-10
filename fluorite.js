@@ -273,7 +273,7 @@ class Fluorite {
 
       try {
 
-        await fs.ensureDir(path.resolve(path.join(this._basePath, 'assets', 'contents')));
+        await fs.ensureDir(path.resolve(path.join(this._basePath, this._config.outputDir, 'assets', 'contents')));
 
       }
       catch (error) {
@@ -398,146 +398,6 @@ class Fluorite {
 
   }
 
-  async _generateMultiPageDocs(finalPath, templateData, template, userAssets) {
-
-    for ( const pageData of templateData ) {
-
-      // Skip root
-      if ( ! pageData.path.length ) continue;
-
-      const dirPath = this._resolveSectionPath(pageData.path);
-
-      // Create directory
-      try {
-
-        await fs.ensureDir(path.join(finalPath, dirPath));
-
-      }
-      catch (error) {
-
-        throw error;
-
-      }
-
-      // Render and write index.html
-      try {
-
-        await fs.writeFile(path.join(finalPath, dirPath, 'index.html'), this._renderer.renderHandlebars(template, this._finalizeTemplateData(pageData, userAssets)));
-
-      }
-      catch (error) {
-
-        throw error;
-
-      }
-
-    }
-
-  }
-
-  _finalizeTemplateData(pageData, userAssets) {
-
-    // Flatten sections
-    let flattened = [];
-    let index = 0;
-
-    for ( const section of pageData.sections ) {
-
-      flattened.push({
-        title: section.title,
-        link: section.link,
-        level: 0,
-        path: index + '',
-        selected: (index + '') === pageData.path
-      });
-
-      if ( section.sub ) flattened = flattened.concat(this._flattenSubSections(pageData, section.sub, 1, [index]));
-
-      index++;
-
-    }
-
-    pageData.sections = flattened;
-
-    // Attach user assets
-    if ( _.keys(userAssets).length ) pageData.extended = _.merge(pageData.extended, userAssets);
-
-    return pageData;
-
-  }
-
-  _flattenSubSections(pageData, subSections, level, pathPrefix) {
-
-    let flattened = [];
-    let index = 0;
-
-    for ( const section of subSections ) {
-
-      flattened.push({
-        title: section.title,
-        link: section.link,
-        level: level,
-        path: pathPrefix.concat(index).join('/'),
-        selected: pathPrefix.concat(index).join('/') === pageData.path
-      });
-
-      if ( section.sub ) flattened = flattened.concat(this._flattenSubSections(pageData, section.sub, ++level, pathPrefix.concat(index)));
-
-      index++;
-
-    }
-
-    return flattened;
-
-  }
-
-  _resolveSectionPath(sectionPath, version) {
-
-    let resolved = '';
-    let selectedSection = this._config.blueprint;
-
-    for ( const index of sectionPath.split('/') ) {
-
-      if ( selectedSection.constructor === Array ) selectedSection = selectedSection[index];
-      else selectedSection = selectedSection.sub[index];
-
-      if ( version && ! this._isIncludedInVersion(selectedSection.version, version) ) return '/';
-
-      resolved = resolved + '/' + this._renderer.urlFriendly(selectedSection.title);
-
-    }
-
-    return resolved;
-
-  }
-
-  _getSectionByPath(path) {
-
-    let selectedSection = this._config.blueprint;
-
-    for ( const index of path ) {
-
-      if ( selectedSection.constructor === Array ) selectedSection = selectedSection[index];
-      else selectedSection = selectedSection.sub[index];
-
-    }
-
-    return selectedSection;
-
-  }
-
-  _emit(event, ...args) {
-
-    if ( ! this._handlers.hasOwnProperty(event) ) return;
-
-    for ( const handler of this._handlers[event] ) {
-
-      handler(...args);
-
-    }
-
-  }
-
   async serve(port) {
 
     this._emit('update', 'Serving the docs...');
@@ -556,6 +416,18 @@ class Fluorite {
     catch (error) {
 
       return this._emit('error', new Error(`Could not serve the docs!\n${error}`));
+
+    }
+
+  }
+
+  _emit(event, ...args) {
+
+    if ( ! this._handlers.hasOwnProperty(event) ) return;
+
+    for ( const handler of this._handlers[event] ) {
+
+      handler(...args);
 
     }
 
@@ -823,7 +695,7 @@ class Fluorite {
       // Load external files
       try {
 
-        this._loadExternalAPIFiles(raw.request);
+        await this._loadExternalAPIFiles(raw.request);
 
       }
       catch (error) {
@@ -841,7 +713,7 @@ class Fluorite {
       // Load external files
       try {
 
-        this._loadExternalAPIFiles(raw.response);
+        await this._loadExternalAPIFiles(raw.response);
 
       }
       catch (error) {
@@ -863,7 +735,7 @@ class Fluorite {
           // Load external files
           try {
 
-            this._loadExternalAPIFiles(example.request);
+            await this._loadExternalAPIFiles(example.request);
 
           }
           catch (error) {
@@ -881,7 +753,7 @@ class Fluorite {
           // Load external files
           try {
 
-            this._loadExternalAPIFiles(example.response);
+            await this._loadExternalAPIFiles(example.response);
 
           }
           catch (error) {
@@ -919,6 +791,43 @@ class Fluorite {
         }
 
         delete body.externalFile;
+
+      }
+
+    }
+
+  }
+
+  async _generateMultiPageDocs(finalPath, templateData, template, userAssets) {
+
+    for ( const pageData of templateData ) {
+
+      // Skip root
+      if ( ! pageData.path.length ) continue;
+
+      const dirPath = this._resolveSectionPath(pageData.path);
+
+      // Create directory
+      try {
+
+        await fs.ensureDir(path.join(finalPath, dirPath));
+
+      }
+      catch (error) {
+
+        throw error;
+
+      }
+
+      // Render and write index.html
+      try {
+
+        await fs.writeFile(path.join(finalPath, dirPath, 'index.html'), this._renderer.renderHandlebars(template, this._finalizeTemplateData(pageData, userAssets)));
+
+      }
+      catch (error) {
+
+        throw error;
 
       }
 
@@ -1011,6 +920,37 @@ class Fluorite {
     if ( data.multiPage ) data.contents = this._generateMultiPageSectionContentTemplateData(linksRelativeTo, data);
 
     return data;
+
+  }
+
+  _finalizeTemplateData(pageData, userAssets) {
+
+    // Flatten sections
+    let flattened = [];
+    let index = 0;
+
+    for ( const section of pageData.sections ) {
+
+      flattened.push({
+        title: section.title,
+        link: section.link,
+        level: 0,
+        path: index + '',
+        selected: (index + '') === pageData.path
+      });
+
+      if ( section.sub ) flattened = flattened.concat(this._flattenSubSections(pageData, section.sub, 1, [index]));
+
+      index++;
+
+    }
+
+    pageData.sections = flattened;
+
+    // Attach user assets
+    if ( _.keys(userAssets).length ) pageData.extended = _.merge(pageData.extended, userAssets);
+
+    return pageData;
 
   }
 
@@ -1257,6 +1197,66 @@ class Fluorite {
     if ( link.length && link[0] !== '..' ) link.unshift('.');
 
     return link.join('/') + '/';
+
+  }
+
+  _flattenSubSections(pageData, subSections, level, pathPrefix) {
+
+    let flattened = [];
+    let index = 0;
+
+    for ( const section of subSections ) {
+
+      flattened.push({
+        title: section.title,
+        link: section.link,
+        level: level,
+        path: pathPrefix.concat(index).join('/'),
+        selected: pathPrefix.concat(index).join('/') === pageData.path
+      });
+
+      if ( section.sub ) flattened = flattened.concat(this._flattenSubSections(pageData, section.sub, ++level, pathPrefix.concat(index)));
+
+      index++;
+
+    }
+
+    return flattened;
+
+  }
+
+  _resolveSectionPath(sectionPath, version) {
+
+    let resolved = '';
+    let selectedSection = this._config.blueprint;
+
+    for ( const index of sectionPath.split('/') ) {
+
+      if ( selectedSection.constructor === Array ) selectedSection = selectedSection[index];
+      else selectedSection = selectedSection.sub[index];
+
+      if ( version && ! this._isIncludedInVersion(selectedSection.version, version) ) return '/';
+
+      resolved = resolved + '/' + this._renderer.urlFriendly(selectedSection.title);
+
+    }
+
+    return resolved;
+
+  }
+
+  _getSectionByPath(path) {
+
+    let selectedSection = this._config.blueprint;
+
+    for ( const index of path ) {
+
+      if ( selectedSection.constructor === Array ) selectedSection = selectedSection[index];
+      else selectedSection = selectedSection.sub[index];
+
+    }
+
+    return selectedSection;
 
   }
 

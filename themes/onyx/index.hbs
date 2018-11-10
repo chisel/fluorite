@@ -1,5 +1,7 @@
+<!doctype html>
 <html>
   <head>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     {{! Favicon }}
@@ -23,6 +25,7 @@
     {{! Theme CSS }}
     <link rel="stylesheet" href="/assets/theme/styles.css">
     <script src="/assets/theme/js/script.js" charset="utf-8"></script>
+    <script src="/assets/theme/js/right-pane.js" charset="utf-8"></script>
 
     {{! Page title }}
     {{#if multiPage}}
@@ -104,10 +107,34 @@
         </div>
         <div class="col-lg-7 col-md-9 col-sm-12 middle-pane">
           {{#each contents}}
+            <h1{{#if id}} id="{{id}}"{{/if}}>{{title}}</h1>
             {{#if (isDoc type)}}
-              <h1{{#if id}} id="{{id}}"{{/if}}>{{title}}</h1>
               {{{content}}}
             {{else}}
+              {{#with content}}
+                {{{info}}}
+                {{{path}}}
+                {{#if auth.enabled}}{{{auth.content}}}{{/if}}
+                {{{params}}}
+                {{{queries}}}
+                {{#if request}}
+                  {{#if response}}
+                    <div>
+                      {{{request.headers}}}
+                      {{{request.cookies}}}
+                    </div>
+                    <!-- aside -->
+                  {{else}}
+                    {{{request.headers}}}
+                    {{{request.cookies}}}
+                  {{/if}}
+                {{/if}}
+                {{#if response}}
+                  {{{response.headers}}}
+                  {{{response.cookies}}}
+                  {{#if request}}<!-- /aside -->{{/if}}
+                {{/if}}
+              {{/with}}
             {{/if}}
           {{/each}}
           {{#unless extended.hidePoweredBy}}

@@ -11,7 +11,7 @@
 .simplebar-scrollbar {
 
   width: 5px;
-  right: 5;
+  right: 5px;
 
   &:before { background-color: $color-line-dark; }
 
@@ -37,6 +37,10 @@ html, body {
   position: relative;
 }
 
+hr {
+  border-top: 1px solid $color-line-medium;
+}
+
 body.no-scroll { overflow-y: hidden; }
 
 nav.navbar {
@@ -59,7 +63,7 @@ nav.navbar {
 
   .navbar-title {
     color: $color-header-title;
-    font-size: 40;
+    font-size: 40px;
     font-weight: 300;
     margin-left: 30px;
     overflow: hidden;
@@ -72,7 +76,7 @@ nav.navbar {
 
   .navbar-subtitle {
     color: $color-header-subtitle;
-    font-size: 25;
+    font-size: 25px;
     font-weight: 300;
     margin-left: 20px;
     margin-bottom: -10px;
@@ -107,7 +111,7 @@ nav.navbar {
   .version-list {
     border-radius: 0 !important;
     margin: 0 !important;
-    left: -5 !important;
+    left: -5px !important;
     width: 100%;
   }
 
@@ -154,7 +158,7 @@ nav.navbar {
 
   color: $color-button-text;
   font-family: 'Titillium Web', sans-serif;
-  font-size: 20;
+  font-size: 20px;
   font-weight: 300;
 
   & > svg {
@@ -218,7 +222,7 @@ nav.navbar {
   min-height: 100%;
   background-color: $color-side-panes-background;
   display: flex;
-  left: -800;
+  left: -800px;
   transition: visibility .5s ease-in-out .5s, left .5s ease-in-out;
   border-right: 1px solid $color-line-dark;
   visibility: hidden;
@@ -264,6 +268,8 @@ div.left-pane {
 
 div.right-pane {
   border-left: 1px solid $color-line-dark;
+  padding: 0 10px 30px 10px !important;
+  flex-direction: column;
 }
 
 .section-list {
@@ -279,7 +285,7 @@ div.right-pane {
     min-height: 50px;
     border: none;
     color: $color-button-text;
-    font-size: 20;
+    font-size: 20px;
     font-weight: 300;
     text-align: left;
     padding: 10px 15px;
@@ -329,7 +335,7 @@ h1:not(:first-child) {
 h1:after {
   content: '';
   display: block;
-  background-color: $color-text-h1;
+  background-color: $color-line-special;
   height: 2px;
   margin-top: 5px;
 }
@@ -344,7 +350,7 @@ h2 {
 h2:after {
   content: '';
   display: block;
-  background-color: $color-text-h2;
+  background-color: $color-line-light;
   height: 2px;
   margin-top: 5px;
 }
@@ -398,8 +404,7 @@ a {
 code {
   background-color: $color-inline-code-background;
   color: $color-inline-code-text;
-  padding: 3px 8px;
-  margin: 0 5px;
+  padding: 3px 5px;
   border-radius: 5px;
 }
 
@@ -425,12 +430,12 @@ pre {
   }
 
   &:before {
-    top: -5;
+    top: -5px;
     border-radius: 5px 5px 0 0;
   }
 
   &:after {
-    bottom: -5;
+    bottom: -5px;
     border-radius: 0 0 5px 5px;
   }
 
@@ -529,7 +534,7 @@ blockquote {
 
 }
 
-div[class*="note-"] {
+p[class*="note-"] {
   display: flex;
   align-items: center;
   padding: 10px 20px;
@@ -544,7 +549,7 @@ div[class*="note-"] {
 
 }
 
-div.note-info {
+p.note-info {
   background-color: $color-box-info-background;
   color: $color-box-info-text;
   svg > path { fill: $color-box-info-text; }
@@ -553,7 +558,7 @@ div.note-info {
 
 }
 
-div.note-error {
+p.note-error {
   background-color: $color-box-error-background;
   color: $color-box-error-text;
   svg > path { fill: $color-box-error-text; }
@@ -562,7 +567,7 @@ div.note-error {
 
 }
 
-div.note-success {
+p.note-success {
   background-color: $color-box-success-background;
   color: $color-box-success-text;
   svg > path { fill: $color-box-success-text; }
@@ -571,7 +576,7 @@ div.note-success {
 
 }
 
-div.note-warning {
+p.note-warning {
   background-color: $color-box-warning-background;
   color: $color-box-warning-text;
   svg > path { fill: $color-box-warning-text; }
@@ -597,7 +602,13 @@ table {
     border-radius: 5px;
 
     &:nth-child(odd) > td { background-color: $color-table-row-background-odd; }
-    &:nth-child(even) > td { background-color: $color-table-row-background-even; }
+
+    &:nth-child(even) > td {
+      background-color: $color-table-row-background-even;
+
+      code { background-color: $color-inline-code-background-right-pane; }
+
+    }
 
   }
 
@@ -608,7 +619,7 @@ table {
     padding: 0 10px 5px 10px;
   }
 
-  thead { border-bottom: 1px solid $color-table-header; }
+  thead { border-bottom: 1px solid $color-line-special; }
 
 }
 
@@ -634,4 +645,46 @@ table {
 img.img-block {
   width: 100%;
   border-radius: 5px;
+}
+
+// Right pane margin fix
+.right-pane > div > *:first-child { margin-top: 0px !important; }
+
+// Right pane color overrides
+.right-pane {
+
+  hr { border-top: 1px solid $color-line-dark; }
+  code { background-color: $color-inline-code-background-right-pane; }
+  pre, pre:after, pre:before { background-color: $color-block-code-background-right-pane; }
+  blockquote { background-color: $color-quote-background-right-pane; }
+  table > tr:nth-child(even) { background-color: $color-table-row-background-even-right-pane; }
+
+}
+
+span[class*="rest-method-"] {
+  padding: 0px 8px;
+  margin-right: 10px;
+  border-radius: 5px;
+  color: $color-rest-method-default-text;
+  background-color: $color-rest-method-default-background;
+}
+
+span.rest-method-get {
+  color: $color-rest-method-get-text;
+  background-color: $color-rest-method-get-background;
+}
+
+span.rest-method-post {
+  color: $color-rest-method-post-text;
+  background-color: $color-rest-method-post-background;
+}
+
+span.rest-method-put {
+  color: $color-rest-method-put-text;
+  background-color: $color-rest-method-put-background;
+}
+
+span.rest-method-delete {
+  color: $color-rest-method-delete-text;
+  background-color: $color-rest-method-delete-background;
 }

@@ -18,6 +18,11 @@ window.onload = () => {
 
   }
 
+  // Build the right pane
+  window.rightPane = new RightPane();
+
+  window.rightPane.init();
+
 };
 
 // Close the slider menu when the view width grows beyond the Bootstrap's md breakpoint

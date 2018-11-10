@@ -418,7 +418,7 @@ class Renderer {
 
     let md = '#### Path\n\n';
 
-    if ( method ) md += `<span class="rest-method">${method.toUpperCase()}</span>`;
+    if ( method ) md += `<span class="rest-method-${method.toLowerCase().trim()}">${method.toUpperCase()}</span>`;
     if ( path ) md += `${path}\n\n`;
 
     return this.renderMarkdown(md, headerPrefix);
