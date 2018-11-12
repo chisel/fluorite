@@ -735,7 +735,7 @@ class Fluorite {
           // Load external files
           try {
 
-            await this._loadExternalAPIFiles(example.request);
+            await this._loadExternalAPIFiles(example.request, 'value');
 
           }
           catch (error) {
@@ -753,7 +753,7 @@ class Fluorite {
           // Load external files
           try {
 
-            await this._loadExternalAPIFiles(example.response);
+            await this._loadExternalAPIFiles(example.response, 'value');
 
           }
           catch (error) {
@@ -770,7 +770,7 @@ class Fluorite {
 
   }
 
-  async _loadExternalAPIFiles(object) {
+  async _loadExternalAPIFiles(object, key) {
 
     for ( const body of object.body ) {
 
@@ -780,8 +780,8 @@ class Fluorite {
 
         try {
 
-          if ( ext === '.json' ) body.model = require(path.resolve(path.join(this._basePath, body.externalFile)));
-          if ( ext === '.xml' ) body.model = (await fs.readFile(path.resolve(path.join(this._basePath, body.externalFile)), { encoding: 'utf8' })).trim();
+          if ( ext === '.json' ) body[key || 'model'] = require(path.resolve(path.join(this._basePath, body.externalFile)));
+          if ( ext === '.xml' ) body[key || 'model'] = (await fs.readFile(path.resolve(path.join(this._basePath, body.externalFile)), { encoding: 'utf8' })).trim();
 
         }
         catch (error) {
@@ -950,6 +950,24 @@ class Fluorite {
     // Attach user assets
     if ( _.keys(userAssets).length ) pageData.extended = _.merge(pageData.extended, userAssets);
 
+    // Generate root prefix
+    pageData.rootPrefix = '../'.repeat(pageData.path ? pageData.path.split('/').length + 1 : 1).slice(0, -1);
+
+    // Inject root prefix on all content
+    for ( const content of pageData.contents ) {
+
+      for ( const c of content.content ) {
+
+        if ( c.type === 'doc' ) {
+
+          c.value = c.value.replace(/{{rootPrefix}}/g, pageData.rootPrefix);
+
+        }
+
+      }
+
+    }
+
     return pageData;
 
   }
@@ -962,7 +980,14 @@ class Fluorite {
       // Set page title
       pageData.pageTitle = this._config.title;
 
-      return [{ title: this._config.title, content: this._config.rootContent, type: typeof this._config.rootContent === 'string' ? 'doc': 'api' }];
+      return [{
+        title: this._config.title,
+        id: this._renderer.urlFriendly(this._config.title),
+        content: [{
+          value: this._config.rootContent,
+          type: typeof this._config.rootContent === 'string' ? 'doc': 'api'
+        }]
+      }];
 
     }
 
@@ -971,30 +996,40 @@ class Fluorite {
     // Set page title
     pageData.pageTitle = selectedSection.title;
 
-    return selectedSection.content.map(content => {
+    const sectionContent = {
+      title: selectedSection.title,
+      id: this._renderer.urlFriendly(selectedSection.title),
+      content: []
+    };
 
-      return {
-        title: selectedSection.title,
-        content: content,
-        type: typeof content === 'string' ? 'doc' : 'api'
-      };
+    for ( const content of selectedSection.content ) {
 
-    });
+      sectionContent.content.push({
+        type: typeof content === 'string' ? 'doc' : 'api',
+        value: content
+      });
+
+    }
+
+    return [sectionContent];
 
   }
 
   _generateSectionContentTemplateData(section, version, sectionData) {
 
-    let contents = [];
+    let subContents = [];
+    let sectionContent = {
+      title: section.title,
+      id: sectionData.link.substr(1),
+      content: []
+    };
 
     // Generate content data
     for ( const content of section.content ) {
 
-      contents.push({
-        title: section.title,
-        id: sectionData.link.substr(1),
-        content: content,
-        type: typeof content === 'string' ? 'doc' : 'api'
+      sectionContent.content.push({
+        type: typeof content === 'string' ? 'doc' : 'api',
+        value: content
       });
 
       // Recur if section has sub-sections
@@ -1004,7 +1039,7 @@ class Fluorite {
 
           if ( ! this._isIncludedInVersion(section.sub[i].version, version) ) continue;
 
-          contents = contents.concat(this._generateSectionContentTemplateData(section.sub[i], version, sectionData.sub[i]));
+          subContents = subContents.concat(this._generateSectionContentTemplateData(section.sub[i], version, sectionData.sub[i]));
 
         }
 
@@ -1012,7 +1047,7 @@ class Fluorite {
 
     }
 
-    return contents;
+    return [sectionContent].concat(subContents);
 
   }
 

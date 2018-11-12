@@ -18,10 +18,22 @@ window.onload = () => {
 
   }
 
+  // Initiate notes
+  new Notes();
+
   // Build the right pane
   window.rightPane = new RightPane();
 
   window.rightPane.init();
+
+  // Select all first body contents
+  const firstBodyContentHeaders = document.querySelectorAll('.body-group ul > li:first-child');
+
+  for ( const header of firstBodyContentHeaders ) {
+
+    toggleBodyContent(header, 0);
+
+  }
 
 };
 
@@ -44,5 +56,38 @@ function toggleMenu() {
   document.getElementById('sliderMenu').classList.toggle('show');
   document.getElementById('sliderMenuShadow').classList.toggle('show');
   document.getElementsByTagName('body')[0].classList.toggle('no-scroll');
+
+}
+
+// Toggle the body group contents
+function toggleBodyContent(element, index) {
+
+  const group = element.parentElement.parentElement;
+  const headers = group.children[0].children;
+
+  let indexCounter1 = 0;
+
+  for ( const header of headers ) {
+
+    if ( indexCounter1 === index ) header.classList.add('selected');
+    else header.classList.remove('selected');
+
+    indexCounter1++;
+
+  }
+
+  const contents = group.children[1].children;
+  let indexCounter2 = 0;
+
+  for ( const content of contents ) {
+
+    if ( indexCounter2 === index ) content.classList.add('show');
+    else content.classList.remove('show');
+
+    indexCounter2++;
+
+  }
+
+  setTimeout(window.rightPane.recalcGroups, 5);
 
 }

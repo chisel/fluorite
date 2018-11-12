@@ -5,27 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     {{! Favicon }}
-    <link rel="shortcut icon" href="{{#if extended.favicon-ico}}{{extended.favicon-ico}}{{else}}/assets/theme/images/favicon.ico{{/if}}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{#if extended.favicon-16x16}}{{extended.favicon-16x16}}{{else}}/assets/theme/images/favicon-16x16.png{{/if}}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{extended.favicon-32x32}}{{#if extended.favicon-32x32}}{{else}}/assets/theme/images/favicon-32x32.png{{/if}}">
-    {{#if extended.favicon-180x180}}<link rel="apple-touch-icon" sizes="180x180" href="{{extended.favicon-180x180}}">{{/if}}
-    {{#if extended.manifest}}<link rel="manifest" href="{{extended.manifest}}">{{/if}}
-    {{#if extended.mask-icon}}<link rel="mask-icon" href="{{extended.mask-icon}}" color="#5bbad5">{{/if}}
+    <link rel="shortcut icon" href="{{#if extended.favicon-ico}}{{rootPrefix}}{{extended.favicon-ico}}{{else}}{{rootPrefix}}/assets/theme/images/favicon.ico{{/if}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{#if extended.favicon-16x16}}{{rootPrefix}}{{extended.favicon-16x16}}{{else}}{{rootPrefix}}/assets/theme/images/favicon-16x16.png{{/if}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{#if extended.favicon-32x32}}{{rootPrefix}}{{extended.favicon-32x32}}{{else}}{{rootPrefix}}/assets/theme/images/favicon-32x32.png{{/if}}">
+    {{#if extended.favicon-180x180}}<link rel="apple-touch-icon" sizes="180x180" href="{{rootPrefix}}{{extended.favicon-180x180}}">{{/if}}
+    {{#if extended.manifest}}<link rel="manifest" href="{{rootPrefix}}{{extended.manifest}}">{{/if}}
+    {{#if extended.mask-icon}}<link rel="mask-icon" href="{{rootPrefix}}{{extended.mask-icon}}" color="#5bbad5">{{/if}}
     {{#if extended.msapplication-TileColor}}<meta name="msapplication-TileColor" content="{{extended.msapplication-TileColor}}">{{/if}}
-    {{#if extended.msapplication-config}}<meta name="msapplication-config" content="{{extended.msapplication-config}}">{{/if}}
+    {{#if extended.msapplication-config}}<meta name="msapplication-config" content="{{rootPrefix}}{{extended.msapplication-config}}">{{/if}}
     {{#if extended.theme-color}}<meta name="theme-color" content="{{extended.theme-color}}">{{/if}}
 
     {{! JQuery and Bootstrap }}
-    <link rel="stylesheet" href="/assets/theme/css/bootstrap.min.css">
-    <script src="/assets/theme/js/jquery.min.js" charset="utf-8"></script>
-    <script src="/assets/theme/js/bootstrap.bundle.min.js" charset="utf-8"></script>
-    {{! Simple Scrollbar }}
-    <link rel="stylesheet" href="/assets/theme/css/simplebar.min.css" />
-    <script src="/assets/theme/js/simplebar.min.js"></script>
+    <link rel="stylesheet" href="{{rootPrefix}}/assets/theme/css/bootstrap.min.css">
+    <script src="{{rootPrefix}}/assets/theme/js/jquery.min.js" charset="utf-8"></script>
+    <script src="{{rootPrefix}}/assets/theme/js/bootstrap.bundle.min.js" charset="utf-8"></script>
+    {{! Simple Bar }}
+    <link rel="stylesheet" href="{{rootPrefix}}/assets/theme/css/simplebar.min.css" />
+    <script src="{{rootPrefix}}/assets/theme/js/simplebar.min.js"></script>
     {{! Theme CSS }}
-    <link rel="stylesheet" href="/assets/theme/styles.css">
-    <script src="/assets/theme/js/script.js" charset="utf-8"></script>
-    <script src="/assets/theme/js/right-pane.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="{{rootPrefix}}/assets/theme/styles.css">
+    {{! Theme JS }}
+    <script src="{{rootPrefix}}/assets/theme/js/right-pane.js" charset="utf-8"></script>
+    <script src="{{rootPrefix}}/assets/theme/js/notes.js" charset="utf-8"></script>
+    <script src="{{rootPrefix}}/assets/theme/js/script.js" charset="utf-8"></script>
+
+    {{! CSS with assets }}
+    <style media="screen">
+      p.note-info::before { content: url('{{rootPrefix}}/assets/theme/images/info.svg') }
+      p.note-error::before { content: url('{{rootPrefix}}/assets/theme/images/error.svg') }
+      p.note-success::before { content: url('{{rootPrefix}}/assets/theme/images/success.svg') }
+      p.note-warning::before { content: url('{{rootPrefix}}/assets/theme/images/warning.svg') }
+    </style>
 
     {{! Page title }}
     {{#if multiPage}}
@@ -67,7 +77,7 @@
     </div>
     <nav class="navbar">
       <div class="d-flex align-items-center w-100{{#if versions}}-versions{{/if}}">
-        {{#if extended.logo}}<img src="{{extended.logo}}" width="50" height="50">{{/if}}
+        {{#if extended.logo}}<img src="{{rootPrefix}}{{extended.logo}}" width="50" height="50">{{/if}}
         <span class="navbar-title">{{title}}</span>
         {{#if extended.subtitle}}
           <span class="navbar-subtitle d-none d-lg-block">{{extended.subtitle}}</span>
@@ -105,47 +115,255 @@
             {{/each}}
           </div>
         </div>
-        <div class="col-lg-7 col-md-9 col-sm-12 middle-pane">
+        <div class="col-lg-6 col-md-9 col-sm-12 middle-pane">
           {{#each contents}}
-            <h1{{#if id}} id="{{id}}"{{/if}}>{{title}}</h1>
-            {{#if (isDoc type)}}
-              {{{content}}}
-            {{else}}
-              {{#with content}}
-                {{{info}}}
-                {{{path}}}
-                {{#if auth.enabled}}{{{auth.content}}}{{/if}}
-                {{{params}}}
-                {{{queries}}}
-                {{#if request}}
-                  {{#if response}}
-                    <div>
-                      {{{request.headers}}}
-                      {{{request.cookies}}}
-                    </div>
-                    <!-- aside -->
-                  {{else}}
-                    {{{request.headers}}}
-                    {{{request.cookies}}}
+            <h1 id="{{id}}">{{title}}</h1>
+            {{#each content}}
+              {{#if (isDoc type)}}
+
+                {{! Markdown }}
+                {{{value}}}
+
+              {{else}}
+
+                {{! API }}
+                {{#with value}}
+
+                  {{! Info }}
+                  {{#if info}}
+                    {{#if info.title}}
+                      <h3 id="{{info.id}}">{{info.title}}</h3>
+                    {{/if}}
+                    {{#if info.content}}
+                      {{{info.content}}}
+                      <hr>
+                    {{/if}}
                   {{/if}}
-                {{/if}}
-                {{#if response}}
-                  {{{response.headers}}}
-                  {{{response.cookies}}}
-                  {{#if request}}<!-- /aside -->{{/if}}
-                {{/if}}
-              {{/with}}
-            {{/if}}
+
+                  {{! Path }}
+                  {{#if path}}
+                    <h4 id="{{path.id}}">{{path.title}}</h4>
+                    {{#if auth.enabled}}
+                      <svg class="auth-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 14 16">
+                        <path fill-rule="evenodd" d="M12.83 2.17C12.08 1.42 11.14 1.03 10 1c-1.13.03-2.08.42-2.83 1.17S6.04 3.86 6.01 5c0 .3.03.59.09.89L0 12v1l1 1h2l1-1v-1h1v-1h1v-1h2l1.09-1.11c.3.08.59.11.91.11 1.14-.03 2.08-.42 2.83-1.17S13.97 6.14 14 5c-.03-1.14-.42-2.08-1.17-2.83zM11 5.38c-.77 0-1.38-.61-1.38-1.38 0-.77.61-1.38 1.38-1.38.77 0 1.38.61 1.38 1.38 0 .77-.61 1.38-1.38 1.38z"/>
+                      </svg>
+                    {{/if}}
+                    {{#if path.method}}
+                      <span class="rest-method-{{path.method}}">{{path.method}}</span>
+                    {{/if}}
+                    {{path.content}}
+                    <hr>
+                  {{/if}}
+
+                  {{! Auth }}
+                  {{#if auth.enabled}}
+                    <h4 id="{{auth.id}}">{{auth.title}}</h4>
+                    {{{auth.content}}}
+                  {{/if}}
+
+                  {{! URL Parameters }}
+                  {{#if params}}
+                    <h4 id="{{params.id}}">{{params.title}}</h4>
+                    {{{params.content}}}
+                  {{/if}}
+
+                  {{! Query Parameters }}
+                  {{#if queries}}
+                    <h4 id="{{queries.id}}">{{queries.title}}</h4>
+                    {{{queries.content}}}
+                  {{/if}}
+
+                  {{! Request }}
+                  {{#if request}}
+                    {{! Group the request for alignment if there's a response }}
+                    {{#if response}}
+                      <div class="alignment-group">
+                    {{/if}}
+                    {{#if request.body}}
+                      <h4 id="{{request.body.id}}">{{request.body.title}}</h4>
+                      <div class="body-group">
+                        <ul>
+                          {{#each request.body.content}}
+                            <li onclick="toggleBodyContent(this, {{@index}})">{{getBodyTypeText type}}</li>
+                          {{/each}}
+                        </ul>
+                        <div class="body-group-content">
+                          {{#each request.body.content}}
+                            {{{value}}}
+                          {{/each}}
+                        </div>
+                      </div>
+                    {{/if}}
+                    {{#if request.headers}}
+                      <h4 id="{{request.headers.id}}">{{request.headers.title}}</h4>
+                      {{{request.headers.content}}}
+                    {{/if}}
+                    {{#if request.cookies}}
+                      <h4 id="{{request.cookies.id}}">{{request.cookies.title}}</h4>
+                      {{{request.cookies.content}}}
+                    {{/if}}
+                    {{! Group the request for alignment if there's a response }}
+                    {{#if response}}
+                      </div>
+                    {{/if}}
+                  {{/if}}
+
+                  {{! Response }}
+                  {{#if response}}
+                    {{! Push to right pane if there's a request }}
+                    {{#if request}}
+                      <!-- aside -->
+                    {{/if}}
+                    {{#if response.body}}
+                      <h4 id="{{response.body.id}}">{{response.body.title}}</h4>
+                      <div class="body-group">
+                        <ul>
+                          {{#each response.body.content}}
+                            <li onclick="toggleBodyContent(this, {{@index}})">{{getBodyTypeText type}}</li>
+                          {{/each}}
+                        </ul>
+                        <div class="body-group-content">
+                          {{#each response.body.content}}
+                            {{{value}}}
+                          {{/each}}
+                        </div>
+                      </div>
+                    {{/if}}
+                    {{#if response.headers}}
+                      <h4 id="{{response.headers.id}}">{{response.headers.title}}</h4>
+                      {{{response.headers.content}}}
+                    {{/if}}
+                    {{#if response.cookies}}
+                      <h4 id="{{response.cookies.id}}">{{response.cookies.title}}</h4>
+                      {{{response.cookies.content}}}
+                    {{/if}}
+                    {{! Push to right pane if there's a request }}
+                    {{#if request}}
+                      <!-- /aside -->
+                    {{/if}}
+                  {{/if}}
+
+                  {{! Examples }}
+                  {{#each examples as |example|}}
+
+                    <h2 id="{{example.id}}">{{example.title}}</h2>
+
+                    {{#if example.info}}
+                      {{#if example.info.title}}
+                      <h3 id="{{example.info.id}}">{{example.info.title}}</h3>
+                      {{/if}}
+                      {{#if example.info.content}}
+                        {{{example.info.content}}}
+                        <hr>
+                      {{/if}}
+                    {{/if}}
+
+                    {{! Group the request for alignment if there's a response }}
+                    {{#if example.response}}
+                      {{#if example.request}}
+                        <div class="alignment-group">
+                      {{/if}}
+                    {{/if}}
+
+                    {{#if example.path}}
+                      <h3 id="{{example.path.id}}">{{example.path.title}}</h3>
+                      <span>
+                        {{#if example.path.method}}
+                          <span class="rest-method-{{example.path.method}}">{{example.path.method}}</span>
+                        {{/if}}
+                        {{example.path.content}}
+                      </span>
+                      <hr>
+                    {{/if}}
+
+                    {{#if example.request}}
+                      {{#if example.request.body}}
+                        <h4 id="{{example.request.body.id}}">{{example.request.body.title}}</h4>
+                        <div class="body-group">
+                          <ul>
+                            {{#each example.request.body.content}}
+                              <li onclick="toggleBodyContent(this, {{@index}})">{{getBodyTypeText type}}</li>
+                            {{/each}}
+                          </ul>
+                          <div class="body-group-content">
+                            {{#each example.request.body.content}}
+                              {{{value}}}
+                            {{/each}}
+                          </div>
+                        </div>
+                      {{/if}}
+                      {{#if example.request.headers}}
+                        <h4 id="{{example.request.headers.id}}">{{example.request.headers.title}}</h4>
+                        {{{example.request.headers.content}}}
+                      {{/if}}
+                      {{#if example.request.cookies}}
+                        <h4 id="{{example.request.cookies.id}}">{{example.request.cookies.title}}</h4>
+                        {{{example.request.cookies.content}}}
+                      {{/if}}
+                      {{! Group the request for alignment if there's a response }}
+                      {{#if example.response}}
+                        </div>
+                      {{/if}}
+                    {{/if}}
+
+                    {{#if example.response}}
+                      {{! Group the request for alignment if there's a response }}
+                      {{#if example.request}}
+                        <!-- aside -->
+                      {{/if}}
+                      {{#if example.response.status}}
+                        <h3 id="{{example.response.status.id}}">{{example.response.status.title}}</h3>
+                        <span>
+                          <span class="rest-status-{{example.response.status.code}}">{{example.response.status.code}}</span>
+                          {{example.response.status.content}}
+                        </span>
+                        <hr>
+                      {{/if}}
+                      {{#if example.response.body}}
+                        <h4 id="{{example.response.body.id}}">{{example.response.body.title}}</h4>
+                        <div class="body-group">
+                          <ul>
+                            {{#each example.response.body.content}}
+                              <li onclick="toggleBodyContent(this, {{@index}})">{{getBodyTypeText type}}</li>
+                            {{/each}}
+                          </ul>
+                          <div class="body-group-content">
+                            {{#each example.response.body.content}}
+                              {{{value}}}
+                            {{/each}}
+                          </div>
+                        </div>
+                      {{/if}}
+                      {{#if example.response.headers}}
+                        <h4 id="{{example.response.headers.id}}">{{example.response.headers.title}}</h4>
+                        {{{example.response.headers.content}}}
+                      {{/if}}
+                      {{#if example.response.cookies}}
+                        <h4 id="{{example.response.cookies.id}}">{{example.response.cookies.title}}</h4>
+                        {{{example.response.cookies.content}}}
+                      {{/if}}
+                      {{! Group the request for alignment if there's a response }}
+                      {{#if example.request}}
+                        <!-- /aside -->
+                      {{/if}}
+                    {{/if}}
+
+                  {{/each}}
+
+                {{/with}}
+
+              {{/if}}
+            {{/each}}
           {{/each}}
           {{#unless extended.hidePoweredBy}}
             <hr>
             <div class="powered-by">
               <div class="label">Powered By</div>
-              <img src="/assets/theme/images/logo-white-text.svg" width="192" alt="">
+              <img src="{{rootPrefix}}/assets/theme/images/logo-white-text.svg" width="192" alt="">
             </div>
           {{/unless}}
         </div>
-        <div class="col-lg-3 d-none d-lg-flex right-pane"></div>
+        <div class="col-lg-4 d-none d-lg-flex right-pane"></div>
       </div>
     </div>
   </body>

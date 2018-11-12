@@ -8,14 +8,15 @@
 }
 
 // SimpleBar override
+.horizontal .simplebar-scrollbar {
+  height: 5px !important;
+}
 .simplebar-scrollbar {
-
   width: 5px;
-  right: 5px;
 
-  &:before { background-color: $color-line-dark; }
+  &::before { background-color: $color-line-dark; }
 
-  &.visible:before { opacity: 0.8 !important; }
+  &.visible::before { opacity: 0.8 !important; }
 
 }
 
@@ -35,6 +36,7 @@ html, body {
   background-color: $color-background;
   color: $color-text-normal;
   position: relative;
+  overflow-x: hidden;
 }
 
 hr {
@@ -252,7 +254,8 @@ div.main-container {
 
 div.middle-pane {
   align-items: flex-start;
-  padding: 30px 60px !important;
+  padding: 30px 40px !important;
+  overflow-x: hidden;
 }
 
 div.left-pane,
@@ -260,6 +263,7 @@ div.right-pane {
   background-color: $color-side-panes-background;
   transition: max-width .2s ease-in-out, flex-basis .2s ease-in-out;
   align-items: flex-start;
+  overflow-x: hidden;
 }
 
 div.left-pane {
@@ -268,7 +272,7 @@ div.left-pane {
 
 div.right-pane {
   border-left: 1px solid $color-line-dark;
-  padding: 0 10px 30px 10px !important;
+  padding: 0 30px 30px 30px !important;
   flex-direction: column;
 }
 
@@ -332,7 +336,7 @@ h1:not(:first-child) {
   }
 }
 
-h1:after {
+h1::after {
   content: '';
   display: block;
   background-color: $color-line-special;
@@ -347,7 +351,7 @@ h2 {
   margin-bottom: 15px;
 }
 
-h2:after {
+h2::after {
   content: '';
   display: block;
   background-color: $color-line-light;
@@ -418,8 +422,8 @@ pre {
   margin-bottom: 25px;
   margin-top: 5px;
 
-  &:before,
-  &:after {
+  &::before,
+  &::after {
     content: '';
     display: block;
     height: 5px;
@@ -429,12 +433,12 @@ pre {
     background-color: $color-block-code-background;
   }
 
-  &:before {
+  &::before {
     top: -5px;
     border-radius: 5px 5px 0 0;
   }
 
-  &:after {
+  &::after {
     bottom: -5px;
     border-radius: 0 0 5px 5px;
   }
@@ -541,10 +545,11 @@ p[class*="note-"] {
   border-radius: 5px;
   margin: 15px 0;
 
-  &:before {
+  &::before {
     display: inline-block;
     margin-right: 10px;
     width: 24px;
+    height: 24px;
   }
 
 }
@@ -554,16 +559,12 @@ p.note-info {
   color: $color-box-info-text;
   svg > path { fill: $color-box-info-text; }
 
-  &:before { content: url('/assets/theme/images/info.svg') }
-
 }
 
 p.note-error {
   background-color: $color-box-error-background;
   color: $color-box-error-text;
   svg > path { fill: $color-box-error-text; }
-
-  &:before { content: url('/assets/theme/images/error.svg') }
 
 }
 
@@ -572,16 +573,12 @@ p.note-success {
   color: $color-box-success-text;
   svg > path { fill: $color-box-success-text; }
 
-  &:before { content: url('/assets/theme/images/success.svg') }
-
 }
 
 p.note-warning {
   background-color: $color-box-warning-background;
   color: $color-box-warning-text;
   svg > path { fill: $color-box-warning-text; }
-
-  &:before { content: url('/assets/theme/images/warning.svg') }
 
 }
 
@@ -647,24 +644,20 @@ img.img-block {
   border-radius: 5px;
 }
 
-// Right pane margin fix
-.right-pane > div > *:first-child { margin-top: 0px !important; }
-
-// Right pane color overrides
-.right-pane {
-
-  hr { border-top: 1px solid $color-line-dark; }
-  code { background-color: $color-inline-code-background-right-pane; }
-  pre, pre:after, pre:before { background-color: $color-block-code-background-right-pane; }
-  blockquote { background-color: $color-quote-background-right-pane; }
-  table > tr:nth-child(even) { background-color: $color-table-row-background-even-right-pane; }
-
-}
-
-span[class*="rest-method-"] {
+span[class*="rest-method-"],
+span[class*="rest-status-"] {
   padding: 0px 8px;
   margin-right: 10px;
   border-radius: 5px;
+  text-transform: uppercase;
+}
+
+span[class*="rest-status-"] {
+  color: $color-rest-status-default-text;
+  background-color: $color-rest-status-default-background;
+}
+
+span[class*="rest-method-"] {
   color: $color-rest-method-default-text;
   background-color: $color-rest-method-default-background;
 }
@@ -687,4 +680,97 @@ span.rest-method-put {
 span.rest-method-delete {
   color: $color-rest-method-delete-text;
   background-color: $color-rest-method-delete-background;
+}
+
+span[class*="rest-status-1"] {
+  color: $color-rest-status-info-text;
+  background-color: $color-rest-status-info-background;
+}
+
+span[class*="rest-status-2"] {
+  color: $color-rest-status-success-text;
+  background-color: $color-rest-status-success-background;
+}
+
+span[class*="rest-status-4"] {
+  color: $color-rest-status-warning-text;
+  background-color: $color-rest-status-warning-background;
+}
+
+span[class*="rest-status-5"] {
+  color: $color-rest-status-error-text;
+  background-color: $color-rest-status-error-background;
+}
+
+.body-group > ul {
+  padding-inline-start: 0px;
+  margin-bottom: 0px;
+
+  & > li {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 5px;
+    color: $color-tab-default;
+    transition: color .15s ease-in-out;
+    cursor: pointer;
+
+    &.selected { color: $color-tab-selected; }
+
+  }
+
+  &::after {
+    display: block;
+    content: '';
+    width: 100%;
+    height: 1px;
+    background-color: $color-line-special;
+  }
+
+}
+
+.body-group .body-group-content {
+
+  & > * {
+    display: none;
+    &.show { display: block; }
+  }
+
+  & > table.show { display: table; }
+
+  & > p {
+    padding: 20px;
+    background: $color-block-code-background;
+    border-radius: 5px;
+  }
+
+  & > table {
+    margin-top: 20px;
+  }
+
+}
+
+.auth-icon {
+  margin-right: 5px;
+  margin-bottom: -3px;
+
+  path {
+    fill: $color-text-normal;
+  }
+
+}
+
+// Right pane margin fix
+.right-pane > div > *:first-child { margin-top: 0px !important; }
+
+// Right pane color overrides
+.right-pane {
+
+  hr { border-top: 1px solid $color-line-dark; width: 100%; margin-bottom: 5px; }
+  code { background-color: $color-inline-code-background-right-pane; }
+  pre, pre::after, pre::before { background-color: $color-block-code-background-right-pane; }
+  blockquote { background-color: $color-quote-background-right-pane; }
+  table > tr:nth-child(even) { background-color: $color-table-row-background-even-right-pane; }
+  .body-group .body-group-content > p { background-color: $color-block-code-background-right-pane; }
+
 }

@@ -177,15 +177,6 @@ class Renderer {
     });
 
     // Define Handlebars helpers
-    // Helper: Getting root-prefix for links
-    Handlebars.registerHelper('rootPrefix', (path) => {
-
-      if ( ! path ) return './';
-
-      return '../'.repeat(path.split('/').length);
-
-    });
-
     // Helper: Content type awareness
     Handlebars.registerHelper('isDoc', (type) => type === 'doc');
     Handlebars.registerHelper('isAPI', (type) => type === 'api');
@@ -237,7 +228,7 @@ class Renderer {
     let api = {};
 
     api.info = this._renderAPIInfo(raw.title, raw.description, headerPrefix);
-    if ( raw.auth ) api.auth = { enabled: raw.auth.enabled, content: this._renderAuth(raw.auth, headerPrefix) };
+    if ( raw.auth ) api.auth = this._renderAuth(raw.auth, headerPrefix);
     if ( raw.path ) api.path = this._renderAPIPath(raw.path, raw.method, headerPrefix);
     if ( raw.params ) api.params = this._renderAPIParameters(raw.params, headerPrefix);
     if ( raw.queries ) api.queries = this._renderAPIQueryParameters(raw.queries, headerPrefix);
@@ -248,18 +239,18 @@ class Renderer {
 
       if ( raw.request.body ) {
 
-        api.request.body = [];
+        api.request.body = { content: [] };
 
         for ( const body of raw.request.body ) {
 
-          api.request.body.push({
+          api.request.body.content.push({
             type: body.type,
-            model: body.type === 'application/json' || body.type === 'application/xml' ? this._renderAPIBodyCodeBlock(body, headerPrefix) : body.type === 'multipart/form-data' || body.type === 'x-www-form-urlencoded' ? this._renderAPIBodyTable(body, headerPrefix) : this._renderAPIBodyDescription(body, headerPrefix)
+            value: body.type === 'application/json' || body.type === 'application/xml' ? this._renderAPIBodyCodeBlock(body, headerPrefix) : body.type === 'multipart/form-data' || body.type === 'x-www-form-urlencoded' ? this._renderAPIBodyTable(body, headerPrefix) : this._renderAPIBodyDescription(body, headerPrefix)
           });
 
         }
 
-        api.request.bodyTitle = this._renderAPIBodyTitle(false, headerPrefix);
+        api.request.body = _.merge(api.request.body, this._renderAPIBodyTitle(false, headerPrefix));
 
       }
 
@@ -274,18 +265,18 @@ class Renderer {
 
       if ( raw.response.body ) {
 
-        api.response.body = [];
+        api.response.body = { content: [] };
 
         for ( const body of raw.response.body ) {
 
-          api.response.body.push({
+          api.response.body.content.push({
             type: body.type,
-            model: body.type === 'application/json' || body.type === 'application/xml' ? this._renderAPIBodyCodeBlock(body, headerPrefix) : body.type === 'multipart/form-data' || body.type === 'x-www-form-urlencoded' ? this._renderAPIBodyTable(body, headerPrefix) : this._renderAPIBodyDescription(body, headerPrefix)
+            value: body.type === 'application/json' || body.type === 'application/xml' ? this._renderAPIBodyCodeBlock(body, headerPrefix) : body.type === 'multipart/form-data' || body.type === 'x-www-form-urlencoded' ? this._renderAPIBodyTable(body, headerPrefix) : this._renderAPIBodyDescription(body, headerPrefix)
           });
 
         }
 
-        api.response.bodyTitle = this._renderAPIBodyTitle(true);
+        api.response.body = _.merge(api.response.body, this._renderAPIBodyTitle(true, headerPrefix));
 
       }
 
@@ -298,12 +289,17 @@ class Renderer {
 
       api.examples = [];
 
+      let index = 0;
+
       for ( const example of raw.examples ) {
 
         let apiExample = {};
+        index++;
+        let exampleHeaderPrefix = headerPrefix.concat(['example', index + '']);
 
-        apiExample.title = this._renderAPIExampleTitle(headerPrefix);
-        apiExample.path = this._renderAPIPath(example.path, raw.method, headerPrefix);
+        apiExample = _.merge(apiExample, this._renderAPIExampleTitle(headerPrefix));
+        apiExample.info = this._renderAPIExampleDescription(example, exampleHeaderPrefix);
+        apiExample.path = this._renderAPIPath(example.path, raw.method, exampleHeaderPrefix);
 
         if ( example.request ) {
 
@@ -311,22 +307,23 @@ class Renderer {
 
           if ( example.request.body ) {
 
-            apiExample.request.body = [];
+            apiExample.request.body = { content: [] };
 
             for ( const body of example.request.body ) {
 
-              apiExample.request.body.push({
+              apiExample.request.body.content.push({
                 type: body.type,
-                value: body.type === 'multipart/form-data' || body.type === 'w-xxx-form-urlencoded' ? this._renderAPIExampleBodyTable(body, headerPrefix) : body.type === 'application/json' || body.type === 'application/xml' ? this._renderAPIExampleBodyCodeBlock(body, headerPrefix) : this._renderAPIBodyDescription(body, headerPrefix)
+                value: body.type === 'multipart/form-data' || body.type === 'w-xxx-form-urlencoded' ? this._renderAPIExampleBodyTable(body, exampleHeaderPrefix) : body.type === 'application/json' || body.type === 'application/xml' ? this._renderAPIExampleBodyCodeBlock(body, exampleHeaderPrefix) : this._renderAPIBodyDescription(body, exampleHeaderPrefix)
               });
+
             }
 
-            apiExample.request.bodyTitle = this._renderAPIBodyTitle(false, headerPrefix);
+            apiExample.request.body = _.merge(apiExample.request.body, this._renderAPIBodyTitle(false, exampleHeaderPrefix));
 
           }
 
-          if ( example.request.headers ) apiExample.request.headers = this._renderAPIExampleHeaders(example.request.headers, false, headerPrefix);
-          if ( example.request.cookies ) apiExample.request.cookies = this._renderAPIExampleCookies(example.request.cookies, false, headerPrefix);
+          if ( example.request.headers ) apiExample.request.headers = this._renderAPIExampleHeaders(example.request.headers, false, exampleHeaderPrefix);
+          if ( example.request.cookies ) apiExample.request.cookies = this._renderAPIExampleCookies(example.request.cookies, false, exampleHeaderPrefix);
 
         }
 
@@ -334,26 +331,27 @@ class Renderer {
 
           apiExample.response = {};
 
-          if ( example.response.status ) apiExample.response.status = this._renderAPIStatus(example.response.status, headerPrefix);
+          if ( example.response.status ) apiExample.response.status = this._renderAPIStatus(example.response.status, exampleHeaderPrefix);
 
           if ( example.response.body ) {
 
-            apiExample.response.body = [];
+            apiExample.response.body = { content: [] };
 
             for ( const body of example.response.body ) {
 
-              apiExample.response.body.push({
+              apiExample.response.body.content.push({
                 type: body.type,
-                value: body.type === 'multipart/form-data' || body.type === 'w-xxx-form-urlencoded' ? this._renderAPIExampleBodyTable(body, headerPrefix) : body.type === 'application/json' || body.type === 'application/xml' ? this._renderAPIExampleBodyCodeBlock(body, headerPrefix) : this._renderAPIBodyDescription(body, headerPrefix)
+                value: body.type === 'multipart/form-data' || body.type === 'w-xxx-form-urlencoded' ? this._renderAPIExampleBodyTable(body, exampleHeaderPrefix) : body.type === 'application/json' || body.type === 'application/xml' ? this._renderAPIExampleBodyCodeBlock(body, exampleHeaderPrefix) : this._renderAPIBodyDescription(body, exampleHeaderPrefix)
               });
+
             }
 
-            apiExample.response.bodyTitle = this._renderAPIBodyTitle(true, headerPrefix);
+            apiExample.response.body = _.merge(apiExample.response.body, this._renderAPIBodyTitle(true, exampleHeaderPrefix));
 
           }
 
-          if ( example.response.headers ) apiExample.response.headers = this._renderAPIExampleHeaders(example.response.headers, true, headerPrefix);
-          if ( example.response.cookies ) apiExample.response.cookies = this._renderAPIExampleCookies(example.response.cookies, true, headerPrefix);
+          if ( example.response.headers ) apiExample.response.headers = this._renderAPIExampleHeaders(example.response.headers, true, exampleHeaderPrefix);
+          if ( example.response.cookies ) apiExample.response.cookies = this._renderAPIExampleCookies(example.response.cookies, true, exampleHeaderPrefix);
 
         }
 
@@ -405,73 +403,77 @@ class Renderer {
 
   _renderAPIInfo(title, description, headerPrefix) {
 
-    let md = '';
+    if ( ! title && ! description ) return null;
 
-    if ( title ) md += `### ${title}\n\n`;
-    if ( description ) md += `${description}\n\n---\n\n`;
-
-    return this.renderMarkdown(md, headerPrefix);
+    return {
+      title: title || undefined,
+      id: title ? this.urlFriendly(title, headerPrefix) : undefined,
+      content: description ? this.renderMarkdown(description, headerPrefix) : undefined
+    };
 
   }
 
   _renderAPIPath(path, method, headerPrefix) {
 
-    let md = '#### Path\n\n';
-
-    if ( method ) md += `<span class="rest-method-${method.toLowerCase().trim()}">${method.toUpperCase()}</span>`;
-    if ( path ) md += `${path}\n\n`;
-
-    return this.renderMarkdown(md, headerPrefix);
+    return {
+      title: 'Path',
+      id: this.urlFriendly('Path', headerPrefix),
+      method: method ? method.toLowerCase().trim() : undefined,
+      content: path
+    };
 
   }
 
   _renderAuth(auth, headerPrefix) {
 
-    if ( ! auth.description ) return '';
+    if ( ! auth ) return undefined;
 
-    let md = '#### Authentication\n\n' + auth.description + '\n\n';
-
-    return this.renderMarkdown(md, headerPrefix);
+    return {
+      enabled: auth.enabled,
+      title: 'Authentication',
+      id: this.urlFriendly('Authentication', headerPrefix),
+      content: auth.description ? this.renderMarkdown(auth.description, headerPrefix) : undefined
+    };
 
   }
 
   _renderAPIParameters(params, headerPrefix) {
 
-    let md = '#### URL Parameters\n\n';
-
-    md += this._renderTable({ name: 'Name', type: 'Type', description: 'Description' }, params, headerPrefix);
-
-    return this.renderMarkdown(md, headerPrefix);
+    return {
+      title: 'URL Parameters',
+      id: this.urlFriendly('URL Parameters', headerPrefix),
+      content: this.renderMarkdown(this._renderTable({ name: 'Name', type: 'Type', description: 'Description' }, params, headerPrefix), headerPrefix)
+    };
 
   }
 
   _renderAPIQueryParameters(queries, headerPrefix) {
 
-    let md = '#### Query Parameters\n\n';
-
-    md += this._renderTable({ name: 'Name', type: 'Type', required: 'Required', description: 'Description' }, queries, headerPrefix);
-
-    return this.renderMarkdown(md, headerPrefix);
+    return {
+      title: 'Query Parameters',
+      id: this.urlFriendly('Query Parameters', headerPrefix),
+      content: this.renderMarkdown(this._renderTable({ name: 'Name', type: 'Type', description: 'Description' }, queries, headerPrefix), headerPrefix)
+    };
 
   }
 
   _renderAPIHeaders(headers, response, headerPrefix) {
 
-    let md = `#### ${response ? 'Response ' : ''}Headers\n\n`;
-
-    md += this._renderTable({ name: 'Name', description: 'Description' }, headers, headerPrefix);
-
-    return this.renderMarkdown(md, headerPrefix);
+    return {
+      title: `${response ? 'Response ' : ''}Headers`,
+      id: this.urlFriendly(`${response ? 'Response ' : ''}Headers`, headerPrefix),
+      content: this._renderTable({ name: 'Name', description: 'Description' }, headers, headerPrefix)
+    };
 
   }
 
   _renderAPICookies(cookies, response, headerPrefix) {
 
-    let md = `#### ${response ? 'Response ' : ''}Cookies\n\n`;
-
-    md += this._renderTable({ name: 'Name', description: 'Description' }, cookies, headerPrefix);
-
-    return this.renderMarkdown(md, headerPrefix);
+    return {
+      title: `${response ? 'Response ' : ''}Cookies`,
+      id: this.urlFriendly(`${response ? 'Response ' : ''}Cookies`, headerPrefix),
+      content: this._renderTable({ name: 'Name', description: 'Description' }, cookies, headerPrefix)
+    };
 
   }
 
@@ -531,9 +533,10 @@ class Renderer {
 
   _renderAPIBodyTitle(response, headerPrefix) {
 
-    const md = `#### ${response ? 'Response ' : ''}Body\n\n`;
-
-    return this.renderMarkdown(md, headerPrefix);
+    return {
+      title: `${response ? 'Response ' : ''}Body`,
+      id: this.urlFriendly(`${response ? 'Response ' : ''}Body`, headerPrefix)
+    };
 
   }
 
@@ -574,11 +577,12 @@ class Renderer {
 
   _renderAPIStatus(status, headerPrefix) {
 
-    let md = '#### Status\n\n';
-
-    md += `<span class="server-status">${status}</span> ${this._getServerStatusMessage(status) || ''}\n\n`;
-
-    return this.renderMarkdown(md, headerPrefix);
+    return {
+      title: 'Status',
+      id: this.urlFriendly('Status', headerPrefix),
+      code: status,
+      content: this._getServerStatusMessage(status)
+    };
 
   }
 
@@ -661,9 +665,22 @@ class Renderer {
 
   _renderAPIExampleTitle(headerPrefix) {
 
-    const md = '### Examples\n\n';
+    return {
+      title: 'Examples',
+      id: this.urlFriendly('Examples', headerPrefix)
+    };
 
-    return this.renderMarkdown(md, headerPrefix);
+  }
+
+  _renderAPIExampleDescription(example, headerPrefix) {
+
+    if ( ! example.title && ! example.description ) return undefined;
+
+    return {
+      title: example.title || undefined,
+      id: example.title ? this.urlFriendly(example.title, headerPrefix) : undefined,
+      content: example.description ? this.renderMarkdown(example.description, headerPrefix) : undefined
+    };
 
   }
 
@@ -695,7 +712,6 @@ class Renderer {
 
   _renderAPIExampleHeaders(headers, response, headerPrefix) {
 
-    let md = `#### ${response ? 'Response ' : ''}Headers\n\n`;
     const rows = [];
 
     for ( const key in headers ) {
@@ -707,13 +723,16 @@ class Renderer {
 
     }
 
-    return this.renderMarkdown(md, headerPrefix) + this._renderTable({ name: 'Name', value: 'Value' }, rows, headerPrefix);
+    return {
+      title: `${response ? 'Response ' : ''}Headers`,
+      id: this.urlFriendly(`${response ? 'Response ' : ''}Headers`, headerPrefix),
+      content: this._renderTable({ name: 'Name', value: 'Value' }, rows, headerPrefix)
+    };
 
   }
 
   _renderAPIExampleCookies(cookies, response, headerPrefix) {
 
-    let md = `#### ${response ? 'Response ' : ''}Cookies\n\n`;
     const rows = [];
 
     for ( const key in cookies ) {
@@ -725,7 +744,11 @@ class Renderer {
 
     }
 
-    return this.renderMarkdown(md, headerPrefix) + this._renderTable({ name: 'Name', value: 'Value' }, rows, headerPrefix);
+    return {
+      title: `${response ? 'Response ' : ''}Cookies`,
+      id: this.urlFriendly(`${response ? 'Response ' : ''}Cookies`, headerPrefix),
+      content: this._renderTable({ name: 'Name', value: 'Value' }, rows, headerPrefix)
+    };
 
   }
 

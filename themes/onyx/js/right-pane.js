@@ -55,7 +55,46 @@ RightPane = function() {
 
         if ( node.classList ) {
 
-          node.classList.add('d-block');
+          switch (getComputedStyle(node).display) {
+
+            case 'block':
+              node.classList.add('d-block');
+              break;
+
+            case 'inline-block':
+              node.classList.add('d-inline-block');
+              break;
+
+            case 'inline':
+              node.classList.add('d-inline');
+              break;
+
+            case 'table':
+              node.classList.add('d-table');
+              break;
+
+            case 'table-cell':
+              node.classList.add('d-table-cell');
+              break;
+
+            case 'table-row':
+              node.classList.add('d-table-row');
+              break;
+
+            case 'flex':
+              node.classList.add('d-flex');
+              break;
+
+            case 'inline-flex':
+              node.classList.add('d-inline-flex');
+              break;
+
+            default:
+              node.classList.add('d-block');
+              break;
+
+          }
+
           node.classList.add('d-lg-none');
 
         }
@@ -127,7 +166,7 @@ RightPane = function() {
 
     group.element.style.marginTop = (margin >= 0 ? margin : 0) + 'px';
 
-    return margin + group.element.offsetHeight;
+    return margin + group.element.offsetHeight + preTop;
 
   };
 
