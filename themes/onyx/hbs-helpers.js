@@ -1,5 +1,13 @@
 module.exports = {
 
+  getVersionLink: (version) => {
+
+    if ( version === 'All' ) return 'all';
+
+    return version;
+
+  },
+
   getBodyTypeText: (type) => {
 
     switch (type.trim().toLowerCase()) {
@@ -27,6 +35,56 @@ module.exports = {
         return 'Other';
 
     }
+
+  },
+
+  getLoaderName: (flavor) => {
+
+    return flavor === 'dark' ? 'loader-dark' : 'loader-light'
+
+  },
+
+  isSectionParent: (sections, index) => {
+
+    const current = sections[index];
+
+    if ( index === sections.length - 1 ) return false;
+
+    const next = sections[index + 1];
+
+    return current.level < next.level;
+
+  },
+
+  isSectionLastChild: (sections, index) => {
+
+    const current = sections[index];
+
+    if ( index === sections.length - 1 ) {
+
+      return current.level > 0;
+
+    }
+
+    const next = sections[index + 1];
+
+    return current.level > next.level;
+
+  },
+
+  getLastChildClosingTag: (sections, index) => {
+
+    const current = sections[index];
+
+    if ( index === sections.length - 1 ) {
+
+      return '</div>'.repeat(current.level);
+
+    }
+
+    const next = sections[index + 1];
+
+    return '</div>'.repeat(current.level - next.level);
 
   }
 

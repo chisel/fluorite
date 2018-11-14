@@ -142,8 +142,6 @@ RightPane = function() {
 
     });
 
-    console.log(this.asideGroups)
-
   };
 
   // Recalculates the top margins of all aside groups

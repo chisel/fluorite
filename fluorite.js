@@ -14,14 +14,15 @@ class Fluorite {
 
   get config() {
 
-    return this._config;
+    return this._originalConfig;
 
   }
 
   get options() {
 
     return {
-      basePath: this._basePath
+      basePath: this._basePath,
+      themeConfig: this._themeConfig
     };
 
   }
@@ -38,6 +39,13 @@ class Fluorite {
       this._config = config;
       this._server = new Server(config.serverOptions);
       this._config.serverOptions = this._server.options;
+
+      // Load theme's config file (if any)
+      if ( fs.existsSync(path.join(__dirname, 'themes', this._config.rendererOptions.theme, 'config.json')) ) {
+
+        this._themeConfig = this._require(path.join(__dirname, 'themes', this._config.rendererOptions.theme, 'config.json'));
+
+      }
 
       this._emit('ready');
 
@@ -96,13 +104,18 @@ class Fluorite {
       return this._emit('error', new Error(`Could not find styles.scss of theme ${themeName}!`));
 
     // Load theme's config file (if any)
-    if ( fs.existsSync(path.join(__dirname, 'themes', themeName, 'config.json')) )
-      themeConfig = require(path.join(__dirname, 'themes', themeName, 'config.json'));
+    if ( fs.existsSync(path.join(__dirname, 'themes', themeName, 'config.json')) ) {
+
+      themeConfig = this._require(path.join(__dirname, 'themes', themeName, 'config.json'));
+      this._themeConfig = _.cloneDeep(themeConfig);
+
+    }
 
     // Prepare theme's flavor (if any)
     if ( themeConfig.hasFlavors ) {
 
       const selectedFlavor = flavorName || themeConfig.defaultFlavor;
+      this._selectedFlavor = selectedFlavor;
 
       // See if any flavor is selected
       if ( ! selectedFlavor ) return this._emit('error', new Error(`No flavor selected for theme ${themeName} since theme has no default flavor!`));
@@ -142,7 +155,7 @@ class Fluorite {
 
       try {
 
-        helpers = require(path.join(__dirname, 'themes', themeName, 'hbs-helpers.js'));
+        helpers = this._require(path.join(__dirname, 'themes', themeName, 'hbs-helpers.js'));
 
         // Register helpers
         this._renderer.registerHelpers(helpers);
@@ -161,7 +174,7 @@ class Fluorite {
 
       try {
 
-        partials = require(path.join(__dirname, 'themes', themeName, 'hbs-partials.js'));
+        partials = this._require(path.join(__dirname, 'themes', themeName, 'hbs-partials.js'));
 
         // Register partials
         this._renderer.registerPartials(partials);
@@ -379,7 +392,7 @@ class Fluorite {
         // Build the rest of the documentation recursively
         try {
 
-          await this._generateMultiPageDocs(finalPath, templateData[i], template, userAssets);
+          await this._generateMultiPageDocs(finalPath, templateData[i], template, userAssets, this._config.themeOptions);
 
         }
         catch (error) {
@@ -392,7 +405,36 @@ class Fluorite {
 
     }
 
-    await fs.writeJson('templateData.json', templateData, { spaces: 2 });
+    // Minify the output
+    this._emit('update', 'Minifying the generated files...');
+
+    let outputFiles;
+
+    // Scan the output directory for JS, CSS, and HTML files
+    try {
+
+      outputFiles = await this._scanDir(outputDirPath);
+
+    }
+    catch (error) {
+
+      return this._emit('error', error);
+
+    }
+
+    outputFiles = outputFiles.filter(filename => ['.js', '.css'].includes(path.extname(filename)));
+
+    // Minify all the files (all .min files will be ignored)
+    try {
+
+      await this._renderer.minify(outputFiles);
+
+    }
+    catch (error) {
+
+      this._emit('error', new Error(`Could not minify the generated files!\n${error}`));
+
+    }
 
     this._emit('finished', warnings);
 
@@ -410,7 +452,7 @@ class Fluorite {
 
       port = await this._server.serve(path.resolve(path.join(this._basePath, this._config.outputDir)), port);
 
-      this._emit('finished', port);
+      this._emit('served', path.resolve(path.join(this._basePath, this._config.outputDir)), port);
 
     }
     catch (error) {
@@ -440,7 +482,7 @@ class Fluorite {
     // Load flconfig.json
     try {
 
-      config = require(path.resolve(path.join(this._basePath, configPath)));
+      config = this._require(path.resolve(path.join(this._basePath, configPath)));
 
     }
     catch (error) {
@@ -453,6 +495,8 @@ class Fluorite {
     this._renderer = new Renderer(config.rendererOptions);
     // Update the renderer options on flconfig.json with the final resolved renderer options
     config.rendererOptions = this._renderer.options;
+
+    this._originalConfig = _.cloneDeep(config);
 
     // Load the blueprint (read all contents)
     try {
@@ -564,12 +608,12 @@ class Fluorite {
     try {
 
       if ( ext.toLowerCase() === '.md' ) return await fs.readFile(path.resolve(path.join(this._basePath, basePath || '', contentPath)), { encoding: 'utf8' });
-      if ( ext.toLowerCase() === '.json' ) return require(path.resolve(path.join(this._basePath, basePath || '', contentPath)));
+      if ( ext.toLowerCase() === '.json' ) return this._require(path.resolve(path.join(this._basePath, basePath || '', contentPath)));
 
     }
     catch (error) {
 
-      throw new Error('Could not load content at "' + path.resolve(path.join('.', basePath || '', contentPath)) + '"!\n' + error);
+      throw new Error('Could not load content at "' + path.resolve(path.join(this._basePath, basePath || '', contentPath)) + '"!\n' + error);
 
     }
 
@@ -780,7 +824,7 @@ class Fluorite {
 
         try {
 
-          if ( ext === '.json' ) body[key || 'model'] = require(path.resolve(path.join(this._basePath, body.externalFile)));
+          if ( ext === '.json' ) body[key || 'model'] = this._require(path.resolve(path.join(this._basePath, body.externalFile)));
           if ( ext === '.xml' ) body[key || 'model'] = (await fs.readFile(path.resolve(path.join(this._basePath, body.externalFile)), { encoding: 'utf8' })).trim();
 
         }
@@ -949,6 +993,9 @@ class Fluorite {
 
     // Attach user assets
     if ( _.keys(userAssets).length ) pageData.extended = _.merge(pageData.extended, userAssets);
+
+    // Attach theme flavor
+    pageData.themeFlavor = this._selectedFlavor;
 
     // Generate root prefix
     pageData.rootPrefix = '../'.repeat(pageData.path ? pageData.path.split('/').length + 1 : 1).slice(0, -1);
@@ -1292,6 +1339,62 @@ class Fluorite {
     }
 
     return selectedSection;
+
+  }
+
+  _require(path) {
+
+    delete require.cache[path];
+
+    return require(path);
+
+  }
+
+  async _scanDir(dirname) {
+
+    let list;
+    let files = [];
+
+    try {
+
+      list = await fs.readdir(path.resolve(dirname));
+
+    }
+    catch (error) {
+
+      throw error;
+
+    }
+
+    for ( const item of list ) {
+
+      let stats;
+
+      try {
+
+        stats = await fs.stat(path.resolve(path.join(dirname, item)));
+
+      }
+      catch (error) {
+
+        throw error;
+
+      }
+
+      if ( stats.isDirectory() ) {
+
+        files = files.concat(await this._scanDir(path.resolve(path.join(dirname, item))));
+
+      }
+      else {
+
+        files.push(path.resolve(path.join(dirname, item)));
+
+      }
+
+    }
+
+    return files;
 
   }
 

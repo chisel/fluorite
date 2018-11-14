@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html {{#if extended.showLoadingAnimation}}class="no-scroll"{{/if}}>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,6 +15,10 @@
     {{#if extended.msapplication-config}}<meta name="msapplication-config" content="{{rootPrefix}}{{extended.msapplication-config}}">{{/if}}
     {{#if extended.theme-color}}<meta name="theme-color" content="{{extended.theme-color}}">{{/if}}
 
+    {{! Lottie JS }}
+    {{#if extended.showLoadingAnimation}}
+      <script src="{{rootPrefix}}/assets/theme/js/lottie.js" charset="utf-8"></script>
+    {{/if}}
     {{! JQuery and Bootstrap }}
     <link rel="stylesheet" href="{{rootPrefix}}/assets/theme/css/bootstrap.min.css">
     <script src="{{rootPrefix}}/assets/theme/js/jquery.min.js" charset="utf-8"></script>
@@ -37,21 +41,43 @@
       p.note-warning::before { content: url('{{rootPrefix}}/assets/theme/images/warning.svg') }
     </style>
 
+    {{! Unload animation }}
+    {{#if extended.showLoadingAnimation}}
+      <script type="text/javascript">
+        window.addEventListener('load', () => {
+          bodymovin.destroy();
+          document.querySelector('.loader-container').classList.add('hide');
+          document.body.classList.remove('no-scroll');
+          document.getElementsByTagName('html')[0].classList.remove('no-scroll');
+        });
+      </script>
+    {{/if}}
+
     {{! Page title }}
     {{#if multiPage}}
-      <title>{{title}} - {{pageTitle}}</title>
+      <title>{{title}}{{#if path}} - {{pageTitle}}{{/if}}</title>
     {{else}}
-      {{#if extended.subtitle}}
-        <title>{{title}} - {{extended.subtitle}}</title>
-      {{else}}
-        <title>{{title}}</title>
-      {{/if}}
+      <title>{{title}}{{#if extended.subtitle}} - {{extended.subtitle}}{{/if}}</title>
     {{/if}}
 
   </head>
-  <body>
-    <div id="sliderMenuShadow" class="slider-menu-shadow d-block d-md-none" onclick="toggleMenu()"></div>
-    <div id="sliderMenu" class="slider-menu d-block d-md-none">
+  <body {{#if extended.showLoadingAnimation}}class="no-scroll"{{/if}}>
+    {{#if extended.showLoadingAnimation}}
+      <div class="loader-container">
+        <div id="themeLoader" class="loader"></div>
+      </div>
+      <script type="text/javascript">
+        bodymovin.loadAnimation({
+          container: document.getElementById('themeLoader'),
+          path: '{{rootPrefix}}/assets/theme/js/{{getLoaderName themeFlavor}}.json',
+          renderer: 'svg',
+          loop: true,
+          autoplay: true
+        });
+      </script>
+    {{/if}}
+    <div id="sliderMenuShadow" class="slider-menu-shadow d-block d-md-none fixed-top" onclick="toggleMenu()"></div>
+    <div id="sliderMenu" class="slider-menu d-block d-md-none fixed-top">
       {{#if versions}}
         <div class="dropdown dropdown-block">
           <button class="btn btn-secondary version-list-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -75,10 +101,13 @@
         {{/each}}
       </div>
     </div>
-    <nav class="navbar">
+    {{#if extended.stickyHeader}}
+      <div class="fixed-navbar-compensate"></div>
+    {{/if}}
+    <nav class="navbar{{#if extended.stickyHeader}} fixed-top{{/if}}">
       <div class="d-flex align-items-center w-100{{#if versions}}-versions{{/if}}">
         {{#if extended.logo}}<img src="{{rootPrefix}}{{extended.logo}}" width="50" height="50">{{/if}}
-        <span class="navbar-title">{{title}}</span>
+        <a class="navbar-title" href="{{rootPrefix}}/{{#if versions}}{{getVersionLink version}}{{/if}}">{{title}}</a>
         {{#if extended.subtitle}}
           <span class="navbar-subtitle d-none d-lg-block">{{extended.subtitle}}</span>
         {{/if}}
@@ -109,9 +138,24 @@
         <div class="col-lg-2 col-md-3 d-none d-md-flex left-pane">
           <div class="btn-group-vertical section-list" role="group" aria-label="sections">
             {{#each sections}}
-              <a href="{{link}}">
-                <button class="btn btn-secondary level-{{level}}{{#if selected}} selected{{/if}}" type="button">{{title}}</button>
-              </a>
+              {{#if (isSectionParent ../sections @index)}}
+                <div class="section-parent">
+                  <a href="{{link}}">
+                    <button class="btn btn-secondary level-{{level}}{{#if selected}} selected{{/if}}" type="button">{{title}}</button>
+                  </a>
+                  <span class="chevron" onclick="toggleSection(this)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 10 16">
+                      <path fill-rule="evenodd" d="M5 11L0 6l1.5-1.5L5 8.25 8.5 4.5 10 6l-5 5z"/>
+                    </svg>
+                  </span>
+                </div>
+                <div class="section-group">
+              {{else}}
+                <a href="{{link}}">
+                  <button class="btn btn-secondary level-{{level}}{{#if selected}} selected{{/if}}" type="button">{{title}}</button>
+                </a>
+              {{/if}}
+              {{#if (isSectionLastChild ../sections @index)}}{{{getLastChildClosingTag ../sections @index}}}{{/if}}
             {{/each}}
           </div>
         </div>

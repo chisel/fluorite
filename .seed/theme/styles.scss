@@ -1,0 +1,21 @@
+// This file contains the theme's styling and can import any other SCSS file.
+/* NOTE: If theme has flavors, this file must only load "flavors/final.scss"
+         since the chosen flavor will be available as "_final.scss" (partial). */
+// NOTE: This file will be vendor prefixed using Autoprefixer.
+@import 'flavors/final.scss';
+
+html,
+body {
+  height: 100%;
+  margin: 0px;
+}
+
+body {
+  background-color: $color-background;
+  color: $color-text;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-size: 2rem;
+}

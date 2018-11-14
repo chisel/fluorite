@@ -1,0 +1,116 @@
+// All the variables that make the Onyx theme look light reside here.
+
+// If this file is selected by the user, it will be copied to '_final.scss',
+// therefore, other SASS files should import '_final.scss' only.
+
+// Color palette
+$colors: (
+  primary1:        #bfc8d6,
+  primary2:        #939aa5,
+  primary3:        #656a72,
+  primary4:        #3d424b,
+  primary5:        #343941,
+  primary6:        #2e3239,
+  primary7:        #2a2e34,
+  primary8:        #22252a,
+  accent:          #8670b2,
+  light-blue:      #5a91be,
+  dark-blue:       #305777,
+  light-red:       #be5a5a,
+  dark-red:        #773030,
+  light-green:     #5abe93,
+  dark-green:      #307758,
+  light-yellow:    #e6dd6c,
+  dark-yellow:     #807a33,
+  syntax-gray:     #abb2bf,
+  syntax-orange:   #d19a66,
+  syntax-cyan:     #56b6c2,
+  syntax-yellow:   #e5c07b,
+  syntax-red:      #e06c75,
+  syntax-green:    #98c379,
+  syntax-purple:   #c678dd,
+  syntax-blue:     #61afef
+);
+
+// Color configuration
+$color-background:                            map-get($colors, primary5);
+$color-line-dark:                             map-get($colors, primary8);
+$color-line-medium:                           map-get($colors, primary7);
+$color-line-light:                            map-get($colors, primary2);
+$color-line-special:                          map-get($colors, accent);
+$color-header-background:                     map-get($colors, primary7);
+$color-header-title:                          map-get($colors, accent);
+$color-header-subtitle:                       map-get($colors, primary2);
+$color-text-normal:                           map-get($colors, primary2);
+$color-text-h1:                               map-get($colors, accent);
+$color-text-h2:                               map-get($colors, primary2);
+$color-text-h3:                               map-get($colors, primary2);
+$color-text-h4:                               map-get($colors, primary2);
+$color-text-h5:                               map-get($colors, primary2);
+$color-text-h6:                               map-get($colors, primary3);
+$color-link-default:                          map-get($colors, accent);
+$color-link-hover:                            map-get($colors, accent);
+$color-link-visited:                          map-get($colors, accent);
+$color-link-active:                           map-get($colors, accent);
+$color-table-header:                          map-get($colors, accent);
+$color-table-row-background-odd:              transparent;
+$color-table-row-background-even:             map-get($colors, primary6);
+$color-table-row-background-even-right-pane:  map-get($colors, primary7);
+$color-table-text:                            map-get($colors, primary2);
+$color-quote-line:                            map-get($colors, accent);
+$color-quote-background:                      map-get($colors, primary6);
+$color-quote-background-right-pane:           map-get($colors, primary7);
+$color-quote-text:                            map-get($colors, primary3);
+$color-inline-code-background:                map-get($colors, primary6);
+$color-inline-code-background-right-pane:     map-get($colors, primary7);
+$color-inline-code-text:                      map-get($colors, primary1);
+$color-block-code-background:                 map-get($colors, primary6);
+$color-block-code-background-right-pane:      map-get($colors, primary7);
+$color-block-code-text:                       map-get($colors, primary1);
+$color-box-info-background:                   map-get($colors, light-blue);
+$color-box-info-text:                         map-get($colors, dark-blue);
+$color-box-info-icon:                         map-get($colors, dark-blue);
+$color-box-error-background:                  map-get($colors, light-red);
+$color-box-error-text:                        map-get($colors, dark-red);
+$color-box-error-icon:                        map-get($colors, dark-red);
+$color-box-warning-background:                map-get($colors, light-yellow);
+$color-box-warning-text:                      map-get($colors, dark-yellow);
+$color-box-warning-icon:                      map-get($colors, dark-yellow);
+$color-box-success-background:                map-get($colors, light-green);
+$color-box-success-text:                      map-get($colors, dark-green);
+$color-box-success-icon:                      map-get($colors, dark-green);
+$color-side-panes-background:                 map-get($colors, primary6);
+$color-menu-item-background:                  map-get($colors, primary6);
+$color-menu-item-background-hover:            map-get($colors, primary7);
+$color-syntax-keyword:                        map-get($colors, syntax-purple);
+$color-syntax-function:                       map-get($colors, syntax-blue);
+$color-syntax-string:                         map-get($colors, syntax-green);
+$color-syntax-operator:                       map-get($colors, syntax-cyan);
+$color-syntax-number:                         map-get($colors, syntax-orange);
+$color-syntax-comment:                        map-get($colors, syntax-gray);
+$color-syntax-class:                          map-get($colors, syntax-yellow);
+$color-syntax-variable:                       map-get($colors, syntax-red);
+$color-button-text:                           map-get($colors, primary1);
+$color-slider-menu-shadow:                    rgba(0, 0, 0, .75);
+$color-rest-method-default-text:              map-get($colors, primary5);
+$color-rest-method-default-background:        map-get($colors, primary3);
+$color-rest-method-get-text:                  map-get($colors, primary5);
+$color-rest-method-get-background:            map-get($colors, light-blue);
+$color-rest-method-post-text:                 map-get($colors, primary5);
+$color-rest-method-post-background:           map-get($colors, light-green);
+$color-rest-method-put-text:                  map-get($colors, primary5);
+$color-rest-method-put-background:            map-get($colors, light-yellow);
+$color-rest-method-delete-text:               map-get($colors, primary5);
+$color-rest-method-delete-background:         map-get($colors, light-red);
+$color-rest-status-default-text:              map-get($colors, primary5);
+$color-rest-status-default-background:        map-get($colors, primary3);
+$color-rest-status-success-text:              map-get($colors, primary5);
+$color-rest-status-success-background:        map-get($colors, light-green);
+$color-rest-status-warning-text:              map-get($colors, primary5);
+$color-rest-status-warning-background:        map-get($colors, light-yellow);
+$color-rest-status-info-text:                 map-get($colors, primary5);
+$color-rest-status-info-background:           map-get($colors, light-blue);
+$color-rest-status-error-text:                map-get($colors, primary5);
+$color-rest-status-error-background:          map-get($colors, light-red);
+$color-tab-default:                           map-get($colors, primary3);
+$color-tab-selected:                          map-get($colors, accent);

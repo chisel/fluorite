@@ -33,17 +33,50 @@
 
 html, body {
   font-family: 'Titillium Web', sans-serif;
+  font-size: 18px;
   background-color: $color-background;
   color: $color-text-normal;
   position: relative;
-  overflow-x: hidden;
+  height: 100%;
+}
+
+.loader-container {
+  background-color: $color-background;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity .2s ease-in-out, visibility 0s ease-in-out .2s;
+  z-index: 2000;
+
+  .loader {
+    width: 100px;
+  }
+
+  &.hide {
+    visibility: hidden;
+    opacity: 0;
+  }
+
 }
 
 hr {
   border-top: 1px solid $color-line-medium;
 }
 
-body.no-scroll { overflow-y: hidden; }
+html.no-scroll,
+body.no-scroll {
+  overflow-y: hidden;
+}
+
+div.fixed-navbar-compensate {
+  width: 100%;
+  height: 100px;
+}
 
 nav.navbar {
   display: flex;
@@ -54,6 +87,13 @@ nav.navbar {
   padding-left: 50px;
   padding-right: 50px;
   border-bottom: 1px solid $color-line-dark;
+
+  @media (max-width: 576px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  & > .w-100 { width: calc(100% - 70px) !important; }
 
   // The header content width when versions dropbox is present
   & > .w-100-versions { width: calc(100% - 260px); }
@@ -71,6 +111,7 @@ nav.navbar {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    text-decoration: none;
 
     &:first-child { margin-left: 0; }
 
@@ -203,9 +244,8 @@ nav.navbar {
   width: 100%;
   height: 100%;
   background-color: $color-slider-menu-shadow;
-  position: absolute;
   opacity: 0;
-  z-index: 1;
+  z-index: 1031;
   visibility: hidden;
   transition: visibility 0s ease-in-out .25s, opacity .25s ease-in-out;
 
@@ -218,17 +258,17 @@ nav.navbar {
 }
 
 .slider-menu {
-  position: absolute;
   width: 85%;
   max-width: 500px;
-  min-height: 100%;
+  height: 100%;
   background-color: $color-side-panes-background;
   display: flex;
   left: -800px;
   transition: visibility .5s ease-in-out .5s, left .5s ease-in-out;
   border-right: 1px solid $color-line-dark;
   visibility: hidden;
-  z-index: 2;
+  z-index: 1032;
+  overflow-y: scroll;
 
   &.show {
     left: 0;
@@ -314,6 +354,51 @@ div.right-pane {
     }
 
     @include indentSection(5);
+
+  }
+
+  & .section-parent {
+
+    a { width: calc(100% - 50px) !important; }
+
+    .chevron {
+      width: 50px;
+      user-select: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $color-menu-item-background;
+      transition: background-color .15s ease-in-out;
+      cursor: pointer;
+
+      svg {
+        transition: .15s ease-in-out;
+
+        &.closed { transform: rotate(90deg); }
+
+        path {
+          fill: $color-text-normal;
+          transition: fill .15s ease-in-out;
+        }
+
+      }
+
+      &:hover { background-color: $color-menu-item-background-hover; }
+      &:active svg > path { fill: $color-link-default; }
+
+    }
+
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+  }
+
+  & .section-group {
+    display: block;
+
+    &.hide {
+      display: none;
+    }
 
   }
 

@@ -31,7 +31,8 @@ class Server {
 
         resolve(port || this._options.port);
 
-      });
+      })
+      .on('error', reject);
 
     });
 

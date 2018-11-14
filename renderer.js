@@ -6,6 +6,10 @@ const postcss = require('postcss');
 const autoprefixer = require('autoprefixer');
 const Handlebars = require('handlebars');
 const _ = require('lodash');
+const uglifyJs = require('uglify-es');
+const cleanCss = new (require('clean-css'))();
+const path = require('path');
+const fs = require('fs-extra');
 
 class Renderer {
 
@@ -16,7 +20,9 @@ class Renderer {
       hideEmptyColumns: false,
       multiPage: false,
       versions: ['*'],
-      rootVersionLinksOnly: false
+      rootVersionLinksOnly: false,
+      minifyJS: true,
+      minifyCSS: true
     }, options || {});
 
     // Install Prism languages
@@ -398,6 +404,95 @@ class Renderer {
     const template = Handlebars.compile(source);
 
     return template(data);
+
+  }
+
+  async minify(inputFiles) {
+
+    const files = {
+      js: inputFiles.filter(file => !! file.match(/^(?!.+\.min\.js).+\.js$/)),
+      css: inputFiles.filter(file => !! file.match(/^(?!.+\.min\.css).+\.css/))
+    };
+
+    // Minify JS
+    if ( files.js.length && this._options.minifyJS ) {
+
+      for ( const filename of files.js ) {
+
+        let content;
+
+        // Read file
+        try {
+
+          content = await fs.readFile(path.resolve(filename), { encoding: 'utf8' });
+
+        }
+        catch (error) {
+
+          throw error;
+
+        }
+
+        // Minify
+        let results = uglifyJs.minify(content);
+
+        if ( results.error ) throw error;
+
+        // Write the minified file
+        try {
+
+          await fs.writeFile(path.resolve(filename), results.code);
+
+        }
+        catch (error) {
+
+          throw error;
+
+        }
+
+      }
+
+    }
+
+    // Minify CSS
+    if ( files.css.length && this._options.minifyCSS ) {
+
+      for ( const filename of files.css ) {
+
+        // Read file
+        let content;
+
+        try {
+
+          content = await fs.readFile(path.resolve(filename), { encoding: 'utf8' });
+
+        }
+        catch (error) {
+
+          throw error;
+
+        }
+
+        // Minify
+        let results = cleanCss.minify(content);
+
+        if ( results.errors.length ) throw new Error(results.errors.join('\n'));
+
+        // Write the minified file
+        try {
+
+          await fs.writeFile(path.resolve(filename), results.styles);
+
+        }
+        catch (error) {
+
+          throw error;
+
+        }
+
+      }
+
+    }
 
   }
 
