@@ -338,7 +338,7 @@ class Fluorite {
 
     }
 
-    let hasVersions = this._config.rendererOptions.versions.length > 1 || this._config.rendererOptions.versions[0] !== '*';
+    let hasVersions = this._config.rendererOptions.versions.length > 1;
 
     // Generate the documentation
     for ( let i = 0; i < this._config.rendererOptions.versions.length; i++ ) {
@@ -1000,6 +1000,9 @@ class Fluorite {
     // Generate root prefix
     pageData.rootPrefix = '../'.repeat(pageData.path ? pageData.path.split('/').length + 1 : 1).slice(0, -1);
 
+    // Generate version root prefix
+    pageData.versionRootPrefix = pageData.versions ? pageData.rootPrefix + `/${pageData.version === 'All' ? 'all' : pageData.version}` : pageData.rootPrefix;
+
     // Inject root prefix on all content
     for ( const content of pageData.contents ) {
 
@@ -1007,7 +1010,8 @@ class Fluorite {
 
         if ( c.type === 'doc' ) {
 
-          c.value = c.value.replace(/{{rootPrefix}}/g, pageData.rootPrefix);
+          c.value = c.value.replace(/%7B%7BrootPrefix%7D%7D/g, pageData.rootPrefix)
+                           .replace(/%7B%7BversionRootPrefix%7D%7D/g, pageData.versionRootPrefix);
 
         }
 

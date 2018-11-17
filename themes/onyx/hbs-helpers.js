@@ -1,10 +1,39 @@
 module.exports = {
 
-  getVersionLink: (version) => {
+  isFirstSection: (path) => {
 
-    if ( version === 'All' ) return 'all';
+    return path === '0';
 
-    return version;
+  },
+
+  getPreviousSectionLink: (sections, path) => {
+
+    let previousSection;
+
+    for ( const section of sections ) {
+
+      if ( section.selected ) return previousSection ? previousSection.link : undefined;
+
+      previousSection = section;
+
+    }
+
+  },
+
+  getNextSectionLink: (sections) => {
+
+    let selected = false;
+
+    for ( const section of sections ) {
+
+      if ( section.selected ) selected = true;
+      else if ( selected ) return section.link;
+
+    }
+
+    if ( selected ) return;
+
+    return sections.length ? sections[0].link : undefined;
 
   },
 

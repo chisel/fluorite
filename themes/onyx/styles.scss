@@ -859,3 +859,52 @@ span[class*="rest-status-5"] {
   .body-group .body-group-content > p { background-color: $color-block-code-background-right-pane; }
 
 }
+
+.nav-pagination {
+  width: 100%;
+  height: 50px;
+  margin-top: 50px;
+  user-select: none;
+
+  a,
+  button,
+  span {
+    height: 100%;
+    width: 100%;
+  }
+
+  button,
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $color-side-panes-background;
+  }
+
+  a { text-decoration: none; }
+
+  a:first-child > button, span:first-child { border-radius: .25rem 0 0 .25rem; }
+  a:last-child > button, span:last-child { border-radius: 0 .25rem .25rem 0; }
+
+  span {
+    color: $color-link-disabled;
+  }
+
+  button {
+    cursor: pointer;
+    color: $color-text-normal;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out;
+    border: none;
+    outline: none;
+
+    &:hover {
+      color: $color-link-default;
+    }
+
+    &:active {
+      background-color: $color-header-background;
+    }
+
+  }
+
+}

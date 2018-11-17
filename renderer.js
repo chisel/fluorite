@@ -186,6 +186,8 @@ class Renderer {
     // Helper: Content type awareness
     Handlebars.registerHelper('isDoc', (type) => type === 'doc');
     Handlebars.registerHelper('isAPI', (type) => type === 'api');
+    // Helper: Detecting root
+    Handlebars.registerHelper('isRoot', (path) => path === '');
 
   }
 

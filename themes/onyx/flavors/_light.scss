@@ -1,4 +1,4 @@
-// All the variables that make the Onyx theme look light reside here.
+// All the variables that make the Onyx theme look dark reside here.
 
 // If this file is selected by the user, it will be copied to '_final.scss',
 // therefore, other SASS files should import '_final.scss' only.
@@ -52,6 +52,7 @@ $color-link-default:                          map-get($colors, accent);
 $color-link-hover:                            map-get($colors, accent);
 $color-link-visited:                          map-get($colors, accent);
 $color-link-active:                           map-get($colors, accent);
+$color-link-disabled:                         map-get($colors, primary4);
 $color-table-header:                          map-get($colors, accent);
 $color-table-row-background-odd:              transparent;
 $color-table-row-background-even:             map-get($colors, primary6);

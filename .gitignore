@@ -1,4 +1,5 @@
 node_modules
 themes/*/flavors/_final.scss
 sample.fdml
-docs
+docs/dist
+**/template-data.json

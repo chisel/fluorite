@@ -52,6 +52,7 @@ $color-link-default:                          map-get($colors, accent);
 $color-link-hover:                            map-get($colors, accent);
 $color-link-visited:                          map-get($colors, accent);
 $color-link-active:                           map-get($colors, accent);
+$color-link-disabled:                         map-get($colors, primary4);
 $color-table-header:                          map-get($colors, accent);
 $color-table-row-background-odd:              transparent;
 $color-table-row-background-even:             map-get($colors, primary6);

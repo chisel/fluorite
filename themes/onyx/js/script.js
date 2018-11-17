@@ -18,8 +18,52 @@ window.addEventListener('load', () => {
 
   }
 
-  // Initiate notes
-  new Notes();
+  const comment = new CommentParser();
+
+  // Create notes
+  comment.register('note', 'single', (element, type) => {
+
+    element.classList.add(`note-${type}`);
+
+    const children = [];
+    let span = document.createElement('span');
+
+    for ( const child of element.childNodes ) {
+
+      children.push(child);
+
+    }
+
+    for ( const child of children ) {
+
+      span.appendChild(child);
+
+    }
+
+    element.appendChild(span);
+
+  });
+
+  // Create responsive content
+  comment.register('responsive', 'block', (nodes, breakpoints) => {
+
+    for ( const node of nodes ) {
+
+      if ( ! node.classList ) continue;
+
+      const display = getComputedStyle(node).display || 'block';
+
+      node.classList.add(`d-${breakpoints.includes('mobile') ? display : 'none'}`);
+      node.classList.add(`d-sm-${breakpoints.includes('mobile') ? display : 'none'}`);
+      node.classList.add(`d-md-${breakpoints.includes('tablet') ? display : 'none'}`);
+      node.classList.add(`d-lg-${breakpoints.includes('desktop') ? display : 'none'}`);
+      node.classList.add(`d-xl-${breakpoints.includes('desktop') ? display : 'none'}`);
+
+    }
+
+  });
+
+  comment.parse(document.querySelector('.middle-pane'));
 
   // Build the right pane
   window.rightPane = new RightPane();

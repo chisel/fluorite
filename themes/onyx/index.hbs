@@ -26,11 +26,12 @@
     {{! Simple Bar }}
     <link rel="stylesheet" href="{{rootPrefix}}/assets/theme/css/simplebar.min.css" />
     <script src="{{rootPrefix}}/assets/theme/js/simplebar.min.js"></script>
+    {{! Comment Parser Utility }}
+    <script src="{{rootPrefix}}/assets/theme/js/comment-parser.js" charset="utf-8"></script>
     {{! Theme CSS }}
     <link rel="stylesheet" href="{{rootPrefix}}/assets/theme/styles.css">
     {{! Theme JS }}
     <script src="{{rootPrefix}}/assets/theme/js/right-pane.js" charset="utf-8"></script>
-    <script src="{{rootPrefix}}/assets/theme/js/notes.js" charset="utf-8"></script>
     <script src="{{rootPrefix}}/assets/theme/js/script.js" charset="utf-8"></script>
 
     {{! CSS with assets }}
@@ -61,7 +62,7 @@
     {{/if}}
 
   </head>
-  <body {{#if extended.showLoadingAnimation}}class="no-scroll"{{/if}}>
+  <body ontouchstart {{#if extended.showLoadingAnimation}}class="no-scroll"{{/if}}>
     {{#if extended.showLoadingAnimation}}
       <div class="loader-container">
         <div id="themeLoader" class="loader"></div>
@@ -107,7 +108,7 @@
     <nav class="navbar{{#if extended.stickyHeader}} fixed-top{{/if}}">
       <div class="d-flex align-items-center w-100{{#if versions}}-versions{{/if}}">
         {{#if extended.logo}}<img src="{{rootPrefix}}{{extended.logo}}" width="50" height="50">{{/if}}
-        <a class="navbar-title" href="{{rootPrefix}}/{{#if versions}}{{getVersionLink version}}{{/if}}">{{title}}</a>
+        <a class="navbar-title" href="{{versionRootPrefix}}/">{{title}}</a>
         {{#if extended.subtitle}}
           <span class="navbar-subtitle d-none d-lg-block">{{extended.subtitle}}</span>
         {{/if}}
@@ -399,6 +400,30 @@
               {{/if}}
             {{/each}}
           {{/each}}
+          {{#if multiPage}}
+            <nav class="nav-pagination d-flex d-md-none">
+              {{#if (getPreviousSectionLink sections path)}}
+                <a href="{{getPreviousSectionLink sections}}">
+                  <button type="button">Previous</button>
+                </a>
+              {{else}}
+                {{#if (isFirstSection path)}}
+                  <a href="{{versionRootPrefix}}/">
+                    <button type="button">Previous</button>
+                  </a>
+                {{else}}
+                  <span>Previous</span>
+                {{/if}}
+              {{/if}}
+              {{#if (getNextSectionLink sections)}}
+                <a href="{{getNextSectionLink sections}}">
+                  <button type="button">Next</button>
+                </a>
+              {{else}}
+                <span>Next</span>
+              {{/if}}
+            </nav>
+          {{/if}}
           {{#unless extended.hidePoweredBy}}
             <hr>
             <div class="powered-by">

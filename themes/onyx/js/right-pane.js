@@ -7,51 +7,18 @@ RightPane = function() {
   // Selects all elements between aside comments, adds them to the right pane and hides them from the middle pane using Bootstrap class names
   this.init = () => {
 
-    let selecting = false;
-    let asideGroup;
+    const comment = new CommentParser();
 
-    if ( ! Node ) Node = {};
+    comment.register('aside', 'block', (nodes) => {
 
-    if ( ! Node.COMMENT_NODE ) Node.COMMENT_NODE = 8;
+      let group = {
+        nodes: [],
+        alignTo: nodes && nodes.length && nodes[0].previousElementSibling ? nodes[0].previousElementSibling : null
+      };
 
-    // Select nodes and hide them from the middle pane
-    for ( const node of this.middlePane.childNodes ) {
+      for ( const node of nodes ) {
 
-      // If node is aside comment
-      if ( node.nodeType === Node.COMMENT_NODE && node.data.trim() === 'aside' ) {
-
-        // If not already selecting, create a new group
-        if ( ! selecting ) {
-
-          asideGroup = {
-            nodes: [],
-            alignTo: node.previousElementSibling,
-            id: this.asideGroups.length
-          };
-
-        }
-
-        selecting = true;
-
-      }
-      // If node is /aside comment
-      else if ( node.nodeType === Node.COMMENT_NODE && node.data.trim() === '/aside' ) {
-
-        // If not selecting
-        if ( ! selecting ) continue;
-
-        selecting = false;
-
-        // Add the group to aside groups
-        this.asideGroups.push(asideGroup);
-
-        asideGroup = null;
-
-      }
-      // If any other node while selecting
-      else if ( selecting ) {
-
-        asideGroup.nodes.push(node.cloneNode(true));
+        group.nodes.push(node.cloneNode(true));
 
         if ( node.classList ) {
 
@@ -101,10 +68,116 @@ RightPane = function() {
 
       }
 
-    }
+      this.asideGroups.push(group);
 
-    // If still selecting after iterating through all the nodes (no /aside comment found for the last aside comment)
-    if ( selecting && asideGroup ) this.asideGroups.push(asideGroup);
+    });
+
+    comment.parse(this.middlePane);
+
+    this.buildRightPane();
+
+    // let selecting = false;
+    // let asideGroup;
+    //
+    // if ( ! Node ) Node = {};
+    //
+    // if ( ! Node.COMMENT_NODE ) Node.COMMENT_NODE = 8;
+    //
+    // // Select nodes and hide them from the middle pane
+    // for ( const node of this.middlePane.childNodes ) {
+    //
+    //   // If node is aside comment
+    //   if ( node.nodeType === Node.COMMENT_NODE && node.data.trim() === 'aside' ) {
+    //
+    //     // If not already selecting, create a new group
+    //     if ( ! selecting ) {
+    //
+    //       asideGroup = {
+    //         nodes: [],
+    //         alignTo: node.previousElementSibling,
+    //         id: this.asideGroups.length
+    //       };
+    //
+    //     }
+    //
+    //     selecting = true;
+    //
+    //   }
+    //   // If node is /aside comment
+    //   else if ( node.nodeType === Node.COMMENT_NODE && node.data.trim() === '/aside' ) {
+    //
+    //     // If not selecting
+    //     if ( ! selecting ) continue;
+    //
+    //     selecting = false;
+    //
+    //     // Add the group to aside groups
+    //     this.asideGroups.push(asideGroup);
+    //
+    //     asideGroup = null;
+    //
+    //   }
+    //   // If any other node while selecting
+    //   else if ( selecting ) {
+    //
+    //     asideGroup.nodes.push(node.cloneNode(true));
+    //
+    //     if ( node.classList ) {
+    //
+    //       switch (getComputedStyle(node).display) {
+    //
+    //         case 'block':
+    //           node.classList.add('d-block');
+    //           break;
+    //
+    //         case 'inline-block':
+    //           node.classList.add('d-inline-block');
+    //           break;
+    //
+    //         case 'inline':
+    //           node.classList.add('d-inline');
+    //           break;
+    //
+    //         case 'table':
+    //           node.classList.add('d-table');
+    //           break;
+    //
+    //         case 'table-cell':
+    //           node.classList.add('d-table-cell');
+    //           break;
+    //
+    //         case 'table-row':
+    //           node.classList.add('d-table-row');
+    //           break;
+    //
+    //         case 'flex':
+    //           node.classList.add('d-flex');
+    //           break;
+    //
+    //         case 'inline-flex':
+    //           node.classList.add('d-inline-flex');
+    //           break;
+    //
+    //         default:
+    //           node.classList.add('d-block');
+    //           break;
+    //
+    //       }
+    //
+    //       node.classList.add('d-lg-none');
+    //
+    //     }
+    //
+    //   }
+    //
+    // }
+    //
+    // // If still selecting after iterating through all the nodes (no /aside comment found for the last aside comment)
+    // if ( selecting && asideGroup ) this.asideGroups.push(asideGroup);
+
+  };
+
+  this.buildRightPane = () => {
 
     // Insert aside groups inside the right pane
     for ( const group of this.asideGroups ) {
