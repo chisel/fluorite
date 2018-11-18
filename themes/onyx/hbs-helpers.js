@@ -1,5 +1,11 @@
 module.exports = {
 
+  getPoweredLogoByFlavor: (flavor) => {
+
+    return flavor === 'dark' ? '-dark' : '';
+
+  },
+
   isFirstSection: (path) => {
 
     return path === '0';

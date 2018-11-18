@@ -30,9 +30,11 @@
     ]}
   ],
   "rendererOptions": {
+    "flavor": "dark",
     "multiPage": true,
     "versions": [
-      "1.0.0"
+      "1.0.0",
+      "*"
     ],
     "minifyJS": false
   },

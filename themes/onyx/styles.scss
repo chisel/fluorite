@@ -163,7 +163,7 @@ nav.navbar {
 .version-list-toggle {
   width: 200px;
   height: 50px;
-  background-color: $color-side-panes-background !important;
+  background-color: $color-version-list-background !important;
   border: none;
   padding: 0 20px;
   box-shadow: none !important;
@@ -185,13 +185,17 @@ nav.navbar {
 
   &:active,
   &:focus {
-    color: $color-link-default;
+    color: $color-link-default !important;
     border: none;
 
     & > svg > path {
-      fill: $color-link-default;
+      fill: $color-link-default !important;
     }
 
+  }
+
+  &:hover {
+    color: $color-button-text;
   }
 
 }
@@ -878,7 +882,7 @@ span[class*="rest-status-5"] {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: $color-side-panes-background;
+    background-color: $color-pagination-background;
   }
 
   a { text-decoration: none; }
@@ -902,7 +906,7 @@ span[class*="rest-status-5"] {
     }
 
     &:active {
-      background-color: $color-header-background;
+      background-color: $color-pagination-background-hover;
     }
 
   }
