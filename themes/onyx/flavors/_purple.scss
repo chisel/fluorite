@@ -14,6 +14,7 @@ $colors: (
   primary7:        #4F555B,
   primary8:        #1F2123,
   accent:          #8670b2,
+  accent-light:    #927AC2,
   light-blue:      #7DC4FF,
   dark-blue:       #487FAC,
   light-red:       #FF7D7D,
@@ -38,15 +39,15 @@ $color-line-dark:                             map-get($colors, primary4);
 $color-line-medium:                           map-get($colors, primary4);
 $color-line-light:                            map-get($colors, primary4);
 $color-line-special:                          map-get($colors, primary4);
-$color-header-background:                     map-get($colors, primary3);
-$color-header-border:                         map-get($colors, primary4);
-$color-header-title:                          map-get($colors, accent);
-$color-header-subtitle:                       map-get($colors, primary6);
-$color-version-list-background:               map-get($colors, primary1);
-$color-version-list-text:                     map-get($colors, primary7);
-$color-version-list-text-active:              map-get($colors, accent);
+$color-header-background:                     map-get($colors, accent);
+$color-header-border:                         map-get($colors, accent);
+$color-header-title:                          map-get($colors, primary1);
+$color-header-subtitle:                       map-get($colors, primary5);
+$color-version-list-background:               map-get($colors, accent-light);
+$color-version-list-text:                     map-get($colors, primary1);
+$color-version-list-text-active:              map-get($colors, primary3);
 $color-text-normal:                           map-get($colors, primary7);
-$color-text-h1:                               map-get($colors, primary8);
+$color-text-h1:                               map-get($colors, accent);
 $color-text-h2:                               map-get($colors, primary7);
 $color-text-h3:                               map-get($colors, primary7);
 $color-text-h4:                               map-get($colors, primary7);
@@ -57,12 +58,12 @@ $color-link-hover:                            map-get($colors, accent);
 $color-link-visited:                          map-get($colors, accent);
 $color-link-active:                           map-get($colors, accent);
 $color-link-disabled:                         map-get($colors, primary4);
-$color-table-header:                          map-get($colors, primary7);
+$color-table-header:                          map-get($colors, accent);
 $color-table-row-background-odd:              transparent;
 $color-table-row-background-even:             map-get($colors, primary2);
 $color-table-row-background-even-right-pane:  map-get($colors, primary1);
 $color-table-text:                            map-get($colors, primary7);
-$color-quote-line:                            map-get($colors, primary7);
+$color-quote-line:                            map-get($colors, accent);
 $color-quote-background:                      map-get($colors, primary3);
 $color-quote-background-right-pane:           map-get($colors, primary1);
 $color-quote-text:                            map-get($colors, primary6);

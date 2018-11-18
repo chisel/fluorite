@@ -683,7 +683,7 @@ class Fluorite {
 
         try {
 
-          this._parseSectionContent(subSection, false, previousTitles.concat(section.title));
+          await this._parseSectionContent(subSection, false, previousTitles.concat(section.title));
 
         }
         catch (error) {

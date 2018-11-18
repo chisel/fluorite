@@ -1,0 +1,90 @@
+{
+  "title": "Add a new pet",
+  "description": "This endpoint adds a new pet in the database.",
+  "auth": {
+    "enabled": true,
+    "description": "Authentication is done using a bearer token obtained from the `/auth/getToken` endpoint."
+  },
+  "path": "/pets/add/",
+  "method": "POST",
+  "params": [
+    { "name": "database", "type": "string", "description": "The database name to add the pet in" }
+  ],
+  "queries": [
+    { "name": "xml", "type": "boolean", "required": false, "description": "If present, the response type would be XML instead of JSON" }
+  ],
+  "response": {
+    "headers": [
+      { "name": "Content-Type", "description": "The content type of the body" }
+    ],
+    "cookies": [
+      { "name": "trackerid", "description": "The tracker ID" }
+    ],
+    "body": [
+      { "type": "application/json", "model": {
+        "success": true,
+        "message": "string"
+      }},
+      { "type": "application/xml", "externalFile": "src/models/response.model.xml" }
+    ]
+  },
+  "request": {
+    "headers": [
+      { "name": "Content-Type", "description": "The content type of the body" }
+    ],
+    "cookies": [
+      { "name": "trackerid", "description": "The tracker ID" }
+    ],
+    "body": [
+      { "type": "application/json", "model": {
+        "name": "The pet name",
+        "type": "The pet type (dog, bird, etc.)",
+        "breed": "The pet breed (optional)"
+      }},
+      { "type": "application/xml", "externalFile": "src/models/request.model.xml" },
+      { "type": "multipart/form-data", "model": [
+        { "key": "name", "type": "string", "required": true, "description": "The pet name" },
+        { "key": "type", "type": "string", "required": true, "description": "The pet type (dog, bird, etc.)" },
+        { "key": "breed", "type": "string", "required": false, "description": "The pet breed" }
+      ]},
+      { "type": "x-www-form-urlencoded", "model": [
+        { "key": "name", "type": "string", "required": true, "description": "The pet name" },
+        { "key": "type", "type": "string", "required": true, "description": "The pet type (dog, bird, etc.)" },
+        { "key": "breed", "type": "string", "required": false, "description": "The pet breed" }
+      ]},
+      { "type": "text/plain", "description": "A CSV file with columns 'name', 'type', and 'breed'" }
+    ]
+  },
+  "examples": [{
+    "path": "/pets/add/petsDb?xml=true",
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/xml"
+      },
+      "cookies": {
+        "trackerid": "ge8s7ecs69er8vfseasdg0s8d6fgvsdf"
+      },
+      "body": {
+        "type": "application/xml",
+        "externalFile": "src/models/response.value.xml"
+      }
+    },
+    "request": {
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "cookies": {
+        "trackerid": "ge8s7ecs69er8vfseasdg0s8d6fgvsdf"
+      },
+      "body": {
+        "type": "application/json",
+        "value": {
+          "name": "Bob",
+          "type": "Pig",
+          "breed": "Miniature Pig"
+        }
+      }
+    }
+  }]
+}

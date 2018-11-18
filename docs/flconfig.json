@@ -2,13 +2,16 @@
   "title": "Fluorite",
   "basePath": "src",
   "rootContent": "what-is-fluorite.md",
+  "contentAssets": {
+    "assets/contents": "/"
+  },
   "outputDir": "dist",
   "blueprint": [
     { "title": "Quick Start", "content": "quick-start.md", "version": "1.0.0" },
     { "title": "Project Structure", "content": "project-structure.md", "version": "1.0.0" },
     { "title": "Configuration", "content": "configuration.md", "version": "1.0.0" },
     { "title": "Contents", "content": "contents/index.md", "version": "1.0.0", "sub": [
-      { "title": "Markdown", "content": "contents/markdown.md", "version": "1.0.0" },
+      { "title": "Markdown", "content": ["contents/markdown.md", "contents/rest-example.json"], "version": "1.0.0" },
       { "title": "REST API", "content": "contents/rest-api.md", "version": "1.0.0" },
       { "title": "Assets", "content": "contents/assets.md", "version": "1.0.0" }
     ]},
@@ -30,7 +33,7 @@
     ]}
   ],
   "rendererOptions": {
-    "flavor": "dark",
+    "flavor": "purple",
     "multiPage": true,
     "versions": [
       "1.0.0",

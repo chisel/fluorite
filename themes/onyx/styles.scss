@@ -86,7 +86,7 @@ nav.navbar {
   background-color: $color-header-background;
   padding-left: 50px;
   padding-right: 50px;
-  border-bottom: 1px solid $color-line-dark;
+  border-bottom: 1px solid $color-header-border;
 
   @media (max-width: 576px) {
     padding-left: 20px;
@@ -185,17 +185,17 @@ nav.navbar {
 
   &:active,
   &:focus {
-    color: $color-link-default !important;
+    color: $color-version-list-text-active !important;
     border: none;
 
     & > svg > path {
-      fill: $color-link-default !important;
+      fill: $color-version-list-text-active !important;
     }
 
   }
 
   &:hover {
-    color: $color-button-text;
+    color: $color-version-list-text;
   }
 
 }
@@ -203,7 +203,7 @@ nav.navbar {
 .version-list,
 .version-list-toggle {
 
-  color: $color-button-text;
+  color: $color-version-list-text;
   font-family: 'Titillium Web', sans-serif;
   font-size: 20px;
   font-weight: 300;
@@ -212,7 +212,7 @@ nav.navbar {
     margin-left: 20px;
 
     & > path {
-      fill: $color-button-text;
+      fill: $color-version-list-text;
       transition: fill .15s ease-in-out;
     }
 
@@ -227,7 +227,7 @@ nav.navbar {
 
   // Links inside the version list
   & > .dropdown-item {
-    color: $color-header-subtitle;
+    color: $color-button-text;
     background-color: $color-menu-item-background;
     display: flex;
     height: 50px;
@@ -674,6 +674,8 @@ p.note-warning {
 table {
   width: 100%;
   margin-bottom: 20px;
+
+  tbody { word-break: break-word; }
 
   td {
     padding: 5px 10px;

@@ -291,8 +291,8 @@
                   {{! Examples }}
                   {{#each examples as |example|}}
 
-                    <h2 id="{{example.id}}">{{example.title}}</h2>
-
+                    <h3 id="{{example.id}}">{{example.title}}</h3>
+                    <hr>
                     {{#if example.info}}
                       {{#if example.info.title}}
                       <h3 id="{{example.info.id}}">{{example.info.title}}</h3>
@@ -311,7 +311,7 @@
                     {{/if}}
 
                     {{#if example.path}}
-                      <h3 id="{{example.path.id}}">{{example.path.title}}</h3>
+                      <h4 id="{{example.path.id}}">{{example.path.title}}</h4>
                       <span>
                         {{#if example.path.method}}
                           <span class="rest-method-{{example.path.method}}">{{example.path.method}}</span>
@@ -357,7 +357,7 @@
                         <!-- aside -->
                       {{/if}}
                       {{#if example.response.status}}
-                        <h3 id="{{example.response.status.id}}">{{example.response.status.title}}</h3>
+                        <h4 id="{{example.response.status.id}}">{{example.response.status.title}}</h4>
                         <span>
                           <span class="rest-status-{{example.response.status.code}}">{{example.response.status.code}}</span>
                           {{example.response.status.content}}

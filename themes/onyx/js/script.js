@@ -141,6 +141,6 @@ function toggleBodyContent(element, index) {
 
   }
 
-  setTimeout(window.rightPane.recalcGroups, 5);
+  window.rightPane.recalcGroups();
 
 }
