@@ -121,3 +121,5 @@ $color-tab-default:                           map-get($colors, primary3);
 $color-tab-selected:                          map-get($colors, accent);
 $color-pagination-background:                 map-get($colors, primary6);
 $color-pagination-background-hover:           map-get($colors, primary7);
+$color-menu-toggle:                           map-get($colors, primary2);
+$color-menu-toggle-active:                    map-get($colors, accent);

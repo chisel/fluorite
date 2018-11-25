@@ -132,11 +132,11 @@ nav.navbar {
     cursor: pointer;
 
     & path {
-      fill: $color-text-normal;
+      fill: $color-menu-toggle;
       transition: fill .15s ease-in-out;
     }
 
-    &:active path { fill: $color-link-default; }
+    &:active path { fill: $color-menu-toggle-active; }
 
   }
 

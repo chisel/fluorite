@@ -1011,7 +1011,13 @@ class Fluorite {
         if ( c.type === 'doc' ) {
 
           c.value = c.value.replace(/%7B%7BrootPrefix%7D%7D/g, pageData.rootPrefix)
-                           .replace(/%7B%7BversionRootPrefix%7D%7D/g, pageData.versionRootPrefix);
+                           .replace(/{{rootPrefix}}/g, pageData.rootPrefix)
+                           .replace(/%7B%7BversionRootPrefix%7D%7D/g, pageData.versionRootPrefix)
+                           .replace(/{{versionRootPrefix}}/g, pageData.versionRootPrefix)
+                           .replace(/%7B%7B!rootPrefix%7D%7D/g, '{{rootPrefix}}')
+                           .replace(/{{!rootPrefix}}/g, '{{rootPrefix}}')
+                           .replace(/%7B%7B!versionRootPrefix%7D%7D/g, '{{versionRootPrefix}}')
+                           .replace(/{{!versionRootPrefix}}/g, '{{versionRootPrefix}}');
 
         }
 
