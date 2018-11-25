@@ -46,9 +46,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc consectetur, ligul
 
 #### Header 4
 
-Lorem ipsum dolor ![Fluorite](/assets/contents/logo.png) sit amet, consectetur adipiscing elit. Nunc consectetur, ligula eleifend porta rhoncus, leo risus imperdiet dui, sollicitudin posuere leo lorem in lacus.
+Lorem ipsum dolor ![Fluorite]({{rootPrefix}}/assets/contents/logo.png) sit amet, consectetur adipiscing elit. Nunc consectetur, ligula eleifend porta rhoncus, leo risus imperdiet dui, sollicitudin posuere leo lorem in lacus.
 
-![Night Sky](/assets/contents/night-sky.jpg)
+![Night Sky]({{rootPrefix}}/assets/contents/night-sky.jpg)
 
 > Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc consectetur, ligula eleifend porta rhoncus, leo risus imperdiet dui, sollicitudin posuere leo lorem in lacus.
 
