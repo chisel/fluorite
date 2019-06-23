@@ -18,7 +18,9 @@
       { "title": "Assets", "content": "contents/assets.md", "version": "1.0.0" }
     ]},
     { "title": "Themes", "content": "themes/index.md", "version": "1.0.0", "sub": [
-      { "title": "Pre-Installed", "content": "themes/pre-installed.md", "version": "1.0.0" },
+      { "title": "Pre-Installed", "content": "themes/pre-installed/index.md", "version": "1.0.0", "sub": [
+        { "title": "Onyx", "content": "themes/pre-installed/onyx.md", "version": "1.0.0" }
+      ]},
       { "title": "Installation", "content": "themes/installation.md", "version": "1.0.0" },
       { "title": "Creating a New Theme", "content": "themes/creating/index.md", "version": "1.0.0", "sub": [
         { "title": "Structure", "content": "themes/creating/structure.md", "version": "1.0.0" },
@@ -62,6 +64,7 @@
     "theme-color": "#ffffff",
     "msapplication-TileColor": "#ffffff",
     "showLoadingAnimation": true,
-    "stickyHeader": true
+    "stickyHeader": true,
+    "hidePoweredBy": true
   }
 }
