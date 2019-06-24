@@ -500,6 +500,9 @@ code {
   color: $color-inline-code-text;
   padding: 3px 5px;
   border-radius: 5px;
+  & > span:first-child {
+    margin-left: -5px;
+  }
 }
 
 pre {

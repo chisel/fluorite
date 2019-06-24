@@ -65,6 +65,6 @@
     "msapplication-TileColor": "#ffffff",
     "showLoadingAnimation": true,
     "stickyHeader": true,
-    "hidePoweredBy": true
+    "hidePoweredBy": false
   }
 }

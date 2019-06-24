@@ -983,7 +983,7 @@ class Fluorite {
         selected: (index + '') === pageData.path
       });
 
-      if ( section.sub ) flattened = flattened.concat(this._flattenSubSections(pageData, section.sub, 1, [index]));
+      if ( section.sub ) flattened = flattened.concat(this._flattenSubSections(pageData, section.sub, [index]));
 
       index++;
 
@@ -1292,22 +1292,25 @@ class Fluorite {
 
   }
 
-  _flattenSubSections(pageData, subSections, level, pathPrefix) {
+  _flattenSubSections(pageData, subSections, pathPrefix) {
 
     let flattened = [];
     let index = 0;
 
     for ( const section of subSections ) {
 
-      flattened.push({
+      const temp = {
         title: section.title,
         link: section.link,
-        level: level,
         path: pathPrefix.concat(index).join('/'),
         selected: pathPrefix.concat(index).join('/') === pageData.path
-      });
+      };
 
-      if ( section.sub ) flattened = flattened.concat(this._flattenSubSections(pageData, section.sub, ++level, pathPrefix.concat(index)));
+      temp.level = temp.path.split('/').length - 1;
+
+      flattened.push(temp);
+
+      if ( section.sub ) flattened = flattened.concat(this._flattenSubSections(pageData, section.sub, pathPrefix.concat(index)));
 
       index++;
 
