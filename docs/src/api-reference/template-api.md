@@ -37,7 +37,7 @@ The template data of each page has the following properties available to the Han
     - **content**: An array of content objects.
       - **type**: Either `doc` or `api` specifying the content type (markdown or API respectively.)
       - **value**: The rendered HTML content.
-  - **extended**: A copy of the `themeOptions` inside `flconfig.json`.
+  - **extended**: A copy of the `themeOptions` inside `flconfig.json`. All the declared user assets in the theme's config will have the final calculated value here(refer to [Theme Configuration]({{versionRootPrefix}}/themes/creating-a-new-theme/configuration) for more info.)
 
 > If you need a working example, take a look at the Onyx's `index.hbs` located at `fluorite-root/themes/onyx/index.hbs`.
 
