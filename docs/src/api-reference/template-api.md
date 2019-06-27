@@ -8,9 +8,9 @@ But, before we cover the template API, let's take a look at how Fluorite generat
 
 With that in mind, let's look at the data that is available to the `index.hbs` for rendering the final HTML.
 
-> The template data you get in `index.hbs` is generated specifically for each page, which means the job of `index.hbs` is to only render the HTML for that specific page. Repeating this for each page of each version results (handled by Fluorite) results in the final HTML.
+> The template data you get in `index.hbs` is generated specifically for each page, which means the job of `index.hbs` is to only render the HTML for that specific page. Repeating this for each page of each version (handled by Fluorite) results in the final HTML.
 
-> Make sure you're familiar with the [output directory]({{versionRootPrefix}}/project-structure#project-structure-output-directory) and the [theme config]({{versionRootPrefix}}/themes/creating-a-new-theme/configuration) which helps you to define theme-specific configuration and declare theme assets which affect the final output structure.
+> Make sure you're familiar with the [output directory]({{versionRootPrefix}}/project-structure#project-structure-output-directory) and the [theme config]({{versionRootPrefix}}/themes/creating-a-new-theme/theme-configuration) which helps you to define theme-specific configuration and declare theme assets which affect the final output structure.
 
 The template data of each page has the following properties available to the Handlebars template file:
 
@@ -37,7 +37,7 @@ The template data of each page has the following properties available to the Han
     - **content**: An array of content objects.
       - **type**: Either `doc` or `api` specifying the content type (markdown or API respectively.)
       - **value**: The rendered HTML content.
-  - **extended**: A copy of the `themeOptions` inside `flconfig.json`. All the declared user assets in the theme's config will have the final calculated value here(refer to [Theme Configuration]({{versionRootPrefix}}/themes/creating-a-new-theme/configuration) for more info.)
+  - **extended**: A copy of the `themeOptions` inside `flconfig.json`. All the declared user assets in the theme's config will have the final calculated value here (refer to [User Assets]({{versionRootPrefix}}/themes/creating-a-new-theme/theme-assets#theme-assets-user-assets) for more info.)
 
 > If you need a working example, take a look at the Onyx's `index.hbs` located at `fluorite-root/themes/onyx/index.hbs`.
 

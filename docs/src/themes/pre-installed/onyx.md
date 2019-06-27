@@ -64,7 +64,7 @@ The following properties can be used in the `themeOptions` of `flconfig.json` (a
 
 ## Theme Specific Features
 
-The Onyx theme uses the [Comment Parser Utility]({{versionRootPrefix}}/themes/creating-a-new-theme/utilities#themes-creating-a-new-theme-utilities-comment-parser) to provide comment-based features for markdown files.
+The Onyx theme uses the [Comment Parser Utility]({{rootPrefix}}/assets/contents/utilities/comment-parser.js) to provide comment-based features for markdown files.
 
 ### Responsive Markdown
 

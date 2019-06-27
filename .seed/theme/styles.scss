@@ -2,7 +2,7 @@
 /* NOTE: If theme has flavors, this file must only load "flavors/final.scss"
          since the chosen flavor will be available as "_final.scss" (partial). */
 // NOTE: This file will be vendor prefixed using Autoprefixer.
-@import 'flavors/final.scss';
+@import 'flavors/final';
 
 html,
 body {

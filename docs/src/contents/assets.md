@@ -1,4 +1,4 @@
-Sometimes we need to include images, videos, or any other media files inside our Markdown documentation. Since the output HTML of a Fluorite project can have different structures based on the configuration (single page or multipage), and the resulting HTML can be hosted on a server at different directory levels, linking to assets one-way might not work with all various setups. An absolute path and a relative path both can't single handedly solve this problem, since:
+Sometimes we need to include images, videos, or any other media files inside our Markdown documentation. Since the output HTML of a Fluorite project can have different structures based on the configuration (single page or multipage), and the resulting HTML can be hosted on a server at different directory levels, linking to assets one-way might not work with all the various setups. An absolute path and a relative path both can't single handedly solve this problem, since:
   - An absolute path to the root must be changed manually when the documentation is moved to a different directory level.
   - A relative path will only work if we know what directory level each documentation file is at, and that can change based on the blueprint and the renderer options.
 
@@ -6,7 +6,7 @@ To overcome this problem, Fluorite provides two variables for both Markdown and 
   - `{{!rootPrefix}}`: A relative path to the root of the project generated for each documentation file considering its current directory level.
   - `{{!versionRootPrefix}}`: A relative path to the root of the current version for each documentation file considering its current directory level.
 
-And allows all assets to be declared inside the `flconfig.json` file. All assets will be copied to `/assets/contents` at the root of the generated documentation. To declare assets, add a property to `contentAssets` with the format `"path-to-source-relative-to-basePath": "path-to-destination-relative-to-/assets/contents"`.
+And allows all assets to be declared inside the `flconfig.json` file. All assets will be copied to `/assets/contents` at the root of the generated documentation. To declare assets, add a property to `contentAssets` with the format `"path-to-source-file-relative-to-basePath-or-flconfig": "path-to-destination-file-relative-to-/assets/contents"`.
 
 With that in mind, we can declare all of our asset files inside the configuration file as below:
 
@@ -89,4 +89,4 @@ This is Section 2. Visit [Section 1-1]({{!versionRootPrefix}}/section-1/section-
 
 ## Escaping
 
-If for whatever odd reason you need to escape those two variables, you can insert `!` at the beginning of the variable inside the handlebars (that's how we have escaped those variables on this page!).
+If for whatever reason you need to escape those two variables, you can insert `!` at the beginning of the variables (that's how we have escaped those variables on this page!)

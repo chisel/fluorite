@@ -1,4 +1,4 @@
-REST APIs can be documented using JSON files. You can include these files in the `blueprint` of the `flconfig.json` file just like the markdown content.
+REST APIs can be documented using JSON files. You can include these files in the `blueprint` of the `flconfig.json` just like the Markdown files.
 
 A REST API documentation JSON file may have the following properties:
 
@@ -56,7 +56,7 @@ A REST API documentation JSON file may have the following properties:
 
 ## Example
 
-The following JSON object is rendered as shown in the [REST API Example]({{versionRootPrefix}}/contents/rest-api-example):
+The following JSON object will be rendered as shown in the [REST API Example]({{versionRootPrefix}}/contents/rest-api-example):
 
 ```json
 {

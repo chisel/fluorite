@@ -5,11 +5,14 @@ Since Fluorite themes are mainly responsible for how the final documentation loo
 
 After finishing this guide, we will end up with the following theme:
 
-<!-- responsive: tablet, desktop -->
-
+<!-- responsive: desktop -->
+![Fluorite Plain Theme]({{rootPrefix}}/assets/contents/fluorite-plain-theme-desktop.png)
+<!-- /responsive -->
+<!-- responsive: tablet -->
+![Fluorite Plain Theme]({{rootPrefix}}/assets/contents/fluorite-plain-theme-tablet.png)
 <!-- /responsive -->
 <!-- responsive: mobile -->
-
+![Fluorite Plain Theme]({{rootPrefix}}/assets/contents/fluorite-plain-theme-mobile.png)
 <!-- /responsive -->
 
 The [next section]({{versionRootPrefix}}/themes/creating-a-new-theme/setting-up-the-theme) will cover the setup process.

@@ -2,14 +2,14 @@ Before anything, make sure you have [Node.js](https://nodejs.org/en/) and NPM in
 
 ## Installation
 
-For CLI use:
+Globally (for CLI use):
 ```
 npm install @chisel/fluorite -g
 ```
 
-For programmatic use:
+or locally (for Node.js API use):
 ```
-npm install @chisel/fluorite --save
+npm install @chisel/fluorite
 ```
 
 ## First Usage

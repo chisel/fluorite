@@ -31,11 +31,11 @@ fl.load('path/to/flconfig.json');
   - `fl.config`: Returns the loaded `flconfig.json` object.
   - `fl.options`: Returns an object with these properties:
     - `basePath`: The path prefix where the `flconfig.json` is located.
-    - `themeConfig`: The theme configuration object.
+    - `themeConfig`: The loaded theme's configuration object.
 
 ### Events
 
-The following events may occur during the Fluorite lifecycle:
+The following events may occur during Fluorite's lifecycle:
   - `ready`: Occurs when Fluorite finishes loading all the necessary components.
   - `update`: Occurs whenever the state of Fluorite changes. Calls the callback with a string message describing the update.
   - `error`: Occurs when an error is thrown. Calls the callback with an error object.

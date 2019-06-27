@@ -46,7 +46,7 @@
     "versions": [
       "1.0.0"
     ],
-    "minifyJS": false
+    "minifyJS": true
   },
   "themeOptions": {
     "subtitle": "Make documentation at ease!",

@@ -6,7 +6,7 @@ const postcss = require('postcss');
 const autoprefixer = require('autoprefixer');
 const Handlebars = require('handlebars');
 const _ = require('lodash');
-const uglifyJs = require('uglify-es');
+const terser = require('terser');
 const cleanCss = new (require('clean-css'))();
 const path = require('path');
 const fs = require('fs-extra');
@@ -436,7 +436,7 @@ class Renderer {
         }
 
         // Minify
-        let results = uglifyJs.minify(content);
+        let results = terser.minify(content);
 
         if ( results.error ) throw error;
 
