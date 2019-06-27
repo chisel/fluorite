@@ -1,1 +1,0 @@
-You can use Fluorite either through the [CLI]({{versionRootPrefix}}/api-reference/cli) or [Node.js API]({{versionRootPrefix}}/api-reference/node-js-api) (for automating the build process with task runners). If you're creating your own theme, the [template API]({{versionRootPrefix}}/api-reference/template-api) has all the information you need for templating.

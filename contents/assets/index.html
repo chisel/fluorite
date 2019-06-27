@@ -1,0 +1,395 @@
+<!doctype html>
+<html class="no-scroll">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="shortcut icon" href="../../../assets/theme/images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../assets/theme/images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../assets/theme/images/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../assets/theme/images/apple-touch-icon.png">
+    <link rel="manifest" href="../../../assets/theme/images/site.webmanifest">
+    <link rel="mask-icon" href="../../../assets/theme/images/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-config" content="../../../assets/theme/images/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+      <script src="../../../assets/theme/js/lottie.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="../../../assets/theme/css/bootstrap.min.css">
+    <script src="../../../assets/theme/js/jquery.min.js" charset="utf-8"></script>
+    <script src="../../../assets/theme/js/bootstrap.bundle.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="../../../assets/theme/css/simplebar.min.css" />
+    <script src="../../../assets/theme/js/simplebar.min.js"></script>
+    <script src="../../../assets/theme/js/comment-parser.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="../../../assets/theme/styles.css">
+    <script src="../../../assets/theme/js/right-pane.js" charset="utf-8"></script>
+    <script src="../../../assets/theme/js/script.js" charset="utf-8"></script>
+
+    <style media="screen">
+      p.note-info::before { content: url('../../../assets/theme/images/info.svg') }
+      p.note-error::before { content: url('../../../assets/theme/images/error.svg') }
+      p.note-success::before { content: url('../../../assets/theme/images/success.svg') }
+      p.note-warning::before { content: url('../../../assets/theme/images/warning.svg') }
+    </style>
+
+      <script type="text/javascript">
+        window.addEventListener('load', () => {
+          bodymovin.destroy();
+          document.querySelector('.loader-container').classList.add('hide');
+          document.body.classList.remove('no-scroll');
+          document.getElementsByTagName('html')[0].classList.remove('no-scroll');
+        });
+      </script>
+
+      <title>Fluorite - Assets</title>
+
+  </head>
+  <body ontouchstart class="no-scroll">
+      <div class="loader-container">
+        <div id="themeLoader" class="loader"></div>
+      </div>
+      <script type="text/javascript">
+        bodymovin.loadAnimation({
+          container: document.getElementById('themeLoader'),
+          path: '../../../assets/theme/js/loader-light.json',
+          renderer: 'svg',
+          loop: true,
+          autoplay: true
+        });
+      </script>
+    <div id="sliderMenuShadow" class="slider-menu-shadow d-block d-md-none fixed-top" onclick="toggleMenu()"></div>
+    <div id="sliderMenu" class="slider-menu d-block d-md-none fixed-top">
+      <div class="btn-group-vertical section-list" role="group" aria-label="sections">
+          <a href="../../quick-start/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-0" type="button">Quick Start</button>
+          </a>
+          <a href="../../project-structure/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-0" type="button">Project Structure</button>
+          </a>
+          <a href="../../configuration/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-0" type="button">Configuration</button>
+          </a>
+          <a href="../" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-0" type="button">Contents</button>
+          </a>
+          <a href="../../contents/markdown/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">Markdown</button>
+          </a>
+          <a href="../../contents/markdown-example/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">Markdown Example</button>
+          </a>
+          <a href="../../contents/rest-api/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">REST API</button>
+          </a>
+          <a href="../../contents/rest-api-example/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">REST API Example</button>
+          </a>
+          <a href="./" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1 selected" type="button">Assets</button>
+          </a>
+          <a href="../../themes/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-0" type="button">Themes</button>
+          </a>
+          <a href="../../themes/pre-installed/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">Pre-Installed</button>
+          </a>
+          <a href="../../themes/pre-installed/onyx/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Onyx</button>
+          </a>
+          <a href="../../themes/installation/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">Installation</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">Creating a New Theme</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/setting-up-the-theme/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Setting Up the Theme</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/theme-configuration/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Theme Configuration</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/theme-assets/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Theme Assets</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/theme-flavors/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Theme Flavors</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/templating/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Templating</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/helpers-and-partials/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Helpers and Partials</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/theme-specific-features/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Theme-specific Features</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/installation/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Installation</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/using-the-theme/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Using the Theme</button>
+          </a>
+          <a href="../../api-reference/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-0" type="button">API Reference</button>
+          </a>
+          <a href="../../api-reference/cli/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">CLI</button>
+          </a>
+          <a href="../../api-reference/nodejs-api/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">Node.js API</button>
+          </a>
+          <a href="../../api-reference/template-api/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">Template API</button>
+          </a>
+      </div>
+    </div>
+      <div class="fixed-navbar-compensate"></div>
+    <nav class="navbar fixed-top">
+      <div class="d-flex align-items-center w-100">
+        <img src="../../../assets/theme/images/logo.svg" width="50" height="50">
+        <a class="navbar-title" href="../../../">Fluorite</a>
+          <span class="navbar-subtitle d-none d-lg-block">Make documentation at ease!</span>
+      </div>
+      <div class="d-block d-md-none menu-toggle" onclick="toggleMenu()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 12 16">
+          <path fill-rule="evenodd" d="M11.41 9H.59C0 9 0 8.59 0 8c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zm0-4H.59C0 5 0 4.59 0 4c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zM.59 11H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1H.59C0 13 0 12.59 0 12c0-.59 0-1 .59-1z"/>
+        </svg>
+      </div>
+    </nav>
+    <div class="container-fluid main-container">
+      <div class="row no-gutters">
+        <div class="col-lg-2 col-md-3 d-none d-md-flex left-pane">
+          <div class="btn-group-vertical section-list" role="group" aria-label="sections">
+                <a href="../../quick-start/">
+                  <button class="btn btn-secondary level-0" type="button">Quick Start</button>
+                </a>
+              
+                <a href="../../project-structure/">
+                  <button class="btn btn-secondary level-0" type="button">Project Structure</button>
+                </a>
+              
+                <a href="../../configuration/">
+                  <button class="btn btn-secondary level-0" type="button">Configuration</button>
+                </a>
+              
+                <div class="section-parent">
+                  <a href="../">
+                    <button class="btn btn-secondary level-0" type="button">Contents</button>
+                  </a>
+                  <span class="chevron" onclick="toggleSection(this)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 10 16">
+                      <path fill-rule="evenodd" d="M5 11L0 6l1.5-1.5L5 8.25 8.5 4.5 10 6l-5 5z"/>
+                    </svg>
+                  </span>
+                </div>
+                <div class="section-group">
+              
+                <a href="../../contents/markdown/">
+                  <button class="btn btn-secondary level-1" type="button">Markdown</button>
+                </a>
+              
+                <a href="../../contents/markdown-example/">
+                  <button class="btn btn-secondary level-1" type="button">Markdown Example</button>
+                </a>
+              
+                <a href="../../contents/rest-api/">
+                  <button class="btn btn-secondary level-1" type="button">REST API</button>
+                </a>
+              
+                <a href="../../contents/rest-api-example/">
+                  <button class="btn btn-secondary level-1" type="button">REST API Example</button>
+                </a>
+              
+                <a href="./">
+                  <button class="btn btn-secondary level-1 selected" type="button">Assets</button>
+                </a>
+              </div>
+                <div class="section-parent">
+                  <a href="../../themes/">
+                    <button class="btn btn-secondary level-0" type="button">Themes</button>
+                  </a>
+                  <span class="chevron" onclick="toggleSection(this)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 10 16">
+                      <path fill-rule="evenodd" d="M5 11L0 6l1.5-1.5L5 8.25 8.5 4.5 10 6l-5 5z"/>
+                    </svg>
+                  </span>
+                </div>
+                <div class="section-group">
+              
+                <div class="section-parent">
+                  <a href="../../themes/pre-installed/">
+                    <button class="btn btn-secondary level-1" type="button">Pre-Installed</button>
+                  </a>
+                  <span class="chevron" onclick="toggleSection(this)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 10 16">
+                      <path fill-rule="evenodd" d="M5 11L0 6l1.5-1.5L5 8.25 8.5 4.5 10 6l-5 5z"/>
+                    </svg>
+                  </span>
+                </div>
+                <div class="section-group">
+              
+                <a href="../../themes/pre-installed/onyx/">
+                  <button class="btn btn-secondary level-2" type="button">Onyx</button>
+                </a>
+              </div>
+                <a href="../../themes/installation/">
+                  <button class="btn btn-secondary level-1" type="button">Installation</button>
+                </a>
+              
+                <div class="section-parent">
+                  <a href="../../themes/creating-a-new-theme/">
+                    <button class="btn btn-secondary level-1" type="button">Creating a New Theme</button>
+                  </a>
+                  <span class="chevron" onclick="toggleSection(this)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 10 16">
+                      <path fill-rule="evenodd" d="M5 11L0 6l1.5-1.5L5 8.25 8.5 4.5 10 6l-5 5z"/>
+                    </svg>
+                  </span>
+                </div>
+                <div class="section-group">
+              
+                <a href="../../themes/creating-a-new-theme/setting-up-the-theme/">
+                  <button class="btn btn-secondary level-2" type="button">Setting Up the Theme</button>
+                </a>
+              
+                <a href="../../themes/creating-a-new-theme/theme-configuration/">
+                  <button class="btn btn-secondary level-2" type="button">Theme Configuration</button>
+                </a>
+              
+                <a href="../../themes/creating-a-new-theme/theme-assets/">
+                  <button class="btn btn-secondary level-2" type="button">Theme Assets</button>
+                </a>
+              
+                <a href="../../themes/creating-a-new-theme/theme-flavors/">
+                  <button class="btn btn-secondary level-2" type="button">Theme Flavors</button>
+                </a>
+              
+                <a href="../../themes/creating-a-new-theme/templating/">
+                  <button class="btn btn-secondary level-2" type="button">Templating</button>
+                </a>
+              
+                <a href="../../themes/creating-a-new-theme/helpers-and-partials/">
+                  <button class="btn btn-secondary level-2" type="button">Helpers and Partials</button>
+                </a>
+              
+                <a href="../../themes/creating-a-new-theme/theme-specific-features/">
+                  <button class="btn btn-secondary level-2" type="button">Theme-specific Features</button>
+                </a>
+              
+                <a href="../../themes/creating-a-new-theme/installation/">
+                  <button class="btn btn-secondary level-2" type="button">Installation</button>
+                </a>
+              
+                <a href="../../themes/creating-a-new-theme/using-the-theme/">
+                  <button class="btn btn-secondary level-2" type="button">Using the Theme</button>
+                </a>
+              </div></div>
+                <div class="section-parent">
+                  <a href="../../api-reference/">
+                    <button class="btn btn-secondary level-0" type="button">API Reference</button>
+                  </a>
+                  <span class="chevron" onclick="toggleSection(this)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 10 16">
+                      <path fill-rule="evenodd" d="M5 11L0 6l1.5-1.5L5 8.25 8.5 4.5 10 6l-5 5z"/>
+                    </svg>
+                  </span>
+                </div>
+                <div class="section-group">
+              
+                <a href="../../api-reference/cli/">
+                  <button class="btn btn-secondary level-1" type="button">CLI</button>
+                </a>
+              
+                <a href="../../api-reference/nodejs-api/">
+                  <button class="btn btn-secondary level-1" type="button">Node.js API</button>
+                </a>
+              
+                <a href="../../api-reference/template-api/">
+                  <button class="btn btn-secondary level-1" type="button">Template API</button>
+                </a>
+              </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-9 col-sm-12 middle-pane">
+            <h1 id="assets">Assets</h1>
+
+                <p>Sometimes we need to include images, videos, or any other media files inside our Markdown documentation. Since the output HTML of a Fluorite project can have different structures based on the configuration (single page or multipage), and the resulting HTML can be hosted on a server at different directory levels, linking to assets one-way might not work with all the various setups. An absolute path and a relative path both can&#39;t single handedly solve this problem, since:</p>
+<ul>
+<li>An absolute path to the root must be changed manually when the documentation is moved to a different directory level.</li>
+<li>A relative path will only work if we know what directory level each documentation file is at, and that can change based on the blueprint and the renderer options.</li>
+</ul>
+<p>To overcome this problem, Fluorite provides two variables for both Markdown and JSON files:</p>
+<ul>
+<li><code>{{rootPrefix}}</code>: A relative path to the root of the project generated for each documentation file considering its current directory level.</li>
+<li><code>{{versionRootPrefix}}</code>: A relative path to the root of the current version for each documentation file considering its current directory level.</li>
+</ul>
+<p>And allows all assets to be declared inside the <code>flconfig.json</code> file. All assets will be copied to <code>/assets/contents</code> at the root of the generated documentation. To declare assets, add a property to <code>contentAssets</code> with the format <code>&quot;path-to-source-file-relative-to-basePath-or-flconfig&quot;: &quot;path-to-destination-file-relative-to-/assets/contents&quot;</code>.</p>
+<p>With that in mind, we can declare all of our asset files inside the configuration file as below:</p>
+<p><strong>src</strong></p>
+<pre><code>/src
+  /assets
+    /contents
+      image.jpg
+  markdown-with-assets.md
+  index.md</code></pre><p><strong>flconfig.json</strong></p>
+<pre><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"basePath"</span><span class="token operator">:</span> <span class="token string">"src"</span><span class="token punctuation">,</span>
+  <span class="token property">"outputDir"</span><span class="token operator">:</span> <span class="token string">"dist"</span><span class="token punctuation">,</span>
+  <span class="token property">"rootContent"</span><span class="token operator">:</span> <span class="token string">"index.md"</span><span class="token punctuation">,</span>
+  <span class="token property">"contentAssets"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"assets/contents"</span><span class="token operator">:</span> <span class="token string">"/"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"blueprint"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span> <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"Section 1"</span><span class="token punctuation">,</span> <span class="token property">"content"</span><span class="token operator">:</span> <span class="token string">"markdown-with-assets.md"</span><span class="token punctuation">,</span> <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"1.0.0"</span> <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">"rendererOptions"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"multipage"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"versions"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"0.0.5"</span><span class="token punctuation">,</span> <span class="token string">"1.0.0"</span><span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p><strong>markdown-with-assets.md</strong></p>
+<pre><code class="language-markdown">This is an image:
+<span class="token url">![Alt]({{rootPrefix}}/assets/contents/image.jpg)</span></code></pre>
+<p><strong>generated files</strong></p>
+<pre><code>/dist
+  /assets
+    /contents
+      image.jpg
+  /0.0.5
+    index.html
+  /1.0.0
+    index.html
+    /section-1
+      index.html</code></pre><p><strong>generated path inside /dist/1.0.0/section-1/index.html</strong></p>
+<pre><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>../../assets/contents/image.jpg<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre>
+<h2 id="contents-assets-linking-to-other-sections">Linking To Other Sections</h2>
+<p>When we are generating a single page documentation, linking to other sections of the documentation is easy. We would use anchors considering the fact that any section&#39;s anchor is prefixed with its parents&#39; names. For instance, if we have the following blueprint:</p>
+<pre><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"blueprint"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span> <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"Section 1"</span><span class="token punctuation">,</span> <span class="token property">"content"</span><span class="token operator">:</span> <span class="token string">"section1.md"</span><span class="token punctuation">,</span> <span class="token property">"sub"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span> <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"Section 1-1"</span><span class="token punctuation">,</span> <span class="token property">"content"</span><span class="token operator">:</span> <span class="token string">"section1-1.md"</span> <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"Section 2"</span><span class="token punctuation">,</span> <span class="token property">"content"</span><span class="token operator">:</span> <span class="token string">"section2.md"</span> <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre>
+<p>We can link to Section 1-1 from Section 2 using the <code>#section-1-section-1-1</code> anchor.</p>
+<p>Considering the same blueprint but in a multipage documentation, since each section will have its own page, we can link from Section 2 to Section 1-1 using the <code>{{versionRootPrefix}}</code> variable to link to the same version:</p>
+<pre><code class="language-markdown">This is Section 2. Visit <span class="token url">[Section 1-1]({{versionRootPrefix}}/section-1/section-1-1)</span>.</code></pre>
+<h2 id="contents-assets-escaping">Escaping</h2>
+<p>If for whatever reason you need to escape those two variables, you can insert <code>!</code> at the beginning of the variables (that&#39;s how we have escaped those variables on this page!)</p>
+
+
+            <nav class="nav-pagination d-flex d-md-none">
+                <a href="../../contents/rest-api-example/">
+                  <button type="button">Previous</button>
+                </a>
+                <a href="../../themes/">
+                  <button type="button">Next</button>
+                </a>
+            </nav>
+        </div>
+        <div class="col-lg-4 d-none d-lg-flex right-pane"></div>
+      </div>
+    </div>
+  </body>
+</html>

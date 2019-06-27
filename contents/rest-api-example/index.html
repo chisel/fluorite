@@ -1,0 +1,654 @@
+<!doctype html>
+<html class="no-scroll">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="shortcut icon" href="../../../assets/theme/images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../assets/theme/images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../assets/theme/images/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../assets/theme/images/apple-touch-icon.png">
+    <link rel="manifest" href="../../../assets/theme/images/site.webmanifest">
+    <link rel="mask-icon" href="../../../assets/theme/images/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-config" content="../../../assets/theme/images/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+      <script src="../../../assets/theme/js/lottie.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="../../../assets/theme/css/bootstrap.min.css">
+    <script src="../../../assets/theme/js/jquery.min.js" charset="utf-8"></script>
+    <script src="../../../assets/theme/js/bootstrap.bundle.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="../../../assets/theme/css/simplebar.min.css" />
+    <script src="../../../assets/theme/js/simplebar.min.js"></script>
+    <script src="../../../assets/theme/js/comment-parser.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="../../../assets/theme/styles.css">
+    <script src="../../../assets/theme/js/right-pane.js" charset="utf-8"></script>
+    <script src="../../../assets/theme/js/script.js" charset="utf-8"></script>
+
+    <style media="screen">
+      p.note-info::before { content: url('../../../assets/theme/images/info.svg') }
+      p.note-error::before { content: url('../../../assets/theme/images/error.svg') }
+      p.note-success::before { content: url('../../../assets/theme/images/success.svg') }
+      p.note-warning::before { content: url('../../../assets/theme/images/warning.svg') }
+    </style>
+
+      <script type="text/javascript">
+        window.addEventListener('load', () => {
+          bodymovin.destroy();
+          document.querySelector('.loader-container').classList.add('hide');
+          document.body.classList.remove('no-scroll');
+          document.getElementsByTagName('html')[0].classList.remove('no-scroll');
+        });
+      </script>
+
+      <title>Fluorite - REST API Example</title>
+
+  </head>
+  <body ontouchstart class="no-scroll">
+      <div class="loader-container">
+        <div id="themeLoader" class="loader"></div>
+      </div>
+      <script type="text/javascript">
+        bodymovin.loadAnimation({
+          container: document.getElementById('themeLoader'),
+          path: '../../../assets/theme/js/loader-light.json',
+          renderer: 'svg',
+          loop: true,
+          autoplay: true
+        });
+      </script>
+    <div id="sliderMenuShadow" class="slider-menu-shadow d-block d-md-none fixed-top" onclick="toggleMenu()"></div>
+    <div id="sliderMenu" class="slider-menu d-block d-md-none fixed-top">
+      <div class="btn-group-vertical section-list" role="group" aria-label="sections">
+          <a href="../../quick-start/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-0" type="button">Quick Start</button>
+          </a>
+          <a href="../../project-structure/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-0" type="button">Project Structure</button>
+          </a>
+          <a href="../../configuration/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-0" type="button">Configuration</button>
+          </a>
+          <a href="../" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-0" type="button">Contents</button>
+          </a>
+          <a href="../../contents/markdown/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">Markdown</button>
+          </a>
+          <a href="../../contents/markdown-example/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">Markdown Example</button>
+          </a>
+          <a href="../../contents/rest-api/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">REST API</button>
+          </a>
+          <a href="./" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1 selected" type="button">REST API Example</button>
+          </a>
+          <a href="../../contents/assets/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">Assets</button>
+          </a>
+          <a href="../../themes/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-0" type="button">Themes</button>
+          </a>
+          <a href="../../themes/pre-installed/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">Pre-Installed</button>
+          </a>
+          <a href="../../themes/pre-installed/onyx/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Onyx</button>
+          </a>
+          <a href="../../themes/installation/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">Installation</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">Creating a New Theme</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/setting-up-the-theme/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Setting Up the Theme</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/theme-configuration/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Theme Configuration</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/theme-assets/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Theme Assets</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/theme-flavors/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Theme Flavors</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/templating/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Templating</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/helpers-and-partials/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Helpers and Partials</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/theme-specific-features/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Theme-specific Features</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/installation/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Installation</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/using-the-theme/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Using the Theme</button>
+          </a>
+          <a href="../../api-reference/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-0" type="button">API Reference</button>
+          </a>
+          <a href="../../api-reference/cli/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">CLI</button>
+          </a>
+          <a href="../../api-reference/nodejs-api/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">Node.js API</button>
+          </a>
+          <a href="../../api-reference/template-api/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">Template API</button>
+          </a>
+      </div>
+    </div>
+      <div class="fixed-navbar-compensate"></div>
+    <nav class="navbar fixed-top">
+      <div class="d-flex align-items-center w-100">
+        <img src="../../../assets/theme/images/logo.svg" width="50" height="50">
+        <a class="navbar-title" href="../../../">Fluorite</a>
+          <span class="navbar-subtitle d-none d-lg-block">Make documentation at ease!</span>
+      </div>
+      <div class="d-block d-md-none menu-toggle" onclick="toggleMenu()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 12 16">
+          <path fill-rule="evenodd" d="M11.41 9H.59C0 9 0 8.59 0 8c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zm0-4H.59C0 5 0 4.59 0 4c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zM.59 11H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1H.59C0 13 0 12.59 0 12c0-.59 0-1 .59-1z"/>
+        </svg>
+      </div>
+    </nav>
+    <div class="container-fluid main-container">
+      <div class="row no-gutters">
+        <div class="col-lg-2 col-md-3 d-none d-md-flex left-pane">
+          <div class="btn-group-vertical section-list" role="group" aria-label="sections">
+                <a href="../../quick-start/">
+                  <button class="btn btn-secondary level-0" type="button">Quick Start</button>
+                </a>
+              
+                <a href="../../project-structure/">
+                  <button class="btn btn-secondary level-0" type="button">Project Structure</button>
+                </a>
+              
+                <a href="../../configuration/">
+                  <button class="btn btn-secondary level-0" type="button">Configuration</button>
+                </a>
+              
+                <div class="section-parent">
+                  <a href="../">
+                    <button class="btn btn-secondary level-0" type="button">Contents</button>
+                  </a>
+                  <span class="chevron" onclick="toggleSection(this)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 10 16">
+                      <path fill-rule="evenodd" d="M5 11L0 6l1.5-1.5L5 8.25 8.5 4.5 10 6l-5 5z"/>
+                    </svg>
+                  </span>
+                </div>
+                <div class="section-group">
+              
+                <a href="../../contents/markdown/">
+                  <button class="btn btn-secondary level-1" type="button">Markdown</button>
+                </a>
+              
+                <a href="../../contents/markdown-example/">
+                  <button class="btn btn-secondary level-1" type="button">Markdown Example</button>
+                </a>
+              
+                <a href="../../contents/rest-api/">
+                  <button class="btn btn-secondary level-1" type="button">REST API</button>
+                </a>
+              
+                <a href="./">
+                  <button class="btn btn-secondary level-1 selected" type="button">REST API Example</button>
+                </a>
+              
+                <a href="../../contents/assets/">
+                  <button class="btn btn-secondary level-1" type="button">Assets</button>
+                </a>
+              </div>
+                <div class="section-parent">
+                  <a href="../../themes/">
+                    <button class="btn btn-secondary level-0" type="button">Themes</button>
+                  </a>
+                  <span class="chevron" onclick="toggleSection(this)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 10 16">
+                      <path fill-rule="evenodd" d="M5 11L0 6l1.5-1.5L5 8.25 8.5 4.5 10 6l-5 5z"/>
+                    </svg>
+                  </span>
+                </div>
+                <div class="section-group">
+              
+                <div class="section-parent">
+                  <a href="../../themes/pre-installed/">
+                    <button class="btn btn-secondary level-1" type="button">Pre-Installed</button>
+                  </a>
+                  <span class="chevron" onclick="toggleSection(this)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 10 16">
+                      <path fill-rule="evenodd" d="M5 11L0 6l1.5-1.5L5 8.25 8.5 4.5 10 6l-5 5z"/>
+                    </svg>
+                  </span>
+                </div>
+                <div class="section-group">
+              
+                <a href="../../themes/pre-installed/onyx/">
+                  <button class="btn btn-secondary level-2" type="button">Onyx</button>
+                </a>
+              </div>
+                <a href="../../themes/installation/">
+                  <button class="btn btn-secondary level-1" type="button">Installation</button>
+                </a>
+              
+                <div class="section-parent">
+                  <a href="../../themes/creating-a-new-theme/">
+                    <button class="btn btn-secondary level-1" type="button">Creating a New Theme</button>
+                  </a>
+                  <span class="chevron" onclick="toggleSection(this)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 10 16">
+                      <path fill-rule="evenodd" d="M5 11L0 6l1.5-1.5L5 8.25 8.5 4.5 10 6l-5 5z"/>
+                    </svg>
+                  </span>
+                </div>
+                <div class="section-group">
+              
+                <a href="../../themes/creating-a-new-theme/setting-up-the-theme/">
+                  <button class="btn btn-secondary level-2" type="button">Setting Up the Theme</button>
+                </a>
+              
+                <a href="../../themes/creating-a-new-theme/theme-configuration/">
+                  <button class="btn btn-secondary level-2" type="button">Theme Configuration</button>
+                </a>
+              
+                <a href="../../themes/creating-a-new-theme/theme-assets/">
+                  <button class="btn btn-secondary level-2" type="button">Theme Assets</button>
+                </a>
+              
+                <a href="../../themes/creating-a-new-theme/theme-flavors/">
+                  <button class="btn btn-secondary level-2" type="button">Theme Flavors</button>
+                </a>
+              
+                <a href="../../themes/creating-a-new-theme/templating/">
+                  <button class="btn btn-secondary level-2" type="button">Templating</button>
+                </a>
+              
+                <a href="../../themes/creating-a-new-theme/helpers-and-partials/">
+                  <button class="btn btn-secondary level-2" type="button">Helpers and Partials</button>
+                </a>
+              
+                <a href="../../themes/creating-a-new-theme/theme-specific-features/">
+                  <button class="btn btn-secondary level-2" type="button">Theme-specific Features</button>
+                </a>
+              
+                <a href="../../themes/creating-a-new-theme/installation/">
+                  <button class="btn btn-secondary level-2" type="button">Installation</button>
+                </a>
+              
+                <a href="../../themes/creating-a-new-theme/using-the-theme/">
+                  <button class="btn btn-secondary level-2" type="button">Using the Theme</button>
+                </a>
+              </div></div>
+                <div class="section-parent">
+                  <a href="../../api-reference/">
+                    <button class="btn btn-secondary level-0" type="button">API Reference</button>
+                  </a>
+                  <span class="chevron" onclick="toggleSection(this)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 10 16">
+                      <path fill-rule="evenodd" d="M5 11L0 6l1.5-1.5L5 8.25 8.5 4.5 10 6l-5 5z"/>
+                    </svg>
+                  </span>
+                </div>
+                <div class="section-group">
+              
+                <a href="../../api-reference/cli/">
+                  <button class="btn btn-secondary level-1" type="button">CLI</button>
+                </a>
+              
+                <a href="../../api-reference/nodejs-api/">
+                  <button class="btn btn-secondary level-1" type="button">Node.js API</button>
+                </a>
+              
+                <a href="../../api-reference/template-api/">
+                  <button class="btn btn-secondary level-1" type="button">Template API</button>
+                </a>
+              </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-9 col-sm-12 middle-pane">
+            <h1 id="rest-api-example">REST API Example</h1>
+
+
+                      <h3 id="contents-rest-api-example-add-a-new-pet">Add a new pet</h3>
+                      <p>This endpoint adds a new pet in the database.</p>
+
+                      <hr>
+
+                    <h4 id="contents-rest-api-example-path">Path</h4>
+                      <svg class="auth-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 14 16">
+                        <path fill-rule="evenodd" d="M12.83 2.17C12.08 1.42 11.14 1.03 10 1c-1.13.03-2.08.42-2.83 1.17S6.04 3.86 6.01 5c0 .3.03.59.09.89L0 12v1l1 1h2l1-1v-1h1v-1h1v-1h2l1.09-1.11c.3.08.59.11.91.11 1.14-.03 2.08-.42 2.83-1.17S13.97 6.14 14 5c-.03-1.14-.42-2.08-1.17-2.83zM11 5.38c-.77 0-1.38-.61-1.38-1.38 0-.77.61-1.38 1.38-1.38.77 0 1.38.61 1.38 1.38 0 .77-.61 1.38-1.38 1.38z"/>
+                      </svg>
+                      <span class="rest-method-post">post</span>
+                    /pets/add/
+                    <hr>
+
+                    <h4 id="contents-rest-api-example-authentication">Authentication</h4>
+                    <p>Authentication is done using a bearer token obtained from the <code>/auth/getToken</code> endpoint.</p>
+
+
+                    <h4 id="contents-rest-api-example-url-parameters">URL Parameters</h4>
+                    <table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">database</td>
+<td align="left">string</td>
+<td align="left">The database name to add the pet in</td>
+</tr>
+</tbody></table>
+
+
+                    <h4 id="contents-rest-api-example-query-parameters">Query Parameters</h4>
+                    <table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">xml</td>
+<td align="left">boolean</td>
+<td align="left">If present, the response type would be XML instead of JSON</td>
+</tr>
+</tbody></table>
+
+
+                      <div class="alignment-group">
+                      <h4 id="contents-rest-api-example-body">Body</h4>
+                      <div class="body-group">
+                        <ul>
+                            <li onclick="toggleBodyContent(this, 0)">JSON</li>
+                            <li onclick="toggleBodyContent(this, 1)">XML</li>
+                            <li onclick="toggleBodyContent(this, 2)">Multipart</li>
+                            <li onclick="toggleBodyContent(this, 3)">Form Data</li>
+                            <li onclick="toggleBodyContent(this, 4)">Text</li>
+                        </ul>
+                        <div class="body-group-content">
+                            <pre><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"The pet name"</span><span class="token punctuation">,</span>
+  <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"The pet type (dog, bird, etc.)"</span><span class="token punctuation">,</span>
+  <span class="token property">"breed"</span><span class="token operator">:</span> <span class="token string">"The pet breed (optional)"</span>
+<span class="token punctuation">}</span></code></pre>
+
+                            <pre><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Data</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Property1</span><span class="token punctuation">></span></span>string<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Property1</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Property2</span><span class="token punctuation">></span></span>number<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Property2</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Data</span><span class="token punctuation">></span></span></code></pre>
+
+                            <table>
+<thead>
+<tr>
+<th align="left">Key</th>
+<th align="left">Type</th>
+<th align="left">Required</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">name</td>
+<td align="left">string</td>
+<td align="left">true</td>
+<td align="left">The pet name</td>
+</tr>
+<tr>
+<td align="left">type</td>
+<td align="left">string</td>
+<td align="left">true</td>
+<td align="left">The pet type (dog, bird, etc.)</td>
+</tr>
+<tr>
+<td align="left">breed</td>
+<td align="left">string</td>
+<td align="left">false</td>
+<td align="left">The pet breed</td>
+</tr>
+</tbody></table>
+
+                            <table>
+<thead>
+<tr>
+<th align="left">Key</th>
+<th align="left">Type</th>
+<th align="left">Required</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">name</td>
+<td align="left">string</td>
+<td align="left">true</td>
+<td align="left">The pet name</td>
+</tr>
+<tr>
+<td align="left">type</td>
+<td align="left">string</td>
+<td align="left">true</td>
+<td align="left">The pet type (dog, bird, etc.)</td>
+</tr>
+<tr>
+<td align="left">breed</td>
+<td align="left">string</td>
+<td align="left">false</td>
+<td align="left">The pet breed</td>
+</tr>
+</tbody></table>
+
+                            <p>A CSV file with columns &#39;name&#39;, &#39;type&#39;, and &#39;breed&#39;</p>
+
+                        </div>
+                      </div>
+                      <h4 id="contents-rest-api-example-headers">Headers</h4>
+                      <table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Content-Type</td>
+<td align="left">The content type of the body</td>
+</tr>
+</tbody></table>
+
+                      <h4 id="contents-rest-api-example-cookies">Cookies</h4>
+                      <table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">trackerid</td>
+<td align="left">The tracker ID</td>
+</tr>
+</tbody></table>
+
+                      </div>
+
+                      <!-- aside -->
+                      <h4 id="contents-rest-api-example-response-body">Response Body</h4>
+                      <div class="body-group">
+                        <ul>
+                            <li onclick="toggleBodyContent(this, 0)">JSON</li>
+                            <li onclick="toggleBodyContent(this, 1)">XML</li>
+                        </ul>
+                        <div class="body-group-content">
+                            <pre><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"success"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">"message"</span><span class="token operator">:</span> <span class="token string">"string"</span>
+<span class="token punctuation">}</span></code></pre>
+
+                            <pre><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Data</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Property1</span><span class="token punctuation">></span></span>string<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Property1</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Property2</span><span class="token punctuation">></span></span>number<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Property2</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Data</span><span class="token punctuation">></span></span></code></pre>
+
+                        </div>
+                      </div>
+                      <h4 id="contents-rest-api-example-response-headers">Response Headers</h4>
+                      <table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Content-Type</td>
+<td align="left">The content type of the body</td>
+</tr>
+</tbody></table>
+
+                      <h4 id="contents-rest-api-example-response-cookies">Response Cookies</h4>
+                      <table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">trackerid</td>
+<td align="left">The tracker ID</td>
+</tr>
+</tbody></table>
+
+                      <!-- /aside -->
+
+
+                    <h3 id="contents-rest-api-example-examples">Examples</h3>
+                    <hr>
+
+                        <div class="alignment-group">
+
+                      <h4 id="contents-rest-api-example-example-1-path">Path</h4>
+                      <span>
+                          <span class="rest-method-post">post</span>
+                        /pets/add/petsDb?xml&#x3D;true
+                      </span>
+                      <hr>
+
+                        <h4 id="contents-rest-api-example-example-1-body">Body</h4>
+                        <div class="body-group">
+                          <ul>
+                              <li onclick="toggleBodyContent(this, 0)">JSON</li>
+                          </ul>
+                          <div class="body-group-content">
+                              <pre><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Bob"</span><span class="token punctuation">,</span>
+  <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"Pig"</span><span class="token punctuation">,</span>
+  <span class="token property">"breed"</span><span class="token operator">:</span> <span class="token string">"Miniature Pig"</span>
+<span class="token punctuation">}</span></code></pre>
+
+                          </div>
+                        </div>
+                        <h4 id="contents-rest-api-example-example-1-headers">Headers</h4>
+                        <table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Content-Type</td>
+<td align="left">application/json</td>
+</tr>
+</tbody></table>
+
+                        <h4 id="contents-rest-api-example-example-1-cookies">Cookies</h4>
+                        <table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">trackerid</td>
+<td align="left">ge8s7ecs69er8vfseasdg0s8d6fgvsdf</td>
+</tr>
+</tbody></table>
+
+                        </div>
+
+                        <!-- aside -->
+                        <h4 id="contents-rest-api-example-example-1-status">Status</h4>
+                        <span>
+                          <span class="rest-status-200">200</span>
+                          OK
+                        </span>
+                        <hr>
+                        <h4 id="contents-rest-api-example-example-1-response-body">Response Body</h4>
+                        <div class="body-group">
+                          <ul>
+                              <li onclick="toggleBodyContent(this, 0)">XML</li>
+                          </ul>
+                          <div class="body-group-content">
+                              <pre><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Message</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Type</span><span class="token punctuation">></span></span>Success<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Type</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Text</span><span class="token punctuation">></span></span>Pet Bob was added.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Text</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Message</span><span class="token punctuation">></span></span></code></pre>
+
+                          </div>
+                        </div>
+                        <h4 id="contents-rest-api-example-example-1-response-headers">Response Headers</h4>
+                        <table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Content-Type</td>
+<td align="left">application/xml</td>
+</tr>
+</tbody></table>
+
+                        <h4 id="contents-rest-api-example-example-1-response-cookies">Response Cookies</h4>
+                        <table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">trackerid</td>
+<td align="left">ge8s7ecs69er8vfseasdg0s8d6fgvsdf</td>
+</tr>
+</tbody></table>
+
+                        <!-- /aside -->
+
+
+
+            <nav class="nav-pagination d-flex d-md-none">
+                <a href="../../contents/rest-api/">
+                  <button type="button">Previous</button>
+                </a>
+                <a href="../../contents/assets/">
+                  <button type="button">Next</button>
+                </a>
+            </nav>
+        </div>
+        <div class="col-lg-4 d-none d-lg-flex right-pane"></div>
+      </div>
+    </div>
+  </body>
+</html>
