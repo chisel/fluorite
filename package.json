@@ -1,5 +1,5 @@
 {
-  "name": "fluorite",
+  "name": "@chisel/fluorite",
   "version": "1.0.0",
   "description": "An easy-to-use API documentation generator.",
   "main": "fluorite.js",
