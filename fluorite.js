@@ -221,6 +221,7 @@ class Fluorite {
       for ( const file of outputFiles ) {
 
         if ( file.match(/^\..+$/) ) continue;
+        if ( this._config.exclusions && this._config.exclusions.length && this._config.exclusions.includes(file) ) continue;
 
         promises.push(fs.remove(path.join(outputDirPath, file)));
 

@@ -33,6 +33,7 @@ The following properties are defined on the root level of the configuration file
   - `optional` **rootContent**: A path to a Markdown or JSON content file to use as the root content (only required when `rendererOptions.multiPage` is `true` and ignored if `false`).
   - `optional` **contentAssets**: An object containing the declaration of content assets (e.g. images used inside the Markdown file.) Keys are paths to the files or directories containing the assets (relative to `flconfig.json`) and values are paths to directories or filenames where the content should be copied to (relative to `/assets/contents/` at the generated documentation root.) [Learn more about declaring and using content assets]({{versionRootPrefix}}/contents/assets/).
   - `required` **outputDir**: The path of the output directory where the generated documentation should reside at relative to `flconfig.json`.
+  - `optional` **exclusions**: An array of filenames to exclude from deletion inside the output directory (all hidden files or directories that start with `.` are excluded by default.)
   - `optional` **rendererOptions**: Namespace for renderer options.
     - `optional` **theme**: The name of an installed theme to use. Defaults to `onyx`.
     - `optional` **flavor**: The name of the theme flavor (if any) to use. Defaults to the selected theme's default flavor.
