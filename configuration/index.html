@@ -341,6 +341,7 @@
 <li><code>optional</code> <strong>rootContent</strong>: A path to a Markdown or JSON content file to use as the root content (only required when <code>rendererOptions.multiPage</code> is <code>true</code> and ignored if <code>false</code>).</li>
 <li><code>optional</code> <strong>contentAssets</strong>: An object containing the declaration of content assets (e.g. images used inside the Markdown file.) Keys are paths to the files or directories containing the assets (relative to <code>flconfig.json</code>) and values are paths to directories or filenames where the content should be copied to (relative to <code>/assets/contents/</code> at the generated documentation root.) <a href="./../contents/assets/">Learn more about declaring and using content assets</a>.</li>
 <li><code>required</code> <strong>outputDir</strong>: The path of the output directory where the generated documentation should reside at relative to <code>flconfig.json</code>.</li>
+<li><code>optional</code> <strong>exclusions</strong>: An array of filenames to exclude from deletion inside the output directory (all hidden files or directories that start with <code>.</code> are excluded by default.)</li>
 <li><code>optional</code> <strong>rendererOptions</strong>: Namespace for renderer options.<ul>
 <li><code>optional</code> <strong>theme</strong>: The name of an installed theme to use. Defaults to <code>onyx</code>.</li>
 <li><code>optional</code> <strong>flavor</strong>: The name of the theme flavor (if any) to use. Defaults to the selected theme&#39;s default flavor.</li>
