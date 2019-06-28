@@ -4,32 +4,32 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="shortcut icon" href="../../assets/theme/images/favicon.ico">
-    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/theme/images/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/theme/images/favicon-32x32.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/theme/images/apple-touch-icon.png">
-    <link rel="manifest" href="../../assets/theme/images/site.webmanifest">
-    <link rel="mask-icon" href="../../assets/theme/images/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="./../assets/theme/images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="./../assets/theme/images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./../assets/theme/images/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./../assets/theme/images/apple-touch-icon.png">
+    <link rel="manifest" href="./../assets/theme/images/site.webmanifest">
+    <link rel="mask-icon" href="./../assets/theme/images/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-config" content="../../assets/theme/images/browserconfig.xml">
+    <meta name="msapplication-config" content="./../assets/theme/images/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
 
-      <script src="../../assets/theme/js/lottie.min.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="../../assets/theme/css/bootstrap.min.css">
-    <script src="../../assets/theme/js/jquery.min.js" charset="utf-8"></script>
-    <script src="../../assets/theme/js/bootstrap.bundle.min.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="../../assets/theme/css/simplebar.min.css" />
-    <script src="../../assets/theme/js/simplebar.min.js"></script>
-    <script src="../../assets/theme/js/comment-parser.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="../../assets/theme/styles.css">
-    <script src="../../assets/theme/js/right-pane.js" charset="utf-8"></script>
-    <script src="../../assets/theme/js/script.js" charset="utf-8"></script>
+      <script src="./../assets/theme/js/lottie.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="./../assets/theme/css/bootstrap.min.css">
+    <script src="./../assets/theme/js/jquery.min.js" charset="utf-8"></script>
+    <script src="./../assets/theme/js/bootstrap.bundle.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="./../assets/theme/css/simplebar.min.css" />
+    <script src="./../assets/theme/js/simplebar.min.js"></script>
+    <script src="./../assets/theme/js/comment-parser.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="./../assets/theme/styles.css">
+    <script src="./../assets/theme/js/right-pane.js" charset="utf-8"></script>
+    <script src="./../assets/theme/js/script.js" charset="utf-8"></script>
 
     <style media="screen">
-      p.note-info::before { content: url('../../assets/theme/images/info.svg') }
-      p.note-error::before { content: url('../../assets/theme/images/error.svg') }
-      p.note-success::before { content: url('../../assets/theme/images/success.svg') }
-      p.note-warning::before { content: url('../../assets/theme/images/warning.svg') }
+      p.note-info::before { content: url('./../assets/theme/images/info.svg') }
+      p.note-error::before { content: url('./../assets/theme/images/error.svg') }
+      p.note-success::before { content: url('./../assets/theme/images/success.svg') }
+      p.note-warning::before { content: url('./../assets/theme/images/warning.svg') }
     </style>
 
       <script type="text/javascript">
@@ -51,7 +51,7 @@
       <script type="text/javascript">
         bodymovin.loadAnimation({
           container: document.getElementById('themeLoader'),
-          path: '../../assets/theme/js/loader-light.json',
+          path: './../assets/theme/js/loader-light.json',
           renderer: 'svg',
           loop: true,
           autoplay: true
@@ -146,8 +146,8 @@
       <div class="fixed-navbar-compensate"></div>
     <nav class="navbar fixed-top">
       <div class="d-flex align-items-center w-100">
-        <img src="../../assets/theme/images/logo.svg" width="50" height="50">
-        <a class="navbar-title" href="../../">Fluorite</a>
+        <img src="./../assets/theme/images/logo.svg" width="50" height="50">
+        <a class="navbar-title" href="./../">Fluorite</a>
           <span class="navbar-subtitle d-none d-lg-block">Make documentation at ease!</span>
       </div>
       <div class="d-block d-md-none menu-toggle" onclick="toggleMenu()">
@@ -339,13 +339,13 @@
 <li><code>required</code> <strong>title</strong>: The title of the documentation.</li>
 <li><code>optional</code> <strong>basePath</strong>: Like cwd, a base path for all the content paths (relative to <code>flconfig.json</code>). This path will be prepended to all content paths (including content assets) except for the paths inside theme options.</li>
 <li><code>optional</code> <strong>rootContent</strong>: A path to a Markdown or JSON content file to use as the root content (only required when <code>rendererOptions.multiPage</code> is <code>true</code> and ignored if <code>false</code>).</li>
-<li><code>optional</code> <strong>contentAssets</strong>: An object containing the declaration of content assets (e.g. images used inside the Markdown file.) Keys are paths to the files or directories containing the assets (relative to <code>flconfig.json</code>) and values are paths to directories or filenames where the content should be copied to (relative to <code>/assets/contents/</code> at the generated documentation root.) <a href="../../contents/assets/">Learn more about declaring and using content assets</a>.</li>
+<li><code>optional</code> <strong>contentAssets</strong>: An object containing the declaration of content assets (e.g. images used inside the Markdown file.) Keys are paths to the files or directories containing the assets (relative to <code>flconfig.json</code>) and values are paths to directories or filenames where the content should be copied to (relative to <code>/assets/contents/</code> at the generated documentation root.) <a href="./../contents/assets/">Learn more about declaring and using content assets</a>.</li>
 <li><code>required</code> <strong>outputDir</strong>: The path of the output directory where the generated documentation should reside at relative to <code>flconfig.json</code>.</li>
 <li><code>optional</code> <strong>rendererOptions</strong>: Namespace for renderer options.<ul>
 <li><code>optional</code> <strong>theme</strong>: The name of an installed theme to use. Defaults to <code>onyx</code>.</li>
 <li><code>optional</code> <strong>flavor</strong>: The name of the theme flavor (if any) to use. Defaults to the selected theme&#39;s default flavor.</li>
-<li><code>optional</code> <strong>multiPage</strong>: A boolean indicating if the documentation should be broken down into multiple pages for each section (and sub sections) or should be all generated in one single page. Defaults to <code>false</code>. <a href="../../project-structure#project-structure-output-directory">Learn more about the output structure</a>.</li>
-<li><code>optional</code> <strong>versions</strong>: An array of strings defining the versions of the documentation. Each version will only contain the sections which have defined a target version. Defaults to <code>*</code> for all sections. <a href="../../contents#versioning">Learn more about versioning</a>.</li>
+<li><code>optional</code> <strong>multiPage</strong>: A boolean indicating if the documentation should be broken down into multiple pages for each section (and sub sections) or should be all generated in one single page. Defaults to <code>false</code>. <a href="./../project-structure#project-structure-output-directory">Learn more about the output structure</a>.</li>
+<li><code>optional</code> <strong>versions</strong>: An array of strings defining the versions of the documentation. Each version will only contain the sections which have defined a target version. Defaults to <code>*</code> for all sections. <a href="./../contents#versioning">Learn more about versioning</a>.</li>
 <li><code>optional</code> <strong>hideEmptyColumns</strong>: A boolean indicating if empty columns of tables generated from JSON files for REST APIs should be hidden. Defaults to <code>false</code>.</li>
 <li><code>optional</code> <strong>rootVersionLinksOnly</strong>: A boolean indicating if links generated for each version of the documentation at each section page should be only linked to the root of a different version or be linked to the same section of a different version if possible. Will be ignored if <code>multiPage</code> is <code>false</code> and/or if there are no more than one versions defined. Defaults to <code>false</code>.</li>
 <li><code>optional</code> <strong>minifyJS</strong>: A boolean indicating if the theme&#39;s JavaScript assets should be minified or not (will ignore any assets with the <code>.min.js</code> extension.) Defaults to <code>true</code>.</li>

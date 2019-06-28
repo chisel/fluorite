@@ -4,32 +4,32 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="shortcut icon" href="../../../assets/theme/images/favicon.ico">
-    <link rel="icon" type="image/png" sizes="16x16" href="../../../assets/theme/images/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../../../assets/theme/images/favicon-32x32.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="../../../assets/theme/images/apple-touch-icon.png">
-    <link rel="manifest" href="../../../assets/theme/images/site.webmanifest">
-    <link rel="mask-icon" href="../../../assets/theme/images/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="./../../assets/theme/images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="./../../assets/theme/images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./../../assets/theme/images/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./../../assets/theme/images/apple-touch-icon.png">
+    <link rel="manifest" href="./../../assets/theme/images/site.webmanifest">
+    <link rel="mask-icon" href="./../../assets/theme/images/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-config" content="../../../assets/theme/images/browserconfig.xml">
+    <meta name="msapplication-config" content="./../../assets/theme/images/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
 
-      <script src="../../../assets/theme/js/lottie.min.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="../../../assets/theme/css/bootstrap.min.css">
-    <script src="../../../assets/theme/js/jquery.min.js" charset="utf-8"></script>
-    <script src="../../../assets/theme/js/bootstrap.bundle.min.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="../../../assets/theme/css/simplebar.min.css" />
-    <script src="../../../assets/theme/js/simplebar.min.js"></script>
-    <script src="../../../assets/theme/js/comment-parser.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="../../../assets/theme/styles.css">
-    <script src="../../../assets/theme/js/right-pane.js" charset="utf-8"></script>
-    <script src="../../../assets/theme/js/script.js" charset="utf-8"></script>
+      <script src="./../../assets/theme/js/lottie.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="./../../assets/theme/css/bootstrap.min.css">
+    <script src="./../../assets/theme/js/jquery.min.js" charset="utf-8"></script>
+    <script src="./../../assets/theme/js/bootstrap.bundle.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="./../../assets/theme/css/simplebar.min.css" />
+    <script src="./../../assets/theme/js/simplebar.min.js"></script>
+    <script src="./../../assets/theme/js/comment-parser.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="./../../assets/theme/styles.css">
+    <script src="./../../assets/theme/js/right-pane.js" charset="utf-8"></script>
+    <script src="./../../assets/theme/js/script.js" charset="utf-8"></script>
 
     <style media="screen">
-      p.note-info::before { content: url('../../../assets/theme/images/info.svg') }
-      p.note-error::before { content: url('../../../assets/theme/images/error.svg') }
-      p.note-success::before { content: url('../../../assets/theme/images/success.svg') }
-      p.note-warning::before { content: url('../../../assets/theme/images/warning.svg') }
+      p.note-info::before { content: url('./../../assets/theme/images/info.svg') }
+      p.note-error::before { content: url('./../../assets/theme/images/error.svg') }
+      p.note-success::before { content: url('./../../assets/theme/images/success.svg') }
+      p.note-warning::before { content: url('./../../assets/theme/images/warning.svg') }
     </style>
 
       <script type="text/javascript">
@@ -51,7 +51,7 @@
       <script type="text/javascript">
         bodymovin.loadAnimation({
           container: document.getElementById('themeLoader'),
-          path: '../../../assets/theme/js/loader-light.json',
+          path: './../../assets/theme/js/loader-light.json',
           renderer: 'svg',
           loop: true,
           autoplay: true
@@ -146,8 +146,8 @@
       <div class="fixed-navbar-compensate"></div>
     <nav class="navbar fixed-top">
       <div class="d-flex align-items-center w-100">
-        <img src="../../../assets/theme/images/logo.svg" width="50" height="50">
-        <a class="navbar-title" href="../../../">Fluorite</a>
+        <img src="./../../assets/theme/images/logo.svg" width="50" height="50">
+        <a class="navbar-title" href="./../../">Fluorite</a>
           <span class="navbar-subtitle d-none d-lg-block">Make documentation at ease!</span>
       </div>
       <div class="d-block d-md-none menu-toggle" onclick="toggleMenu()">
@@ -326,7 +326,7 @@
 <p>The template data you get in <code>index.hbs</code> is generated specifically for each page, which means the job of <code>index.hbs</code> is to only render the HTML for that specific page. Repeating this for each page of each version (handled by Fluorite) results in the final HTML.</p>
 </blockquote>
 <blockquote>
-<p>Make sure you&#39;re familiar with the <a href="../../../project-structure#project-structure-output-directory">output directory</a> and the <a href="../../../themes/creating-a-new-theme/theme-configuration">theme config</a> which helps you to define theme-specific configuration and declare theme assets which affect the final output structure.</p>
+<p>Make sure you&#39;re familiar with the <a href="./../../project-structure#project-structure-output-directory">output directory</a> and the <a href="./../../themes/creating-a-new-theme/theme-configuration">theme config</a> which helps you to define theme-specific configuration and declare theme assets which affect the final output structure.</p>
 </blockquote>
 <p>The template data of each page has the following properties available to the Handlebars template file:</p>
 <ul>
@@ -361,7 +361,7 @@
 </li>
 </ul>
 </li>
-<li><strong>extended</strong>: A copy of the <code>themeOptions</code> inside <code>flconfig.json</code>. All the declared user assets in the theme&#39;s config will have the final calculated value here (refer to <a href="../../../themes/creating-a-new-theme/theme-assets#theme-assets-user-assets">User Assets</a> for more info.)</li>
+<li><strong>extended</strong>: A copy of the <code>themeOptions</code> inside <code>flconfig.json</code>. All the declared user assets in the theme&#39;s config will have the final calculated value here (refer to <a href="./../../themes/creating-a-new-theme/theme-assets#theme-assets-user-assets">User Assets</a> for more info.)</li>
 </ul>
 <blockquote>
 <p>If you need a working example, take a look at the Onyx&#39;s <code>index.hbs</code> located at <code>fluorite-root/themes/onyx/index.hbs</code>.</p>
