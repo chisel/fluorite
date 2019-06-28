@@ -5,7 +5,7 @@
   "contentAssets": {
     "assets/contents": "/"
   },
-  "exclude": [
+  "exclusions": [
     "CNAME"
   ],
   "outputDir": "../../fluorite-gh-pages",
