@@ -1013,10 +1013,15 @@ class Fluorite {
     pageData.themeFlavor = this._selectedFlavor;
 
     // Generate root prefix
-    pageData.rootPrefix = '../'.repeat(pageData.path ? pageData.path.split('/').length + 1 : 1).slice(0, -1);
+    if ( ! pageData.versions ) pageData.rootPrefix = ['.'];
+    else pageData.rootPrefix = ['..'];
+
+    if ( pageData.path ) pageData.path.split('/').map(() => pageData.rootPrefix.push('..'));
+
+    pageData.rootPrefix = pageData.rootPrefix.join('/');
 
     // Generate version root prefix
-    pageData.versionRootPrefix = pageData.versions ? pageData.rootPrefix + `/${pageData.version === 'All' ? 'all' : pageData.version}` : pageData.rootPrefix;
+    pageData.versionRootPrefix = pageData.versions ? pageData.rootPrefix + `/${pageData.version.toLowerCase()}` : pageData.rootPrefix;
 
     // Inject root prefix on all content
     for ( const content of pageData.contents ) {
