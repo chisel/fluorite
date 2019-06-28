@@ -227,6 +227,7 @@ class Fluorite {
       }
 
       await Promise.all(promises);
+
     }
     catch (error) {
 
@@ -340,7 +341,7 @@ class Fluorite {
       // Generate template data
       if ( this._config.rendererOptions.multiPage ) {
 
-        versionTemplateData = this._generateMultiPageTemplateData(this._config.rendererOptions, version, this._config.blueprint);
+        versionTemplateData = this._generateMultiPageTemplateData(this._config.rendererOptions, version, this._getBlueprintByVersion(version));
 
       }
       else {
@@ -407,7 +408,7 @@ class Fluorite {
         // Build the rest of the documentation recursively
         try {
 
-          await this._generateMultiPageDocs(finalPath, templateData[i], template, userAssets, this._config.themeOptions);
+          await this._generateMultiPageDocs(finalPath, templateData[i], template, userAssets, version);
 
         }
         catch (error) {
@@ -857,14 +858,14 @@ class Fluorite {
 
   }
 
-  async _generateMultiPageDocs(finalPath, templateData, template, userAssets) {
+  async _generateMultiPageDocs(finalPath, templateData, template, userAssets, version) {
 
     for ( const pageData of templateData ) {
 
       // Skip root
       if ( ! pageData.path.length ) continue;
 
-      const dirPath = this._resolveSectionPath(pageData.path);
+      const dirPath = this._resolveSectionPath(pageData.path, version);
 
       // Create directory
       try {
@@ -939,11 +940,12 @@ class Fluorite {
 
     if ( rendererOptions.versions.length > 1 ) {
 
-      data.versions = rendererOptions.versions.map(version => {
+      data.versions = rendererOptions.versions.map(targetVersion => {
 
         return {
-          version: version === '*' ? 'All' : version,
-          link: '../'.repeat(linksRelativeTo.length + 1) + (version === '*' ? 'all' : version) + (linksRelativeTo.length && ! rendererOptions.rootVersionLinksOnly ? this._resolveSectionPath(linksRelativeTo.join('/'), version) : '/')
+          version: targetVersion === '*' ? 'All' : targetVersion,
+          // link: '../'.repeat(linksRelativeTo.length + 1) + (version === '*' ? 'all' : version) + (linksRelativeTo.length && ! rendererOptions.rootVersionLinksOnly ? this._resolveSectionPath(linksRelativeTo.join('/'), version) : '/')
+          link: this._generateVersionLink(version, targetVersion, linksRelativeTo, rendererOptions.rootVersionLinksOnly)
         };
 
       });
@@ -961,10 +963,10 @@ class Fluorite {
     // Section index to enable location-awareness for _generateSectionTemplateData
     let index = 0;
 
-    for ( const section of this._config.blueprint ) {
+    for ( const section of this._getBlueprintByVersion(version) ) {
 
       // If not included in version
-      if ( ! this._isIncludedInVersion(section.version, version) ) continue;
+      // if ( ! this._isIncludedInVersion(section.version, version) ) continue;
 
       const sectionData = this._generateSectionTemplateData(version, [index++], section, null, linksRelativeTo);
 
@@ -1068,7 +1070,7 @@ class Fluorite {
 
     }
 
-    const selectedSection = this._getSectionByPath(path);
+    const selectedSection = this._getSectionByPath(path, pageData.version);
 
     // Set page title
     pageData.pageTitle = selectedSection.title;
@@ -1144,7 +1146,7 @@ class Fluorite {
     // For multi-page (links relative to a section/page)
     else {
 
-      data.link = this._resolveNavigation(this._findPath(linksRelativeTo, sectionPath), linksRelativeTo);
+      data.link = this._resolveNavigation(version, this._findPath(linksRelativeTo, sectionPath), linksRelativeTo);
 
     }
 
@@ -1259,14 +1261,14 @@ class Fluorite {
 
   }
 
-  _resolveNavigation(navigation, target) {
+  _resolveNavigation(version, navigation, target) {
 
     // Navigation to self
     if ( navigation[0] === '.' ) return './';
 
     let link = [];
     let navigated = target.slice(0);
-    let selectedSection = this._config.blueprint;
+    let selectedSection = this._getBlueprintByVersion(version);
     let firstNavigation = true;
 
     // Navigate on target with section titles
@@ -1312,6 +1314,47 @@ class Fluorite {
 
   }
 
+  _getBlueprintByVersion(version) {
+
+    if ( version.toLowerCase() === 'all' ) return this._config.blueprint;
+
+    let blueprint = [];
+
+    // Filter sections by version
+    for ( const section of this._config.blueprint ) {
+
+      if ( ! this._isIncludedInVersion(section.version, version) ) continue;
+
+      const cloned = _.cloneDeep(section);
+
+      // Filter sub-sections by version recursively
+      this._filterBlueprintSubSectionsByVersion(cloned.sub, version);
+
+      blueprint.push(cloned);
+
+    }
+
+    return blueprint;
+
+  }
+
+  _filterBlueprintSubSectionsByVersion(blueprint, version) {
+
+    if ( ! blueprint ) return;
+
+    for ( let i = 0; i < blueprint.length; i++ ) {
+
+      if ( this._isIncludedInVersion(blueprint[i].version, version) ) continue;
+
+      blueprint.splice(i, 1);
+      i--;
+
+      this._filterBlueprintSubSectionsByVersion(blueprint[i].sub, version);
+
+    }
+
+  }
+
   _flattenSubSections(pageData, subSections, pathPrefix) {
 
     let flattened = [];
@@ -1343,14 +1386,14 @@ class Fluorite {
   _resolveSectionPath(sectionPath, version) {
 
     let resolved = '';
-    let selectedSection = this._config.blueprint;
+    let selectedSection = this._getBlueprintByVersion(version);
 
     for ( const index of sectionPath.split('/') ) {
 
       if ( selectedSection.constructor === Array ) selectedSection = selectedSection[index];
       else selectedSection = selectedSection.sub[index];
 
-      if ( version && ! this._isIncludedInVersion(selectedSection.version, version) ) return '/';
+      if ( version && (! selectedSection || ! this._isIncludedInVersion(selectedSection.version, version)) ) return '/';
 
       resolved = resolved + '/' + this._renderer.urlFriendly(selectedSection.title);
 
@@ -1360,9 +1403,9 @@ class Fluorite {
 
   }
 
-  _getSectionByPath(path) {
+  _getSectionByPath(path, version) {
 
-    let selectedSection = this._config.blueprint;
+    let selectedSection = this._getBlueprintByVersion(version);
 
     for ( const index of path ) {
 
@@ -1372,6 +1415,42 @@ class Fluorite {
     }
 
     return selectedSection;
+
+  }
+
+  _generateVersionLink(currentVersion, targetVersion, relativeTo, rootOnly) {
+
+    if ( currentVersion === targetVersion ) return '.';
+
+    const targetRootLink = '../'.repeat(relativeTo.length + 1) + (targetVersion === '*' ? 'all' : targetVersion) + '/';
+
+    if ( rootOnly || ! relativeTo.length ) return targetRootLink;
+
+    // Check if current path (relativeTo) exists on the targetVersion and they're the same page
+    if ( this._pathExistsOnVersion(relativeTo, targetVersion) && this._resolveSectionPath(relativeTo.join('/'), currentVersion) === this._resolveSectionPath(relativeTo.join('/'), targetVersion) )
+      return targetRootLink + this._resolveSectionPath(relativeTo.join('/'), targetVersion);
+
+    return targetRootLink;
+
+  }
+
+  _pathExistsOnVersion(path, version) {
+
+    let selectedSection = this._getBlueprintByVersion(version);
+
+    for ( const index of path ) {
+
+      if ( selectedSection.constructor === Object ) selectedSection = selectedSection.sub;
+
+      if ( ! selectedSection ) return false;
+
+      selectedSection = selectedSection[index];
+
+      if ( ! selectedSection ) return false;
+
+    }
+
+    return true;
 
   }
 

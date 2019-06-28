@@ -7,37 +7,37 @@
   },
   "outputDir": "../../fluorite-gh-pages",
   "blueprint": [
-    { "title": "Quick Start", "content": "quick-start.md", "version": "1.0.0" },
-    { "title": "Project Structure", "content": "project-structure.md", "version": "1.0.0" },
-    { "title": "Configuration", "content": "configuration.md", "version": "1.0.0" },
-    { "title": "Contents", "content": "contents/index.md", "version": "1.0.0", "sub": [
-      { "title": "Markdown", "content": "contents/markdown.md", "version": "1.0.0" },
-      { "title": "Markdown Example", "content": "contents/markdown-example.md", "version": "1.0.0" },
-      { "title": "REST API", "content": "contents/rest-api.md", "version": "1.0.0" },
-      { "title": "REST API Example", "content": "contents/rest-example.json", "version": "1.0.0" },
-      { "title": "Assets", "content": "contents/assets.md", "version": "1.0.0" }
+    { "title": "Quick Start", "content": "quick-start.md", "version": ">=1.0.0" },
+    { "title": "Project Structure", "content": "project-structure.md", "version": ">=1.0.0" },
+    { "title": "Configuration", "content": "configuration.md", "version": ">=1.0.0" },
+    { "title": "Contents", "content": "contents/index.md", "version": ">=1.0.0", "sub": [
+      { "title": "Markdown", "content": "contents/markdown.md", "version": ">=1.0.0" },
+      { "title": "Markdown Example", "content": "contents/markdown-example.md", "version": ">=1.0.0" },
+      { "title": "REST API", "content": "contents/rest-api.md", "version": ">=1.0.0" },
+      { "title": "REST API Example", "content": "contents/rest-example.json", "version": ">=1.0.0" },
+      { "title": "Assets", "content": "contents/assets.md", "version": ">=1.0.0" }
     ]},
-    { "title": "Themes", "content": "themes/index.md", "version": "1.0.0", "sub": [
-      { "title": "Pre-Installed", "content": "themes/pre-installed/index.md", "version": "1.0.0", "sub": [
-        { "title": "Onyx", "content": "themes/pre-installed/onyx.md", "version": "1.0.0" }
+    { "title": "Themes", "content": "themes/index.md", "version": ">=1.0.0", "sub": [
+      { "title": "Pre-Installed", "content": "themes/pre-installed/index.md", "version": ">=1.0.0", "sub": [
+        { "title": "Onyx", "content": "themes/pre-installed/onyx.md", "version": ">=1.0.0" }
       ]},
-      { "title": "Installation", "content": "themes/installation.md", "version": "1.0.0" },
-      { "title": "Creating a New Theme", "content": "themes/creating/index.md", "version": "1.0.0", "sub": [
-        { "title": "Setting Up the Theme", "content": "themes/creating/setting-up-the-theme.md", "version": "1.0.0" },
-        { "title": "Theme Configuration", "content": "themes/creating/theme-configuration.md", "version": "1.0.0" },
-        { "title": "Theme Assets", "content": "themes/creating/theme-assets.md", "version": "1.0.0" },
-        { "title": "Theme Flavors", "content": "themes/creating/theme-flavors.md", "version": "1.0.0" },
-        { "title": "Templating", "content": "themes/creating/templating.md", "version": "1.0.0" },
-        { "title": "Helpers and Partials", "content": "themes/creating/helpers-and-partials.md", "version": "1.0.0" },
-        { "title": "Theme-specific Features", "content": "themes/creating/theme-specific-features.md", "version": "1.0.0" },
-        { "title": "Installation", "content": "themes/creating/installation.md", "version": "1.0.0" },
-        { "title": "Using the Theme", "content": "themes/creating/using-the-theme.md", "version": "1.0.0" }
+      { "title": "Installation", "content": "themes/installation.md", "version": ">=1.0.0" },
+      { "title": "Creating a New Theme", "content": "themes/creating/index.md", "version": ">=1.0.0", "sub": [
+        { "title": "Setting Up the Theme", "content": "themes/creating/setting-up-the-theme.md", "version": ">=1.0.0" },
+        { "title": "Theme Configuration", "content": "themes/creating/theme-configuration.md", "version": ">=1.0.0" },
+        { "title": "Theme Assets", "content": "themes/creating/theme-assets.md", "version": ">=1.0.0" },
+        { "title": "Theme Flavors", "content": "themes/creating/theme-flavors.md", "version": ">=1.0.0" },
+        { "title": "Templating", "content": "themes/creating/templating.md", "version": ">=1.0.0" },
+        { "title": "Helpers and Partials", "content": "themes/creating/helpers-and-partials.md", "version": ">=1.0.0" },
+        { "title": "Theme-specific Features", "content": "themes/creating/theme-specific-features.md", "version": ">=1.0.0" },
+        { "title": "Installation", "content": "themes/creating/installation.md", "version": ">=1.0.0" },
+        { "title": "Using the Theme", "content": "themes/creating/using-the-theme.md", "version": ">=1.0.0" }
       ]}
     ]},
-    { "title": "API Reference", "content": "api-reference/index.md", "version": "1.0.0", "sub": [
-      { "title": "CLI", "content": "api-reference/cli.md", "version": "1.0.0" },
-      { "title": "Node.js API", "content": "api-reference/node-js-api.md", "version": "1.0.0" },
-      { "title": "Template API", "content": "api-reference/template-api.md", "version": "1.0.0" }
+    { "title": "API Reference", "content": "api-reference/index.md", "version": ">=1.0.0", "sub": [
+      { "title": "CLI", "content": "api-reference/cli.md", "version": ">=1.0.0" },
+      { "title": "Node.js API", "content": "api-reference/node-js-api.md", "version": ">=1.0.0" },
+      { "title": "Template API", "content": "api-reference/template-api.md", "version": ">=1.0.0" }
     ]}
   ],
   "rendererOptions": {
@@ -46,7 +46,8 @@
     "versions": [
       "1.0.0"
     ],
-    "minifyJS": true
+    "minifyJS": true,
+    "rootVersionLinksOnly": false
   },
   "themeOptions": {
     "subtitle": "Make documentation at ease!",
