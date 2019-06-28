@@ -5,6 +5,9 @@
   "contentAssets": {
     "assets/contents": "/"
   },
+  "exclude": [
+    "CNAME"
+  ],
   "outputDir": "../../fluorite-gh-pages",
   "blueprint": [
     { "title": "Quick Start", "content": "quick-start.md", "version": ">=1.0.0" },
