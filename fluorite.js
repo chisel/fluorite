@@ -1344,12 +1344,15 @@ class Fluorite {
 
     for ( let i = 0; i < blueprint.length; i++ ) {
 
-      if ( this._isIncludedInVersion(blueprint[i].version, version) ) continue;
+      if ( this._isIncludedInVersion(blueprint[i].version, version) ) {
+
+        this._filterBlueprintSubSectionsByVersion(blueprint[i].sub, version);
+        continue;
+
+      }
 
       blueprint.splice(i, 1);
       i--;
-
-      this._filterBlueprintSubSectionsByVersion(blueprint[i].sub, version);
 
     }
 

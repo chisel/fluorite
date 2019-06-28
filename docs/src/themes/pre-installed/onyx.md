@@ -5,31 +5,31 @@ The theme you're looking at right now is Onyx! This theme comes in three flavors
 dark (default)
 
 <!-- responsive: tablet, desktop -->
-![Onyx Dark Flavor]({{versionRootPrefix}}/assets/contents/onyx-dark.png)
+![Onyx Dark Flavor]({{rootPrefix}}/assets/contents/onyx-dark.png)
 <!-- /responsive -->
 
 <!-- responsive: mobile -->
-![Onyx Dark Flavor]({{versionRootPrefix}}/assets/contents/onyx-mobile-dark.png)
+![Onyx Dark Flavor]({{rootPrefix}}/assets/contents/onyx-mobile-dark.png)
 <!-- /responsive -->
 
 light
 
 <!-- responsive: tablet, desktop -->
-![Onyx Light Flavor]({{versionRootPrefix}}/assets/contents/onyx-light.png)
+![Onyx Light Flavor]({{rootPrefix}}/assets/contents/onyx-light.png)
 <!-- /responsive -->
 
 <!-- responsive: mobile -->
-![Onyx Light Flavor]({{versionRootPrefix}}/assets/contents/onyx-mobile-light.png)
+![Onyx Light Flavor]({{rootPrefix}}/assets/contents/onyx-mobile-light.png)
 <!-- /responsive -->
 
 purple
 
 <!-- responsive: tablet, desktop -->
-![Onyx Purple Flavor]({{versionRootPrefix}}/assets/contents/onyx-purple.png)
+![Onyx Purple Flavor]({{rootPrefix}}/assets/contents/onyx-purple.png)
 <!-- /responsive -->
 
 <!-- responsive: mobile -->
-![Onyx Purple Flavor]({{versionRootPrefix}}/assets/contents/onyx-mobile-purple.png)
+![Onyx Purple Flavor]({{rootPrefix}}/assets/contents/onyx-mobile-purple.png)
 <!-- /responsive -->
 
 > You can define your own flavor for this theme by adding a flavor profile inside `/themes/onyx/flavors`. Read [theme flavors]({{versionRootPrefix}}/themes/creating-a-new-theme/flavors) and take a look at `/themes/onyx/flavors/_dark.scss` to find out how the Onyx theme uses those flavor variables.
