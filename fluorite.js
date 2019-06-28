@@ -210,8 +210,23 @@ class Fluorite {
 
     try {
 
-      await fs.emptyDir(outputDirPath);
+      // Ensure directory
+      await fs.ensureDir(outputDirPath);
 
+      // Scan the directory for files
+      const outputFiles = await fs.readdir(outputDirPath);
+      const promises = [];
+
+      // Remove all files and directories (ignoring any paths that start with a dot)
+      for ( const file of outputFiles ) {
+
+        if ( file.match(/^\..+$/) ) continue;
+
+        promises.push(fs.remove(path.join(outputDirPath, file)));
+
+      }
+
+      await Promise.all(promises);
     }
     catch (error) {
 

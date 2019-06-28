@@ -5,7 +5,7 @@
   "contentAssets": {
     "assets/contents": "/"
   },
-  "outputDir": "dist",
+  "outputDir": "../../fluorite-gh-pages",
   "blueprint": [
     { "title": "Quick Start", "content": "quick-start.md", "version": "1.0.0" },
     { "title": "Project Structure", "content": "project-structure.md", "version": "1.0.0" },
