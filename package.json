@@ -1,6 +1,6 @@
 {
   "name": "@chisel/fluorite",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "An easy-to-use API documentation generator.",
   "main": "fluorite.js",
   "bin": {
