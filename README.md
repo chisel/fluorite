@@ -1,6 +1,10 @@
+![Fluorite Logo](./docs/src/assets/contents/logo-text.png)
+
 # Fluorite
 
 Fluorite is an easy-to-use API documentation generator, built to allow rapid development of API documentations (RESTful and other types of APIs) while being flexible in design.
+
+![Fluorite](./docs/src/assets/contents/fluorite-output-example.png)
 
 Fluorite encourages modular structures, therefore, the documentation is made of different files grouped together as sections through a JSON configuration file named `flconfig.json`. Files are either JSON files (for documenting RESTful APIs) or pure Markdown (for other documentations,) all loaded into one or more HTML pages to form the documentation.
 
