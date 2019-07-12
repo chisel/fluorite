@@ -398,6 +398,10 @@
                 {{/with}}
 
               {{/if}}
+              {{! Insert content separator }}
+              {{#if (notLastContent ../content @index)}}
+                <div class="content-separator"></div>
+              {{/if}}
             {{/each}}
           {{/each}}
           {{#if multiPage}}

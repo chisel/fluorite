@@ -918,3 +918,12 @@ span[class*="rest-status-5"] {
   }
 
 }
+
+.content-separator {
+  height: 1px;
+  width: calc(100% + 80px);
+  margin-left: -40px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  background-color: $color-line-dark;
+}

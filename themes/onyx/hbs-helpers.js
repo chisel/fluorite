@@ -121,6 +121,12 @@ module.exports = {
 
     return '</div>'.repeat(current.level - next.level);
 
+  },
+
+  notLastContent: (contents, index) => {
+
+    return index !== contents.length - 1;
+
   }
 
 };
