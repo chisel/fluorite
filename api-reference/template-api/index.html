@@ -356,7 +356,91 @@
 <li><strong>id</strong>: The id of the section title (used for anchors.)</li>
 <li><strong>content</strong>: An array of content objects.<ul>
 <li><strong>type</strong>: Either <code>doc</code> or <code>api</code> specifying the content type (markdown or API respectively.)</li>
-<li><strong>value</strong>: The rendered HTML content.</li>
+<li><strong>value</strong>: The rendered HTML content (string) if <code>type</code> is <code>doc</code> or an object with the following properties if <code>type</code> is <code>api</code>:<ul>
+<li><strong>raw</strong>: A copy of the input JSON file (API documentation file). Since most values are already rendered (as tables, code blocks, etc.), the <code>raw</code> property can be used to render any parts differently inside the template. Keep in mind that a body <code>model</code> would be provided with string or JSON content where the <code>externalFile</code> was used (and the <code>externalFile</code> property would be deleted).</li>
+<li><strong>info</strong>: Namespace.<ul>
+<li><strong>title</strong>: Title of the API (used for headers).</li>
+<li><strong>id</strong>: The id of the API title (used for headers).</li>
+<li><strong>content</strong>: The rendered description.</li>
+</ul>
+</li>
+<li><strong>auth</strong>: Namespace.<ul>
+<li><strong>enabled</strong>: Boolean indicating if authentication is enabled.</li>
+<li><strong>title</strong>: Authentication title (used for headers).</li>
+<li><strong>id</strong>: The id of the authentication title (used for headers).</li>
+<li><strong>content</strong>: The rendered authentication description.</li>
+</ul>
+</li>
+<li><strong>path</strong>:<ul>
+<li><strong>title</strong>: Path title (used for headers).</li>
+<li><strong>id</strong>: The id of the path title (used for headers).</li>
+<li><strong>method</strong>: The path method.</li>
+<li><strong>content</strong>: The path content.</li>
+</ul>
+</li>
+<li><strong>params</strong>: Namespace.<ul>
+<li><strong>title</strong>: Parameters title (used for headers).</li>
+<li><strong>id</strong>: The id of the parameters title (used for headers).</li>
+<li><strong>content</strong>: The parameters content.</li>
+</ul>
+</li>
+<li><strong>queries</strong>: Namespace.<ul>
+<li><strong>title</strong>: The query parameters title (used for headers).</li>
+<li><strong>id</strong>: The id of the query parameters title (used for headers).</li>
+<li><strong>content</strong>: The query parameters content.</li>
+</ul>
+</li>
+<li><strong>request</strong>: Namespace.<ul>
+<li><strong>headers</strong>: Namespace.<ul>
+<li><strong>title</strong>: The request headers title (used for headers).</li>
+<li><strong>id</strong>: The id of the request headers title (used for headers).</li>
+<li><strong>content</strong>: The headers rendered content.</li>
+</ul>
+</li>
+<li><strong>cookies</strong>: Namespace.<ul>
+<li><strong>title</strong>: The request cookies title (used for headers).</li>
+<li><strong>id</strong>: The id of the request cookies title (used for headers).</li>
+<li><strong>content</strong>: The cookies rendered content.</li>
+</ul>
+</li>
+<li><strong>body</strong>: Namespace.<ul>
+<li><strong>title</strong>: The request body title (used for headers).</li>
+<li><strong>id</strong>: The id of the request body title (used for headers).</li>
+<li><strong>content</strong>: An array of body objects.<ul>
+<li><strong>type</strong>: The body type.</li>
+<li><strong>value</strong>: The rendered body value.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>response</strong>: Same as <code>request</code>.</li>
+<li><strong>examples</strong>: An array of example objects.<ul>
+<li><strong>title</strong>: The examples title (used for headers).</li>
+<li><strong>id</strong>: The id of the examples title (used for headers).</li>
+<li><strong>path</strong>: Namespace.<ul>
+<li><strong>title</strong>: The path title (used for headers).</li>
+<li><strong>id</strong>: The id of the path title (used for headers).</li>
+<li><strong>method</strong>: The example request method.</li>
+<li><strong>content</strong>: The path content.</li>
+</ul>
+</li>
+<li><strong>request</strong>: Same as <code>request</code>.</li>
+<li><strong>response</strong>: Same as <code>request</code> with the following expansions:<ul>
+<li><strong>status</strong>: Namespace.<ul>
+<li><strong>title</strong>: Status title (used for headers).</li>
+<li><strong>id</strong>: The id of the status title (used for headers).</li>
+<li><strong>code</strong>: The status code.</li>
+<li><strong>content</strong>: The status content (message).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
