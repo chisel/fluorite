@@ -26,8 +26,8 @@ A REST API documentation JSON file may have the following properties:
       - **name**: The cookie name.
       - **description**: The cookie description.
     - **body**: An array of body objects.
-      - **type**: The content type of the body (`application/json`, `application/xml`, `multipart/form-data`, etc.)
-      - **model**: A JSON object of key pair value that models the body if `type` is `x-www-form-urlencoded` or `multipart/form-data`, or any JSON object if `type` is `application/json`. This property is not required if `type` is not set to the aforementioned values (`text/plain`, `application/xml`, etc.)
+      - **type**: The content type of the body (`application/json`, `application/xml`, `multipart/form-data`, `x-www-form-urlencoded`, `text/plain`, etc.)
+      - **model**: A JSON object for type `application/json`, or an array of property objects (similar to `queries`) with `name`, `type`, `required`, and `description` fields for types `multipart/form-data` and `x-www-form-urlencoded`. For type `application/xml`, use `externalFile` instead. For any other types (e.g. `text/plain`), use `description` instead.
       - **externalFile**: The path to a model file (either `.json` or `.xml`.) Use this if you're not embedding the model or need to provide a XML model.
       - **description**: Used for `type`s that don't need a model.
   - **response**: Namespace.
