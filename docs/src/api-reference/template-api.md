@@ -36,7 +36,61 @@ The template data of each page has the following properties available to the Han
     - **id**: The id of the section title (used for anchors.)
     - **content**: An array of content objects.
       - **type**: Either `doc` or `api` specifying the content type (markdown or API respectively.)
-      - **value**: The rendered HTML content.
+      - **value**: The rendered HTML content (string) if `type` is `doc` or an object with the following properties if `type` is `api`:
+        - **raw**: A copy of the input JSON file (API documentation file). Since most values are already rendered (as tables, code blocks, etc.), the `raw` property can be used to render any parts differently inside the template. Keep in mind that a body `model` would be provided with string or JSON content where the `externalFile` was used (and the `externalFile` property would be deleted).
+        - **info**: Namespace.
+          - **title**: Title of the API (used for headers).
+          - **id**: The id of the API title (used for headers).
+          - **content**: The rendered description.
+        - **auth**: Namespace.
+          - **enabled**: Boolean indicating if authentication is enabled.
+          - **title**: Authentication title (used for headers).
+          - **id**: The id of the authentication title (used for headers).
+          - **content**: The rendered authentication description.
+        - **path**:
+          - **title**: Path title (used for headers).
+          - **id**: The id of the path title (used for headers).
+          - **method**: The path method.
+          - **content**: The path content.
+        - **params**: Namespace.
+          - **title**: Parameters title (used for headers).
+          - **id**: The id of the parameters title (used for headers).
+          - **content**: The parameters content.
+        - **queries**: Namespace.
+          - **title**: The query parameters title (used for headers).
+          - **id**: The id of the query parameters title (used for headers).
+          - **content**: The query parameters content.
+        - **request**: Namespace.
+          - **headers**: Namespace.
+            - **title**: The request headers title (used for headers).
+            - **id**: The id of the request headers title (used for headers).
+            - **content**: The headers rendered content.
+          - **cookies**: Namespace.
+            - **title**: The request cookies title (used for headers).
+            - **id**: The id of the request cookies title (used for headers).
+            - **content**: The cookies rendered content.
+          - **body**: Namespace.
+            - **title**: The request body title (used for headers).
+            - **id**: The id of the request body title (used for headers).
+            - **content**: An array of body objects.
+              - **type**: The body type.
+              - **value**: The rendered body value.
+        - **response**: Same as `request`.
+        - **examples**: An array of example objects.
+          - **title**: The examples title (used for headers).
+          - **id**: The id of the examples title (used for headers).
+          - **path**: Namespace.
+            - **title**: The path title (used for headers).
+            - **id**: The id of the path title (used for headers).
+            - **method**: The example request method.
+            - **content**: The path content.
+          - **request**: Same as `request` (documented above).
+          - **response**: Same as `request` with the following expansions:
+            - **status**: Namespace.
+              - **title**: Status title (used for headers).
+              - **id**: The id of the status title (used for headers).
+              - **code**: The status code.
+              - **content**: The status content (message).
   - **extended**: A copy of the `themeOptions` inside `flconfig.json`. All the declared user assets in the theme's config will have the final calculated value here (refer to [User Assets]({{versionRootPrefix}}/themes/creating-a-new-theme/theme-assets#theme-assets-user-assets) for more info.)
 
 > If you need a working example, take a look at the Onyx's `index.hbs` located at `fluorite-root/themes/onyx/index.hbs`.

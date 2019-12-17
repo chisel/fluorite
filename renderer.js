@@ -233,7 +233,9 @@ class Renderer {
 
   renderAPI(raw, headerPrefix) {
 
-    let api = {};
+    let api = {
+      raw: _.cloneDeep(raw)
+    };
 
     api.info = this._renderAPIInfo(raw.title, raw.description, headerPrefix);
     if ( raw.auth ) api.auth = this._renderAuth(raw.auth, headerPrefix);
