@@ -349,7 +349,7 @@
 <span class="token punctuation">}</span></code></pre>
 <p><strong>markdown-with-assets.md</strong></p>
 <pre><code class="language-markdown">This is an image:
-<span class="token url">![Alt]({{rootPrefix}}/assets/contents/image.jpg)</span></code></pre>
+<span class="token url">![<span class="token content">Alt</span>]({{rootPrefix}}/assets/contents/image.jpg)</span></code></pre>
 <p><strong>generated files</strong></p>
 <pre><code>/dist
   /assets
@@ -374,7 +374,7 @@
 <span class="token punctuation">}</span></code></pre>
 <p>We can link to Section 1-1 from Section 2 using the <code>#section-1-section-1-1</code> anchor.</p>
 <p>Considering the same blueprint but in a multipage documentation, since each section will have its own page, we can link from Section 2 to Section 1-1 using the <code>{{versionRootPrefix}}</code> variable to link to the same version:</p>
-<pre><code class="language-markdown">This is Section 2. Visit <span class="token url">[Section 1-1]({{versionRootPrefix}}/section-1/section-1-1)</span>.</code></pre>
+<pre><code class="language-markdown">This is Section 2. Visit <span class="token url">[<span class="token content">Section 1-1</span>]({{versionRootPrefix}}/section-1/section-1-1)</span>.</code></pre>
 <h2 id="contents-assets-escaping">Escaping</h2>
 <p>If for whatever reason you need to escape those two variables, you can insert <code>!</code> at the beginning of the variables (that&#39;s how we have escaped those variables on this page!)</p>
 
