@@ -1,0 +1,405 @@
+<!doctype html>
+<html class="no-scroll">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="shortcut icon" href="../../../../assets/theme/images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../../assets/theme/images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../../assets/theme/images/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../../assets/theme/images/apple-touch-icon.png">
+    <link rel="manifest" href="../../../../assets/theme/images/site.webmanifest">
+    <link rel="mask-icon" href="../../../../assets/theme/images/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-config" content="../../../../assets/theme/images/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+      <script src="../../../../assets/theme/js/lottie.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="../../../../assets/theme/css/bootstrap.min.css">
+    <script src="../../../../assets/theme/js/jquery.min.js" charset="utf-8"></script>
+    <script src="../../../../assets/theme/js/bootstrap.bundle.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="../../../../assets/theme/css/simplebar.min.css" />
+    <script src="../../../../assets/theme/js/simplebar.min.js"></script>
+    <script src="../../../../assets/theme/js/comment-parser.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="../../../../assets/theme/styles.css">
+    <script src="../../../../assets/theme/js/right-pane.js" charset="utf-8"></script>
+    <script src="../../../../assets/theme/js/script.js" charset="utf-8"></script>
+
+    <style media="screen">
+      p.note-info::before { content: url('../../../../assets/theme/images/info.svg') }
+      p.note-error::before { content: url('../../../../assets/theme/images/error.svg') }
+      p.note-success::before { content: url('../../../../assets/theme/images/success.svg') }
+      p.note-warning::before { content: url('../../../../assets/theme/images/warning.svg') }
+    </style>
+
+      <script type="text/javascript">
+        window.addEventListener('load', () => {
+          bodymovin.destroy();
+          document.querySelector('.loader-container').classList.add('hide');
+          document.body.classList.remove('no-scroll');
+          document.getElementsByTagName('html')[0].classList.remove('no-scroll');
+        });
+      </script>
+
+      <title>Fluorite - Theme Assets</title>
+
+  </head>
+  <body ontouchstart class="no-scroll">
+      <div class="loader-container">
+        <div id="themeLoader" class="loader"></div>
+      </div>
+      <script type="text/javascript">
+        bodymovin.loadAnimation({
+          container: document.getElementById('themeLoader'),
+          path: '../../../../assets/theme/js/loader-light.json',
+          renderer: 'svg',
+          loop: true,
+          autoplay: true
+        });
+      </script>
+    <div id="sliderMenuShadow" class="slider-menu-shadow d-block d-md-none fixed-top" onclick="toggleMenu()"></div>
+    <div id="sliderMenu" class="slider-menu d-block d-md-none fixed-top">
+        <div class="dropdown dropdown-block">
+          <button class="btn btn-secondary version-list-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span>1.2.0</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 10.4" width="16">
+              <path fill="#bfc8d6" d="M8,14.9l-8-8L2.4,4.5l5.6,6,5.6-6L16,6.9Z" transform="translate(0 -4.5)"/>
+            </svg>
+          </button>
+          <div class="dropdown-menu version-list" aria-labelledby="dropdownMenuButton2">
+              <a class="dropdown-item" href="../../../../1.1.0/themes/creating-a-new-theme/theme-assets">1.1.0</a>
+              <a class="dropdown-item" href=".">1.2.0</a>
+          </div>
+        </div>
+      <div class="btn-group-vertical section-list" role="group" aria-label="sections">
+          <a href="../../../quick-start/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-0" type="button">Quick Start</button>
+          </a>
+          <a href="../../../project-structure/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-0" type="button">Project Structure</button>
+          </a>
+          <a href="../../../configuration/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-0" type="button">Configuration</button>
+          </a>
+          <a href="../../../contents/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-0" type="button">Contents</button>
+          </a>
+          <a href="../../../contents/markdown/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">Markdown</button>
+          </a>
+          <a href="../../../contents/markdown-example/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">Markdown Example</button>
+          </a>
+          <a href="../../../contents/rest-api/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">REST API</button>
+          </a>
+          <a href="../../../contents/rest-api-example/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">REST API Example</button>
+          </a>
+          <a href="../../../contents/assets/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">Assets</button>
+          </a>
+          <a href="../../" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-0" type="button">Themes</button>
+          </a>
+          <a href="../../pre-installed/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">Pre-Installed</button>
+          </a>
+          <a href="../../../themes/pre-installed/onyx/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Onyx</button>
+          </a>
+          <a href="../../installation/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">Installation</button>
+          </a>
+          <a href="../" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">Creating a New Theme</button>
+          </a>
+          <a href="../../../themes/creating-a-new-theme/setting-up-the-theme/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Setting Up the Theme</button>
+          </a>
+          <a href="../../../themes/creating-a-new-theme/theme-configuration/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Theme Configuration</button>
+          </a>
+          <a href="./" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2 selected" type="button">Theme Assets</button>
+          </a>
+          <a href="../../../themes/creating-a-new-theme/theme-flavors/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Theme Flavors</button>
+          </a>
+          <a href="../../../themes/creating-a-new-theme/templating/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Templating</button>
+          </a>
+          <a href="../../../themes/creating-a-new-theme/helpers-and-partials/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Helpers and Partials</button>
+          </a>
+          <a href="../../../themes/creating-a-new-theme/theme-specific-features/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Theme-specific Features</button>
+          </a>
+          <a href="../../../themes/creating-a-new-theme/installation/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Installation</button>
+          </a>
+          <a href="../../../themes/creating-a-new-theme/using-the-theme/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Using the Theme</button>
+          </a>
+          <a href="../../../api-reference/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-0" type="button">API Reference</button>
+          </a>
+          <a href="../../../api-reference/cli/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">CLI</button>
+          </a>
+          <a href="../../../api-reference/nodejs-api/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">Node.js API</button>
+          </a>
+          <a href="../../../api-reference/template-api/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">Template API</button>
+          </a>
+      </div>
+    </div>
+      <div class="fixed-navbar-compensate"></div>
+    <nav class="navbar fixed-top">
+      <div class="d-flex align-items-center w-100-versions">
+        <img src="../../../../assets/theme/images/logo.svg" width="50" height="50">
+        <a class="navbar-title" href="../../../../1.2.0/">Fluorite</a>
+          <span class="navbar-subtitle d-none d-lg-block">Make documentation at ease!</span>
+      </div>
+        <div class="dropdown d-none d-md-block">
+          <button class="btn btn-secondary version-list-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span>1.2.0</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 10.4" width="16">
+              <path fill="#bfc8d6" d="M8,14.9l-8-8L2.4,4.5l5.6,6,5.6-6L16,6.9Z" transform="translate(0 -4.5)"/>
+            </svg>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right version-list" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="../../../../1.1.0/themes/creating-a-new-theme/theme-assets">1.1.0</a>
+              <a class="dropdown-item" href=".">1.2.0</a>
+          </div>
+        </div>
+      <div class="d-block d-md-none menu-toggle" onclick="toggleMenu()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 12 16">
+          <path fill-rule="evenodd" d="M11.41 9H.59C0 9 0 8.59 0 8c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zm0-4H.59C0 5 0 4.59 0 4c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zM.59 11H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1H.59C0 13 0 12.59 0 12c0-.59 0-1 .59-1z"/>
+        </svg>
+      </div>
+    </nav>
+    <div class="container-fluid main-container">
+      <div class="row no-gutters">
+        <div class="col-lg-2 col-md-3 d-none d-md-flex left-pane">
+          <div class="btn-group-vertical section-list" role="group" aria-label="sections">
+                <a href="../../../quick-start/">
+                  <button class="btn btn-secondary level-0" type="button">Quick Start</button>
+                </a>
+              
+                <a href="../../../project-structure/">
+                  <button class="btn btn-secondary level-0" type="button">Project Structure</button>
+                </a>
+              
+                <a href="../../../configuration/">
+                  <button class="btn btn-secondary level-0" type="button">Configuration</button>
+                </a>
+              
+                <div class="section-parent">
+                  <a href="../../../contents/">
+                    <button class="btn btn-secondary level-0" type="button">Contents</button>
+                  </a>
+                  <span class="chevron" onclick="toggleSection(this)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 10 16">
+                      <path fill-rule="evenodd" d="M5 11L0 6l1.5-1.5L5 8.25 8.5 4.5 10 6l-5 5z"/>
+                    </svg>
+                  </span>
+                </div>
+                <div class="section-group">
+              
+                <a href="../../../contents/markdown/">
+                  <button class="btn btn-secondary level-1" type="button">Markdown</button>
+                </a>
+              
+                <a href="../../../contents/markdown-example/">
+                  <button class="btn btn-secondary level-1" type="button">Markdown Example</button>
+                </a>
+              
+                <a href="../../../contents/rest-api/">
+                  <button class="btn btn-secondary level-1" type="button">REST API</button>
+                </a>
+              
+                <a href="../../../contents/rest-api-example/">
+                  <button class="btn btn-secondary level-1" type="button">REST API Example</button>
+                </a>
+              
+                <a href="../../../contents/assets/">
+                  <button class="btn btn-secondary level-1" type="button">Assets</button>
+                </a>
+              </div>
+                <div class="section-parent">
+                  <a href="../../">
+                    <button class="btn btn-secondary level-0" type="button">Themes</button>
+                  </a>
+                  <span class="chevron" onclick="toggleSection(this)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 10 16">
+                      <path fill-rule="evenodd" d="M5 11L0 6l1.5-1.5L5 8.25 8.5 4.5 10 6l-5 5z"/>
+                    </svg>
+                  </span>
+                </div>
+                <div class="section-group">
+              
+                <div class="section-parent">
+                  <a href="../../pre-installed/">
+                    <button class="btn btn-secondary level-1" type="button">Pre-Installed</button>
+                  </a>
+                  <span class="chevron" onclick="toggleSection(this)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 10 16">
+                      <path fill-rule="evenodd" d="M5 11L0 6l1.5-1.5L5 8.25 8.5 4.5 10 6l-5 5z"/>
+                    </svg>
+                  </span>
+                </div>
+                <div class="section-group">
+              
+                <a href="../../../themes/pre-installed/onyx/">
+                  <button class="btn btn-secondary level-2" type="button">Onyx</button>
+                </a>
+              </div>
+                <a href="../../installation/">
+                  <button class="btn btn-secondary level-1" type="button">Installation</button>
+                </a>
+              
+                <div class="section-parent">
+                  <a href="../">
+                    <button class="btn btn-secondary level-1" type="button">Creating a New Theme</button>
+                  </a>
+                  <span class="chevron" onclick="toggleSection(this)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 10 16">
+                      <path fill-rule="evenodd" d="M5 11L0 6l1.5-1.5L5 8.25 8.5 4.5 10 6l-5 5z"/>
+                    </svg>
+                  </span>
+                </div>
+                <div class="section-group">
+              
+                <a href="../../../themes/creating-a-new-theme/setting-up-the-theme/">
+                  <button class="btn btn-secondary level-2" type="button">Setting Up the Theme</button>
+                </a>
+              
+                <a href="../../../themes/creating-a-new-theme/theme-configuration/">
+                  <button class="btn btn-secondary level-2" type="button">Theme Configuration</button>
+                </a>
+              
+                <a href="./">
+                  <button class="btn btn-secondary level-2 selected" type="button">Theme Assets</button>
+                </a>
+              
+                <a href="../../../themes/creating-a-new-theme/theme-flavors/">
+                  <button class="btn btn-secondary level-2" type="button">Theme Flavors</button>
+                </a>
+              
+                <a href="../../../themes/creating-a-new-theme/templating/">
+                  <button class="btn btn-secondary level-2" type="button">Templating</button>
+                </a>
+              
+                <a href="../../../themes/creating-a-new-theme/helpers-and-partials/">
+                  <button class="btn btn-secondary level-2" type="button">Helpers and Partials</button>
+                </a>
+              
+                <a href="../../../themes/creating-a-new-theme/theme-specific-features/">
+                  <button class="btn btn-secondary level-2" type="button">Theme-specific Features</button>
+                </a>
+              
+                <a href="../../../themes/creating-a-new-theme/installation/">
+                  <button class="btn btn-secondary level-2" type="button">Installation</button>
+                </a>
+              
+                <a href="../../../themes/creating-a-new-theme/using-the-theme/">
+                  <button class="btn btn-secondary level-2" type="button">Using the Theme</button>
+                </a>
+              </div></div>
+                <div class="section-parent">
+                  <a href="../../../api-reference/">
+                    <button class="btn btn-secondary level-0" type="button">API Reference</button>
+                  </a>
+                  <span class="chevron" onclick="toggleSection(this)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 10 16">
+                      <path fill-rule="evenodd" d="M5 11L0 6l1.5-1.5L5 8.25 8.5 4.5 10 6l-5 5z"/>
+                    </svg>
+                  </span>
+                </div>
+                <div class="section-group">
+              
+                <a href="../../../api-reference/cli/">
+                  <button class="btn btn-secondary level-1" type="button">CLI</button>
+                </a>
+              
+                <a href="../../../api-reference/nodejs-api/">
+                  <button class="btn btn-secondary level-1" type="button">Node.js API</button>
+                </a>
+              
+                <a href="../../../api-reference/template-api/">
+                  <button class="btn btn-secondary level-1" type="button">Template API</button>
+                </a>
+              </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-9 col-sm-12 middle-pane">
+            <h1 id="theme-assets">Theme Assets</h1>
+
+                <p>Theme assets are files that are referenced inside our main <code>index.hbs</code> file, therefore, must be copied over to the final generated directories.</p>
+<p>Since we want to use Bootstrap to make our theme responsive, we need to do a few things:</p>
+<ol>
+<li>Head over to <a href="https://getbootstrap.com/docs/4.3/getting-started/download/">Bootstrap&#39;s download page</a> and download the minified CSS and JS files.</li>
+<li>Unzip the file and copy <code>/js/bootstrap.bundle.min.js</code> to the <code>js</code> directory of our theme.</li>
+<li>Create a folder named <code>css</code> in our theme root directory and copy <code>/css/bootstrap.min.css</code> into it.</li>
+<li>Add the <code>css</code> directory in <code>assets</code> array inside <code>config.json</code> to declare the <code>css</code> directory as a theme asset.</li>
+<li><a href="https://jquery.com/download/">Download JQuery</a> and copy <code>jquery-3.4.1.min.js</code> to the <code>js</code> directory (your JQuery version might be different.)</li>
+</ol>
+<p>All theme assets will be copied to the <code>/assets/theme</code> directory at the root of the documentation, therefore, all links inside <code>index.hbs</code> must be referenced by <code>{{rootPrefix}}/assets/theme/</code> followed by the desired path. With that in mind, let&#39;s load Bootstrap and JQuery inside <code>index.hbs</code>&#39;s head tag:</p>
+<pre><code class="language-html">...
+{{#if extended.theme-color}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>theme-color<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{extended.theme-color}}<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>{{/if}}
+
+{{! Load JQuery }}
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{rootPrefix}}/assets/theme/jquery-3.4.1.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+
+{{! Load Bootstrap }}
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{rootPrefix}}/assets/theme/css/bootstrap.min.css<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{rootPrefix}}/assets/theme/js/bootstrap.bundle.min.js<span class="token punctuation">"</span></span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+
+{{! Load theme's compiled SASS }}
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{rootPrefix}}/assets/theme/styles.css<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+...</code></pre>
+<p>Just like with the markdown content, there are two variables available to <code>index.hbs</code>:</p>
+<ul>
+<li><code>{{rootPrefix}}</code>: Used for prefixing all links to the root directory of the documentation.</li>
+<li><code>{{versionRootPrefix}}</code>: Used for prefixing all links to the root directory of the current version of the documentation.</li>
+</ul>
+<p>Since both theme assets and user assets are copied to the root directory and are shared in all versions of the documentation, we should use <code>{{rootPrefix}}</code> whenever we&#39;re referencing any of them.</p>
+<h2 id="themes-creating-a-new-theme-theme-assets-user-assets">User Assets</h2>
+<p>Themes can extend the Fluorite configuration through <code>themeOptions</code>. Normally, any data the user defines under <code>themeOptions</code> will be passed to the template API as the <code>extended</code> object (which will be covered soon), but in some cases themes may want to let the user input some files (favicon, manifest, etc.) which needs some special handling. Since those files need to be copied into the generated documentation, we can declare those <code>themeOptions</code> extensions as user assets inside our theme configuration file.</p>
+<p>Replace the <code>userAssets</code> object in <code>config.json</code> with the following values:</p>
+<pre><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"favicon-ico"</span><span class="token operator">:</span> <span class="token string">"images/"</span>
+<span class="token punctuation">}</span></code></pre>
+<p>The above configuration tells Fluorite to copy the file provided in <code>flconfig.json</code>&#39;s <code>themeOptions[&#39;favicon-ico&#39;]</code> to the <code>/assets/user/images</code> directory. We can access this file through the template API&#39;s <code>extended[&#39;favicon-ico&#39;]</code> inside our Handlebars template.</p>
+<p>Your final theme config should look like the following:</p>
+<p><strong>config.json:</strong></p>
+<pre><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"hasFlavors"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">"defaultFlavor"</span><span class="token operator">:</span> <span class="token string">"light"</span><span class="token punctuation">,</span>
+  <span class="token property">"assets"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"js"</span><span class="token punctuation">,</span>
+    <span class="token string">"css"</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">"userAssets"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"favicon-ico"</span><span class="token operator">:</span> <span class="token string">"images/"</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>In the <a href="../../../../1.2.0/themes/creating-a-new-theme/theme-flavors">next section</a> we&#39;ll take a look at our theme&#39;s flavors.</p>
+
+
+            <nav class="nav-pagination d-flex d-md-none">
+                <a href="../../../themes/creating-a-new-theme/theme-configuration/">
+                  <button type="button">Previous</button>
+                </a>
+                <a href="../../../themes/creating-a-new-theme/theme-flavors/">
+                  <button type="button">Next</button>
+                </a>
+            </nav>
+        </div>
+        <div class="col-lg-4 d-none d-lg-flex right-pane"></div>
+      </div>
+    </div>
+  </body>
+</html>

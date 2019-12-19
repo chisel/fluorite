@@ -1,0 +1,516 @@
+<!doctype html>
+<html class="no-scroll">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="shortcut icon" href="../../../assets/theme/images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../assets/theme/images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../assets/theme/images/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../assets/theme/images/apple-touch-icon.png">
+    <link rel="manifest" href="../../../assets/theme/images/site.webmanifest">
+    <link rel="mask-icon" href="../../../assets/theme/images/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-config" content="../../../assets/theme/images/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+      <script src="../../../assets/theme/js/lottie.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="../../../assets/theme/css/bootstrap.min.css">
+    <script src="../../../assets/theme/js/jquery.min.js" charset="utf-8"></script>
+    <script src="../../../assets/theme/js/bootstrap.bundle.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="../../../assets/theme/css/simplebar.min.css" />
+    <script src="../../../assets/theme/js/simplebar.min.js"></script>
+    <script src="../../../assets/theme/js/comment-parser.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="../../../assets/theme/styles.css">
+    <script src="../../../assets/theme/js/right-pane.js" charset="utf-8"></script>
+    <script src="../../../assets/theme/js/script.js" charset="utf-8"></script>
+
+    <style media="screen">
+      p.note-info::before { content: url('../../../assets/theme/images/info.svg') }
+      p.note-error::before { content: url('../../../assets/theme/images/error.svg') }
+      p.note-success::before { content: url('../../../assets/theme/images/success.svg') }
+      p.note-warning::before { content: url('../../../assets/theme/images/warning.svg') }
+    </style>
+
+      <script type="text/javascript">
+        window.addEventListener('load', () => {
+          bodymovin.destroy();
+          document.querySelector('.loader-container').classList.add('hide');
+          document.body.classList.remove('no-scroll');
+          document.getElementsByTagName('html')[0].classList.remove('no-scroll');
+        });
+      </script>
+
+      <title>Fluorite - Template API</title>
+
+  </head>
+  <body ontouchstart class="no-scroll">
+      <div class="loader-container">
+        <div id="themeLoader" class="loader"></div>
+      </div>
+      <script type="text/javascript">
+        bodymovin.loadAnimation({
+          container: document.getElementById('themeLoader'),
+          path: '../../../assets/theme/js/loader-light.json',
+          renderer: 'svg',
+          loop: true,
+          autoplay: true
+        });
+      </script>
+    <div id="sliderMenuShadow" class="slider-menu-shadow d-block d-md-none fixed-top" onclick="toggleMenu()"></div>
+    <div id="sliderMenu" class="slider-menu d-block d-md-none fixed-top">
+        <div class="dropdown dropdown-block">
+          <button class="btn btn-secondary version-list-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span>1.1.0</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 10.4" width="16">
+              <path fill="#bfc8d6" d="M8,14.9l-8-8L2.4,4.5l5.6,6,5.6-6L16,6.9Z" transform="translate(0 -4.5)"/>
+            </svg>
+          </button>
+          <div class="dropdown-menu version-list" aria-labelledby="dropdownMenuButton2">
+              <a class="dropdown-item" href=".">1.1.0</a>
+              <a class="dropdown-item" href="../../../1.2.0/api-reference/template-api">1.2.0</a>
+          </div>
+        </div>
+      <div class="btn-group-vertical section-list" role="group" aria-label="sections">
+          <a href="../../quick-start/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-0" type="button">Quick Start</button>
+          </a>
+          <a href="../../project-structure/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-0" type="button">Project Structure</button>
+          </a>
+          <a href="../../configuration/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-0" type="button">Configuration</button>
+          </a>
+          <a href="../../contents/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-0" type="button">Contents</button>
+          </a>
+          <a href="../../contents/markdown/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">Markdown</button>
+          </a>
+          <a href="../../contents/markdown-example/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">Markdown Example</button>
+          </a>
+          <a href="../../contents/rest-api/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">REST API</button>
+          </a>
+          <a href="../../contents/rest-api-example/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">REST API Example</button>
+          </a>
+          <a href="../../contents/assets/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">Assets</button>
+          </a>
+          <a href="../../themes/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-0" type="button">Themes</button>
+          </a>
+          <a href="../../themes/pre-installed/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">Pre-Installed</button>
+          </a>
+          <a href="../../themes/pre-installed/onyx/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Onyx</button>
+          </a>
+          <a href="../../themes/installation/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">Installation</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">Creating a New Theme</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/setting-up-the-theme/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Setting Up the Theme</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/theme-configuration/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Theme Configuration</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/theme-assets/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Theme Assets</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/theme-flavors/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Theme Flavors</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/templating/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Templating</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/helpers-and-partials/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Helpers and Partials</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/theme-specific-features/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Theme-specific Features</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/installation/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Installation</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/using-the-theme/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Using the Theme</button>
+          </a>
+          <a href="../" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-0" type="button">API Reference</button>
+          </a>
+          <a href="../../api-reference/cli/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">CLI</button>
+          </a>
+          <a href="../../api-reference/nodejs-api/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">Node.js API</button>
+          </a>
+          <a href="./" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1 selected" type="button">Template API</button>
+          </a>
+      </div>
+    </div>
+      <div class="fixed-navbar-compensate"></div>
+    <nav class="navbar fixed-top">
+      <div class="d-flex align-items-center w-100-versions">
+        <img src="../../../assets/theme/images/logo.svg" width="50" height="50">
+        <a class="navbar-title" href="../../../1.1.0/">Fluorite</a>
+          <span class="navbar-subtitle d-none d-lg-block">Make documentation at ease!</span>
+      </div>
+        <div class="dropdown d-none d-md-block">
+          <button class="btn btn-secondary version-list-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span>1.1.0</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 10.4" width="16">
+              <path fill="#bfc8d6" d="M8,14.9l-8-8L2.4,4.5l5.6,6,5.6-6L16,6.9Z" transform="translate(0 -4.5)"/>
+            </svg>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right version-list" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href=".">1.1.0</a>
+              <a class="dropdown-item" href="../../../1.2.0/api-reference/template-api">1.2.0</a>
+          </div>
+        </div>
+      <div class="d-block d-md-none menu-toggle" onclick="toggleMenu()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 12 16">
+          <path fill-rule="evenodd" d="M11.41 9H.59C0 9 0 8.59 0 8c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zm0-4H.59C0 5 0 4.59 0 4c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zM.59 11H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1H.59C0 13 0 12.59 0 12c0-.59 0-1 .59-1z"/>
+        </svg>
+      </div>
+    </nav>
+    <div class="container-fluid main-container">
+      <div class="row no-gutters">
+        <div class="col-lg-2 col-md-3 d-none d-md-flex left-pane">
+          <div class="btn-group-vertical section-list" role="group" aria-label="sections">
+                <a href="../../quick-start/">
+                  <button class="btn btn-secondary level-0" type="button">Quick Start</button>
+                </a>
+              
+                <a href="../../project-structure/">
+                  <button class="btn btn-secondary level-0" type="button">Project Structure</button>
+                </a>
+              
+                <a href="../../configuration/">
+                  <button class="btn btn-secondary level-0" type="button">Configuration</button>
+                </a>
+              
+                <div class="section-parent">
+                  <a href="../../contents/">
+                    <button class="btn btn-secondary level-0" type="button">Contents</button>
+                  </a>
+                  <span class="chevron" onclick="toggleSection(this)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 10 16">
+                      <path fill-rule="evenodd" d="M5 11L0 6l1.5-1.5L5 8.25 8.5 4.5 10 6l-5 5z"/>
+                    </svg>
+                  </span>
+                </div>
+                <div class="section-group">
+              
+                <a href="../../contents/markdown/">
+                  <button class="btn btn-secondary level-1" type="button">Markdown</button>
+                </a>
+              
+                <a href="../../contents/markdown-example/">
+                  <button class="btn btn-secondary level-1" type="button">Markdown Example</button>
+                </a>
+              
+                <a href="../../contents/rest-api/">
+                  <button class="btn btn-secondary level-1" type="button">REST API</button>
+                </a>
+              
+                <a href="../../contents/rest-api-example/">
+                  <button class="btn btn-secondary level-1" type="button">REST API Example</button>
+                </a>
+              
+                <a href="../../contents/assets/">
+                  <button class="btn btn-secondary level-1" type="button">Assets</button>
+                </a>
+              </div>
+                <div class="section-parent">
+                  <a href="../../themes/">
+                    <button class="btn btn-secondary level-0" type="button">Themes</button>
+                  </a>
+                  <span class="chevron" onclick="toggleSection(this)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 10 16">
+                      <path fill-rule="evenodd" d="M5 11L0 6l1.5-1.5L5 8.25 8.5 4.5 10 6l-5 5z"/>
+                    </svg>
+                  </span>
+                </div>
+                <div class="section-group">
+              
+                <div class="section-parent">
+                  <a href="../../themes/pre-installed/">
+                    <button class="btn btn-secondary level-1" type="button">Pre-Installed</button>
+                  </a>
+                  <span class="chevron" onclick="toggleSection(this)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 10 16">
+                      <path fill-rule="evenodd" d="M5 11L0 6l1.5-1.5L5 8.25 8.5 4.5 10 6l-5 5z"/>
+                    </svg>
+                  </span>
+                </div>
+                <div class="section-group">
+              
+                <a href="../../themes/pre-installed/onyx/">
+                  <button class="btn btn-secondary level-2" type="button">Onyx</button>
+                </a>
+              </div>
+                <a href="../../themes/installation/">
+                  <button class="btn btn-secondary level-1" type="button">Installation</button>
+                </a>
+              
+                <div class="section-parent">
+                  <a href="../../themes/creating-a-new-theme/">
+                    <button class="btn btn-secondary level-1" type="button">Creating a New Theme</button>
+                  </a>
+                  <span class="chevron" onclick="toggleSection(this)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 10 16">
+                      <path fill-rule="evenodd" d="M5 11L0 6l1.5-1.5L5 8.25 8.5 4.5 10 6l-5 5z"/>
+                    </svg>
+                  </span>
+                </div>
+                <div class="section-group">
+              
+                <a href="../../themes/creating-a-new-theme/setting-up-the-theme/">
+                  <button class="btn btn-secondary level-2" type="button">Setting Up the Theme</button>
+                </a>
+              
+                <a href="../../themes/creating-a-new-theme/theme-configuration/">
+                  <button class="btn btn-secondary level-2" type="button">Theme Configuration</button>
+                </a>
+              
+                <a href="../../themes/creating-a-new-theme/theme-assets/">
+                  <button class="btn btn-secondary level-2" type="button">Theme Assets</button>
+                </a>
+              
+                <a href="../../themes/creating-a-new-theme/theme-flavors/">
+                  <button class="btn btn-secondary level-2" type="button">Theme Flavors</button>
+                </a>
+              
+                <a href="../../themes/creating-a-new-theme/templating/">
+                  <button class="btn btn-secondary level-2" type="button">Templating</button>
+                </a>
+              
+                <a href="../../themes/creating-a-new-theme/helpers-and-partials/">
+                  <button class="btn btn-secondary level-2" type="button">Helpers and Partials</button>
+                </a>
+              
+                <a href="../../themes/creating-a-new-theme/theme-specific-features/">
+                  <button class="btn btn-secondary level-2" type="button">Theme-specific Features</button>
+                </a>
+              
+                <a href="../../themes/creating-a-new-theme/installation/">
+                  <button class="btn btn-secondary level-2" type="button">Installation</button>
+                </a>
+              
+                <a href="../../themes/creating-a-new-theme/using-the-theme/">
+                  <button class="btn btn-secondary level-2" type="button">Using the Theme</button>
+                </a>
+              </div></div>
+                <div class="section-parent">
+                  <a href="../">
+                    <button class="btn btn-secondary level-0" type="button">API Reference</button>
+                  </a>
+                  <span class="chevron" onclick="toggleSection(this)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 10 16">
+                      <path fill-rule="evenodd" d="M5 11L0 6l1.5-1.5L5 8.25 8.5 4.5 10 6l-5 5z"/>
+                    </svg>
+                  </span>
+                </div>
+                <div class="section-group">
+              
+                <a href="../../api-reference/cli/">
+                  <button class="btn btn-secondary level-1" type="button">CLI</button>
+                </a>
+              
+                <a href="../../api-reference/nodejs-api/">
+                  <button class="btn btn-secondary level-1" type="button">Node.js API</button>
+                </a>
+              
+                <a href="./">
+                  <button class="btn btn-secondary level-1 selected" type="button">Template API</button>
+                </a>
+              </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-9 col-sm-12 middle-pane">
+            <h1 id="template-api">Template API</h1>
+
+                <p>The template data is an object available inside a theme&#39;s template file (written using Handlebars) which contains all the configuration and the rendered content for each page. Using this data, the theme&#39;s <code>index.hbs</code> decides where the content would show up and how the final HTML will look based on the configuration values.</p>
+<p>But, before we cover the template API, let&#39;s take a look at how Fluorite generates the documentation:</p>
+<ol>
+<li><code>flconfig.json</code> is loaded and all content is read</li>
+<li>Both the markdown and the JSON content are rendered into HTML</li>
+<li>A template data object is created based on the configuration (content versioning, multipage, etc.)</li>
+<li>The docs are generated by running each page&#39;s template data (of each version) through the theme&#39;s <code>index.hbs</code></li>
+</ol>
+<p>With that in mind, let&#39;s look at the data that is available to the <code>index.hbs</code> for rendering the final HTML.</p>
+<blockquote>
+<p>The template data you get in <code>index.hbs</code> is generated specifically for each page, which means the job of <code>index.hbs</code> is to only render the HTML for that specific page. Repeating this for each page of each version (handled by Fluorite) results in the final HTML.</p>
+</blockquote>
+<blockquote>
+<p>Make sure you&#39;re familiar with the <a href="../../../1.1.0/project-structure#project-structure-output-directory">output directory</a> and the <a href="../../../1.1.0/themes/creating-a-new-theme/theme-configuration">theme config</a> which helps you to define theme-specific configuration and declare theme assets which affect the final output structure.</p>
+</blockquote>
+<p>The template data of each page has the following properties available to the Handlebars template file:</p>
+<ul>
+<li><strong>title</strong>: The title of the documentation.</li>
+<li><strong>pageTitle</strong>: The current page&#39;s title.</li>
+<li><strong>themeFlavor</strong>: The selected theme flavor.</li>
+<li><strong>multiPage</strong>: A boolean indicating if documentation is being generated in multipage mode.</li>
+<li><strong>version</strong>: The version of the current page being rendered.</li>
+<li><strong>versions</strong>: An array of version objects. This array tells the template what versions the whole documentation has.<ul>
+<li><strong>version</strong>: The version number.</li>
+<li><strong>link</strong>: A relative link from the current page to this version (either the root document or the same document in that version based on <code>rendererOptions.rootVersionLinksOnly</code>.)</li>
+</ul>
+</li>
+<li><strong>path</strong>: The section path of the current page. Section paths are index numbers of the sections array with <code>/</code> for sub sections. For example, if the page belongs to <code>Sub 1</code> section of <code>Section 1</code> and <code>Section 1</code> has the index <code>0</code>, then the section path would be <code>0/0</code>.</li>
+<li><strong>sections</strong>: An array containing section objects. This array could be used to render the documentation index.<ul>
+<li><strong>title</strong>: The section title.</li>
+<li><strong>link</strong>: A relative link to the section from the current page.</li>
+<li><strong>level</strong>: The indentation level of the section.</li>
+<li><strong>path</strong>: The section path.</li>
+<li><strong>selected</strong>: A boolean indicating if the current page belongs to this section.</li>
+</ul>
+</li>
+<li><strong>rootPrefix</strong>: A path prefix to be inserted at the beginning of all links referring to the documentation root.</li>
+<li><strong>versionRootPrefix</strong>: A path prefix to be inserted at the beginning of all links referring to the root of the current version.</li>
+<li><strong>contents</strong>: An array of section content objects.<ul>
+<li><strong>title</strong>: The title of the current section.</li>
+<li><strong>id</strong>: The id of the section title (used for anchors.)</li>
+<li><strong>content</strong>: An array of content objects.<ul>
+<li><strong>type</strong>: Either <code>doc</code> or <code>api</code> specifying the content type (markdown or API respectively.)</li>
+<li><strong>value</strong>: The rendered HTML content (string) if <code>type</code> is <code>doc</code> or an object with the following properties if <code>type</code> is <code>api</code>:<ul>
+<li><strong>raw</strong>: A copy of the input JSON file (API documentation file). Since most values are already rendered (as tables, code blocks, etc.), the <code>raw</code> property can be used to render any parts differently inside the template. Keep in mind that a body <code>model</code> would be provided with string or JSON content where the <code>externalFile</code> was used (and the <code>externalFile</code> property would be deleted).</li>
+<li><strong>info</strong>: Namespace.<ul>
+<li><strong>title</strong>: Title of the API (used for headers).</li>
+<li><strong>id</strong>: The id of the API title (used for headers).</li>
+<li><strong>content</strong>: The rendered description.</li>
+</ul>
+</li>
+<li><strong>auth</strong>: Namespace.<ul>
+<li><strong>enabled</strong>: Boolean indicating if authentication is enabled.</li>
+<li><strong>title</strong>: Authentication title (used for headers).</li>
+<li><strong>id</strong>: The id of the authentication title (used for headers).</li>
+<li><strong>content</strong>: The rendered authentication description.</li>
+</ul>
+</li>
+<li><strong>path</strong>:<ul>
+<li><strong>title</strong>: Path title (used for headers).</li>
+<li><strong>id</strong>: The id of the path title (used for headers).</li>
+<li><strong>method</strong>: The path method.</li>
+<li><strong>content</strong>: The path content.</li>
+</ul>
+</li>
+<li><strong>params</strong>: Namespace.<ul>
+<li><strong>title</strong>: Parameters title (used for headers).</li>
+<li><strong>id</strong>: The id of the parameters title (used for headers).</li>
+<li><strong>content</strong>: The parameters content.</li>
+</ul>
+</li>
+<li><strong>queries</strong>: Namespace.<ul>
+<li><strong>title</strong>: The query parameters title (used for headers).</li>
+<li><strong>id</strong>: The id of the query parameters title (used for headers).</li>
+<li><strong>content</strong>: The query parameters content.</li>
+</ul>
+</li>
+<li><strong>request</strong>: Namespace.<ul>
+<li><strong>headers</strong>: Namespace.<ul>
+<li><strong>title</strong>: The request headers title (used for headers).</li>
+<li><strong>id</strong>: The id of the request headers title (used for headers).</li>
+<li><strong>content</strong>: The headers rendered content.</li>
+</ul>
+</li>
+<li><strong>cookies</strong>: Namespace.<ul>
+<li><strong>title</strong>: The request cookies title (used for headers).</li>
+<li><strong>id</strong>: The id of the request cookies title (used for headers).</li>
+<li><strong>content</strong>: The cookies rendered content.</li>
+</ul>
+</li>
+<li><strong>body</strong>: Namespace.<ul>
+<li><strong>title</strong>: The request body title (used for headers).</li>
+<li><strong>id</strong>: The id of the request body title (used for headers).</li>
+<li><strong>content</strong>: An array of body objects.<ul>
+<li><strong>type</strong>: The body type.</li>
+<li><strong>value</strong>: The rendered body value.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>response</strong>: Same as <code>request</code>.</li>
+<li><strong>examples</strong>: An array of example objects.<ul>
+<li><strong>title</strong>: The examples title (used for headers).</li>
+<li><strong>id</strong>: The id of the examples title (used for headers).</li>
+<li><strong>path</strong>: Namespace.<ul>
+<li><strong>title</strong>: The path title (used for headers).</li>
+<li><strong>id</strong>: The id of the path title (used for headers).</li>
+<li><strong>method</strong>: The example request method.</li>
+<li><strong>content</strong>: The path content.</li>
+</ul>
+</li>
+<li><strong>request</strong>: Same as <code>request</code> (documented above).</li>
+<li><strong>response</strong>: Same as <code>request</code> with the following expansions:<ul>
+<li><strong>status</strong>: Namespace.<ul>
+<li><strong>title</strong>: Status title (used for headers).</li>
+<li><strong>id</strong>: The id of the status title (used for headers).</li>
+<li><strong>code</strong>: The status code.</li>
+<li><strong>content</strong>: The status content (message).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>extended</strong>: A copy of the <code>themeOptions</code> inside <code>flconfig.json</code>. All the declared user assets in the theme&#39;s config will have the final calculated value here (refer to <a href="../../../1.1.0/themes/creating-a-new-theme/theme-assets#theme-assets-user-assets">User Assets</a> for more info.)</li>
+</ul>
+<blockquote>
+<p>If you need a working example, take a look at the Onyx&#39;s <code>index.hbs</code> located at <code>fluorite-root/themes/onyx/index.hbs</code>.</p>
+</blockquote>
+<h2 id="api-reference-template-api-example">Example</h2>
+<p>The following Handlebars file is a simple example of how the template API may be used:</p>
+<pre><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+    {{#if multiPage}}
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>{{title}}{{#if path}} - {{pageTitle}}{{/if}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+    {{else}}
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>{{title}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+    {{/if}}
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    {{! Render documentation index}}
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>index<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      {{#each sections}}
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{link}}<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>{{version}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+      {{/each}}
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    {{! Render the current page's content}}
+    {{#each contents}}
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{id}}<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>{{title}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+      {{#each content}}
+        {{value}}
+      {{/each}}
+    {{/each}}
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span></code></pre>
+
+
+            <nav class="nav-pagination d-flex d-md-none">
+                <a href="../../api-reference/nodejs-api/">
+                  <button type="button">Previous</button>
+                </a>
+                <span>Next</span>
+            </nav>
+        </div>
+        <div class="col-lg-4 d-none d-lg-flex right-pane"></div>
+      </div>
+    </div>
+  </body>
+</html>

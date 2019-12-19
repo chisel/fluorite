@@ -1,0 +1,442 @@
+<!doctype html>
+<html class="no-scroll">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="shortcut icon" href="../../../assets/theme/images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../assets/theme/images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../assets/theme/images/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../assets/theme/images/apple-touch-icon.png">
+    <link rel="manifest" href="../../../assets/theme/images/site.webmanifest">
+    <link rel="mask-icon" href="../../../assets/theme/images/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-config" content="../../../assets/theme/images/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+      <script src="../../../assets/theme/js/lottie.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="../../../assets/theme/css/bootstrap.min.css">
+    <script src="../../../assets/theme/js/jquery.min.js" charset="utf-8"></script>
+    <script src="../../../assets/theme/js/bootstrap.bundle.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="../../../assets/theme/css/simplebar.min.css" />
+    <script src="../../../assets/theme/js/simplebar.min.js"></script>
+    <script src="../../../assets/theme/js/comment-parser.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="../../../assets/theme/styles.css">
+    <script src="../../../assets/theme/js/right-pane.js" charset="utf-8"></script>
+    <script src="../../../assets/theme/js/script.js" charset="utf-8"></script>
+
+    <style media="screen">
+      p.note-info::before { content: url('../../../assets/theme/images/info.svg') }
+      p.note-error::before { content: url('../../../assets/theme/images/error.svg') }
+      p.note-success::before { content: url('../../../assets/theme/images/success.svg') }
+      p.note-warning::before { content: url('../../../assets/theme/images/warning.svg') }
+    </style>
+
+      <script type="text/javascript">
+        window.addEventListener('load', () => {
+          bodymovin.destroy();
+          document.querySelector('.loader-container').classList.add('hide');
+          document.body.classList.remove('no-scroll');
+          document.getElementsByTagName('html')[0].classList.remove('no-scroll');
+        });
+      </script>
+
+      <title>Fluorite - Markdown Example</title>
+
+  </head>
+  <body ontouchstart class="no-scroll">
+      <div class="loader-container">
+        <div id="themeLoader" class="loader"></div>
+      </div>
+      <script type="text/javascript">
+        bodymovin.loadAnimation({
+          container: document.getElementById('themeLoader'),
+          path: '../../../assets/theme/js/loader-light.json',
+          renderer: 'svg',
+          loop: true,
+          autoplay: true
+        });
+      </script>
+    <div id="sliderMenuShadow" class="slider-menu-shadow d-block d-md-none fixed-top" onclick="toggleMenu()"></div>
+    <div id="sliderMenu" class="slider-menu d-block d-md-none fixed-top">
+        <div class="dropdown dropdown-block">
+          <button class="btn btn-secondary version-list-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span>1.2.0</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 10.4" width="16">
+              <path fill="#bfc8d6" d="M8,14.9l-8-8L2.4,4.5l5.6,6,5.6-6L16,6.9Z" transform="translate(0 -4.5)"/>
+            </svg>
+          </button>
+          <div class="dropdown-menu version-list" aria-labelledby="dropdownMenuButton2">
+              <a class="dropdown-item" href="../../../1.1.0/contents/markdown-example">1.1.0</a>
+              <a class="dropdown-item" href=".">1.2.0</a>
+          </div>
+        </div>
+      <div class="btn-group-vertical section-list" role="group" aria-label="sections">
+          <a href="../../quick-start/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-0" type="button">Quick Start</button>
+          </a>
+          <a href="../../project-structure/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-0" type="button">Project Structure</button>
+          </a>
+          <a href="../../configuration/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-0" type="button">Configuration</button>
+          </a>
+          <a href="../" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-0" type="button">Contents</button>
+          </a>
+          <a href="../../contents/markdown/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">Markdown</button>
+          </a>
+          <a href="./" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1 selected" type="button">Markdown Example</button>
+          </a>
+          <a href="../../contents/rest-api/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">REST API</button>
+          </a>
+          <a href="../../contents/rest-api-example/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">REST API Example</button>
+          </a>
+          <a href="../../contents/assets/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">Assets</button>
+          </a>
+          <a href="../../themes/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-0" type="button">Themes</button>
+          </a>
+          <a href="../../themes/pre-installed/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">Pre-Installed</button>
+          </a>
+          <a href="../../themes/pre-installed/onyx/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Onyx</button>
+          </a>
+          <a href="../../themes/installation/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">Installation</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">Creating a New Theme</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/setting-up-the-theme/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Setting Up the Theme</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/theme-configuration/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Theme Configuration</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/theme-assets/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Theme Assets</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/theme-flavors/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Theme Flavors</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/templating/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Templating</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/helpers-and-partials/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Helpers and Partials</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/theme-specific-features/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Theme-specific Features</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/installation/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Installation</button>
+          </a>
+          <a href="../../themes/creating-a-new-theme/using-the-theme/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-2" type="button">Using the Theme</button>
+          </a>
+          <a href="../../api-reference/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-0" type="button">API Reference</button>
+          </a>
+          <a href="../../api-reference/cli/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">CLI</button>
+          </a>
+          <a href="../../api-reference/nodejs-api/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">Node.js API</button>
+          </a>
+          <a href="../../api-reference/template-api/" onclick="toggleMenu()">
+            <button class="btn btn-secondary level-1" type="button">Template API</button>
+          </a>
+      </div>
+    </div>
+      <div class="fixed-navbar-compensate"></div>
+    <nav class="navbar fixed-top">
+      <div class="d-flex align-items-center w-100-versions">
+        <img src="../../../assets/theme/images/logo.svg" width="50" height="50">
+        <a class="navbar-title" href="../../../1.2.0/">Fluorite</a>
+          <span class="navbar-subtitle d-none d-lg-block">Make documentation at ease!</span>
+      </div>
+        <div class="dropdown d-none d-md-block">
+          <button class="btn btn-secondary version-list-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span>1.2.0</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 10.4" width="16">
+              <path fill="#bfc8d6" d="M8,14.9l-8-8L2.4,4.5l5.6,6,5.6-6L16,6.9Z" transform="translate(0 -4.5)"/>
+            </svg>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right version-list" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="../../../1.1.0/contents/markdown-example">1.1.0</a>
+              <a class="dropdown-item" href=".">1.2.0</a>
+          </div>
+        </div>
+      <div class="d-block d-md-none menu-toggle" onclick="toggleMenu()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 12 16">
+          <path fill-rule="evenodd" d="M11.41 9H.59C0 9 0 8.59 0 8c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zm0-4H.59C0 5 0 4.59 0 4c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zM.59 11H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1H.59C0 13 0 12.59 0 12c0-.59 0-1 .59-1z"/>
+        </svg>
+      </div>
+    </nav>
+    <div class="container-fluid main-container">
+      <div class="row no-gutters">
+        <div class="col-lg-2 col-md-3 d-none d-md-flex left-pane">
+          <div class="btn-group-vertical section-list" role="group" aria-label="sections">
+                <a href="../../quick-start/">
+                  <button class="btn btn-secondary level-0" type="button">Quick Start</button>
+                </a>
+              
+                <a href="../../project-structure/">
+                  <button class="btn btn-secondary level-0" type="button">Project Structure</button>
+                </a>
+              
+                <a href="../../configuration/">
+                  <button class="btn btn-secondary level-0" type="button">Configuration</button>
+                </a>
+              
+                <div class="section-parent">
+                  <a href="../">
+                    <button class="btn btn-secondary level-0" type="button">Contents</button>
+                  </a>
+                  <span class="chevron" onclick="toggleSection(this)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 10 16">
+                      <path fill-rule="evenodd" d="M5 11L0 6l1.5-1.5L5 8.25 8.5 4.5 10 6l-5 5z"/>
+                    </svg>
+                  </span>
+                </div>
+                <div class="section-group">
+              
+                <a href="../../contents/markdown/">
+                  <button class="btn btn-secondary level-1" type="button">Markdown</button>
+                </a>
+              
+                <a href="./">
+                  <button class="btn btn-secondary level-1 selected" type="button">Markdown Example</button>
+                </a>
+              
+                <a href="../../contents/rest-api/">
+                  <button class="btn btn-secondary level-1" type="button">REST API</button>
+                </a>
+              
+                <a href="../../contents/rest-api-example/">
+                  <button class="btn btn-secondary level-1" type="button">REST API Example</button>
+                </a>
+              
+                <a href="../../contents/assets/">
+                  <button class="btn btn-secondary level-1" type="button">Assets</button>
+                </a>
+              </div>
+                <div class="section-parent">
+                  <a href="../../themes/">
+                    <button class="btn btn-secondary level-0" type="button">Themes</button>
+                  </a>
+                  <span class="chevron" onclick="toggleSection(this)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 10 16">
+                      <path fill-rule="evenodd" d="M5 11L0 6l1.5-1.5L5 8.25 8.5 4.5 10 6l-5 5z"/>
+                    </svg>
+                  </span>
+                </div>
+                <div class="section-group">
+              
+                <div class="section-parent">
+                  <a href="../../themes/pre-installed/">
+                    <button class="btn btn-secondary level-1" type="button">Pre-Installed</button>
+                  </a>
+                  <span class="chevron" onclick="toggleSection(this)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 10 16">
+                      <path fill-rule="evenodd" d="M5 11L0 6l1.5-1.5L5 8.25 8.5 4.5 10 6l-5 5z"/>
+                    </svg>
+                  </span>
+                </div>
+                <div class="section-group">
+              
+                <a href="../../themes/pre-installed/onyx/">
+                  <button class="btn btn-secondary level-2" type="button">Onyx</button>
+                </a>
+              </div>
+                <a href="../../themes/installation/">
+                  <button class="btn btn-secondary level-1" type="button">Installation</button>
+                </a>
+              
+                <div class="section-parent">
+                  <a href="../../themes/creating-a-new-theme/">
+                    <button class="btn btn-secondary level-1" type="button">Creating a New Theme</button>
+                  </a>
+                  <span class="chevron" onclick="toggleSection(this)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 10 16">
+                      <path fill-rule="evenodd" d="M5 11L0 6l1.5-1.5L5 8.25 8.5 4.5 10 6l-5 5z"/>
+                    </svg>
+                  </span>
+                </div>
+                <div class="section-group">
+              
+                <a href="../../themes/creating-a-new-theme/setting-up-the-theme/">
+                  <button class="btn btn-secondary level-2" type="button">Setting Up the Theme</button>
+                </a>
+              
+                <a href="../../themes/creating-a-new-theme/theme-configuration/">
+                  <button class="btn btn-secondary level-2" type="button">Theme Configuration</button>
+                </a>
+              
+                <a href="../../themes/creating-a-new-theme/theme-assets/">
+                  <button class="btn btn-secondary level-2" type="button">Theme Assets</button>
+                </a>
+              
+                <a href="../../themes/creating-a-new-theme/theme-flavors/">
+                  <button class="btn btn-secondary level-2" type="button">Theme Flavors</button>
+                </a>
+              
+                <a href="../../themes/creating-a-new-theme/templating/">
+                  <button class="btn btn-secondary level-2" type="button">Templating</button>
+                </a>
+              
+                <a href="../../themes/creating-a-new-theme/helpers-and-partials/">
+                  <button class="btn btn-secondary level-2" type="button">Helpers and Partials</button>
+                </a>
+              
+                <a href="../../themes/creating-a-new-theme/theme-specific-features/">
+                  <button class="btn btn-secondary level-2" type="button">Theme-specific Features</button>
+                </a>
+              
+                <a href="../../themes/creating-a-new-theme/installation/">
+                  <button class="btn btn-secondary level-2" type="button">Installation</button>
+                </a>
+              
+                <a href="../../themes/creating-a-new-theme/using-the-theme/">
+                  <button class="btn btn-secondary level-2" type="button">Using the Theme</button>
+                </a>
+              </div></div>
+                <div class="section-parent">
+                  <a href="../../api-reference/">
+                    <button class="btn btn-secondary level-0" type="button">API Reference</button>
+                  </a>
+                  <span class="chevron" onclick="toggleSection(this)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 10 16">
+                      <path fill-rule="evenodd" d="M5 11L0 6l1.5-1.5L5 8.25 8.5 4.5 10 6l-5 5z"/>
+                    </svg>
+                  </span>
+                </div>
+                <div class="section-group">
+              
+                <a href="../../api-reference/cli/">
+                  <button class="btn btn-secondary level-1" type="button">CLI</button>
+                </a>
+              
+                <a href="../../api-reference/nodejs-api/">
+                  <button class="btn btn-secondary level-1" type="button">Node.js API</button>
+                </a>
+              
+                <a href="../../api-reference/template-api/">
+                  <button class="btn btn-secondary level-1" type="button">Template API</button>
+                </a>
+              </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-9 col-sm-12 middle-pane">
+            <h1 id="markdown-example">Markdown Example</h1>
+
+                <p><strong>Lorem ipsum</strong> <em>dolor sit amet</em>, <strong><em>consectetur</em></strong> <del>adipiscing elit</del>. Nunc consectetur, ligula eleifend porta rhoncus, leo risus imperdiet dui, sollicitudin posuere leo lorem in lacus. Donec dapibus vel enim at eleifend. Aliquam id facilisis eros, et efficitur lorem. Cras <a href="https://google.com">ullamcorper</a> augue quam. Nullam porttitor ante a condimentum ornare. Quisque feugiat, magna nec varius pharetra, arcu dolor elementum purus, in vestibulum augue risus id tortor. Donec tristique pretium tellus in mollis. In non felis non tortor finibus consequat. Nulla eget nisi iaculis, euismod tortor vitae, tempor lacus. Suspendisse pretium dapibus turpis eget laoreet.</p>
+<h2 id="contents-markdown-example-header-2">Header 2</h2>
+<p><code>Lorem</code> ipsum dolor sit amet, <code>consectetur</code> adipiscing elit. Nunc consectetur, ligula eleifend porta rhoncus, leo risus imperdiet dui, sollicitudin posuere leo lorem in lacus.</p>
+<pre><code class="language-js"><span class="token keyword">function</span> <span class="token function">generateRandomString</span><span class="token punctuation">(</span><span class="token parameter">length</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  <span class="token keyword">const</span> charset <span class="token operator">=</span> <span class="token string">'qwertyuiopasdfghjklzxcvbnm1234567890'</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> string <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">for</span> <span class="token punctuation">(</span> <span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> length<span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    string <span class="token operator">+=</span> charset<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> charset<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> string<span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span></code></pre>
+<!-- aside -->
+<pre><code class="language-js"><span class="token keyword">function</span> <span class="token function">generateRandomNumber</span><span class="token punctuation">(</span><span class="token parameter">min<span class="token punctuation">,</span> max</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  <span class="token keyword">return</span> min <span class="token operator">+</span> Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> max<span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span></code></pre>
+<!-- /aside -->
+
+<h3 id="contents-markdown-example-header-3">Header 3</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc consectetur, ligula eleifend porta rhoncus, leo risus imperdiet dui, sollicitudin posuere leo lorem in lacus.</p>
+<hr>
+<table>
+<thead>
+<tr>
+<th align="left">Header 1</th>
+<th align="left">Header 2</th>
+<th align="left">Header 3</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Row 1, Column 1</td>
+<td align="left">Row 1, Column 2</td>
+<td align="left">Row 1, Column 3</td>
+</tr>
+<tr>
+<td align="left">Row 2, <code>Column 1</code></td>
+<td align="left">Row 2, Column 2</td>
+<td align="left">Row 2, Column 3</td>
+</tr>
+<tr>
+<td align="left">Row 3, <code>Column 1</code></td>
+<td align="left">Row 3, Column 2</td>
+<td align="left">Row 3, Column 3</td>
+</tr>
+<tr>
+<td align="left">Row 4, Column 1</td>
+<td align="left">Row 4, Column 2</td>
+<td align="left">Row 4, Column 3</td>
+</tr>
+</tbody></table>
+<h4 id="contents-markdown-example-header-4">Header 4</h4>
+<p>Lorem ipsum dolor <img src="../../../assets/contents/logo.png" alt="Fluorite"> sit amet, consectetur adipiscing elit. Nunc consectetur, ligula eleifend porta rhoncus, leo risus imperdiet dui, sollicitudin posuere leo lorem in lacus.</p>
+<p><img src="../../../assets/contents/night-sky.jpg" alt="Night Sky"></p>
+<blockquote>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc consectetur, ligula eleifend porta rhoncus, leo risus imperdiet dui, sollicitudin posuere leo lorem in lacus.</p>
+</blockquote>
+<h5 id="contents-markdown-example-header-5">Header 5</h5>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc consectetur, ligula eleifend porta rhoncus, leo risus imperdiet dui, sollicitudin posuere leo lorem in lacus.</p>
+<!-- aside -->
+<p class="note-info">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+<p class="note-error">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+<p class="note-success">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+<p class="note-warning">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+<!-- /aside -->
+
+<h6 id="contents-markdown-example-header-6">Header 6</h6>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc consectetur, ligula eleifend porta rhoncus, leo risus imperdiet dui, sollicitudin posuere leo lorem in lacus.</p>
+<ul>
+<li>Item 1</li>
+<li>Item 2<ul>
+<li>Item 2.1<ul>
+<li>Item 2.1.1</li>
+</ul>
+</li>
+<li>Item 2.2</li>
+</ul>
+</li>
+<li>Item 3</li>
+</ul>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc consectetur, ligula eleifend porta rhoncus, leo risus imperdiet dui, sollicitudin posuere leo lorem in lacus.</p>
+
+
+            <nav class="nav-pagination d-flex d-md-none">
+                <a href="../../contents/markdown/">
+                  <button type="button">Previous</button>
+                </a>
+                <a href="../../contents/rest-api/">
+                  <button type="button">Next</button>
+                </a>
+            </nav>
+        </div>
+        <div class="col-lg-4 d-none d-lg-flex right-pane"></div>
+      </div>
+    </div>
+  </body>
+</html>
