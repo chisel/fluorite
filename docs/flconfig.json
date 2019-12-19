@@ -6,7 +6,8 @@
     "assets/contents": "/"
   },
   "exclusions": [
-    "CNAME"
+    "CNAME",
+    "index.html"
   ],
   "outputDir": "../../fluorite-gh-pages",
   "blueprint": [
