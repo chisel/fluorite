@@ -62,6 +62,9 @@ function watchFiles(watcher, fl, config, spinner) {
 
   }
 
+  // Add all theme files
+  files.push(path.resolve(__dirname, '..', 'themes', fl.config.rendererOptions.theme || 'onyx'));
+
   // Delete identical files
   files = files.filter((file, index) => files.indexOf(file) === index);
 
@@ -185,6 +188,7 @@ program
   .command('theme <action> <name>')
   .alias('t')
   .option('-a --as <name>', 'a custom name for the theme to be installed as (for add action only)')
+  .option('-s --symlink', 'creates a symlink instead of copying the theme (useful for theme development and testing)')
   .description('<action: new> creates a new Fluorite theme, <action: add> installs the given directory as a Fluorite theme, <action: remove> uninstalls a theme')
   .action((action, name, cmd) => {
 
@@ -248,7 +252,20 @@ program
 
       }
 
-      fsx.copy(path.resolve(path.join('.', finalName)), path.join(__dirname, '..', 'themes', finalTargetName))
+      let promise;
+
+      if ( cmd.symlink ) {
+
+        promise = fsx.ensureSymlink(path.resolve(path.join('.', finalName)), path.join(__dirname, '..', 'themes', finalTargetName));
+
+      }
+      else {
+
+        promise = fsx.copy(path.resolve(path.join('.', finalName)), path.join(__dirname, '..', 'themes', finalTargetName));
+
+      }
+
+      promise
       .then(() => {
 
         spinner.stop(true);

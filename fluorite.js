@@ -1432,9 +1432,9 @@ class Fluorite {
 
     // Check if current path (relativeTo) exists on the targetVersion and they're the same page
     if ( this._pathExistsOnVersion(relativeTo, targetVersion) && this._resolveSectionPath(relativeTo.join('/'), currentVersion) === this._resolveSectionPath(relativeTo.join('/'), targetVersion) )
-      return targetRootLink + this._resolveSectionPath(relativeTo.join('/'), targetVersion);
+      return (targetRootLink + this._resolveSectionPath(relativeTo.join('/'), targetVersion)).replace(/\/+/g, '/');
 
-    return targetRootLink;
+    return targetRootLink.replace(/\/+/g, '/');
 
   }
 

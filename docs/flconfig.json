@@ -38,7 +38,8 @@
       ]}
     ]},
     { "title": "API Reference", "content": "api-reference/index.md", "version": ">=1.0.0", "sub": [
-      { "title": "CLI", "content": "api-reference/cli.md", "version": ">=1.0.0" },
+      { "title": "CLI", "content": "api-reference/cli-1.1.0.md", "version": "<=1.1.0" },
+      { "title": "CLI", "content": "api-reference/cli-1.2.0.md", "version": ">=1.2.0" },
       { "title": "Node.js API", "content": "api-reference/node-js-api.md", "version": ">=1.0.0" },
       { "title": "Template API", "content": "api-reference/template-api.md", "version": ">=1.0.0" }
     ]}
@@ -47,7 +48,8 @@
     "flavor": "purple",
     "multiPage": true,
     "versions": [
-      "1.0.0"
+      "1.1.0",
+      "1.2.0"
     ],
     "minifyJS": true,
     "rootVersionLinksOnly": false
