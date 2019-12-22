@@ -85,7 +85,7 @@ function watchFiles(watcher, fl, config, spinner) {
 }
 
 program
-  .version(require(path.join(__dirname, '../package.json')).version, '-v --version')
+  .version(require(path.join(__dirname, '../package.json')).version, '-v --version');
 
 program
   .command('build')
@@ -135,6 +135,7 @@ program
   .option('-p --port [port]', 'the port number to start the local server on')
   .option('-c --config <config>', 'a custom path to the flconfig.json file')
   .option('-w --watch', 'watches the input files for changes and rebuilds the docs')
+  .option('--skip-build', 'skips building the documentation before serving')
   .action(cmd => {
 
     let served = false;
@@ -148,7 +149,23 @@ program
       .on('update', msg => spinner.setSpinnerTitle(`${chalk.yellow('%s')} ${msg}`))
       .on('ready', () => {
 
-        if ( ! served ) fl.serve(cmd.port);
+        if ( ! served ) {
+
+          if ( ! cmd.skipBuild ) {
+
+            fl.generate()
+            .then(() => fl.serve(cmd.port))
+            // Handled by on error
+            .catch(() => true);
+
+          }
+          else {
+
+            fl.serve(cmd.port);
+
+          }
+
+        }
         else fl.generate();
 
       })

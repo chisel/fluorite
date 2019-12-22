@@ -6,14 +6,14 @@
     "assets/contents": "/"
   },
   "exclusions": [
-    "CNAME",
-    "index.html"
+    "CNAME"
   ],
   "outputDir": "../../fluorite-gh-pages",
   "blueprint": [
     { "title": "Quick Start", "content": "quick-start.md", "version": ">=1.0.0" },
     { "title": "Project Structure", "content": "project-structure.md", "version": ">=1.0.0" },
-    { "title": "Configuration", "content": "configuration.md", "version": ">=1.0.0" },
+    { "title": "Configuration", "content": "configuration-1.2.0.md", "version": "<1.3.0" },
+    { "title": "Configuration", "content": "configuration.md", "version": ">=1.3.0" },
     { "title": "Contents", "content": "contents/index.md", "version": ">=1.0.0", "sub": [
       { "title": "Markdown", "content": "contents/markdown.md", "version": ">=1.0.0" },
       { "title": "Markdown Example", "content": "contents/markdown-example.md", "version": ">=1.0.0" },
@@ -39,10 +39,12 @@
       ]}
     ]},
     { "title": "API Reference", "content": "api-reference/index.md", "version": ">=1.0.0", "sub": [
-      { "title": "CLI", "content": "api-reference/cli-1.1.0.md", "version": "<=1.1.0" },
-      { "title": "CLI", "content": "api-reference/cli-1.2.0.md", "version": ">=1.2.0" },
+      { "title": "CLI", "content": "api-reference/cli-1.1.0.md", "version": "1.1.0" },
+      { "title": "CLI", "content": "api-reference/cli-1.2.0.md", "version": "1.2.0" },
+      { "title": "CLI", "content": "api-reference/cli.md", "version": ">=1.3.0" },
       { "title": "Node.js API", "content": "api-reference/node-js-api.md", "version": ">=1.0.0" },
-      { "title": "Template API", "content": "api-reference/template-api.md", "version": ">=1.0.0" }
+      { "title": "Template API", "content": "api-reference/template-api-1.2.0.md", "version": "<1.3.0" },
+      { "title": "Template API", "content": "api-reference/template-api.md", "version": ">=1.3.0" }
     ]}
   ],
   "rendererOptions": {
@@ -50,7 +52,8 @@
     "multiPage": true,
     "versions": [
       "1.1.0",
-      "1.2.0"
+      "1.2.0",
+      "1.3.0"
     ],
     "minifyJS": true,
     "rootVersionLinksOnly": false

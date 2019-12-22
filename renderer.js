@@ -10,6 +10,7 @@ const terser = require('terser');
 const cleanCss = new (require('clean-css'))();
 const path = require('path');
 const fs = require('fs-extra');
+let langsLoaded = false;
 
 class Renderer {
 
@@ -26,7 +27,9 @@ class Renderer {
     }, options || {});
 
     // Install Prism languages
-    loadLanguages([
+    if ( ! langsLoaded ) {
+
+      loadLanguages([
       'abap',
       'actionscript',
       'ada',
@@ -175,6 +178,9 @@ class Renderer {
       'xquery',
       'yaml'
     ]);
+      langsLoaded = true;
+
+    }
 
     // Set marked options
     marked.setOptions({
@@ -366,6 +372,19 @@ class Renderer {
         }
 
         api.examples.push(apiExample);
+
+      }
+
+      // Normalize examples.*.request|response.body
+      for ( let i = 0; i < api.raw.examples.length; i++ ) {
+
+        const example = api.raw.examples[i];
+
+        if ( example.request && example.request.body && example.request.body.constructor === Array )
+          example.request.body = example.request.body[0];
+
+        if ( example.response && example.response.body && example.response.body.constructor === Array )
+          example.response.body = example.response.body[0];
 
       }
 

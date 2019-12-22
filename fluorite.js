@@ -3,6 +3,17 @@ const path = require('path');
 const _ = require('lodash');
 const Renderer = require(path.join(__dirname, 'renderer.js'));
 const Server = require(path.join(__dirname, 'server.js'));
+const redirectTemplate = `
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="refresh" content="0; url=./{{REDIRECT_TO}}/" />
+  </head>
+  <body>
+    Redirecting...
+  </body>
+</html>`.trim();
 
 class Fluorite {
 
@@ -417,6 +428,36 @@ class Fluorite {
           return this._emit('error', `Could not generate doc!\n${error}`);
 
         }
+
+      }
+
+    }
+
+    // Create index.html for redirecting if needed
+    if ( hasVersions && ! this._config.rendererOptions.noRedirect ) {
+
+      try {
+
+        let defaultVersion = this._config.rendererOptions.defaultVersion;
+
+        // If default version is wrong
+        if ( defaultVersion && ! this._config.rendererOptions.versions.includes(defaultVersion) ) {
+
+          warnings.push(`Invalid default version "${defaultVersion}"! Latest version will be used for the redirect.`);
+          defaultVersion = undefined;
+
+        }
+
+        const redirectTo = (defaultVersion === '*' ? 'all' : defaultVersion) || this._config.rendererOptions.versions
+        .map(version => version === '*' ? 'all' : version)
+        .reduce((a,b) => a > b ? a : b);
+
+        await fs.writeFile(path.resolve(outputDirPath, 'index.html'), redirectTemplate.replace('{{REDIRECT_TO}}', redirectTo), { encoding: 'utf-8' });
+
+      }
+      catch (error) {
+
+        return this._emit('error', new Error(`Could not create index.html for redirection!\n${error}`));
 
       }
 

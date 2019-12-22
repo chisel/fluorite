@@ -30,6 +30,8 @@ interface RendererOptions {
   flavor?: string;
   multiPage?: boolean;
   versions?: string[];
+  defaultVersion?: string;
+  noRedirect?: boolean;
   hideEmptyColumns?: boolean;
   rootVersionLinksOnly?: boolean;
   minifyJS: boolean;

@@ -37,7 +37,7 @@ The template data of each page has the following properties available to the Han
     - **content**: An array of content objects.
       - **type**: Either `doc` or `api` specifying the content type (markdown or API respectively.)
       - **value**: The rendered HTML content (string) if `type` is `doc` or an object with the following properties if `type` is `api`:
-        - **raw**: A copy of the input JSON file (API documentation file). Since most values are already rendered (as tables, code blocks, etc.), the `raw` property can be used to render any parts differently inside the template. Keep in mind that a body `model` would be provided with string or JSON content where the `externalFile` was used (and the `externalFile` property would be deleted).
+        - **raw**: A copy of the input JSON file (API documentation file). Since most values are already rendered (as tables, code blocks, etc.), the `raw` property can be used to render any parts differently inside the template. Keep in mind that a body `model` would be provided with string or JSON content where the `externalFile` was used (and the `externalFile` property would be deleted). Also, body property of request and response examples is wrapped as a single-element array.
         - **info**: Namespace.
           - **title**: Title of the API (used for headers).
           - **id**: The id of the API title (used for headers).
