@@ -95,6 +95,13 @@ The template data of each page has the following properties available to the Han
 
 > If you need a working example, take a look at the Onyx's `index.hbs` located at `fluorite-root/themes/onyx/index.hbs`.
 
+## Built-in Helpers
+
+The following built-in Handlebars helpers are available to the templates:
+  - **isAPI**: Takes a value and returns true if it's equal to `api` (useful for detecting `contents.*.content.*.type`).
+  - **isDoc**: Same as `isAPI` but returns true for `doc` type.
+  - **isRoot**: Takes a value and returns true if it's an empty string (useful for detecting if `sections.*.path` is root).
+
 ## Example
 
 The following Handlebars file is a simple example of how the template API may be used:
