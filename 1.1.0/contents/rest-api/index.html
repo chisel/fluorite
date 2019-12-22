@@ -374,8 +374,8 @@
 </ul>
 </li>
 <li><strong>body</strong>: An array of body objects.<ul>
-<li><strong>type</strong>: The content type of the body (<code>application/json</code>, <code>application/xml</code>, <code>multipart/form-data</code>, <code>x-www-form-urlencoded</code>, <code>text/plain</code>, etc.)</li>
-<li><strong>model</strong>: A JSON object for type <code>application/json</code>, or an array of property objects (similar to <code>queries</code>) with <code>name</code>, <code>type</code>, <code>required</code>, and <code>description</code> fields for types <code>multipart/form-data</code> and <code>x-www-form-urlencoded</code>. For type <code>application/xml</code>, use <code>externalFile</code> instead. For any other types (e.g. <code>text/plain</code>), use <code>description</code> instead.</li>
+<li><strong>type</strong>: The content type of the body (<code>application/json</code>, <code>application/xml</code>, <code>multipart/form-data</code>, <code>application/x-www-form-urlencoded</code>, <code>text/plain</code>, etc.)</li>
+<li><strong>model</strong>: A JSON object for type <code>application/json</code>, or an array of property objects (similar to <code>queries</code>) with <code>name</code>, <code>type</code>, <code>required</code>, and <code>description</code> fields for types <code>multipart/form-data</code> and <code>application/x-www-form-urlencoded</code>. For type <code>application/xml</code>, use <code>externalFile</code> instead. For any other types (e.g. <code>text/plain</code>), use <code>description</code> instead.</li>
 <li><strong>externalFile</strong>: The path to a model file (either <code>.json</code> or <code>.xml</code>.) Use this if you&#39;re not embedding the model or need to provide a XML model.</li>
 <li><strong>description</strong>: Used for <code>type</code>s that don&#39;t need a model.</li>
 </ul>

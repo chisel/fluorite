@@ -381,7 +381,7 @@
 <li><strong>content</strong>: An array of content objects.<ul>
 <li><strong>type</strong>: Either <code>doc</code> or <code>api</code> specifying the content type (markdown or API respectively.)</li>
 <li><strong>value</strong>: The rendered HTML content (string) if <code>type</code> is <code>doc</code> or an object with the following properties if <code>type</code> is <code>api</code>:<ul>
-<li><strong>raw</strong>: A copy of the input JSON file (API documentation file). Since most values are already rendered (as tables, code blocks, etc.), the <code>raw</code> property can be used to render any parts differently inside the template. Keep in mind that a body <code>model</code> would be provided with string or JSON content where the <code>externalFile</code> was used (and the <code>externalFile</code> property would be deleted).</li>
+<li><strong>raw</strong>: A copy of the input JSON file (API documentation file). Since most values are already rendered (as tables, code blocks, etc.), the <code>raw</code> property can be used to render any parts differently inside the template. Keep in mind that a body <code>model</code> would be provided with string or JSON content where the <code>externalFile</code> was used (and the <code>externalFile</code> property would be deleted). Also, body property of request and response examples is wrapped as a single-element array.</li>
 <li><strong>info</strong>: Namespace.<ul>
 <li><strong>title</strong>: Title of the API (used for headers).</li>
 <li><strong>id</strong>: The id of the API title (used for headers).</li>
