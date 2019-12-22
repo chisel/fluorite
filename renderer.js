@@ -11,6 +11,8 @@ const cleanCss = new (require('clean-css'))();
 const path = require('path');
 const fs = require('fs-extra');
 let langsLoaded = false;
+let registeredHelperNames = [];
+let registeredPartialNames = [];
 
 class Renderer {
 
@@ -199,6 +201,15 @@ class Renderer {
 
   registerHelpers(helpers) {
 
+    // Unload previous helpers
+    for ( const helperName of registeredHelperNames ) {
+
+      Handlebars.unregisterHelper(helperName);
+
+    }
+
+    registeredHelperNames = [];
+
     if ( ! helpers ) return;
 
     for ( const helperName in helpers ) {
@@ -206,6 +217,7 @@ class Renderer {
       if ( typeof helpers[helperName] !== 'function' ) continue;
 
       Handlebars.registerHelper(helperName, helpers[helperName]);
+      registeredHelperNames.push(helperName);
 
     }
 
@@ -213,11 +225,21 @@ class Renderer {
 
   registerPartials(partials) {
 
+    // Unload previous partials
+    for ( const partialName of registeredPartialNames ) {
+
+      Handlebars.unregisterPartial(partialName);
+
+    }
+
+    registeredPartialNames = [];
+
     if ( ! partials ) return;
 
     for ( const partialName in partials ) {
 
       Handlebars.registerPartial(partialName, partials[partialName]);
+      registeredPartialNames.push(partialName);
 
     }
 
