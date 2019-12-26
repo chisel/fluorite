@@ -1,4 +1,4 @@
-The theme you're looking at right now is Onyx! This theme comes in three flavors, introduces two extra features and is responsive.
+Onyx theme comes in three flavors, introduces three extra features and is responsive.
 
 ## Flavors
 
@@ -70,7 +70,7 @@ The Onyx theme uses the [Comment Parser Utility]({{rootPrefix}}/assets/contents/
 
 You can make parts of your markdown content responsive by using the following HTML comment: `<!-- responsive: mobile, tablet, desktop -->` to start a responsive block and `<!-- /responsive -->` to end the block. Any content inside the block will become responsive based on the arguments provided (`mobile`, `tablet`, or `desktop`).
 
-**Responsive Markdown:**
+**Example:**
 ```markdown
 This is a markdown document.
 
@@ -87,11 +87,21 @@ This paragraph only shows up in desktops.
 
 You can place parts of your markdown content inside the right pane. Use the `<!-- aside -->` and `<!-- /aside -->` comments to define a block. All content inside those blocks will be pushed to the right pane and lined up with the element prior to the aside comment. If right pane is not available due to the display width (tablet and mobile views) then the content won't be touched.
 
-**Right Pane Example:**
-```markdown
-This paragraph is placed in the middle pane...
+### Notes
 
-<!-- aside -->
-While this is placed in the right pane!
-<!-- /aside -->
+You can mark single lines of text as notes using the following syntax: `<!-- note: type -->` where type is either `info`, `warning`, `error`, or `success`.
+
+**Example:**
+```markdown
+<!-- note: info -->
+Informational note
+
+<!-- note: warning -->
+Warning note
+
+<!-- note: error -->
+Error note
+
+<!-- note: success -->
+Success note
 ```

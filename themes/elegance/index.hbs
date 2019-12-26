@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {{! Set the page title }}
+    <title>{{title}}</title>
+    {{#if extended.favicon}}<link rel="shortcut icon" href="{{rootPrefix}}{{extended.favicon}}">{{/if}}
+    {{! Set accent color variables }}
+    <style media="screen">
+      html {
+        --color-accent: {{#if extended.accentColor}}{{{extended.accentColor}}}{{else}}#FF5353{{/if}};
+        --color-accent-secondary: {{#if extended.accentColorSecondary}}{{{extended.accentColorSecondary}}}{{else}}#FF246B{{/if}};
+      }
+    </style>
+    {{! Load theme's compiled SASS }}
+    <link rel="stylesheet" href="{{rootPrefix}}/assets/theme/styles.css">
+    {{! Comment Parser Utility }}
+    <script src="{{rootPrefix}}/assets/theme/js/comment-parser.js" charset="utf-8"></script>
+    {{! Load theme's script }}
+    <script src="{{rootPrefix}}/assets/theme/js/script.js" charset="utf-8"></script>
+  </head>
+  <body>
+    {{! Header }}
+    <header>
+      <div class="brand">
+        {{#if extended.icon}}<img class="logo" src="{{rootPrefix}}{{extended.icon}}">{{/if}}
+        <a class="title" href="{{versionRootPrefix}}">{{#if extended.brandName}}{{extended.brandName}}{{else}}{{title}}{{/if}}</a>
+        {{! Versions dropdown }}
+        {{#if versions}}
+          <div class="versions-dropdown" onclick="toggleVersionsDropdown(this, event)">
+            <span>{{version}}</span>
+            {{> chevronDownSvg }}
+            <div class="dropdown-container" onclick="stopClickBubbling(event)">
+              <ul>
+                {{#each (reverseArrayOrder versions)}}
+                  <a href="{{link}}"><li>{{version}}</li></a>
+                {{/each}}
+              </ul>
+            </div>
+          </div>
+        {{/if}}
+      </div>
+      {{! Progress bar }}
+      {{#unless extended.hideProgressBar }}
+        <div class="progress-bar-container">
+          <div class="progress-bar"></div>
+        </div>
+      {{/unless}}
+      {{! Sub header }}
+      {{#if extended.brandName}}
+        <div class="sub">
+          <a  href="{{versionRootPrefix}}"class="subtitle{{#unless extended.icon}}no-margin{{/unless}}">{{title}}</a>
+        </div>
+      {{/if}}
+    </header>
+    <main>
+      {{! Mobile Options Toggler }}
+      <div class="mobile-options">
+        <div class="mobile-option" onclick="toggleMobileMenu(this, 'navigationList')">
+          Menu
+        </div>
+        {{#if versions}}
+          <div class="mobile-option" onclick="toggleMobileMenu(this, 'versionsList')">
+            Version
+          </div>
+        {{/if}}
+      </div>
+      {{! Navigation }}
+      <nav>
+        {{! Versions mobile list }}
+        {{#if versions}}
+          <div id="versionsList" class="nav-container">
+            {{#each (reverseArrayOrder versions)}}
+              <a class="level-0{{#if (isVersionSelected ../version version)}} selected{{/if}}" href="{{link}}">{{version}}</a>
+            {{/each}}
+          </div>
+        {{/if}}
+        {{! Navigation list }}
+        <div id="navigationList" class="nav-container active custom-scroller{{#if extended.brandName}} sub-header-offset{{/if}}">
+          {{#if extended.rootName}}
+            <a
+            href="{{versionRootPrefix}}"
+            class="level-0{{#if (isRootSelected sections)}} selected{{/if}}">
+              {{extended.rootName}}
+            </a>
+          {{/if}}
+          {{#each sections}}
+            {{#if (isNavFirstSub ../sections @index)}}
+              <hr class="level-{{decrement level}}">
+            {{/if}}
+            <a
+            href="{{link}}"
+            class="{{#if selected}}selected{{/if}} {{#if (isNavSub path)}}sub{{/if}} {{#if (isNavLastSub ../sections @index)}}last-sub{{/if}} level-{{level}}">
+              {{title}}
+            </a>
+          {{/each}}
+        </div>
+      </nav>
+      {{! Documentation }}
+      <div class="article-container">
+        <article>
+          {{#each contents}}
+            {{#each content}}
+            {{! API Documentation }}
+              {{#if (isAPI type)}}
+                <h1><a id="{{../id}}">{{../title}}</a></h1>
+                {{#with value}}
+                  {{{info.content}}}
+                  {{! Authentication }}
+                  {{#if auth.enabled}}
+                    <h2><a id="{{auth.id}}">{{auth.title}}</a></h2>
+                    {{{auth.content}}}
+                  {{/if}}
+                  {{! Path }}
+                  {{#if path}}
+                    <div class="api-path {{getMethodColor path.method}}">
+                      {{#if auth.enabled}}
+                        {{> padlockSvg}}
+                      {{else}}
+                        {{> padlockUnlockedSvg}}
+                      {{/if}}
+                      <span class="path-method">{{path.method}}</span>
+                      <span class="path-route">{{path.content}}</span>
+                    </div>
+                  {{/if}}
+                  {{! Request Tab View }}
+                  <div class="content-tab-view">
+                    {{! Tabs }}
+                    <div class="content-tabs">
+                      <div class="content-tabs-container">
+                        <div class="content-tab-group">
+                          {{#if request.body}}
+                            <div class="content-tab" onclick="selectContentTab(this)">
+                              Body
+                            </div>
+                          {{/if}}
+                          {{#if request.headers}}
+                            <div class="content-tab" onclick="selectContentTab(this)">
+                              Headers
+                            </div>
+                          {{/if}}
+                          {{#if queries}}
+                            <div class="content-tab" onclick="selectContentTab(this)">
+                              Queries
+                            </div>
+                          {{/if}}
+                          {{#if params}}
+                            <div class="content-tab" onclick="selectContentTab(this)">
+                              Params
+                            </div>
+                          {{/if}}
+                          {{#if request.cookies}}
+                            <div class="content-tab" onclick="selectContentTab(this)">
+                              Cookies
+                            </div>
+                          {{/if}}
+                        </div>
+                        {{! Tabs Separator }}
+                        <div class="content-separators">
+                          <div class="content-separator"></div>
+                        </div>
+                      </div>
+                    </div>
+                    {{! Tab Views }}
+                    <div class="content-views">
+                      {{#if request.body}}
+                        <div class="content-view">
+                          {{#each request.body.content}}
+                            <div class="body-type">
+                              {{#if (getMimeName type)}}
+                                <span class="body-type-name">{{getMimeName type}}</span>
+                              {{/if}}
+                              <span class="body-type-mime">{{type}}</span>
+                            </div>
+                            {{#if (doesBodyTypeNeedTable type)}}
+                              {{> renderTableFour (atIndex ../raw.request.body @index)}}
+                            {{else}}
+                              {{{value}}}
+                            {{/if}}
+                          {{/each}}
+                        </div>
+                      {{/if}}
+                      {{#if request.headers}}
+                        <div class="content-view">
+                          {{> renderTableTwo (wrapAsModel raw.request.headers)}}
+                        </div>
+                      {{/if}}
+                      {{#if queries}}
+                        <div class="content-view">
+                          {{> renderTableFour (wrapAsModel raw.queries)}}
+                        </div>
+                      {{/if}}
+                      {{#if params}}
+                        <div class="content-view">
+                          {{> renderTableThree (wrapAsModel raw.params)}}
+                        </div>
+                      {{/if}}
+                      {{#if request.cookies}}
+                        <div class="content-view">
+                          {{> renderTableTwo (wrapAsModel raw.request.cookies)}}
+                        </div>
+                      {{/if}}
+                    </div>
+                  </div>
+                  {{#if response}}
+                    <h2><a>Response</a></h2>
+                    {{! Response Tab View }}
+                    <div class="content-tab-view">
+                      {{! Tabs }}
+                      <div class="content-tabs">
+                        <div class="content-tabs-container">
+                          <div class="content-tab-group">
+                            {{#if response.body}}
+                              <div class="content-tab" onclick="selectContentTab(this)">
+                                Body
+                              </div>
+                            {{/if}}
+                            {{#if response.headers}}
+                              <div class="content-tab" onclick="selectContentTab(this)">
+                                Headers
+                              </div>
+                            {{/if}}
+                            {{#if response.cookies}}
+                              <div class="content-tab" onclick="selectContentTab(this)">
+                                Cookies
+                              </div>
+                            {{/if}}
+                          </div>
+                          {{! Tabs Separator }}
+                          <div class="content-separators">
+                            <div class="content-separator"></div>
+                          </div>
+                        </div>
+                      </div>
+                      {{! Tabs Separator }}
+                      <div class="content-separators">
+                        <div class="content-separator"></div>
+                      </div>
+                      {{! Tab Views }}
+                      <div class="content-views">
+                        {{#if response.body}}
+                          <div class="content-view">
+                            {{#each response.body.content}}
+                              <div class="body-type">
+                                {{#if (getMimeName type)}}
+                                  <span class="body-type-name">{{getMimeName type}}</span>
+                                {{/if}}
+                                <span class="body-type-mime">{{type}}</span>
+                              </div>
+                              {{#if (doesBodyTypeNeedTable type)}}
+                                {{> renderTableFour (atIndex ../raw.response.body @index)}}
+                              {{else}}
+                                {{{value}}}
+                              {{/if}}
+                            {{/each}}
+                          </div>
+                        {{/if}}
+                        {{#if response.headers}}
+                          <div class="content-view">
+                            {{> renderTableTwo (wrapAsModel raw.response.headers)}}
+                          </div>
+                        {{/if}}
+                        {{#if response.cookies}}
+                          <div class="content-view">
+                            {{> renderTableTwo (wrapAsModel raw.response.cookies)}}
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>
+                  {{/if}}
+                  {{! Examples }}
+                  {{#if examples}}
+                    {{#each examples}}
+                      <h2><a>Example</a></h2>
+                      {{! Path }}
+                      {{#if path}}
+                        <div class="api-path {{getMethodColor path.method}}">
+                          <span class="path-method">{{path.method}}</span>
+                          <span class="path-route">{{path.content}}</span>
+                        </div>
+                      {{/if}}
+                      {{#if request}}
+                        {{! Request Example Tab View }}
+                        <div class="content-tab-view">
+                          {{! Tabs }}
+                          <div class="content-tabs">
+                            <div class="content-tabs-container">
+                              <div class="content-tab-group">
+                                {{#if request.body}}
+                                  <div class="content-tab" onclick="selectContentTab(this)">
+                                    Body
+                                  </div>
+                                {{/if}}
+                                {{#if request.headers}}
+                                  <div class="content-tab" onclick="selectContentTab(this)">
+                                    Headers
+                                  </div>
+                                {{/if}}
+                                {{#if request.cookies}}
+                                  <div class="content-tab" onclick="selectContentTab(this)">
+                                    Cookies
+                                  </div>
+                                {{/if}}
+                              </div>
+                              {{! Tabs Separator }}
+                              <div class="content-separators">
+                                <div class="content-separator"></div>
+                              </div>
+                            </div>
+                          </div>
+                          {{! Tab Views }}
+                          <div class="content-views">
+                            {{#if request.body}}
+                              <div class="content-view">
+                                {{#each request.body.content}}
+                                  <div class="body-type">
+                                    {{#if (getMimeName type)}}
+                                      <span class="body-type-name">{{getMimeName type}}</span>
+                                    {{/if}}
+                                    <span class="body-type-mime">{{type}}</span>
+                                  </div>
+                                  {{#if (doesBodyTypeNeedTable type)}}
+                                    {{> renderTableKeyValuePair (getExampleBody ../../raw.examples @../index "request")}}
+                                  {{else}}
+                                    {{{value}}}
+                                  {{/if}}
+                                {{/each}}
+                              </div>
+                            {{/if}}
+                            {{#if request.headers}}
+                              <div class="content-view">
+                                {{> renderTableKeyValuePair (wrapAsValue (getExampleKeyValuePair ../raw.examples @index "request" "headers"))}}
+                              </div>
+                            {{/if}}
+                            {{#if request.cookies}}
+                              <div class="content-view">
+                                {{> renderTableKeyValuePair (wrapAsValue (getExampleKeyValuePair ../raw.examples @index "request" "cookies"))}}
+                              </div>
+                            {{/if}}
+                          </div>
+                        </div>
+                      {{/if}}
+                      {{#if response}}
+                        <h3><a>Response Example</a></h3>
+                        {{! Response Status }}
+                        {{#if response.status}}
+                          <div class="api-path {{getStatusColor response.status.code}}">
+                            <span class="path-method">{{response.status.code}}</span>
+                            <span class="path-route">{{response.status.content}}</span>
+                          </div>
+                        {{/if}}
+                        {{! Response Example Tab View }}
+                        <div class="content-tab-view">
+                          {{! Tabs }}
+                          <div class="content-tabs">
+                            <div class="content-tabs-container">
+                              <div class="content-tab-group">
+                                {{#if response.body}}
+                                  <div class="content-tab" onclick="selectContentTab(this)">
+                                    Body
+                                  </div>
+                                {{/if}}
+                                {{#if response.headers}}
+                                  <div class="content-tab" onclick="selectContentTab(this)">
+                                    Headers
+                                  </div>
+                                {{/if}}
+                                {{#if response.cookies}}
+                                  <div class="content-tab" onclick="selectContentTab(this)">
+                                    Cookies
+                                  </div>
+                                {{/if}}
+                              </div>
+                              {{! Tabs Separator }}
+                              <div class="content-separators">
+                                <div class="content-separator"></div>
+                              </div>
+                            </div>
+                          </div>
+                          {{! Tab Views }}
+                          <div class="content-views">
+                            {{#if response.body}}
+                              <div class="content-view">
+                                {{#each response.body.content}}
+                                  <div class="body-type">
+                                    {{#if (getMimeName type)}}
+                                      <span class="body-type-name">{{getMimeName type}}</span>
+                                    {{/if}}
+                                    <span class="body-type-mime">{{type}}</span>
+                                  </div>
+                                  {{#if (doesBodyTypeNeedTable type)}}
+                                    {{> renderTableKeyValuePair (getExampleBody ../../raw.examples @../index "response")}}
+                                  {{else}}
+                                    {{{value}}}
+                                  {{/if}}
+                                {{/each}}
+                              </div>
+                            {{/if}}
+                            {{#if response.headers}}
+                              <div class="content-view">
+                                {{> renderTableKeyValuePair (wrapAsValue (getExampleKeyValuePair ../raw.examples @index "response" "headers"))}}
+                              </div>
+                            {{/if}}
+                            {{#if response.cookies}}
+                              <div class="content-view">
+                                {{> renderTableKeyValuePair (wrapAsValue (getExampleKeyValuePair ../raw.examples @index "response" "cookies"))}}
+                              </div>
+                            {{/if}}
+                          </div>
+                        </div>
+                      {{/if}}
+                    {{/each}}
+                  {{/if}}
+                {{/with}}
+              {{! Markdown Documentation }}
+              {{else}}
+                {{#unless ../../extended.noSectionTitles}}
+                  <h1><a id="{{../id}}">{{../title}}</a></h1>
+                {{/unless}}
+                {{{value}}}
+              {{/if}}
+              {{! Multiple content files separator }}
+              {{#if (notLastContent ../content @index)}}
+                <hr class="content-separator">
+              {{/if}}
+            {{/each}}
+            {{! Section separators (only if multiPage is false) }}
+            {{#if (notLastContent ../contents @index)}}
+              <hr class="content-separator">
+            {{/if}}
+          {{/each}}
+        </article>
+        {{! Footer }}
+        <footer>
+          <span>Generated by <a href="https://fluorite.js.org" target="_blank">Fluorite</a></span>
+          <span class="last-modified">Last modified: {{getDate}}</span>
+        </footer>
+      </div>
+    </main>
+  </body>
+</html>

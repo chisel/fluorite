@@ -1,5 +1,5 @@
 {
-  "title": "Fluorite",
+  "title": "Make documentation at ease!",
   "basePath": "src",
   "rootContent": "what-is-fluorite.md",
   "contentAssets": {
@@ -11,7 +11,8 @@
   "outputDir": "../../fluorite-gh-pages",
   "blueprint": [
     { "title": "Quick Start", "content": "quick-start.md", "version": ">=1.0.0" },
-    { "title": "Project Structure", "content": "project-structure.md", "version": ">=1.0.0" },
+    { "title": "Project Structure", "content": "project-structure-1.2.0.md", "version": "<1.3.0" },
+    { "title": "Project Structure", "content": "project-structure.md", "version": ">=1.3.0" },
     { "title": "Configuration", "content": "configuration-1.2.0.md", "version": "<1.3.0" },
     { "title": "Configuration", "content": "configuration.md", "version": ">=1.3.0" },
     { "title": "Contents", "content": "contents/index.md", "version": ">=1.0.0", "sub": [
@@ -22,7 +23,11 @@
       { "title": "Assets", "content": "contents/assets.md", "version": ">=1.0.0" }
     ]},
     { "title": "Themes", "content": "themes/index.md", "version": ">=1.0.0", "sub": [
-      { "title": "Pre-Installed", "content": "themes/pre-installed/index.md", "version": ">=1.0.0", "sub": [
+      { "title": "Pre-Installed", "content": "themes/pre-installed/index-1.2.0.md", "version": "<1.3.0", "sub": [
+        { "title": "Onyx", "content": "themes/pre-installed/onyx.md", "version": ">=1.0.0" }
+      ]},
+      { "title": "Pre-Installed", "content": "themes/pre-installed/index.md", "version": ">=1.3.0", "sub": [
+        { "title": "Elegance", "content": "themes/pre-installed/elegance.md", "version": ">=1.3.0" },
         { "title": "Onyx", "content": "themes/pre-installed/onyx.md", "version": ">=1.0.0" }
       ]},
       { "title": "Installation", "content": "themes/installation.md", "version": ">=1.0.0" },
@@ -48,37 +53,22 @@
     ]}
   ],
   "rendererOptions": {
-    "flavor": "purple",
+    "theme": "elegance",
     "multiPage": true,
     "versions": [
       "1.1.0",
       "1.2.0",
       "1.3.0"
-    ],
-    "minifyJS": true,
-    "rootVersionLinksOnly": false
+    ]
   },
   "themeOptions": {
-    "subtitle": "Make documentation at ease!",
-    "logo": "src/assets/theme/logo.svg",
-    "favicon-ico": "src/assets/theme/favicon.ico",
-    "favicon-16x16": "src/assets/theme/favicon-16x16.png",
-    "favicon-32x32": "src/assets/theme/favicon-32x32.png",
-    "favicon-70x70": "src/assets/theme/mstile-70x70.png",
-    "favicon-144x144": "src/assets/theme/mstile-144x144.png",
-    "favicon-150x150": "src/assets/theme/mstile-150x150.png",
-    "favicon-310x150": "src/assets/theme/mstile-310x150.png",
-    "favicon-310x310": "src/assets/theme/mstile-310x310.png",
-    "favicon-180x180": "src/assets/theme/apple-touch-icon.png",
-    "favicon-192x192": "src/assets/theme/android-chrome-192x192.png",
-    "favicon-512x512": "src/assets/theme/android-chrome-512x512.png",
-    "manifest": "src/assets/theme/site.webmanifest",
-    "mask-icon": "src/assets/theme/safari-pinned-tab.svg",
-    "msapplication-config": "src/assets/theme/browserconfig.xml",
-    "theme-color": "#ffffff",
-    "msapplication-TileColor": "#ffffff",
-    "showLoadingAnimation": true,
-    "stickyHeader": true,
-    "hidePoweredBy": true
+    "brandName": "Fluorite",
+    "icon": "src/assets/theme/logo.svg",
+    "favicon": "src/assets/theme/favicon.ico",
+    "rootName": "Introduction",
+    "hideProgressBar": false,
+    "noSectionTitles": false,
+    "accentColor": "#8670b2",
+    "accentColorSecondary": "#bc6cc1"
   }
 }

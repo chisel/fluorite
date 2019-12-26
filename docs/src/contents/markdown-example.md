@@ -21,16 +21,6 @@ function generateRandomString(length) {
 }
 ```
 
-<!-- aside -->
-```js
-function generateRandomNumber(min, max) {
-
-  return min + Math.random() * max;
-
-}
-```
-<!-- /aside -->
-
 ### Header 3
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc consectetur, ligula eleifend porta rhoncus, leo risus imperdiet dui, sollicitudin posuere leo lorem in lacus.
@@ -55,13 +45,6 @@ Lorem ipsum dolor ![Fluorite]({{rootPrefix}}/assets/contents/logo.png) sit amet,
 ##### Header 5
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc consectetur, ligula eleifend porta rhoncus, leo risus imperdiet dui, sollicitudin posuere leo lorem in lacus.
-
-<!-- aside -->
-<p class="note-info">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-<p class="note-error">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-<p class="note-success">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-<p class="note-warning">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-<!-- /aside -->
 
 ###### Header 6
 

@@ -19,7 +19,7 @@ class Renderer {
   constructor(options) {
 
     this._options = _.merge({
-      theme: 'onyx',
+      theme: 'elegance',
       hideEmptyColumns: false,
       multiPage: false,
       versions: ['*'],
@@ -283,7 +283,7 @@ class Renderer {
 
           api.request.body.content.push({
             type: body.type,
-            value: body.type === 'application/json' || body.type === 'application/xml' ? this._renderAPIBodyCodeBlock(body, headerPrefix) : body.type === 'multipart/form-data' || body.type === 'x-www-form-urlencoded' ? this._renderAPIBodyTable(body, headerPrefix) : this._renderAPIBodyDescription(body, headerPrefix)
+            value: body.type === 'application/json' || body.type === 'application/xml' ? this._renderAPIBodyCodeBlock(body, headerPrefix) : body.type === 'multipart/form-data' || body.type === 'application/x-www-form-urlencoded' ? this._renderAPIBodyTable(body, headerPrefix) : this._renderAPIBodyDescription(body, headerPrefix)
           });
 
         }
@@ -309,7 +309,7 @@ class Renderer {
 
           api.response.body.content.push({
             type: body.type,
-            value: body.type === 'application/json' || body.type === 'application/xml' ? this._renderAPIBodyCodeBlock(body, headerPrefix) : body.type === 'multipart/form-data' || body.type === 'x-www-form-urlencoded' ? this._renderAPIBodyTable(body, headerPrefix) : this._renderAPIBodyDescription(body, headerPrefix)
+            value: body.type === 'application/json' || body.type === 'application/xml' ? this._renderAPIBodyCodeBlock(body, headerPrefix) : body.type === 'multipart/form-data' || body.type === 'application/x-www-form-urlencoded' ? this._renderAPIBodyTable(body, headerPrefix) : this._renderAPIBodyDescription(body, headerPrefix)
           });
 
         }
@@ -703,7 +703,7 @@ class Renderer {
 
   _renderAPIBodyTable(body, headerPrefix) {
 
-    return this._renderTable({ key: 'Key', type: 'Type', required: 'Required', description: 'Description' }, body.model, headerPrefix);
+    return this._renderTable({ name: 'Name', type: 'Type', required: 'Required', description: 'Description' }, body.model, headerPrefix);
 
   }
 
@@ -837,16 +837,16 @@ class Renderer {
 
     const rows = [];
 
-    for ( const key in body.value ) {
+    for ( const name in body.value ) {
 
       rows.push({
-        key: key,
-        value: body.value[key]
+        name: name,
+        value: body.value[name]
       });
 
     }
 
-    return this._renderTable({ key: 'Key', value: 'Value' }, rows, headerPrefix);
+    return this._renderTable({ name: 'Name', value: 'Value' }, rows, headerPrefix);
 
   }
 
@@ -854,11 +854,11 @@ class Renderer {
 
     const rows = [];
 
-    for ( const key in headers ) {
+    for ( const name in headers ) {
 
       rows.push({
-        name: key,
-        value: headers[key]
+        name: name,
+        value: headers[name]
       });
 
     }
@@ -875,11 +875,11 @@ class Renderer {
 
     const rows = [];
 
-    for ( const key in cookies ) {
+    for ( const name in cookies ) {
 
       rows.push({
-        name: key,
-        value: cookies[key]
+        name: name,
+        value: cookies[name]
       });
 
     }

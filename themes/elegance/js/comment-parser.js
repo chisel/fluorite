@@ -17,7 +17,7 @@ CommentParser = function() {
     var selectingParams;
     var selectingName;
 
-    for ( var i = 0; i < container.childNodes.length; i++ ) {
+    for ( let i = 0; i < container.childNodes.length; i++ ) {
 
       var node = container.childNodes[i];
 

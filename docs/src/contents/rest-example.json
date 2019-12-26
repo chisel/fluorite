@@ -43,16 +43,16 @@
       }},
       { "type": "application/xml", "externalFile": "src/models/request.model.xml" },
       { "type": "multipart/form-data", "model": [
-        { "key": "name", "type": "string", "required": true, "description": "The pet name" },
-        { "key": "type", "type": "string", "required": true, "description": "The pet type (dog, bird, etc.)" },
-        { "key": "breed", "type": "string", "required": false, "description": "The pet breed" }
+        { "name": "name", "type": "string", "required": true, "description": "The pet name" },
+        { "name": "type", "type": "string", "required": true, "description": "The pet type (dog, bird, etc.)" },
+        { "name": "breed", "type": "string", "required": false, "description": "The pet breed" }
       ]},
-      { "type": "x-www-form-urlencoded", "model": [
-        { "key": "name", "type": "string", "required": true, "description": "The pet name" },
-        { "key": "type", "type": "string", "required": true, "description": "The pet type (dog, bird, etc.)" },
-        { "key": "breed", "type": "string", "required": false, "description": "The pet breed" }
+      { "type": "application/x-www-form-urlencoded", "model": [
+        { "name": "name", "type": "string", "required": true, "description": "The pet name" },
+        { "name": "type", "type": "string", "required": true, "description": "The pet type (dog, bird, etc.)" },
+        { "name": "breed", "type": "string", "required": false, "description": "The pet breed" }
       ]},
-      { "type": "text/plain", "description": "A CSV file with columns 'name', 'type', and 'breed'" }
+      { "type": "text/csv", "description": "A CSV file with columns 'name', 'type', and 'breed'" }
     ]
   },
   "examples": [{

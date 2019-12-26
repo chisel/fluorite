@@ -18,8 +18,7 @@ Fluorite is also flexible in design through themes. Each theme decides on the do
 # Quick Start
 
   - Create a new project: `fl new <name>` (example `fl new docs`)
-  - Inside the project directory run: `fl build`
-  - Serve: `fl serve`
+  - Inside the project directory run `fl serve` to build and serve
   - Visit `http://localhost:6001`
 
 # Full Documentation

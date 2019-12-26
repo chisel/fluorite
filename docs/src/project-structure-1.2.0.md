@@ -54,7 +54,6 @@ dist/
 **Single page with versions 1.0.0, 1.2.0, and all**
 ```
 dist/
-  index.html (redirects)
   all/
     index.html
   1.0.0/
@@ -94,7 +93,6 @@ dist/
 **Multipage with versions 1.0.0, 1.2.0, and all**
 ```
 dist/
-  index.html (redirects)
   all/
     index.html
     section1/

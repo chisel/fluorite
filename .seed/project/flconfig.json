@@ -1,30 +1,20 @@
 {
-  "title": "Fluorite",
+  "title": "Documentation Title",
   "basePath": "src",
   "outputDir": "dist",
   "blueprint": [
     { "title": "Welcome", "content": "welcome.md" },
     { "title": "Quick Start", "content": "quick-start.md" }
   ],
+  "rendererOptions": {
+    "theme": "elegance",
+    "multiPage": false
+  },
   "themeOptions": {
-    "subtitle": "Make documentation at ease!",
-    "logo": "src/assets/theme/logo.svg",
-    "favicon-ico": "src/assets/theme/favicon.ico",
-    "favicon-16x16": "src/assets/theme/favicon-16x16.png",
-    "favicon-32x32": "src/assets/theme/favicon-32x32.png",
-    "favicon-70x70": "src/assets/theme/mstile-70x70.png",
-    "favicon-144x144": "src/assets/theme/mstile-144x144.png",
-    "favicon-150x150": "src/assets/theme/mstile-150x150.png",
-    "favicon-310x150": "src/assets/theme/mstile-310x150.png",
-    "favicon-310x310": "src/assets/theme/mstile-310x310.png",
-    "favicon-180x180": "src/assets/theme/apple-touch-icon.png",
-    "favicon-192x192": "src/assets/theme/android-chrome-192x192.png",
-    "favicon-512x512": "src/assets/theme/android-chrome-512x512.png",
-    "manifest": "src/assets/theme/site.webmanifest",
-    "mask-icon": "src/assets/theme/safari-pinned-tab.svg",
-    "msapplication-config": "src/assets/theme/browserconfig.xml",
-    "theme-color": "#ffffff",
-    "msapplication-TileColor": "#ffffff",
-    "showLoadingAnimation": true
+    "brandName": "Brand Name",
+    "icon": "src/assets/theme/logo.svg",
+    "favicon": "src/assets/theme/favicon.ico",
+    "rootName": "Root Content Name",
+    "hideProgressBar": false
   }
 }
