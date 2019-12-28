@@ -1,678 +1,660 @@
-<!doctype html>
-<html class="no-scroll">
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <title>Make documentation at ease!</title>
     <link rel="shortcut icon" href="../../../assets/theme/images/favicon.ico">
-    <link rel="icon" type="image/png" sizes="16x16" href="../../../assets/theme/images/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../../../assets/theme/images/favicon-32x32.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="../../../assets/theme/images/apple-touch-icon.png">
-    <link rel="manifest" href="../../../assets/theme/images/site.webmanifest">
-    <link rel="mask-icon" href="../../../assets/theme/images/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-config" content="../../../assets/theme/images/browserconfig.xml">
-    <meta name="theme-color" content="#ffffff">
-
-      <script src="../../../assets/theme/js/lottie.min.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="../../../assets/theme/css/bootstrap.min.css">
-    <script src="../../../assets/theme/js/jquery.min.js" charset="utf-8"></script>
-    <script src="../../../assets/theme/js/bootstrap.bundle.min.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="../../../assets/theme/css/simplebar.min.css" />
-    <script src="../../../assets/theme/js/simplebar.min.js"></script>
-    <script src="../../../assets/theme/js/comment-parser.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="../../../assets/theme/styles.css">
-    <script src="../../../assets/theme/js/right-pane.js" charset="utf-8"></script>
-    <script src="../../../assets/theme/js/script.js" charset="utf-8"></script>
-
     <style media="screen">
-      p.note-info::before { content: url('../../../assets/theme/images/info.svg') }
-      p.note-error::before { content: url('../../../assets/theme/images/error.svg') }
-      p.note-success::before { content: url('../../../assets/theme/images/success.svg') }
-      p.note-warning::before { content: url('../../../assets/theme/images/warning.svg') }
+      html {
+        --color-accent: #8670b2;
+        --color-accent-secondary: #bc6cc1;
+      }
     </style>
-
-      <script type="text/javascript">
-        window.addEventListener('load', () => {
-          bodymovin.destroy();
-          document.querySelector('.loader-container').classList.add('hide');
-          document.body.classList.remove('no-scroll');
-          document.getElementsByTagName('html')[0].classList.remove('no-scroll');
-        });
-      </script>
-
-      <title>Fluorite - REST API Example</title>
-
+    <link rel="stylesheet" href="../../../assets/theme/styles.css">
+    <script src="../../../assets/theme/js/comment-parser.js" charset="utf-8"></script>
+    <script src="../../../assets/theme/js/script.js" charset="utf-8"></script>
   </head>
-  <body ontouchstart class="no-scroll">
-      <div class="loader-container">
-        <div id="themeLoader" class="loader"></div>
-      </div>
-      <script type="text/javascript">
-        bodymovin.loadAnimation({
-          container: document.getElementById('themeLoader'),
-          path: '../../../assets/theme/js/loader-light.json',
-          renderer: 'svg',
-          loop: true,
-          autoplay: true
-        });
-      </script>
-    <div id="sliderMenuShadow" class="slider-menu-shadow d-block d-md-none fixed-top" onclick="toggleMenu()"></div>
-    <div id="sliderMenu" class="slider-menu d-block d-md-none fixed-top">
-        <div class="dropdown dropdown-block">
-          <button class="btn btn-secondary version-list-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <body>
+    <header>
+      <div class="brand">
+        <img class="logo" src="../../../assets/theme/images/logo.svg">
+        <a class="title" href="../../../1.1.0">Fluorite</a>
+          <div class="versions-dropdown" onclick="toggleVersionsDropdown(this, event)">
             <span>1.1.0</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 10.4" width="16">
-              <path fill="#bfc8d6" d="M8,14.9l-8-8L2.4,4.5l5.6,6,5.6-6L16,6.9Z" transform="translate(0 -4.5)"/>
-            </svg>
-          </button>
-          <div class="dropdown-menu version-list" aria-labelledby="dropdownMenuButton2">
-              <a class="dropdown-item" href=".">1.1.0</a>
-              <a class="dropdown-item" href="../../../1.2.0/contents/rest-api-example">1.2.0</a>
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+              	 width="451.847px" height="451.847px" viewBox="0 0 451.847 451.847" style="enable-background:new 0 0 451.847 451.847;"
+              	 xml:space="preserve">
+              	<path d="M225.923,354.706c-8.098,0-16.195-3.092-22.369-9.263L9.27,151.157c-12.359-12.359-12.359-32.397,0-44.751
+              		c12.354-12.354,32.388-12.354,44.748,0l171.905,171.915l171.906-171.909c12.359-12.354,32.391-12.354,44.744,0
+              		c12.365,12.354,12.365,32.392,0,44.751L248.292,345.449C242.115,351.621,234.018,354.706,225.923,354.706z"/>
+              </svg>            <div class="dropdown-container" onclick="stopClickBubbling(event)">
+              <ul>
+                  <a href="../../../1.3.0/contents/rest-api-example"><li>1.3.0</li></a>
+                  <a href="../../../1.2.0/contents/rest-api-example"><li>1.2.0</li></a>
+                  <a href="."><li>1.1.0</li></a>
+              </ul>
+            </div>
           </div>
+      </div>
+        <div class="progress-bar-container">
+          <div class="progress-bar"></div>
         </div>
-      <div class="btn-group-vertical section-list" role="group" aria-label="sections">
-          <a href="../../quick-start/" onclick="toggleMenu()">
-            <button class="btn btn-secondary level-0" type="button">Quick Start</button>
-          </a>
-          <a href="../../project-structure/" onclick="toggleMenu()">
-            <button class="btn btn-secondary level-0" type="button">Project Structure</button>
-          </a>
-          <a href="../../configuration/" onclick="toggleMenu()">
-            <button class="btn btn-secondary level-0" type="button">Configuration</button>
-          </a>
-          <a href="../" onclick="toggleMenu()">
-            <button class="btn btn-secondary level-0" type="button">Contents</button>
-          </a>
-          <a href="../../contents/markdown/" onclick="toggleMenu()">
-            <button class="btn btn-secondary level-1" type="button">Markdown</button>
-          </a>
-          <a href="../../contents/markdown-example/" onclick="toggleMenu()">
-            <button class="btn btn-secondary level-1" type="button">Markdown Example</button>
-          </a>
-          <a href="../../contents/rest-api/" onclick="toggleMenu()">
-            <button class="btn btn-secondary level-1" type="button">REST API</button>
-          </a>
-          <a href="./" onclick="toggleMenu()">
-            <button class="btn btn-secondary level-1 selected" type="button">REST API Example</button>
-          </a>
-          <a href="../../contents/assets/" onclick="toggleMenu()">
-            <button class="btn btn-secondary level-1" type="button">Assets</button>
-          </a>
-          <a href="../../themes/" onclick="toggleMenu()">
-            <button class="btn btn-secondary level-0" type="button">Themes</button>
-          </a>
-          <a href="../../themes/pre-installed/" onclick="toggleMenu()">
-            <button class="btn btn-secondary level-1" type="button">Pre-Installed</button>
-          </a>
-          <a href="../../themes/pre-installed/onyx/" onclick="toggleMenu()">
-            <button class="btn btn-secondary level-2" type="button">Onyx</button>
-          </a>
-          <a href="../../themes/installation/" onclick="toggleMenu()">
-            <button class="btn btn-secondary level-1" type="button">Installation</button>
-          </a>
-          <a href="../../themes/creating-a-new-theme/" onclick="toggleMenu()">
-            <button class="btn btn-secondary level-1" type="button">Creating a New Theme</button>
-          </a>
-          <a href="../../themes/creating-a-new-theme/setting-up-the-theme/" onclick="toggleMenu()">
-            <button class="btn btn-secondary level-2" type="button">Setting Up the Theme</button>
-          </a>
-          <a href="../../themes/creating-a-new-theme/theme-configuration/" onclick="toggleMenu()">
-            <button class="btn btn-secondary level-2" type="button">Theme Configuration</button>
-          </a>
-          <a href="../../themes/creating-a-new-theme/theme-assets/" onclick="toggleMenu()">
-            <button class="btn btn-secondary level-2" type="button">Theme Assets</button>
-          </a>
-          <a href="../../themes/creating-a-new-theme/theme-flavors/" onclick="toggleMenu()">
-            <button class="btn btn-secondary level-2" type="button">Theme Flavors</button>
-          </a>
-          <a href="../../themes/creating-a-new-theme/templating/" onclick="toggleMenu()">
-            <button class="btn btn-secondary level-2" type="button">Templating</button>
-          </a>
-          <a href="../../themes/creating-a-new-theme/helpers-and-partials/" onclick="toggleMenu()">
-            <button class="btn btn-secondary level-2" type="button">Helpers and Partials</button>
-          </a>
-          <a href="../../themes/creating-a-new-theme/theme-specific-features/" onclick="toggleMenu()">
-            <button class="btn btn-secondary level-2" type="button">Theme-specific Features</button>
-          </a>
-          <a href="../../themes/creating-a-new-theme/installation/" onclick="toggleMenu()">
-            <button class="btn btn-secondary level-2" type="button">Installation</button>
-          </a>
-          <a href="../../themes/creating-a-new-theme/using-the-theme/" onclick="toggleMenu()">
-            <button class="btn btn-secondary level-2" type="button">Using the Theme</button>
-          </a>
-          <a href="../../api-reference/" onclick="toggleMenu()">
-            <button class="btn btn-secondary level-0" type="button">API Reference</button>
-          </a>
-          <a href="../../api-reference/cli/" onclick="toggleMenu()">
-            <button class="btn btn-secondary level-1" type="button">CLI</button>
-          </a>
-          <a href="../../api-reference/nodejs-api/" onclick="toggleMenu()">
-            <button class="btn btn-secondary level-1" type="button">Node.js API</button>
-          </a>
-          <a href="../../api-reference/template-api/" onclick="toggleMenu()">
-            <button class="btn btn-secondary level-1" type="button">Template API</button>
-          </a>
-      </div>
-    </div>
-      <div class="fixed-navbar-compensate"></div>
-    <nav class="navbar fixed-top">
-      <div class="d-flex align-items-center w-100-versions">
-        <img src="../../../assets/theme/images/logo.svg" width="50" height="50">
-        <a class="navbar-title" href="../../../1.1.0/">Fluorite</a>
-          <span class="navbar-subtitle d-none d-lg-block">Make documentation at ease!</span>
-      </div>
-        <div class="dropdown d-none d-md-block">
-          <button class="btn btn-secondary version-list-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span>1.1.0</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 10.4" width="16">
-              <path fill="#bfc8d6" d="M8,14.9l-8-8L2.4,4.5l5.6,6,5.6-6L16,6.9Z" transform="translate(0 -4.5)"/>
-            </svg>
-          </button>
-          <div class="dropdown-menu dropdown-menu-right version-list" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href=".">1.1.0</a>
-              <a class="dropdown-item" href="../../../1.2.0/contents/rest-api-example">1.2.0</a>
+        <div class="sub">
+          <a  href="../../../1.1.0"class="subtitle">Make documentation at ease!</a>
+        </div>
+    </header>
+    <main>
+      <div class="mobile-options">
+        <div class="mobile-option" onclick="toggleMobileMenu(this, 'navigationList')">
+          Menu
+        </div>
+          <div class="mobile-option" onclick="toggleMobileMenu(this, 'versionsList')">
+            Version
           </div>
-        </div>
-      <div class="d-block d-md-none menu-toggle" onclick="toggleMenu()">
-        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 12 16">
-          <path fill-rule="evenodd" d="M11.41 9H.59C0 9 0 8.59 0 8c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zm0-4H.59C0 5 0 4.59 0 4c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zM.59 11H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1H.59C0 13 0 12.59 0 12c0-.59 0-1 .59-1z"/>
-        </svg>
       </div>
-    </nav>
-    <div class="container-fluid main-container">
-      <div class="row no-gutters">
-        <div class="col-lg-2 col-md-3 d-none d-md-flex left-pane">
-          <div class="btn-group-vertical section-list" role="group" aria-label="sections">
-                <a href="../../quick-start/">
-                  <button class="btn btn-secondary level-0" type="button">Quick Start</button>
-                </a>
-              
-                <a href="../../project-structure/">
-                  <button class="btn btn-secondary level-0" type="button">Project Structure</button>
-                </a>
-              
-                <a href="../../configuration/">
-                  <button class="btn btn-secondary level-0" type="button">Configuration</button>
-                </a>
-              
-                <div class="section-parent">
-                  <a href="../">
-                    <button class="btn btn-secondary level-0" type="button">Contents</button>
-                  </a>
-                  <span class="chevron" onclick="toggleSection(this)">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 10 16">
-                      <path fill-rule="evenodd" d="M5 11L0 6l1.5-1.5L5 8.25 8.5 4.5 10 6l-5 5z"/>
-                    </svg>
-                  </span>
-                </div>
-                <div class="section-group">
-              
-                <a href="../../contents/markdown/">
-                  <button class="btn btn-secondary level-1" type="button">Markdown</button>
-                </a>
-              
-                <a href="../../contents/markdown-example/">
-                  <button class="btn btn-secondary level-1" type="button">Markdown Example</button>
-                </a>
-              
-                <a href="../../contents/rest-api/">
-                  <button class="btn btn-secondary level-1" type="button">REST API</button>
-                </a>
-              
-                <a href="./">
-                  <button class="btn btn-secondary level-1 selected" type="button">REST API Example</button>
-                </a>
-              
-                <a href="../../contents/assets/">
-                  <button class="btn btn-secondary level-1" type="button">Assets</button>
-                </a>
-              </div>
-                <div class="section-parent">
-                  <a href="../../themes/">
-                    <button class="btn btn-secondary level-0" type="button">Themes</button>
-                  </a>
-                  <span class="chevron" onclick="toggleSection(this)">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 10 16">
-                      <path fill-rule="evenodd" d="M5 11L0 6l1.5-1.5L5 8.25 8.5 4.5 10 6l-5 5z"/>
-                    </svg>
-                  </span>
-                </div>
-                <div class="section-group">
-              
-                <div class="section-parent">
-                  <a href="../../themes/pre-installed/">
-                    <button class="btn btn-secondary level-1" type="button">Pre-Installed</button>
-                  </a>
-                  <span class="chevron" onclick="toggleSection(this)">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 10 16">
-                      <path fill-rule="evenodd" d="M5 11L0 6l1.5-1.5L5 8.25 8.5 4.5 10 6l-5 5z"/>
-                    </svg>
-                  </span>
-                </div>
-                <div class="section-group">
-              
-                <a href="../../themes/pre-installed/onyx/">
-                  <button class="btn btn-secondary level-2" type="button">Onyx</button>
-                </a>
-              </div>
-                <a href="../../themes/installation/">
-                  <button class="btn btn-secondary level-1" type="button">Installation</button>
-                </a>
-              
-                <div class="section-parent">
-                  <a href="../../themes/creating-a-new-theme/">
-                    <button class="btn btn-secondary level-1" type="button">Creating a New Theme</button>
-                  </a>
-                  <span class="chevron" onclick="toggleSection(this)">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 10 16">
-                      <path fill-rule="evenodd" d="M5 11L0 6l1.5-1.5L5 8.25 8.5 4.5 10 6l-5 5z"/>
-                    </svg>
-                  </span>
-                </div>
-                <div class="section-group">
-              
-                <a href="../../themes/creating-a-new-theme/setting-up-the-theme/">
-                  <button class="btn btn-secondary level-2" type="button">Setting Up the Theme</button>
-                </a>
-              
-                <a href="../../themes/creating-a-new-theme/theme-configuration/">
-                  <button class="btn btn-secondary level-2" type="button">Theme Configuration</button>
-                </a>
-              
-                <a href="../../themes/creating-a-new-theme/theme-assets/">
-                  <button class="btn btn-secondary level-2" type="button">Theme Assets</button>
-                </a>
-              
-                <a href="../../themes/creating-a-new-theme/theme-flavors/">
-                  <button class="btn btn-secondary level-2" type="button">Theme Flavors</button>
-                </a>
-              
-                <a href="../../themes/creating-a-new-theme/templating/">
-                  <button class="btn btn-secondary level-2" type="button">Templating</button>
-                </a>
-              
-                <a href="../../themes/creating-a-new-theme/helpers-and-partials/">
-                  <button class="btn btn-secondary level-2" type="button">Helpers and Partials</button>
-                </a>
-              
-                <a href="../../themes/creating-a-new-theme/theme-specific-features/">
-                  <button class="btn btn-secondary level-2" type="button">Theme-specific Features</button>
-                </a>
-              
-                <a href="../../themes/creating-a-new-theme/installation/">
-                  <button class="btn btn-secondary level-2" type="button">Installation</button>
-                </a>
-              
-                <a href="../../themes/creating-a-new-theme/using-the-theme/">
-                  <button class="btn btn-secondary level-2" type="button">Using the Theme</button>
-                </a>
-              </div></div>
-                <div class="section-parent">
-                  <a href="../../api-reference/">
-                    <button class="btn btn-secondary level-0" type="button">API Reference</button>
-                  </a>
-                  <span class="chevron" onclick="toggleSection(this)">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 10 16">
-                      <path fill-rule="evenodd" d="M5 11L0 6l1.5-1.5L5 8.25 8.5 4.5 10 6l-5 5z"/>
-                    </svg>
-                  </span>
-                </div>
-                <div class="section-group">
-              
-                <a href="../../api-reference/cli/">
-                  <button class="btn btn-secondary level-1" type="button">CLI</button>
-                </a>
-              
-                <a href="../../api-reference/nodejs-api/">
-                  <button class="btn btn-secondary level-1" type="button">Node.js API</button>
-                </a>
-              
-                <a href="../../api-reference/template-api/">
-                  <button class="btn btn-secondary level-1" type="button">Template API</button>
-                </a>
-              </div>
+      <nav>
+          <div id="versionsList" class="nav-container">
+              <a class="level-0" href="../../../1.3.0/contents/rest-api-example">1.3.0</a>
+              <a class="level-0" href="../../../1.2.0/contents/rest-api-example">1.2.0</a>
+              <a class="level-0 selected" href=".">1.1.0</a>
           </div>
+        <div id="navigationList" class="nav-container active custom-scroller sub-header-offset">
+            <a
+            href="../../../1.1.0"
+            class="level-0">
+              Introduction
+            </a>
+            <a
+            href="../../quick-start/"
+            class="   level-0">
+              Quick Start
+            </a>
+            <a
+            href="../../project-structure/"
+            class="   level-0">
+              Project Structure
+            </a>
+            <a
+            href="../../configuration/"
+            class="   level-0">
+              Configuration
+            </a>
+            <a
+            href="../"
+            class="   level-0">
+              Contents
+            </a>
+              <hr class="level-0">
+            <a
+            href="../../contents/markdown/"
+            class=" sub  level-1">
+              Markdown
+            </a>
+            <a
+            href="../../contents/markdown-example/"
+            class=" sub  level-1">
+              Markdown Example
+            </a>
+            <a
+            href="../../contents/rest-api/"
+            class=" sub  level-1">
+              REST API
+            </a>
+            <a
+            href="./"
+            class="selected sub  level-1">
+              REST API Example
+            </a>
+            <a
+            href="../../contents/assets/"
+            class=" sub last-sub level-1">
+              Assets
+            </a>
+            <a
+            href="../../themes/"
+            class="   level-0">
+              Themes
+            </a>
+              <hr class="level-0">
+            <a
+            href="../../themes/pre-installed/"
+            class=" sub  level-1">
+              Pre-Installed
+            </a>
+              <hr class="level-1">
+            <a
+            href="../../themes/pre-installed/onyx/"
+            class=" sub last-sub level-2">
+              Onyx
+            </a>
+            <a
+            href="../../themes/installation/"
+            class=" sub  level-1">
+              Installation
+            </a>
+            <a
+            href="../../themes/creating-a-new-theme/"
+            class=" sub  level-1">
+              Creating a New Theme
+            </a>
+              <hr class="level-1">
+            <a
+            href="../../themes/creating-a-new-theme/setting-up-the-theme/"
+            class=" sub  level-2">
+              Setting Up the Theme
+            </a>
+            <a
+            href="../../themes/creating-a-new-theme/theme-configuration/"
+            class=" sub  level-2">
+              Theme Configuration
+            </a>
+            <a
+            href="../../themes/creating-a-new-theme/theme-assets/"
+            class=" sub  level-2">
+              Theme Assets
+            </a>
+            <a
+            href="../../themes/creating-a-new-theme/theme-flavors/"
+            class=" sub  level-2">
+              Theme Flavors
+            </a>
+            <a
+            href="../../themes/creating-a-new-theme/templating/"
+            class=" sub  level-2">
+              Templating
+            </a>
+            <a
+            href="../../themes/creating-a-new-theme/helpers-and-partials/"
+            class=" sub  level-2">
+              Helpers and Partials
+            </a>
+            <a
+            href="../../themes/creating-a-new-theme/theme-specific-features/"
+            class=" sub  level-2">
+              Theme-specific Features
+            </a>
+            <a
+            href="../../themes/creating-a-new-theme/installation/"
+            class=" sub  level-2">
+              Installation
+            </a>
+            <a
+            href="../../themes/creating-a-new-theme/using-the-theme/"
+            class=" sub last-sub level-2">
+              Using the Theme
+            </a>
+            <a
+            href="../../api-reference/"
+            class="   level-0">
+              API Reference
+            </a>
+              <hr class="level-0">
+            <a
+            href="../../api-reference/cli/"
+            class=" sub  level-1">
+              CLI
+            </a>
+            <a
+            href="../../api-reference/nodejs-api/"
+            class=" sub  level-1">
+              Node.js API
+            </a>
+            <a
+            href="../../api-reference/template-api/"
+            class=" sub  level-1">
+              Template API
+            </a>
         </div>
-        <div class="col-lg-6 col-md-9 col-sm-12 middle-pane">
-            <h1 id="rest-api-example">REST API Example</h1>
+      </nav>
+      <div class="article-container">
+        <article>
+                <h1><a id="rest-api-example">REST API Example</a></h1>
+                  <p>This endpoint adds a new pet in the database.</p>
 
-
-                      <h3 id="contents-rest-api-example-add-a-new-pet">Add a new pet</h3>
-                      <p>This endpoint adds a new pet in the database.</p>
-
-                      <hr>
-
-                    <h4 id="contents-rest-api-example-path">Path</h4>
-                      <svg class="auth-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 14 16">
-                        <path fill-rule="evenodd" d="M12.83 2.17C12.08 1.42 11.14 1.03 10 1c-1.13.03-2.08.42-2.83 1.17S6.04 3.86 6.01 5c0 .3.03.59.09.89L0 12v1l1 1h2l1-1v-1h1v-1h1v-1h2l1.09-1.11c.3.08.59.11.91.11 1.14-.03 2.08-.42 2.83-1.17S13.97 6.14 14 5c-.03-1.14-.42-2.08-1.17-2.83zM11 5.38c-.77 0-1.38-.61-1.38-1.38 0-.77.61-1.38 1.38-1.38.77 0 1.38.61 1.38 1.38 0 .77-.61 1.38-1.38 1.38z"/>
-                      </svg>
-                      <span class="rest-method-post">post</span>
-                    /pets/add/
-                    <hr>
-
-                    <h4 id="contents-rest-api-example-authentication">Authentication</h4>
+                    <h2><a id="contents-rest-api-example-authentication">Authentication</a></h2>
                     <p>Authentication is done using a bearer token obtained from the <code>/auth/getToken</code> endpoint.</p>
 
-
-                    <h4 id="contents-rest-api-example-url-parameters">URL Parameters</h4>
-                    <table>
-<thead>
-<tr>
-<th align="left">Name</th>
-<th align="left">Type</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">database</td>
-<td align="left">string</td>
-<td align="left">The database name to add the pet in</td>
-</tr>
-</tbody></table>
-
-
-                    <h4 id="contents-rest-api-example-query-parameters">Query Parameters</h4>
-                    <table>
-<thead>
-<tr>
-<th align="left">Name</th>
-<th align="left">Type</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">xml</td>
-<td align="left">boolean</td>
-<td align="left">If present, the response type would be XML instead of JSON</td>
-</tr>
-</tbody></table>
-
-
-                      <div class="alignment-group">
-                      <h4 id="contents-rest-api-example-body">Body</h4>
-                      <div class="body-group">
-                        <ul>
-                            <li onclick="toggleBodyContent(this, 0)">JSON</li>
-                            <li onclick="toggleBodyContent(this, 1)">XML</li>
-                            <li onclick="toggleBodyContent(this, 2)">Multipart</li>
-                            <li onclick="toggleBodyContent(this, 3)">Form Data</li>
-                            <li onclick="toggleBodyContent(this, 4)">Text</li>
-                        </ul>
-                        <div class="body-group-content">
-                            <pre><code class="language-json"><span class="token punctuation">{</span>
+                    <div class="api-path blue">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                          	 width="401.998px" height="401.998px" viewBox="0 0 401.998 401.998" style="enable-background:new 0 0 401.998 401.998;"
+                          	 xml:space="preserve">
+                          	 <path d="M357.45,190.721c-5.331-5.33-11.8-7.993-19.417-7.993h-9.131v-54.821c0-35.022-12.559-65.093-37.685-90.218
+                           		C266.093,12.563,236.025,0,200.998,0c-35.026,0-65.1,12.563-90.222,37.688C85.65,62.814,73.091,92.884,73.091,127.907v54.821
+                           		h-9.135c-7.611,0-14.084,2.663-19.414,7.993c-5.33,5.326-7.994,11.799-7.994,19.417V374.59c0,7.611,2.665,14.086,7.994,19.417
+                           		c5.33,5.325,11.803,7.991,19.414,7.991H338.04c7.617,0,14.085-2.663,19.417-7.991c5.325-5.331,7.994-11.806,7.994-19.417V210.135
+                           		C365.455,202.523,362.782,196.051,357.45,190.721z M274.087,182.728H127.909v-54.821c0-20.175,7.139-37.402,21.414-51.675
+                           		c14.277-14.275,31.501-21.411,51.678-21.411c20.179,0,37.399,7.135,51.677,21.411c14.271,14.272,21.409,31.5,21.409,51.675V182.728
+                           		z"/>
+                          </svg>                      <span class="path-method">post</span>
+                      <span class="path-route">/pets/add/</span>
+                    </div>
+                  <div class="content-tab-view">
+                    <div class="content-tabs">
+                      <div class="content-tabs-container">
+                        <div class="content-tab-group">
+                            <div class="content-tab" onclick="selectContentTab(this)">
+                              Body
+                            </div>
+                            <div class="content-tab" onclick="selectContentTab(this)">
+                              Headers
+                            </div>
+                            <div class="content-tab" onclick="selectContentTab(this)">
+                              Queries
+                            </div>
+                            <div class="content-tab" onclick="selectContentTab(this)">
+                              Params
+                            </div>
+                            <div class="content-tab" onclick="selectContentTab(this)">
+                              Cookies
+                            </div>
+                        </div>
+                        <div class="content-separators">
+                          <div class="content-separator"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="content-views">
+                        <div class="content-view">
+                            <div class="body-type">
+                                <span class="body-type-name">JSON</span>
+                              <span class="body-type-mime">application/json</span>
+                            </div>
+                              <pre><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"The pet name"</span><span class="token punctuation">,</span>
   <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"The pet type (dog, bird, etc.)"</span><span class="token punctuation">,</span>
   <span class="token property">"breed"</span><span class="token operator">:</span> <span class="token string">"The pet breed (optional)"</span>
 <span class="token punctuation">}</span></code></pre>
 
-                            <pre><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Data</span><span class="token punctuation">></span></span>
+                            <div class="body-type">
+                                <span class="body-type-name">XML</span>
+                              <span class="body-type-mime">application/xml</span>
+                            </div>
+                              <pre><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Data</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Property1</span><span class="token punctuation">></span></span>string<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Property1</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Property2</span><span class="token punctuation">></span></span>number<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Property2</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Data</span><span class="token punctuation">></span></span></code></pre>
 
-                            <table>
-<thead>
-<tr>
-<th align="left">Key</th>
-<th align="left">Type</th>
-<th align="left">Required</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">name</td>
-<td align="left">string</td>
-<td align="left">true</td>
-<td align="left">The pet name</td>
-</tr>
-<tr>
-<td align="left">type</td>
-<td align="left">string</td>
-<td align="left">true</td>
-<td align="left">The pet type (dog, bird, etc.)</td>
-</tr>
-<tr>
-<td align="left">breed</td>
-<td align="left">string</td>
-<td align="left">false</td>
-<td align="left">The pet breed</td>
-</tr>
-</tbody></table>
-
-                            <table>
-<thead>
-<tr>
-<th align="left">Key</th>
-<th align="left">Type</th>
-<th align="left">Required</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">name</td>
-<td align="left">string</td>
-<td align="left">true</td>
-<td align="left">The pet name</td>
-</tr>
-<tr>
-<td align="left">type</td>
-<td align="left">string</td>
-<td align="left">true</td>
-<td align="left">The pet type (dog, bird, etc.)</td>
-</tr>
-<tr>
-<td align="left">breed</td>
-<td align="left">string</td>
-<td align="left">false</td>
-<td align="left">The pet breed</td>
-</tr>
-</tbody></table>
-
-                            <p>A CSV file with columns &#39;name&#39;, &#39;type&#39;, and &#39;breed&#39;</p>
+                            <div class="body-type">
+                                <span class="body-type-name">Form Data</span>
+                              <span class="body-type-mime">multipart/form-data</span>
+                            </div>
+                              <table class="no-header">
+                                  <thead>
+                                    <tr>
+                                      <th>Name</th>
+                                      <th>Type</th>
+                                      <th>Required</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                      <tr class="model-info-row">
+                                        <td class="model-name" align="left">name</td>
+                                        <td class="model-type" align="left">string</td>
+                                        <td class="model-required" align="left">required</td>
+                                      </tr>
+                                      <tr class="model-description-row">
+                                        <td class="model-description" align="left" colspan="3">The pet name</td>
+                                      </tr>
+                                      <tr class="model-info-row">
+                                        <td class="model-name" align="left">type</td>
+                                        <td class="model-type" align="left">string</td>
+                                        <td class="model-required" align="left">required</td>
+                                      </tr>
+                                      <tr class="model-description-row">
+                                        <td class="model-description" align="left" colspan="3">The pet type (dog, bird, etc.)</td>
+                                      </tr>
+                                      <tr class="model-info-row">
+                                        <td class="model-name" align="left">breed</td>
+                                        <td class="model-type" align="left">string</td>
+                                        <td class="model-required" align="left">optional</td>
+                                      </tr>
+                                      <tr class="model-description-row">
+                                        <td class="model-description" align="left" colspan="3">The pet breed</td>
+                                      </tr>
+                                  </tbody>
+                                </table>                            <div class="body-type">
+                                <span class="body-type-name">Form Urlencoded</span>
+                              <span class="body-type-mime">application/x-www-form-urlencoded</span>
+                            </div>
+                              <table class="no-header">
+                                  <thead>
+                                    <tr>
+                                      <th>Name</th>
+                                      <th>Type</th>
+                                      <th>Required</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                      <tr class="model-info-row">
+                                        <td class="model-name" align="left">name</td>
+                                        <td class="model-type" align="left">string</td>
+                                        <td class="model-required" align="left">required</td>
+                                      </tr>
+                                      <tr class="model-description-row">
+                                        <td class="model-description" align="left" colspan="3">The pet name</td>
+                                      </tr>
+                                      <tr class="model-info-row">
+                                        <td class="model-name" align="left">type</td>
+                                        <td class="model-type" align="left">string</td>
+                                        <td class="model-required" align="left">required</td>
+                                      </tr>
+                                      <tr class="model-description-row">
+                                        <td class="model-description" align="left" colspan="3">The pet type (dog, bird, etc.)</td>
+                                      </tr>
+                                      <tr class="model-info-row">
+                                        <td class="model-name" align="left">breed</td>
+                                        <td class="model-type" align="left">string</td>
+                                        <td class="model-required" align="left">optional</td>
+                                      </tr>
+                                      <tr class="model-description-row">
+                                        <td class="model-description" align="left" colspan="3">The pet breed</td>
+                                      </tr>
+                                  </tbody>
+                                </table>                            <div class="body-type">
+                              <span class="body-type-mime">text/csv</span>
+                            </div>
+                              <p>A CSV file with columns &#39;name&#39;, &#39;type&#39;, and &#39;breed&#39;</p>
 
                         </div>
+                        <div class="content-view">
+                          <table class="no-header">
+                              <thead>
+                                <tr>
+                                  <th>Name</th>
+                                  <th>Description</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                  <tr class="model-info-row">
+                                    <td class="model-name" align="left">Content-Type</td>
+                                  </tr>
+                                  <tr class="model-description-row">
+                                    <td class="model-description" align="left">The content type of the body</td>
+                                  </tr>
+                              </tbody>
+                            </table>                        </div>
+                        <div class="content-view">
+                          <table class="no-header">
+                              <thead>
+                                <tr>
+                                  <th>Name</th>
+                                  <th>Type</th>
+                                  <th>Required</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                  <tr class="model-info-row">
+                                    <td class="model-name" align="left">xml</td>
+                                    <td class="model-type" align="left">boolean</td>
+                                    <td class="model-required" align="left">optional</td>
+                                  </tr>
+                                  <tr class="model-description-row">
+                                    <td class="model-description" align="left" colspan="3">If present, the response type would be XML instead of JSON</td>
+                                  </tr>
+                              </tbody>
+                            </table>                        </div>
+                        <div class="content-view">
+                          <table class="no-header">
+                              <thead>
+                                <tr>
+                                  <th>Name</th>
+                                  <th>Type</th>
+                                  <th>Description</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                  <tr class="model-info-row">
+                                    <td class="model-name" align="left">database</td>
+                                    <td class="model-type" align="left">string</td>
+                                  </tr>
+                                  <tr class="model-description-row">
+                                    <td class="model-description" align="left" colspan="2">The database name to add the pet in</td>
+                                  </tr>
+                              </tbody>
+                            </table>                        </div>
+                        <div class="content-view">
+                          <table class="no-header">
+                              <thead>
+                                <tr>
+                                  <th>Name</th>
+                                  <th>Description</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                  <tr class="model-info-row">
+                                    <td class="model-name" align="left">trackerid</td>
+                                  </tr>
+                                  <tr class="model-description-row">
+                                    <td class="model-description" align="left">The tracker ID</td>
+                                  </tr>
+                              </tbody>
+                            </table>                        </div>
+                    </div>
+                  </div>
+                    <h2><a>Response</a></h2>
+                    <div class="content-tab-view">
+                      <div class="content-tabs">
+                        <div class="content-tabs-container">
+                          <div class="content-tab-group">
+                              <div class="content-tab" onclick="selectContentTab(this)">
+                                Body
+                              </div>
+                              <div class="content-tab" onclick="selectContentTab(this)">
+                                Headers
+                              </div>
+                              <div class="content-tab" onclick="selectContentTab(this)">
+                                Cookies
+                              </div>
+                          </div>
+                          <div class="content-separators">
+                            <div class="content-separator"></div>
+                          </div>
+                        </div>
                       </div>
-                      <h4 id="contents-rest-api-example-headers">Headers</h4>
-                      <table>
-<thead>
-<tr>
-<th align="left">Name</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">Content-Type</td>
-<td align="left">The content type of the body</td>
-</tr>
-</tbody></table>
-
-                      <h4 id="contents-rest-api-example-cookies">Cookies</h4>
-                      <table>
-<thead>
-<tr>
-<th align="left">Name</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">trackerid</td>
-<td align="left">The tracker ID</td>
-</tr>
-</tbody></table>
-
+                      <div class="content-separators">
+                        <div class="content-separator"></div>
                       </div>
-
-                      <!-- aside -->
-                      <h4 id="contents-rest-api-example-response-body">Response Body</h4>
-                      <div class="body-group">
-                        <ul>
-                            <li onclick="toggleBodyContent(this, 0)">JSON</li>
-                            <li onclick="toggleBodyContent(this, 1)">XML</li>
-                        </ul>
-                        <div class="body-group-content">
-                            <pre><code class="language-json"><span class="token punctuation">{</span>
+                      <div class="content-views">
+                          <div class="content-view">
+                              <div class="body-type">
+                                  <span class="body-type-name">JSON</span>
+                                <span class="body-type-mime">application/json</span>
+                              </div>
+                                <pre><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"success"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
   <span class="token property">"message"</span><span class="token operator">:</span> <span class="token string">"string"</span>
 <span class="token punctuation">}</span></code></pre>
 
-                            <pre><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Data</span><span class="token punctuation">></span></span>
+                              <div class="body-type">
+                                  <span class="body-type-name">XML</span>
+                                <span class="body-type-mime">application/xml</span>
+                              </div>
+                                <pre><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Data</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Property1</span><span class="token punctuation">></span></span>string<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Property1</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Property2</span><span class="token punctuation">></span></span>number<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Property2</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Data</span><span class="token punctuation">></span></span></code></pre>
 
-                        </div>
+                          </div>
+                          <div class="content-view">
+                            <table class="no-header">
+                                <thead>
+                                  <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="model-info-row">
+                                      <td class="model-name" align="left">Content-Type</td>
+                                    </tr>
+                                    <tr class="model-description-row">
+                                      <td class="model-description" align="left">The content type of the body</td>
+                                    </tr>
+                                </tbody>
+                              </table>                          </div>
+                          <div class="content-view">
+                            <table class="no-header">
+                                <thead>
+                                  <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="model-info-row">
+                                      <td class="model-name" align="left">trackerid</td>
+                                    </tr>
+                                    <tr class="model-description-row">
+                                      <td class="model-description" align="left">The tracker ID</td>
+                                    </tr>
+                                </tbody>
+                              </table>                          </div>
                       </div>
-                      <h4 id="contents-rest-api-example-response-headers">Response Headers</h4>
-                      <table>
-<thead>
-<tr>
-<th align="left">Name</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">Content-Type</td>
-<td align="left">The content type of the body</td>
-</tr>
-</tbody></table>
-
-                      <h4 id="contents-rest-api-example-response-cookies">Response Cookies</h4>
-                      <table>
-<thead>
-<tr>
-<th align="left">Name</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">trackerid</td>
-<td align="left">The tracker ID</td>
-</tr>
-</tbody></table>
-
-                      <!-- /aside -->
-
-
-                    <h3 id="contents-rest-api-example-examples">Examples</h3>
-                    <hr>
-
-                        <div class="alignment-group">
-
-                      <h4 id="contents-rest-api-example-example-1-path">Path</h4>
-                      <span>
-                          <span class="rest-method-post">post</span>
-                        /pets/add/petsDb?xml&#x3D;true
-                      </span>
-                      <hr>
-
-                        <h4 id="contents-rest-api-example-example-1-body">Body</h4>
-                        <div class="body-group">
-                          <ul>
-                              <li onclick="toggleBodyContent(this, 0)">JSON</li>
-                          </ul>
-                          <div class="body-group-content">
-                              <pre><code class="language-json"><span class="token punctuation">{</span>
+                    </div>
+                      <h2><a>Example</a></h2>
+                        <div class="api-path blue">
+                          <span class="path-method">post</span>
+                          <span class="path-route">/pets/add/petsDb?xml&#x3D;true</span>
+                        </div>
+                        <div class="content-tab-view">
+                          <div class="content-tabs">
+                            <div class="content-tabs-container">
+                              <div class="content-tab-group">
+                                  <div class="content-tab" onclick="selectContentTab(this)">
+                                    Body
+                                  </div>
+                                  <div class="content-tab" onclick="selectContentTab(this)">
+                                    Headers
+                                  </div>
+                                  <div class="content-tab" onclick="selectContentTab(this)">
+                                    Cookies
+                                  </div>
+                              </div>
+                              <div class="content-separators">
+                                <div class="content-separator"></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="content-views">
+                              <div class="content-view">
+                                  <div class="body-type">
+                                      <span class="body-type-name">JSON</span>
+                                    <span class="body-type-mime">application/json</span>
+                                  </div>
+                                    <pre><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Bob"</span><span class="token punctuation">,</span>
   <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"Pig"</span><span class="token punctuation">,</span>
   <span class="token property">"breed"</span><span class="token operator">:</span> <span class="token string">"Miniature Pig"</span>
 <span class="token punctuation">}</span></code></pre>
 
+                              </div>
+                              <div class="content-view">
+                                <table class="no-header">
+                                    <thead>
+                                      <tr>
+                                        <th>Name</th>
+                                        <th>Value</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                          <td class="model-name" align="left">Content-Type</td>
+                                          <td class="model-value" align="left">application/json</td>
+                                        </tr>
+                                    </tbody>
+                                  </table>                              </div>
+                              <div class="content-view">
+                                <table class="no-header">
+                                    <thead>
+                                      <tr>
+                                        <th>Name</th>
+                                        <th>Value</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                          <td class="model-name" align="left">trackerid</td>
+                                          <td class="model-value" align="left">ge8s7ecs69er8vfseasdg0s8d6fgvsdf</td>
+                                        </tr>
+                                    </tbody>
+                                  </table>                              </div>
                           </div>
                         </div>
-                        <h4 id="contents-rest-api-example-example-1-headers">Headers</h4>
-                        <table>
-<thead>
-<tr>
-<th align="left">Name</th>
-<th align="left">Value</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">Content-Type</td>
-<td align="left">application/json</td>
-</tr>
-</tbody></table>
-
-                        <h4 id="contents-rest-api-example-example-1-cookies">Cookies</h4>
-                        <table>
-<thead>
-<tr>
-<th align="left">Name</th>
-<th align="left">Value</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">trackerid</td>
-<td align="left">ge8s7ecs69er8vfseasdg0s8d6fgvsdf</td>
-</tr>
-</tbody></table>
-
-                        </div>
-
-                        <!-- aside -->
-                        <h4 id="contents-rest-api-example-example-1-status">Status</h4>
-                        <span>
-                          <span class="rest-status-200">200</span>
-                          OK
-                        </span>
-                        <hr>
-                        <h4 id="contents-rest-api-example-example-1-response-body">Response Body</h4>
-                        <div class="body-group">
-                          <ul>
-                              <li onclick="toggleBodyContent(this, 0)">XML</li>
-                          </ul>
-                          <div class="body-group-content">
-                              <pre><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Message</span><span class="token punctuation">></span></span>
+                        <h3><a>Response Example</a></h3>
+                          <div class="api-path green">
+                            <span class="path-method">200</span>
+                            <span class="path-route">OK</span>
+                          </div>
+                        <div class="content-tab-view">
+                          <div class="content-tabs">
+                            <div class="content-tabs-container">
+                              <div class="content-tab-group">
+                                  <div class="content-tab" onclick="selectContentTab(this)">
+                                    Body
+                                  </div>
+                                  <div class="content-tab" onclick="selectContentTab(this)">
+                                    Headers
+                                  </div>
+                                  <div class="content-tab" onclick="selectContentTab(this)">
+                                    Cookies
+                                  </div>
+                              </div>
+                              <div class="content-separators">
+                                <div class="content-separator"></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="content-views">
+                              <div class="content-view">
+                                  <div class="body-type">
+                                      <span class="body-type-name">XML</span>
+                                    <span class="body-type-mime">application/xml</span>
+                                  </div>
+                                    <pre><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Message</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Type</span><span class="token punctuation">></span></span>Success<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Type</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Text</span><span class="token punctuation">></span></span>Pet Bob was added.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Text</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Message</span><span class="token punctuation">></span></span></code></pre>
 
+                              </div>
+                              <div class="content-view">
+                                <table class="no-header">
+                                    <thead>
+                                      <tr>
+                                        <th>Name</th>
+                                        <th>Value</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                          <td class="model-name" align="left">Content-Type</td>
+                                          <td class="model-value" align="left">application/xml</td>
+                                        </tr>
+                                    </tbody>
+                                  </table>                              </div>
+                              <div class="content-view">
+                                <table class="no-header">
+                                    <thead>
+                                      <tr>
+                                        <th>Name</th>
+                                        <th>Value</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                          <td class="model-name" align="left">trackerid</td>
+                                          <td class="model-value" align="left">ge8s7ecs69er8vfseasdg0s8d6fgvsdf</td>
+                                        </tr>
+                                    </tbody>
+                                  </table>                              </div>
                           </div>
                         </div>
-                        <h4 id="contents-rest-api-example-example-1-response-headers">Response Headers</h4>
-                        <table>
-<thead>
-<tr>
-<th align="left">Name</th>
-<th align="left">Value</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">Content-Type</td>
-<td align="left">application/xml</td>
-</tr>
-</tbody></table>
-
-                        <h4 id="contents-rest-api-example-example-1-response-cookies">Response Cookies</h4>
-                        <table>
-<thead>
-<tr>
-<th align="left">Name</th>
-<th align="left">Value</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">trackerid</td>
-<td align="left">ge8s7ecs69er8vfseasdg0s8d6fgvsdf</td>
-</tr>
-</tbody></table>
-
-                        <!-- /aside -->
-
-
-
-            <nav class="nav-pagination d-flex d-md-none">
-                <a href="../../contents/rest-api/">
-                  <button type="button">Previous</button>
-                </a>
-                <a href="../../contents/assets/">
-                  <button type="button">Next</button>
-                </a>
-            </nav>
-        </div>
-        <div class="col-lg-4 d-none d-lg-flex right-pane"></div>
+        </article>
+        <footer>
+          <span>Generated by <a href="https://fluorite.js.org" target="_blank">Fluorite</a></span>
+          <span class="last-modified">Last modified: 12/28/2019</span>
+        </footer>
       </div>
-    </div>
+    </main>
   </body>
 </html>
