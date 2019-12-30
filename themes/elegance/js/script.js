@@ -184,6 +184,7 @@ function postLoadProcess() {
     var dropdownContainer = document.querySelector('.dropdown-container');
     var tableContainers = document.querySelectorAll('.table-container');
     var codeBlocks = document.getElementsByTagName('pre');
+    var contentTabs = document.querySelectorAll('.content-tabs');
 
     if ( dropdownContainer ) dropdownContainer.classList.add('no-custom-scroller');
 
@@ -196,6 +197,12 @@ function postLoadProcess() {
     for ( var i = 0; i < codeBlocks.length; i++ ) {
 
       codeBlocks[i].classList.add('no-custom-scroller');
+
+    }
+
+    for ( var i = 0; i < contentTabs.length; i++ ) {
+
+      contentTabs[i].classList.remove('custom-scroller');
 
     }
 
