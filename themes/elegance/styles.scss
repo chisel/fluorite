@@ -733,6 +733,17 @@ main {
         overflow-x: auto;
         font-size: rem(18px);
         color: map-get($palette, color-gray-dark);
+        &.custom-scroller {
+          &::-webkit-scrollbar {
+            width: rem(5px);
+          }
+          &::-webkit-scrollbar-track {
+            background: map-get($palette, color-gray-light);
+          }
+          &::-webkit-scrollbar-thumb {
+            background: map-get($palette, color-gray);
+          }
+        }
         .content-tabs-container {
           min-width: min-content;
           display: flex;
@@ -840,7 +851,11 @@ main {
 @-moz-document url-prefix() {
   nav .nav-container.custom-scroller {
     scrollbar-width: thin;
-    scrollbar-color: map-get($palette, color-gray-light) map-get($palette, color-gray);
+    scrollbar-color: map-get($palette, color-gray) map-get($palette, color-gray-light);
+  }
+  .content-tabs.custom-scroller {
+    scrollbar-width: thin;
+    scrollbar-color: map-get($palette, color-gray) map-get($palette, color-gray-light);
   }
   // Bottom padding fix
   nav .nav-container::after {
@@ -850,15 +865,15 @@ main {
     padding-top: rem(30px);
   }
   article .table-container:not(.no-custom-scroller),
-  article .pre:not(.no-custom-scroller) {
+  article pre:not(.no-custom-scroller) {
     scrollbar-height: thin;
     scrollbar-width: thin;
-    scrollbar-color: map-get($palette, color-gray-light) map-get($palette, color-gray);
+    scrollbar-color: map-get($palette, color-gray) map-get($palette, color-gray-light);
   }
   .dropdown-container:not(.no-custom-scroller) {
     scrollbar-height: thin;
     scrollbar-width: thin;
-    scrollbar-color: map-get($palette, color-gray-light) map-get($palette, color-gray);
+    scrollbar-color: map-get($palette, color-gray) map-get($palette, color-gray-light);
   }
   // Mobile fix
   @media (max-width: 576px) {
