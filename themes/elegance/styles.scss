@@ -613,8 +613,14 @@ main {
       &:not(.no-header) {
         width: calc(100% + #{rem(1px)});
         margin: rem(-1px);
+        margin-bottom: 0;
         &, th:last-child, td:last-child {
           border-right: 0 !important;
+        }
+        &,
+        tbody tr:last-child td,
+        thead tr:last-child th {
+          border-bottom: 0 !important;
         }
       }
       &, th, td {

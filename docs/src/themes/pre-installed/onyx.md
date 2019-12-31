@@ -32,7 +32,7 @@ purple
 ![Onyx Purple Flavor]({{rootPrefix}}/assets/contents/onyx-mobile-purple.png)
 <!-- /responsive -->
 
-> You can define your own flavor for this theme by adding a flavor profile inside `/themes/onyx/flavors`. Read [theme flavors]({{versionRootPrefix}}/themes/creating-a-new-theme/flavors) and take a look at `/themes/onyx/flavors/_dark.scss` to find out how the Onyx theme uses those flavor variables.
+> You can define your own flavor for this theme by adding a flavor profile inside `/themes/onyx/flavors`. Read [theme flavors]({{versionRootPrefix}}/themes/creating-a-new-theme/theme-flavors) and take a look at `/themes/onyx/flavors/_dark.scss` to find out how the Onyx theme uses those flavor variables.
 
 ## Theme Options
 
