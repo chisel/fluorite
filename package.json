@@ -32,7 +32,7 @@
   "bugs": {
     "url": "https://github.com/chisel/fluorite/issues"
   },
-  "homepage": "https://github.com/chisel/fluorite#readme",
+  "homepage": "https://fluorite.js.org",
   "dependencies": {
     "autoprefixer": "^9.7.3",
     "chalk": "^2.4.2",

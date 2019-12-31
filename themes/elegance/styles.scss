@@ -820,6 +820,9 @@ main {
     *:last-child {
       margin-bottom: 0;
     }
+    ul, ol {
+      margin: 0;
+    }
     *[class*="display-tablet-"] { display: none; }
     *[class*="display-mobile-"] { display: none; }
     .display-desktop-block { display: block; }
