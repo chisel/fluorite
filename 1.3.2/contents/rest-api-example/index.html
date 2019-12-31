@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Make documentation at ease!</title>
+    <link rel="shortcut icon" href="../../../assets/theme/images/favicon.ico">
+    <style media="screen">
+      html {
+        --color-accent: #8670b2;
+        --color-accent-secondary: #bc6cc1;
+      }
+    </style>
+    <link rel="stylesheet" href="../../../assets/theme/styles.css">
+    <script src="../../../assets/theme/js/comment-parser.js" charset="utf-8"></script>
+    <script src="../../../assets/theme/js/script.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <header>
+      <div class="brand">
+        <img class="logo" src="../../../assets/theme/images/logo.svg">
+        <a class="title" href="../../../1.3.2">Fluorite</a>
+          <div class="versions-dropdown" onclick="toggleVersionsDropdown(this, event)">
+            <span>1.3.2</span>
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+              	 width="451.847px" height="451.847px" viewBox="0 0 451.847 451.847" style="enable-background:new 0 0 451.847 451.847;"
+              	 xml:space="preserve">
+              	<path d="M225.923,354.706c-8.098,0-16.195-3.092-22.369-9.263L9.27,151.157c-12.359-12.359-12.359-32.397,0-44.751
+              		c12.354-12.354,32.388-12.354,44.748,0l171.905,171.915l171.906-171.909c12.359-12.354,32.391-12.354,44.744,0
+              		c12.365,12.354,12.365,32.392,0,44.751L248.292,345.449C242.115,351.621,234.018,354.706,225.923,354.706z"/>
+              </svg>            <div class="dropdown-container" onclick="stopClickBubbling(event)">
+              <ul>
+                  <a href="."><li>1.3.2</li></a>
+                  <a href="../../../1.2.0/contents/rest-api-example"><li>1.2.0</li></a>
+                  <a href="../../../1.1.0/contents/rest-api-example"><li>1.1.0</li></a>
+              </ul>
+            </div>
+          </div>
+      </div>
+        <div class="progress-bar-container">
+          <div class="progress-bar"></div>
+        </div>
+        <div class="sub">
+          <a  href="../../../1.3.2"class="subtitle">Make documentation at ease!</a>
+        </div>
+    </header>
+    <main>
+      <div class="mobile-options">
+        <div class="mobile-option" onclick="toggleMobileMenu(this, 'navigationList')">
+          Menu
+        </div>
+          <div class="mobile-option" onclick="toggleMobileMenu(this, 'versionsList')">
+            Version
+          </div>
+      </div>
+      <nav>
+          <div id="versionsList" class="nav-container">
+              <a class="level-0 selected" href=".">1.3.2</a>
+              <a class="level-0" href="../../../1.2.0/contents/rest-api-example">1.2.0</a>
+              <a class="level-0" href="../../../1.1.0/contents/rest-api-example">1.1.0</a>
+          </div>
+        <div id="navigationList" class="nav-container active custom-scroller sub-header-offset">
+            <a
+            href="../../../1.3.2"
+            class="level-0">
+              Introduction
+            </a>
+            <a
+            href="../../quick-start/"
+            class="   level-0">
+              Quick Start
+            </a>
+            <a
+            href="../../project-structure/"
+            class="   level-0">
+              Project Structure
+            </a>
+            <a
+            href="../../configuration/"
+            class="   level-0">
+              Configuration
+            </a>
+            <a
+            href="../"
+            class="   level-0">
+              Contents
+            </a>
+              <hr class="level-0">
+            <a
+            href="../../contents/markdown/"
+            class=" sub  level-1">
+              Markdown
+            </a>
+            <a
+            href="../../contents/markdown-example/"
+            class=" sub  level-1">
+              Markdown Example
+            </a>
+            <a
+            href="../../contents/rest-api/"
+            class=" sub  level-1">
+              REST API
+            </a>
+            <a
+            href="./"
+            class="selected sub  level-1">
+              REST API Example
+            </a>
+            <a
+            href="../../contents/assets/"
+            class=" sub last-sub level-1">
+              Assets
+            </a>
+            <a
+            href="../../themes/"
+            class="   level-0">
+              Themes
+            </a>
+              <hr class="level-0">
+            <a
+            href="../../themes/pre-installed/"
+            class=" sub  level-1">
+              Pre-Installed
+            </a>
+              <hr class="level-1">
+            <a
+            href="../../themes/pre-installed/elegance/"
+            class=" sub  level-2">
+              Elegance
+            </a>
+            <a
+            href="../../themes/pre-installed/onyx/"
+            class=" sub last-sub level-2">
+              Onyx
+            </a>
+            <a
+            href="../../themes/installation/"
+            class=" sub  level-1">
+              Installation
+            </a>
+            <a
+            href="../../themes/creating-a-new-theme/"
+            class=" sub  level-1">
+              Creating a New Theme
+            </a>
+              <hr class="level-1">
+            <a
+            href="../../themes/creating-a-new-theme/setting-up-the-theme/"
+            class=" sub  level-2">
+              Setting Up the Theme
+            </a>
+            <a
+            href="../../themes/creating-a-new-theme/theme-configuration/"
+            class=" sub  level-2">
+              Theme Configuration
+            </a>
+            <a
+            href="../../themes/creating-a-new-theme/theme-assets/"
+            class=" sub  level-2">
+              Theme Assets
+            </a>
+            <a
+            href="../../themes/creating-a-new-theme/theme-flavors/"
+            class=" sub  level-2">
+              Theme Flavors
+            </a>
+            <a
+            href="../../themes/creating-a-new-theme/templating/"
+            class=" sub  level-2">
+              Templating
+            </a>
+            <a
+            href="../../themes/creating-a-new-theme/helpers-and-partials/"
+            class=" sub  level-2">
+              Helpers and Partials
+            </a>
+            <a
+            href="../../themes/creating-a-new-theme/theme-specific-features/"
+            class=" sub  level-2">
+              Theme-specific Features
+            </a>
+            <a
+            href="../../themes/creating-a-new-theme/installation/"
+            class=" sub  level-2">
+              Installation
+            </a>
+            <a
+            href="../../themes/creating-a-new-theme/using-the-theme/"
+            class=" sub last-sub level-2">
+              Using the Theme
+            </a>
+            <a
+            href="../../api-reference/"
+            class="   level-0">
+              API Reference
+            </a>
+              <hr class="level-0">
+            <a
+            href="../../api-reference/cli/"
+            class=" sub  level-1">
+              CLI
+            </a>
+            <a
+            href="../../api-reference/nodejs-api/"
+            class=" sub  level-1">
+              Node.js API
+            </a>
+            <a
+            href="../../api-reference/template-api/"
+            class=" sub  level-1">
+              Template API
+            </a>
+        </div>
+      </nav>
+      <div class="article-container">
+        <article>
+                <h1><a id="rest-api-example">REST API Example</a></h1>
+                  <p>This endpoint adds a new pet in the database.</p>
+
+                    <h2><a id="contents-rest-api-example-authentication">Authentication</a></h2>
+                    <p>Authentication is done using a bearer token obtained from the <code>/auth/getToken</code> endpoint.</p>
+
+                    <div class="api-path blue">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                          	 width="401.998px" height="401.998px" viewBox="0 0 401.998 401.998" style="enable-background:new 0 0 401.998 401.998;"
+                          	 xml:space="preserve">
+                          	 <path d="M357.45,190.721c-5.331-5.33-11.8-7.993-19.417-7.993h-9.131v-54.821c0-35.022-12.559-65.093-37.685-90.218
+                           		C266.093,12.563,236.025,0,200.998,0c-35.026,0-65.1,12.563-90.222,37.688C85.65,62.814,73.091,92.884,73.091,127.907v54.821
+                           		h-9.135c-7.611,0-14.084,2.663-19.414,7.993c-5.33,5.326-7.994,11.799-7.994,19.417V374.59c0,7.611,2.665,14.086,7.994,19.417
+                           		c5.33,5.325,11.803,7.991,19.414,7.991H338.04c7.617,0,14.085-2.663,19.417-7.991c5.325-5.331,7.994-11.806,7.994-19.417V210.135
+                           		C365.455,202.523,362.782,196.051,357.45,190.721z M274.087,182.728H127.909v-54.821c0-20.175,7.139-37.402,21.414-51.675
+                           		c14.277-14.275,31.501-21.411,51.678-21.411c20.179,0,37.399,7.135,51.677,21.411c14.271,14.272,21.409,31.5,21.409,51.675V182.728
+                           		z"/>
+                          </svg>                      <span class="path-method">post</span>
+                      <span class="path-route">/pets/add/</span>
+                    </div>
+                  <div class="content-tab-view">
+                    <div class="content-tabs custom-scroller">
+                      <div class="content-tabs-container">
+                        <div class="content-tab-group">
+                            <div class="content-tab" onclick="selectContentTab(this)">
+                              Body
+                            </div>
+                            <div class="content-tab" onclick="selectContentTab(this)">
+                              Headers
+                            </div>
+                            <div class="content-tab" onclick="selectContentTab(this)">
+                              Queries
+                            </div>
+                            <div class="content-tab" onclick="selectContentTab(this)">
+                              Params
+                            </div>
+                            <div class="content-tab" onclick="selectContentTab(this)">
+                              Cookies
+                            </div>
+                        </div>
+                        <div class="content-separators">
+                          <div class="content-separator"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="content-views">
+                        <div class="content-view">
+                            <div class="body-type">
+                                <span class="body-type-name">JSON</span>
+                              <span class="body-type-mime">application/json</span>
+                            </div>
+                              <pre><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"The pet name"</span><span class="token punctuation">,</span>
+  <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"The pet type (dog, bird, etc.)"</span><span class="token punctuation">,</span>
+  <span class="token property">"breed"</span><span class="token operator">:</span> <span class="token string">"The pet breed (optional)"</span>
+<span class="token punctuation">}</span></code></pre>
+
+                            <div class="body-type">
+                                <span class="body-type-name">XML</span>
+                              <span class="body-type-mime">application/xml</span>
+                            </div>
+                              <pre><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Data</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Property1</span><span class="token punctuation">></span></span>string<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Property1</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Property2</span><span class="token punctuation">></span></span>number<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Property2</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Data</span><span class="token punctuation">></span></span></code></pre>
+
+                            <div class="body-type">
+                                <span class="body-type-name">Form Data</span>
+                              <span class="body-type-mime">multipart/form-data</span>
+                            </div>
+                              <table class="no-header">
+                                  <thead>
+                                    <tr>
+                                      <th>Name</th>
+                                      <th>Type</th>
+                                      <th>Required</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                      <tr class="model-info-row">
+                                        <td class="model-name" align="left">name</td>
+                                        <td class="model-type" align="left">string</td>
+                                        <td class="model-required" align="left">required</td>
+                                      </tr>
+                                      <tr class="model-description-row">
+                                        <td class="model-description" align="left" colspan="3">The pet name</td>
+                                      </tr>
+                                      <tr class="model-info-row">
+                                        <td class="model-name" align="left">type</td>
+                                        <td class="model-type" align="left">string</td>
+                                        <td class="model-required" align="left">required</td>
+                                      </tr>
+                                      <tr class="model-description-row">
+                                        <td class="model-description" align="left" colspan="3">The pet type (dog, bird, etc.)</td>
+                                      </tr>
+                                      <tr class="model-info-row">
+                                        <td class="model-name" align="left">breed</td>
+                                        <td class="model-type" align="left">string</td>
+                                        <td class="model-required" align="left">optional</td>
+                                      </tr>
+                                      <tr class="model-description-row">
+                                        <td class="model-description" align="left" colspan="3">The pet breed</td>
+                                      </tr>
+                                  </tbody>
+                                </table>                            <div class="body-type">
+                                <span class="body-type-name">Form Urlencoded</span>
+                              <span class="body-type-mime">application/x-www-form-urlencoded</span>
+                            </div>
+                              <table class="no-header">
+                                  <thead>
+                                    <tr>
+                                      <th>Name</th>
+                                      <th>Type</th>
+                                      <th>Required</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                      <tr class="model-info-row">
+                                        <td class="model-name" align="left">name</td>
+                                        <td class="model-type" align="left">string</td>
+                                        <td class="model-required" align="left">required</td>
+                                      </tr>
+                                      <tr class="model-description-row">
+                                        <td class="model-description" align="left" colspan="3">The pet name</td>
+                                      </tr>
+                                      <tr class="model-info-row">
+                                        <td class="model-name" align="left">type</td>
+                                        <td class="model-type" align="left">string</td>
+                                        <td class="model-required" align="left">required</td>
+                                      </tr>
+                                      <tr class="model-description-row">
+                                        <td class="model-description" align="left" colspan="3">The pet type (dog, bird, etc.)</td>
+                                      </tr>
+                                      <tr class="model-info-row">
+                                        <td class="model-name" align="left">breed</td>
+                                        <td class="model-type" align="left">string</td>
+                                        <td class="model-required" align="left">optional</td>
+                                      </tr>
+                                      <tr class="model-description-row">
+                                        <td class="model-description" align="left" colspan="3">The pet breed</td>
+                                      </tr>
+                                  </tbody>
+                                </table>                            <div class="body-type">
+                              <span class="body-type-mime">text/csv</span>
+                            </div>
+                              <p>A CSV file with columns &#39;name&#39;, &#39;type&#39;, and &#39;breed&#39;</p>
+
+                        </div>
+                        <div class="content-view">
+                          <table class="no-header">
+                              <thead>
+                                <tr>
+                                  <th>Name</th>
+                                  <th>Description</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                  <tr class="model-info-row">
+                                    <td class="model-name" align="left">Content-Type</td>
+                                  </tr>
+                                  <tr class="model-description-row">
+                                    <td class="model-description" align="left">The content type of the body</td>
+                                  </tr>
+                              </tbody>
+                            </table>                        </div>
+                        <div class="content-view">
+                          <table class="no-header">
+                              <thead>
+                                <tr>
+                                  <th>Name</th>
+                                  <th>Type</th>
+                                  <th>Required</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                  <tr class="model-info-row">
+                                    <td class="model-name" align="left">xml</td>
+                                    <td class="model-type" align="left">boolean</td>
+                                    <td class="model-required" align="left">optional</td>
+                                  </tr>
+                                  <tr class="model-description-row">
+                                    <td class="model-description" align="left" colspan="3">If present, the response type would be XML instead of JSON</td>
+                                  </tr>
+                              </tbody>
+                            </table>                        </div>
+                        <div class="content-view">
+                          <table class="no-header">
+                              <thead>
+                                <tr>
+                                  <th>Name</th>
+                                  <th>Type</th>
+                                  <th>Description</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                  <tr class="model-info-row">
+                                    <td class="model-name" align="left">database</td>
+                                    <td class="model-type" align="left">string</td>
+                                  </tr>
+                                  <tr class="model-description-row">
+                                    <td class="model-description" align="left" colspan="2">The database name to add the pet in</td>
+                                  </tr>
+                              </tbody>
+                            </table>                        </div>
+                        <div class="content-view">
+                          <table class="no-header">
+                              <thead>
+                                <tr>
+                                  <th>Name</th>
+                                  <th>Description</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                  <tr class="model-info-row">
+                                    <td class="model-name" align="left">trackerid</td>
+                                  </tr>
+                                  <tr class="model-description-row">
+                                    <td class="model-description" align="left">The tracker ID</td>
+                                  </tr>
+                              </tbody>
+                            </table>                        </div>
+                    </div>
+                  </div>
+                    <h2><a>Response</a></h2>
+                    <div class="content-tab-view">
+                      <div class="content-tabs custom-scroller">
+                        <div class="content-tabs-container">
+                          <div class="content-tab-group">
+                              <div class="content-tab" onclick="selectContentTab(this)">
+                                Body
+                              </div>
+                              <div class="content-tab" onclick="selectContentTab(this)">
+                                Headers
+                              </div>
+                              <div class="content-tab" onclick="selectContentTab(this)">
+                                Cookies
+                              </div>
+                          </div>
+                          <div class="content-separators">
+                            <div class="content-separator"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="content-separators">
+                        <div class="content-separator"></div>
+                      </div>
+                      <div class="content-views">
+                          <div class="content-view">
+                              <div class="body-type">
+                                  <span class="body-type-name">JSON</span>
+                                <span class="body-type-mime">application/json</span>
+                              </div>
+                                <pre><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"success"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">"message"</span><span class="token operator">:</span> <span class="token string">"string"</span>
+<span class="token punctuation">}</span></code></pre>
+
+                              <div class="body-type">
+                                  <span class="body-type-name">XML</span>
+                                <span class="body-type-mime">application/xml</span>
+                              </div>
+                                <pre><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Data</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Property1</span><span class="token punctuation">></span></span>string<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Property1</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Property2</span><span class="token punctuation">></span></span>number<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Property2</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Data</span><span class="token punctuation">></span></span></code></pre>
+
+                          </div>
+                          <div class="content-view">
+                            <table class="no-header">
+                                <thead>
+                                  <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="model-info-row">
+                                      <td class="model-name" align="left">Content-Type</td>
+                                    </tr>
+                                    <tr class="model-description-row">
+                                      <td class="model-description" align="left">The content type of the body</td>
+                                    </tr>
+                                </tbody>
+                              </table>                          </div>
+                          <div class="content-view">
+                            <table class="no-header">
+                                <thead>
+                                  <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="model-info-row">
+                                      <td class="model-name" align="left">trackerid</td>
+                                    </tr>
+                                    <tr class="model-description-row">
+                                      <td class="model-description" align="left">The tracker ID</td>
+                                    </tr>
+                                </tbody>
+                              </table>                          </div>
+                      </div>
+                    </div>
+                      <h2><a>Example</a></h2>
+                        <div class="api-path blue">
+                          <span class="path-method">post</span>
+                          <span class="path-route">/pets/add/petsDb?xml&#x3D;true</span>
+                        </div>
+                        <div class="content-tab-view">
+                          <div class="content-tabs custom-scroller">
+                            <div class="content-tabs-container">
+                              <div class="content-tab-group">
+                                  <div class="content-tab" onclick="selectContentTab(this)">
+                                    Body
+                                  </div>
+                                  <div class="content-tab" onclick="selectContentTab(this)">
+                                    Headers
+                                  </div>
+                                  <div class="content-tab" onclick="selectContentTab(this)">
+                                    Cookies
+                                  </div>
+                              </div>
+                              <div class="content-separators">
+                                <div class="content-separator"></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="content-views">
+                              <div class="content-view">
+                                  <div class="body-type">
+                                      <span class="body-type-name">JSON</span>
+                                    <span class="body-type-mime">application/json</span>
+                                  </div>
+                                    <pre><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Bob"</span><span class="token punctuation">,</span>
+  <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"Pig"</span><span class="token punctuation">,</span>
+  <span class="token property">"breed"</span><span class="token operator">:</span> <span class="token string">"Miniature Pig"</span>
+<span class="token punctuation">}</span></code></pre>
+
+                              </div>
+                              <div class="content-view">
+                                <table class="no-header">
+                                    <thead>
+                                      <tr>
+                                        <th>Name</th>
+                                        <th>Value</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                          <td class="model-name" align="left">Content-Type</td>
+                                          <td class="model-value" align="left">application/json</td>
+                                        </tr>
+                                    </tbody>
+                                  </table>                              </div>
+                              <div class="content-view">
+                                <table class="no-header">
+                                    <thead>
+                                      <tr>
+                                        <th>Name</th>
+                                        <th>Value</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                          <td class="model-name" align="left">trackerid</td>
+                                          <td class="model-value" align="left">ge8s7ecs69er8vfseasdg0s8d6fgvsdf</td>
+                                        </tr>
+                                    </tbody>
+                                  </table>                              </div>
+                          </div>
+                        </div>
+                        <h3><a>Response Example</a></h3>
+                          <div class="api-path green">
+                            <span class="path-method">200</span>
+                            <span class="path-route">OK</span>
+                          </div>
+                        <div class="content-tab-view">
+                          <div class="content-tabs custom-scroller">
+                            <div class="content-tabs-container">
+                              <div class="content-tab-group">
+                                  <div class="content-tab" onclick="selectContentTab(this)">
+                                    Body
+                                  </div>
+                                  <div class="content-tab" onclick="selectContentTab(this)">
+                                    Headers
+                                  </div>
+                                  <div class="content-tab" onclick="selectContentTab(this)">
+                                    Cookies
+                                  </div>
+                              </div>
+                              <div class="content-separators">
+                                <div class="content-separator"></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="content-views">
+                              <div class="content-view">
+                                  <div class="body-type">
+                                      <span class="body-type-name">XML</span>
+                                    <span class="body-type-mime">application/xml</span>
+                                  </div>
+                                    <pre><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Message</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Type</span><span class="token punctuation">></span></span>Success<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Type</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Text</span><span class="token punctuation">></span></span>Pet Bob was added.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Text</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Message</span><span class="token punctuation">></span></span></code></pre>
+
+                              </div>
+                              <div class="content-view">
+                                <table class="no-header">
+                                    <thead>
+                                      <tr>
+                                        <th>Name</th>
+                                        <th>Value</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                          <td class="model-name" align="left">Content-Type</td>
+                                          <td class="model-value" align="left">application/xml</td>
+                                        </tr>
+                                    </tbody>
+                                  </table>                              </div>
+                              <div class="content-view">
+                                <table class="no-header">
+                                    <thead>
+                                      <tr>
+                                        <th>Name</th>
+                                        <th>Value</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                          <td class="model-name" align="left">trackerid</td>
+                                          <td class="model-value" align="left">ge8s7ecs69er8vfseasdg0s8d6fgvsdf</td>
+                                        </tr>
+                                    </tbody>
+                                  </table>                              </div>
+                          </div>
+                        </div>
+        </article>
+        <footer>
+          <span>Generated by <a href="https://fluorite.js.org" target="_blank">Fluorite</a></span>
+          <span class="last-modified">Last modified: 12/30/2019</span>
+        </footer>
+      </div>
+    </main>
+  </body>
+</html>
