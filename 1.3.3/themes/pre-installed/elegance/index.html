@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Make documentation at ease!</title>
+    <link rel="shortcut icon" href="../../../../assets/theme/images/favicon.ico">
+    <style media="screen">
+      html {
+        --color-accent: #8670b2;
+        --color-accent-secondary: #bc6cc1;
+      }
+    </style>
+    <link rel="stylesheet" href="../../../../assets/theme/styles.css">
+    <script src="../../../../assets/theme/js/comment-parser.js" charset="utf-8"></script>
+    <script src="../../../../assets/theme/js/script.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <header>
+      <div class="brand">
+        <img class="logo" src="../../../../assets/theme/images/logo.svg">
+        <a class="title" href="../../../../1.3.3">Fluorite</a>
+          <div class="versions-dropdown" onclick="toggleVersionsDropdown(this, event)">
+            <span>1.3.3</span>
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+              	 width="451.847px" height="451.847px" viewBox="0 0 451.847 451.847" style="enable-background:new 0 0 451.847 451.847;"
+              	 xml:space="preserve">
+              	<path d="M225.923,354.706c-8.098,0-16.195-3.092-22.369-9.263L9.27,151.157c-12.359-12.359-12.359-32.397,0-44.751
+              		c12.354-12.354,32.388-12.354,44.748,0l171.905,171.915l171.906-171.909c12.359-12.354,32.391-12.354,44.744,0
+              		c12.365,12.354,12.365,32.392,0,44.751L248.292,345.449C242.115,351.621,234.018,354.706,225.923,354.706z"/>
+              </svg>            <div class="dropdown-container" onclick="stopClickBubbling(event)">
+              <ul>
+                  <a href="."><li>1.3.3</li></a>
+                  <a href="../../../../1.2.0/"><li>1.2.0</li></a>
+                  <a href="../../../../1.1.0/"><li>1.1.0</li></a>
+              </ul>
+            </div>
+          </div>
+      </div>
+        <div class="progress-bar-container">
+          <div class="progress-bar"></div>
+        </div>
+        <div class="sub">
+          <a  href="../../../../1.3.3"class="subtitle">Make documentation at ease!</a>
+        </div>
+    </header>
+    <main>
+      <div class="mobile-options">
+        <div class="mobile-option" onclick="toggleMobileMenu(this, 'navigationList')">
+          Menu
+        </div>
+          <div class="mobile-option" onclick="toggleMobileMenu(this, 'versionsList')">
+            Version
+          </div>
+      </div>
+      <nav>
+          <div id="versionsList" class="nav-container">
+              <a class="level-0 selected" href=".">1.3.3</a>
+              <a class="level-0" href="../../../../1.2.0/">1.2.0</a>
+              <a class="level-0" href="../../../../1.1.0/">1.1.0</a>
+          </div>
+        <div id="navigationList" class="nav-container active custom-scroller sub-header-offset">
+            <a
+            href="../../../../1.3.3"
+            class="level-0">
+              Introduction
+            </a>
+            <a
+            href="../../../quick-start/"
+            class="   level-0">
+              Quick Start
+            </a>
+            <a
+            href="../../../project-structure/"
+            class="   level-0">
+              Project Structure
+            </a>
+            <a
+            href="../../../configuration/"
+            class="   level-0">
+              Configuration
+            </a>
+            <a
+            href="../../../contents/"
+            class="   level-0">
+              Contents
+            </a>
+              <hr class="level-0">
+            <a
+            href="../../../contents/markdown/"
+            class=" sub  level-1">
+              Markdown
+            </a>
+            <a
+            href="../../../contents/markdown-example/"
+            class=" sub  level-1">
+              Markdown Example
+            </a>
+            <a
+            href="../../../contents/rest-api/"
+            class=" sub  level-1">
+              REST API
+            </a>
+            <a
+            href="../../../contents/rest-api-example/"
+            class=" sub  level-1">
+              REST API Example
+            </a>
+            <a
+            href="../../../contents/assets/"
+            class=" sub last-sub level-1">
+              Assets
+            </a>
+            <a
+            href="../../"
+            class="   level-0">
+              Themes
+            </a>
+              <hr class="level-0">
+            <a
+            href="../"
+            class=" sub  level-1">
+              Pre-Installed
+            </a>
+              <hr class="level-1">
+            <a
+            href="./"
+            class="selected sub  level-2">
+              Elegance
+            </a>
+            <a
+            href="../../../themes/pre-installed/onyx/"
+            class=" sub last-sub level-2">
+              Onyx
+            </a>
+            <a
+            href="../../installation/"
+            class=" sub  level-1">
+              Installation
+            </a>
+            <a
+            href="../../creating-a-new-theme/"
+            class=" sub  level-1">
+              Creating a New Theme
+            </a>
+              <hr class="level-1">
+            <a
+            href="../../../themes/creating-a-new-theme/setting-up-the-theme/"
+            class=" sub  level-2">
+              Setting Up the Theme
+            </a>
+            <a
+            href="../../../themes/creating-a-new-theme/theme-configuration/"
+            class=" sub  level-2">
+              Theme Configuration
+            </a>
+            <a
+            href="../../../themes/creating-a-new-theme/theme-assets/"
+            class=" sub  level-2">
+              Theme Assets
+            </a>
+            <a
+            href="../../../themes/creating-a-new-theme/theme-flavors/"
+            class=" sub  level-2">
+              Theme Flavors
+            </a>
+            <a
+            href="../../../themes/creating-a-new-theme/templating/"
+            class=" sub  level-2">
+              Templating
+            </a>
+            <a
+            href="../../../themes/creating-a-new-theme/helpers-and-partials/"
+            class=" sub  level-2">
+              Helpers and Partials
+            </a>
+            <a
+            href="../../../themes/creating-a-new-theme/theme-specific-features/"
+            class=" sub  level-2">
+              Theme-specific Features
+            </a>
+            <a
+            href="../../../themes/creating-a-new-theme/installation/"
+            class=" sub  level-2">
+              Installation
+            </a>
+            <a
+            href="../../../themes/creating-a-new-theme/using-the-theme/"
+            class=" sub last-sub level-2">
+              Using the Theme
+            </a>
+            <a
+            href="../../../api-reference/"
+            class="   level-0">
+              API Reference
+            </a>
+              <hr class="level-0">
+            <a
+            href="../../../api-reference/cli/"
+            class=" sub  level-1">
+              CLI
+            </a>
+            <a
+            href="../../../api-reference/nodejs-api/"
+            class=" sub  level-1">
+              Node.js API
+            </a>
+            <a
+            href="../../../api-reference/template-api/"
+            class=" sub  level-1">
+              Template API
+            </a>
+        </div>
+      </nav>
+      <div class="article-container">
+        <article>
+                  <h1><a id="elegance">Elegance</a></h1>
+                <p>The theme you&#39;re looking at right now is Elegance! This theme is responsive, provides accent color customization through <a href="#themes-pre-installed-elegance-theme-options">theme options</a>, and allows writing <a href="#themes-pre-installed-elegance-responsive-markdown">responsive Markdown</a>.</p>
+<!-- responsive: tablet, desktop -->
+<p><img src="../../../../assets/contents/elegance-desktop.png" alt="Elegance Preview"></p>
+<!-- /responsive -->
+
+<!-- responsive: mobile -->
+<p><img src="../../../../assets/contents/elegance-mobile.png" alt="Elegance Preview Mobile"></p>
+<!-- /responsive -->
+
+<h2 id="themes-pre-installed-elegance-theme-options">Theme Options</h2>
+<p>The following properties can be used in the <code>themeOptions</code> of <code>flconfig.json</code> (all of which are optional):</p>
+<ul>
+<li><strong>brandName</strong>: If provided, it would be used at the top of the header and the project title would be shown under it instead.</li>
+<li><strong>icon</strong>: A path to an image used as the brand logo/icon.</li>
+<li><strong>favicon</strong>: The path to a favicon in <code>.ico</code> format.</li>
+<li><strong>rootName</strong>: If provided, an item with this name would be added in the navigation menu which links to the root content.</li>
+<li><strong>hideProgressBar</strong>: If true, the scroll progress bar would be hidden.</li>
+<li><strong>noSectionTitles</strong>: If true, section title of Markdown documents won&#39;t be inserted at the beginning of the section.</li>
+<li><strong>accentColor</strong>: A CSS color to use as the accent color (e.g. <code>#FF5353</code>, <code>red</code>, <code>rgb(255, 83, 83)</code>).</li>
+<li><strong>accentColorSecondary</strong>: A CSS color to use as the secondary accent color (e.g. <code>#FF246B</code>, <code>pink</code>, <code>rgb(255, 36, 107)</code>).</li>
+</ul>
+<h2 id="themes-pre-installed-elegance-theme-specific-features">Theme Specific Features</h2>
+<p>The Elegance theme uses the <a href="../../../../assets/contents/utilities/comment-parser.js">Comment Parser Utility</a> to provide comment-based features for markdown files.</p>
+<h3 id="themes-pre-installed-elegance-responsive-markdown">Responsive Markdown</h3>
+<p>You can make parts of your markdown content responsive by using the following HTML comment: <code>&lt;!-- responsive: mobile, tablet, desktop --&gt;</code> to start a responsive block and <code>&lt;!-- /responsive --&gt;</code> to end the block. Any content inside the block will become responsive based on the arguments provided (<code>mobile</code>, <code>tablet</code>, or <code>desktop</code>).</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-markdown">This is a markdown document.
+
+<span class="token comment">&lt;!-- responsive: mobile, tablet --></span>
+This paragraph only shows up in mobile and tablet devices.
+<span class="token comment">&lt;!-- /responsive --></span>
+
+<span class="token comment">&lt;!-- responsive: desktop --></span>
+This paragraph only shows up in desktops.
+<span class="token comment">&lt;!-- /responsive --></span></code></pre>
+
+        </article>
+        <footer>
+          <span>Generated by <a href="https://fluorite.js.org" target="_blank">Fluorite</a></span>
+          <span class="last-modified">Last modified: 12/31/2019</span>
+        </footer>
+      </div>
+    </main>
+  </body>
+</html>
