@@ -20,7 +20,6 @@ The following properties can be used in the `themeOptions` of `flconfig.json` (a
   - **noSectionTitles**: If true, section title of Markdown documents won't be inserted at the beginning of the section.
   - **accentColor**: A CSS color to use as the accent color (e.g. `#FF5353`, `red`, `rgb(255, 83, 83)`).
   - **accentColorSecondary**: A CSS color to use as the secondary accent color (e.g. `#FF246B`, `pink`, `rgb(255, 36, 107)`).
-  - **lottie**: If true, lottie would be loaded in the documentation.
 
 ## Theme Specific Features
 

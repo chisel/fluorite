@@ -13,6 +13,10 @@
         --color-accent-secondary: {{#if extended.accentColorSecondary}}{{{extended.accentColorSecondary}}}{{else}}#FF246B{{/if}};
       }
     </style>
+    {{! Load lottie if asked }}
+    {{#if extended.lottie }}
+      <script src="{{rootPrefix}}/assets/theme/js/lottie.min.js" charset="utf-8"></script>
+    {{/if}}
     {{! Load theme's compiled SASS }}
     <link rel="stylesheet" href="{{rootPrefix}}/assets/theme/styles.css">
     {{! Comment Parser Utility }}
@@ -101,10 +105,16 @@
       <div class="article-container">
         <article>
           {{#each contents}}
+            {{#if (isAPI type)}}
+              <h1><a id="{{id}}">{{title}}</a></h1>
+            {{else}}
+              {{#unless ../extended.noSectionTitles}}
+                <h1><a id="{{id}}">{{title}}</a></h1>
+              {{/unless}}
+            {{/if}}
             {{#each content}}
             {{! API Documentation }}
               {{#if (isAPI type)}}
-                <h1><a id="{{../id}}">{{../title}}</a></h1>
                 {{#with value}}
                   {{{info.content}}}
                   {{! Authentication }}
@@ -415,9 +425,6 @@
                 {{/with}}
               {{! Markdown Documentation }}
               {{else}}
-                {{#unless ../../extended.noSectionTitles}}
-                  <h1><a id="{{../id}}">{{../title}}</a></h1>
-                {{/unless}}
                 {{{value}}}
               {{/if}}
               {{! Multiple content files separator }}
