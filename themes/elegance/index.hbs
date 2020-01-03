@@ -105,17 +105,16 @@
       <div class="article-container">
         <article>
           {{#each contents}}
-            {{#if (isAPI type)}}
-              <h1><a id="{{id}}">{{title}}</a></h1>
-            {{else}}
+            {{#unless (isAPI type)}}
               {{#unless ../extended.noSectionTitles}}
                 <h1><a id="{{id}}">{{title}}</a></h1>
               {{/unless}}
-            {{/if}}
+            {{/unless}}
             {{#each content}}
             {{! API Documentation }}
               {{#if (isAPI type)}}
                 {{#with value}}
+                  <h1><a id="{{info.id}}">{{info.title}}</a></h1>
                   {{{info.content}}}
                   {{! Authentication }}
                   {{#if auth.enabled}}
