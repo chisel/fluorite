@@ -790,6 +790,13 @@ main {
           &.show {
             display: block;
           }
+          // text/plain p styles
+          & > p {
+            padding: rem(20px);
+            border-radius: rem(5px);
+            background-color: map-get($palette, color-gray-lighter);
+            border: rem(1px) solid map-get($palette, color-gray);
+          }
           .body-type {
             display: flex;
             flex-wrap: nowrap;
