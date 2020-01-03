@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Make documentation at ease!</title>
+    <link rel="shortcut icon" href="../../../assets/theme/images/favicon.ico">
+    <style media="screen">
+      html {
+        --color-accent: #8670b2;
+        --color-accent-secondary: #bc6cc1;
+      }
+    </style>
+    <link rel="stylesheet" href="../../../assets/theme/styles.css">
+    <script src="../../../assets/theme/js/comment-parser.js" charset="utf-8"></script>
+    <script src="../../../assets/theme/js/script.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <header>
+      <div class="brand">
+        <img class="logo" src="../../../assets/theme/images/logo.svg">
+        <a class="title" href="../../../1.3.5">Fluorite</a>
+          <div class="versions-dropdown" onclick="toggleVersionsDropdown(this, event)">
+            <span>1.3.5</span>
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+              	 width="451.847px" height="451.847px" viewBox="0 0 451.847 451.847" style="enable-background:new 0 0 451.847 451.847;"
+              	 xml:space="preserve">
+              	<path d="M225.923,354.706c-8.098,0-16.195-3.092-22.369-9.263L9.27,151.157c-12.359-12.359-12.359-32.397,0-44.751
+              		c12.354-12.354,32.388-12.354,44.748,0l171.905,171.915l171.906-171.909c12.359-12.354,32.391-12.354,44.744,0
+              		c12.365,12.354,12.365,32.392,0,44.751L248.292,345.449C242.115,351.621,234.018,354.706,225.923,354.706z"/>
+              </svg>            <div class="dropdown-container" onclick="stopClickBubbling(event)">
+              <ul>
+                  <a href="."><li>1.3.5</li></a>
+                  <a href="../../../1.3.3/contents/assets"><li>1.3.3</li></a>
+                  <a href="../../../1.2.0/contents/assets"><li>1.2.0</li></a>
+                  <a href="../../../1.1.0/contents/assets"><li>1.1.0</li></a>
+              </ul>
+            </div>
+          </div>
+      </div>
+        <div class="progress-bar-container">
+          <div class="progress-bar"></div>
+        </div>
+        <div class="sub">
+          <a  href="../../../1.3.5"class="subtitle">Make documentation at ease!</a>
+        </div>
+    </header>
+    <main>
+      <div class="mobile-options">
+        <div class="mobile-option" onclick="toggleMobileMenu(this, 'navigationList')">
+          Menu
+        </div>
+          <div class="mobile-option" onclick="toggleMobileMenu(this, 'versionsList')">
+            Version
+          </div>
+      </div>
+      <nav>
+          <div id="versionsList" class="nav-container">
+              <a class="level-0 selected" href=".">1.3.5</a>
+              <a class="level-0" href="../../../1.3.3/contents/assets">1.3.3</a>
+              <a class="level-0" href="../../../1.2.0/contents/assets">1.2.0</a>
+              <a class="level-0" href="../../../1.1.0/contents/assets">1.1.0</a>
+          </div>
+        <div id="navigationList" class="nav-container active custom-scroller sub-header-offset">
+            <a
+            href="../../../1.3.5"
+            class="level-0">
+              Introduction
+            </a>
+            <a
+            href="../../quick-start/"
+            class="   level-0">
+              Quick Start
+            </a>
+            <a
+            href="../../project-structure/"
+            class="   level-0">
+              Project Structure
+            </a>
+            <a
+            href="../../configuration/"
+            class="   level-0">
+              Configuration
+            </a>
+            <a
+            href="../"
+            class="   level-0">
+              Contents
+            </a>
+              <hr class="level-0">
+            <a
+            href="../../contents/markdown/"
+            class=" sub  level-1">
+              Markdown
+            </a>
+            <a
+            href="../../contents/markdown-example/"
+            class=" sub  level-1">
+              Markdown Example
+            </a>
+            <a
+            href="../../contents/rest-api/"
+            class=" sub  level-1">
+              REST API
+            </a>
+            <a
+            href="../../contents/rest-api-example/"
+            class=" sub  level-1">
+              REST API Example
+            </a>
+            <a
+            href="./"
+            class="selected sub last-sub level-1">
+              Assets
+            </a>
+            <a
+            href="../../themes/"
+            class="   level-0">
+              Themes
+            </a>
+              <hr class="level-0">
+            <a
+            href="../../themes/pre-installed/"
+            class=" sub  level-1">
+              Pre-Installed
+            </a>
+              <hr class="level-1">
+            <a
+            href="../../themes/pre-installed/elegance/"
+            class=" sub  level-2">
+              Elegance
+            </a>
+            <a
+            href="../../themes/pre-installed/onyx/"
+            class=" sub last-sub level-2">
+              Onyx
+            </a>
+            <a
+            href="../../themes/installation/"
+            class=" sub  level-1">
+              Installation
+            </a>
+            <a
+            href="../../themes/creating-a-new-theme/"
+            class=" sub  level-1">
+              Creating a New Theme
+            </a>
+              <hr class="level-1">
+            <a
+            href="../../themes/creating-a-new-theme/setting-up-the-theme/"
+            class=" sub  level-2">
+              Setting Up the Theme
+            </a>
+            <a
+            href="../../themes/creating-a-new-theme/theme-configuration/"
+            class=" sub  level-2">
+              Theme Configuration
+            </a>
+            <a
+            href="../../themes/creating-a-new-theme/theme-assets/"
+            class=" sub  level-2">
+              Theme Assets
+            </a>
+            <a
+            href="../../themes/creating-a-new-theme/theme-flavors/"
+            class=" sub  level-2">
+              Theme Flavors
+            </a>
+            <a
+            href="../../themes/creating-a-new-theme/templating/"
+            class=" sub  level-2">
+              Templating
+            </a>
+            <a
+            href="../../themes/creating-a-new-theme/helpers-and-partials/"
+            class=" sub  level-2">
+              Helpers and Partials
+            </a>
+            <a
+            href="../../themes/creating-a-new-theme/theme-specific-features/"
+            class=" sub  level-2">
+              Theme-specific Features
+            </a>
+            <a
+            href="../../themes/creating-a-new-theme/installation/"
+            class=" sub  level-2">
+              Installation
+            </a>
+            <a
+            href="../../themes/creating-a-new-theme/using-the-theme/"
+            class=" sub last-sub level-2">
+              Using the Theme
+            </a>
+            <a
+            href="../../api-reference/"
+            class="   level-0">
+              API Reference
+            </a>
+              <hr class="level-0">
+            <a
+            href="../../api-reference/cli/"
+            class=" sub  level-1">
+              CLI
+            </a>
+            <a
+            href="../../api-reference/nodejs-api/"
+            class=" sub  level-1">
+              Node.js API
+            </a>
+            <a
+            href="../../api-reference/template-api/"
+            class=" sub  level-1">
+              Template API
+            </a>
+        </div>
+      </nav>
+      <div class="article-container">
+        <article>
+                <h1><a id="assets">Assets</a></h1>
+                <p>Sometimes we need to include images, videos, or any other media files inside our Markdown documentation. Since the output HTML of a Fluorite project can have different structures based on the configuration (single page or multipage), and the resulting HTML can be hosted on a server at different directory levels, linking to assets one-way might not work with all the various setups. An absolute path and a relative path both can&#39;t single handedly solve this problem, since:</p>
+<ul>
+<li>An absolute path to the root must be changed manually when the documentation is moved to a different directory level.</li>
+<li>A relative path will only work if we know what directory level each documentation file is at, and that can change based on the blueprint and the renderer options.</li>
+</ul>
+<p>To overcome this problem, Fluorite provides two variables for both Markdown and JSON files:</p>
+<ul>
+<li><code>{{rootPrefix}}</code>: A relative path to the root of the project generated for each documentation file considering its current directory level.</li>
+<li><code>{{versionRootPrefix}}</code>: A relative path to the root of the current version for each documentation file considering its current directory level.</li>
+</ul>
+<p>And allows all assets to be declared inside the <code>flconfig.json</code> file. All assets will be copied to <code>/assets/contents</code> at the root of the generated documentation. To declare assets, add a property to <code>contentAssets</code> with the format <code>&quot;path-to-source-file-relative-to-basePath-or-flconfig&quot;: &quot;path-to-destination-file-relative-to-/assets/contents&quot;</code>.</p>
+<p>With that in mind, we can declare all of our asset files inside the configuration file as below:</p>
+<p><strong>src</strong></p>
+<pre><code>/src
+  /assets
+    /contents
+      image.jpg
+  markdown-with-assets.md
+  index.md</code></pre><p><strong>flconfig.json</strong></p>
+<pre><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"basePath"</span><span class="token operator">:</span> <span class="token string">"src"</span><span class="token punctuation">,</span>
+  <span class="token property">"outputDir"</span><span class="token operator">:</span> <span class="token string">"dist"</span><span class="token punctuation">,</span>
+  <span class="token property">"rootContent"</span><span class="token operator">:</span> <span class="token string">"index.md"</span><span class="token punctuation">,</span>
+  <span class="token property">"contentAssets"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"assets/contents"</span><span class="token operator">:</span> <span class="token string">"/"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"blueprint"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span> <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"Section 1"</span><span class="token punctuation">,</span> <span class="token property">"content"</span><span class="token operator">:</span> <span class="token string">"markdown-with-assets.md"</span><span class="token punctuation">,</span> <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"1.0.0"</span> <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">"rendererOptions"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"multipage"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"versions"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"0.0.5"</span><span class="token punctuation">,</span> <span class="token string">"1.0.0"</span><span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p><strong>markdown-with-assets.md</strong></p>
+<pre><code class="language-markdown">This is an image:
+<span class="token url">![<span class="token content">Alt</span>]({{rootPrefix}}/assets/contents/image.jpg)</span></code></pre>
+<p><strong>generated files</strong></p>
+<pre><code>/dist
+  /assets
+    /contents
+      image.jpg
+  /0.0.5
+    index.html
+  /1.0.0
+    index.html
+    /section-1
+      index.html</code></pre><p><strong>generated path inside /dist/1.0.0/section-1/index.html</strong></p>
+<pre><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>../../assets/contents/image.jpg<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre>
+<h2 id="contents-assets-linking-to-other-sections">Linking To Other Sections</h2>
+<p>When we are generating a single page documentation, linking to other sections of the documentation is easy. We would use anchors considering the fact that any section&#39;s anchor is prefixed with its parents&#39; names. For instance, if we have the following blueprint:</p>
+<pre><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"blueprint"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span> <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"Section 1"</span><span class="token punctuation">,</span> <span class="token property">"content"</span><span class="token operator">:</span> <span class="token string">"section1.md"</span><span class="token punctuation">,</span> <span class="token property">"sub"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span> <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"Section 1-1"</span><span class="token punctuation">,</span> <span class="token property">"content"</span><span class="token operator">:</span> <span class="token string">"section1-1.md"</span> <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"Section 2"</span><span class="token punctuation">,</span> <span class="token property">"content"</span><span class="token operator">:</span> <span class="token string">"section2.md"</span> <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre>
+<p>We can link to Section 1-1 from Section 2 using the <code>#section-1-section-1-1</code> anchor.</p>
+<p>Considering the same blueprint but in a multipage documentation, since each section will have its own page, we can link from Section 2 to Section 1-1 using the <code>{{versionRootPrefix}}</code> variable to link to the same version:</p>
+<pre><code class="language-markdown">This is Section 2. Visit <span class="token url">[<span class="token content">Section 1-1</span>]({{versionRootPrefix}}/section-1/section-1-1)</span>.</code></pre>
+<h2 id="contents-assets-escaping">Escaping</h2>
+<p>If for whatever reason you need to escape those two variables, you can insert <code>!</code> at the beginning of the variables (that&#39;s how we have escaped those variables on this page!)</p>
+
+        </article>
+        <footer>
+          <span>Generated by <a href="https://fluorite.js.org" target="_blank">Fluorite</a></span>
+          <span class="last-modified">Last modified: 1/3/2020</span>
+        </footer>
+      </div>
+    </main>
+  </body>
+</html>
