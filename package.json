@@ -34,20 +34,20 @@
   },
   "homepage": "https://fluorite.js.org",
   "dependencies": {
-    "autoprefixer": "^9.7.3",
+    "autoprefixer": "^9.8.6",
     "chalk": "^2.4.2",
     "chokidar": "^2.1.6",
-    "clean-css": "^4.2.1",
+    "clean-css": "^4.2.3",
     "cli-spinner": "^0.2.10",
     "commander": "^2.20.3",
     "express": "^4.17.1",
     "fs-extra": "^7.0.1",
-    "handlebars": "^4.5.3",
-    "lodash": "^4.17.15",
-    "marked": "^0.8.0",
-    "postcss": "^7.0.25",
-    "prismjs": "^1.17.1",
-    "sass": "^1.23.7",
-    "terser": "^4.4.3"
+    "handlebars": "^4.7.6",
+    "lodash": "^4.17.20",
+    "marked": "^0.8.2",
+    "postcss": "^7.0.32",
+    "prismjs": "^1.21.0",
+    "sass": "^1.26.10",
+    "terser": "^4.8.0"
   }
 }
