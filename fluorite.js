@@ -760,7 +760,7 @@ class Fluorite {
     for ( const raw of section.raw ) {
 
       // Markdown
-      if ( typeof raw === 'string' ) section.content.push(this._renderer.renderMarkdown(raw, previousTitles.concat(section.title)));
+      if ( typeof raw === 'string' ) section.content.push(this._renderer.renderMarkdown(raw, ! this._config.rendererOptions.multiPage ? previousTitles.concat(section.title) : undefined));
 
       // API
       if ( typeof raw === 'object' ) {
