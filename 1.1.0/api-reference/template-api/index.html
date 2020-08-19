@@ -30,7 +30,7 @@
               		c12.365,12.354,12.365,32.392,0,44.751L248.292,345.449C242.115,351.621,234.018,354.706,225.923,354.706z"/>
               </svg>            <div class="dropdown-container" onclick="stopClickBubbling(event)">
               <ul>
-                  <a href="../../../1.3.6/api-reference/template-api"><li>1.3.6</li></a>
+                  <a href="../../../1.3.8/api-reference/template-api"><li>1.3.8</li></a>
                   <a href="../../../1.3.3/api-reference/template-api"><li>1.3.3</li></a>
                   <a href="../../../1.2.0/api-reference/template-api"><li>1.2.0</li></a>
                   <a href="."><li>1.1.0</li></a>
@@ -56,7 +56,7 @@
       </div>
       <nav>
           <div id="versionsList" class="nav-container">
-              <a class="level-0" href="../../../1.3.6/api-reference/template-api">1.3.6</a>
+              <a class="level-0" href="../../../1.3.8/api-reference/template-api">1.3.8</a>
               <a class="level-0" href="../../../1.3.3/api-reference/template-api">1.3.3</a>
               <a class="level-0" href="../../../1.2.0/api-reference/template-api">1.2.0</a>
               <a class="level-0 selected" href=".">1.1.0</a>
@@ -349,14 +349,14 @@
 <blockquote>
 <p>If you need a working example, take a look at the Onyx&#39;s <code>index.hbs</code> located at <code>fluorite-root/themes/onyx/index.hbs</code>.</p>
 </blockquote>
-<h2 id="api-reference-template-api-built-in-helpers">Built-in Helpers</h2>
+<h2 id="built-in-helpers">Built-in Helpers</h2>
 <p>The following built-in Handlebars helpers are available to the templates:</p>
 <ul>
 <li><strong>isAPI</strong>: Takes a value and returns true if it&#39;s equal to <code>api</code> (useful for detecting <code>contents.*.content.*.type</code>).</li>
 <li><strong>isDoc</strong>: Same as <code>isAPI</code> but returns true for <code>doc</code> type.</li>
 <li><strong>isRoot</strong>: Takes a value and returns true if it&#39;s an empty string (useful for detecting if <code>sections.*.path</code> is root).</li>
 </ul>
-<h2 id="api-reference-template-api-example">Example</h2>
+<h2 id="example">Example</h2>
 <p>The following Handlebars file is a simple example of how the template API may be used:</p>
 <pre><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
@@ -368,14 +368,14 @@
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
     {{! Render documentation index}}
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>index<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>index<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
       {{#each sections}}
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{link}}<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>{{version}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>{{link}}<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>{{version}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
       {{/each}}
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
     {{! Render the current page's content}}
     {{#each contents}}
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{id}}<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>{{title}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>{{id}}<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>{{title}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
       {{#each content}}
         {{value}}
       {{/each}}
@@ -386,7 +386,7 @@
         </article>
         <footer>
           <span>Generated by <a href="https://fluorite.js.org" target="_blank">Fluorite</a></span>
-          <span class="last-modified">Last modified: 1/3/2020</span>
+          <span class="last-modified">Last modified: 8/19/2020</span>
         </footer>
       </div>
     </main>
