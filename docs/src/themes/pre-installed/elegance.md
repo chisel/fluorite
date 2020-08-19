@@ -1,4 +1,4 @@
-The theme you're looking at right now is Elegance! This theme is responsive, provides accent color customization through [theme options](#themes-pre-installed-elegance-theme-options), and allows writing [responsive Markdown](#themes-pre-installed-elegance-responsive-markdown).
+The theme you're looking at right now is Elegance! This theme is responsive, provides accent color customization through [theme options](#theme-options), and allows writing [responsive Markdown](#responsive-markdown).
 
 <!-- responsive: tablet, desktop -->
 ![Elegance Preview]({{rootPrefix}}/assets/contents/elegance-desktop.png)

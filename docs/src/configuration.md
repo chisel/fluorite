@@ -37,7 +37,7 @@ The following properties are defined on the root level of the configuration file
   - `optional` **rendererOptions**: Namespace for renderer options.
     - `optional` **theme**: The name of an installed theme to use. Defaults to `onyx`.
     - `optional` **flavor**: The name of the theme flavor (if any) to use. Defaults to the selected theme's default flavor.
-    - `optional` **multiPage**: A boolean indicating if the documentation should be broken down into multiple pages for each section (and sub sections) or should be all generated in one single page. Defaults to `false`. [Learn more about the output structure]({{versionRootPrefix}}/project-structure#project-structure-output-directory).
+    - `optional` **multiPage**: A boolean indicating if the documentation should be broken down into multiple pages for each section (and sub sections) or should be all generated in one single page. Defaults to `false`. [Learn more about the output structure]({{versionRootPrefix}}/project-structure#output-directory).
     - `optional` **versions**: An array of strings defining the versions of the documentation. Each version will only contain the sections which have defined a target version. Defaults to `*` for all sections. [Learn more about versioning]({{versionRootPrefix}}/contents#versioning).
     - `optional` **noRedirect**: If `true`, index.html won't be created for redirecting to the default version (only when there are multiple versions).
     - `optional` **defaultVersion**: The default version of the documentation (if there are multiple versions). Defaults to the latest version.

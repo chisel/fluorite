@@ -91,7 +91,7 @@ The template data of each page has the following properties available to the Han
               - **id**: The id of the status title (used for headers).
               - **code**: The status code.
               - **content**: The status content (message).
-  - **extended**: A copy of the `themeOptions` inside `flconfig.json`. All the declared user assets in the theme's config will have the final calculated value here (refer to [User Assets]({{versionRootPrefix}}/themes/creating-a-new-theme/theme-assets#theme-assets-user-assets) for more info.)
+  - **extended**: A copy of the `themeOptions` inside `flconfig.json`. All the declared user assets in the theme's config will have the final calculated value here (refer to [User Assets]({{versionRootPrefix}}/themes/creating-a-new-theme/theme-assets#user-assets) for more info.)
 
 > If you need a working example, take a look at the Onyx's `index.hbs` located at `fluorite-root/themes/onyx/index.hbs`.
 
