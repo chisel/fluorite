@@ -776,7 +776,7 @@ class Fluorite {
 
         }
 
-        section.content.push(this._renderer.renderAPI(raw, previousTitles.concat(section.title)));
+        section.content.push(this._renderer.renderAPI(raw, ! this._config.rendererOptions.multiPage ? previousTitles.concat(section.title) : undefined));
 
       }
 

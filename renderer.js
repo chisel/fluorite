@@ -261,6 +261,8 @@ class Renderer {
 
   renderAPI(raw, headerPrefix) {
 
+    if ( ! headerPrefix ) headerPrefix = '';
+
     let api = {
       raw: _.cloneDeep(raw)
     };
@@ -479,7 +481,7 @@ class Renderer {
         }
 
         // Minify
-        let results = terser.minify(content);
+        let results = await terser.minify(content);
 
         if ( results.error ) throw error;
 
