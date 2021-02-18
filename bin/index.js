@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 
 const path = require('path');
-const fsx = require('fs-extra');
+const fs = require('fs-extra');
 const program = require('commander');
 const chalk = require('chalk');
 const chokidar = require('chokidar');
 const Spinner = require('cli-spinner').Spinner;
+const os = require('os');
 const fl = new (require(path.join(__dirname, '../fluorite.js')))();
 
 function watchFiles(watcher, fl, config, spinner) {
@@ -63,7 +64,16 @@ function watchFiles(watcher, fl, config, spinner) {
   }
 
   // Add all theme files
-  files.push(path.resolve(__dirname, '..', 'themes', fl.config.rendererOptions.theme || 'onyx'));
+  if ( fs.existsSync(path.resolve(__dirname, '..', 'themes', fl.config.rendererOptions.theme || 'onyx')) ) {
+
+    files.push(path.resolve(__dirname, '..', 'themes', fl.config.rendererOptions.theme || 'onyx'));
+
+  }
+  else if ( fs.existsSync(path.resolve(os.homedir(), '.fluorite', 'themes', fl.config.rendererOptions.theme)) ) {
+
+    files.push(path.resolve(os.homedir(), '.fluorite', 'themes', fl.config.rendererOptions.theme));
+
+  }
 
   // Delete identical files
   files = files.filter((file, index) => files.indexOf(file) === index);
@@ -83,6 +93,8 @@ function watchFiles(watcher, fl, config, spinner) {
   });
 
 }
+
+fs.ensureDirSync(path.join(os.homedir(), '.fluorite', 'themes'));
 
 program
   .version(require(path.join(__dirname, '../package.json')).version, '-v --version');
@@ -219,7 +231,7 @@ program
       const finalName = 'fluorite-theme-' + name.replace(/^fluorite-theme-/, '');
       const finalPath = path.resolve(path.join('.', finalName));
 
-      fsx.copy(path.join(__dirname, '..', '.seed', 'theme'), finalPath)
+      fs.copy(path.join(__dirname, '..', '.seed', 'theme'), finalPath)
       .then(() => {
 
         spinner.stop(true);
@@ -247,8 +259,8 @@ program
       let finalName;
       let finalTargetName;
 
-      if ( fsx.existsSync(path.resolve(path.join('.', name))) ) finalName = name;
-      else if ( fsx.existsSync(path.resolve(path.join('.', 'fluorite-theme-' + name))) ) finalName = 'fluorite-theme-' + name;
+      if ( fs.existsSync(path.resolve(path.join('.', name))) ) finalName = name;
+      else if ( fs.existsSync(path.resolve(path.join('.', 'fluorite-theme-' + name))) ) finalName = 'fluorite-theme-' + name;
 
       if ( ! finalName ) {
 
@@ -262,7 +274,7 @@ program
 
       finalTargetName = finalTargetName.replace(/^fluorite-theme-/, '');
 
-      if ( fsx.existsSync(path.join(__dirname, '..', 'themes', finalTargetName)) ) {
+      if ( fs.existsSync(path.join(os.homedir(), '.fluorite', 'themes', finalTargetName)) ) {
 
         spinner.stop(true);
         return console.log(chalk.redBright(`A theme with name ${finalTargetName} is already installed!`));
@@ -273,12 +285,12 @@ program
 
       if ( cmd.symlink ) {
 
-        promise = fsx.ensureSymlink(path.resolve(path.join('.', finalName)), path.join(__dirname, '..', 'themes', finalTargetName));
+        promise = fs.ensureSymlink(path.resolve(path.join('.', finalName)), path.join(os.homedir(), '.fluorite', 'themes', finalTargetName));
 
       }
       else {
 
-        promise = fsx.copy(path.resolve(path.join('.', finalName)), path.join(__dirname, '..', 'themes', finalTargetName));
+        promise = fs.copy(path.resolve(path.join('.', finalName)), path.join(os.homedir(), '.fluorite', 'themes', finalTargetName));
 
       }
 
@@ -309,8 +321,8 @@ program
 
       let finalPath;
 
-      if ( fsx.existsSync(path.join(__dirname, '..', 'themes', name)) ) finalPath = path.join(__dirname, '..', 'themes', name);
-      else if ( fsx.existsSync(path.join(__dirname, '..', 'themes', 'fluorite-theme-' + name)) ) finalPath = path.join(__dirname, '..', 'themes', 'fluorite-theme-' + name);
+      if ( fs.existsSync(path.join(os.homedir(), '.fluorite', 'themes', name)) ) finalPath = path.join(os.homedir(), '.fluorite', 'themes', name);
+      else if ( fs.existsSync(path.join(os.homedir(), '.fluorite', 'themes', 'fluorite-theme-' + name)) ) finalPath = path.join(os.homedir(), '.fluorite', 'themes', 'fluorite-theme-' + name);
 
       if ( ! finalPath ) {
 
@@ -319,7 +331,7 @@ program
 
       }
 
-      fsx.remove(finalPath)
+      fs.remove(finalPath)
       .then(() => {
 
         spinner.stop(true);
@@ -354,7 +366,7 @@ program
 
     const finalPath = path.resolve(path.join('.', name));
 
-    fsx.copy(path.join(__dirname, '..', '.seed', 'project'), finalPath)
+    fs.copy(path.join(__dirname, '..', '.seed', 'project'), finalPath)
     .then(() => {
 
       spinner.stop(true);

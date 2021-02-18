@@ -1,6 +1,7 @@
 const fs = require('fs-extra');
 const path = require('path');
 const _ = require('lodash');
+const os = require('os');
 const Renderer = require(path.join(__dirname, 'renderer.js'));
 const Server = require(path.join(__dirname, 'server.js'));
 const redirectTemplate = `
@@ -50,11 +51,18 @@ class Fluorite {
       this._config = config;
       this._server = new Server(config.serverOptions);
       this._config.serverOptions = this._server.options;
+      // Determine theme directory
+      if ( fs.existsSync(path.join(__dirname, 'themes', this._config.rendererOptions.theme)) )
+        this._config.themeDir = path.join(__dirname, 'themes');
+      else if ( fs.existsSync(path.join(os.homedir(), '.fluorite', 'themes', this._config.rendererOptions.theme)) )
+        this._config.themeDir = path.join(os.homedir(), '.fluorite', 'themes');
+      else
+        this._config.themeDir = null;
 
       // Load theme's config file (if any)
-      if ( fs.existsSync(path.join(__dirname, 'themes', this._config.rendererOptions.theme, 'config.json')) ) {
+      if ( fs.existsSync(path.join(this._config.themeDir, this._config.rendererOptions.theme, 'config.json')) ) {
 
-        this._themeConfig = this._require(path.join(__dirname, 'themes', this._config.rendererOptions.theme, 'config.json'));
+        this._themeConfig = this._require(path.join(this._config.themeDir, this._config.rendererOptions.theme, 'config.json'));
 
       }
 
@@ -107,17 +115,17 @@ class Fluorite {
     let themeConfig = {}, css, template, helpers, partials, userAssets = {}, warnings = [];
 
     // See if index.hbs exists
-    if ( ! fs.existsSync(path.join(__dirname, 'themes', themeName, 'index.hbs')) )
+    if ( ! fs.existsSync(path.join(this._config.themeDir, themeName, 'index.hbs')) )
       return this._emit('error', new Error(`Could not find index.hbs of theme ${themeName}!`));
 
     // See if styles.scss exists
-    if ( ! fs.existsSync(path.join(__dirname, 'themes', themeName, 'styles.scss')) )
+    if ( ! fs.existsSync(path.join(this._config.themeDir, themeName, 'styles.scss')) )
       return this._emit('error', new Error(`Could not find styles.scss of theme ${themeName}!`));
 
     // Load theme's config file (if any)
-    if ( fs.existsSync(path.join(__dirname, 'themes', themeName, 'config.json')) ) {
+    if ( fs.existsSync(path.join(this._config.themeDir, themeName, 'config.json')) ) {
 
-      themeConfig = this._require(path.join(__dirname, 'themes', themeName, 'config.json'));
+      themeConfig = this._require(path.join(this._config.themeDir, themeName, 'config.json'));
       this._themeConfig = _.cloneDeep(themeConfig);
 
     }
@@ -132,13 +140,13 @@ class Fluorite {
       if ( ! selectedFlavor ) return this._emit('error', new Error(`No flavor selected for theme ${themeName} since theme has no default flavor!`));
 
       // See if flavor sass file exists
-      if ( ! fs.existsSync(path.join(__dirname, 'themes', themeName, 'flavors', `_${selectedFlavor}.scss`)) )
+      if ( ! fs.existsSync(path.join(this._config.themeDir, themeName, 'flavors', `_${selectedFlavor}.scss`)) )
         return this._emit('error', new Error(`Cannot find the ${selectedFlavor} flavor's .scss file of theme ${themeName}!`));
 
       // Copy flavor file to _final.scss
       try {
 
-        await fs.writeFile(path.join(__dirname, 'themes', themeName, 'flavors', '_final.scss'), await fs.readFile(path.join(__dirname, 'themes', themeName, 'flavors', `_${selectedFlavor}.scss`), { encoding: 'utf8' }));
+        await fs.writeFile(path.join(this._config.themeDir, themeName, 'flavors', '_final.scss'), await fs.readFile(path.join(this._config.themeDir, themeName, 'flavors', `_${selectedFlavor}.scss`), { encoding: 'utf8' }));
 
       }
       catch (error) {
@@ -152,7 +160,7 @@ class Fluorite {
     // Read index.hbs
     try {
 
-      template = await fs.readFile(path.join(__dirname, 'themes', themeName, 'index.hbs'), { encoding: 'utf8' });
+      template = await fs.readFile(path.join(this._config.themeDir, themeName, 'index.hbs'), { encoding: 'utf8' });
 
     }
     catch (error) {
@@ -162,11 +170,11 @@ class Fluorite {
     }
 
     // Register theme's Handlebars helpers (if any)
-    if ( fs.existsSync(path.join(__dirname, 'themes', themeName, 'hbs-helpers.js')) ) {
+    if ( fs.existsSync(path.join(this._config.themeDir, themeName, 'hbs-helpers.js')) ) {
 
       try {
 
-        helpers = this._require(path.join(__dirname, 'themes', themeName, 'hbs-helpers.js'));
+        helpers = this._require(path.join(this._config.themeDir, themeName, 'hbs-helpers.js'));
 
         // Register helpers
         this._renderer.registerHelpers(helpers);
@@ -181,11 +189,11 @@ class Fluorite {
     }
 
     // Register theme's Handlebars partials (if any)
-    if ( fs.existsSync(path.join(__dirname, 'themes', themeName, 'hbs-partials.js')) ) {
+    if ( fs.existsSync(path.join(this._config.themeDir, themeName, 'hbs-partials.js')) ) {
 
       try {
 
-        partials = this._require(path.join(__dirname, 'themes', themeName, 'hbs-partials.js'));
+        partials = this._require(path.join(this._config.themeDir, themeName, 'hbs-partials.js'));
 
         // Register partials
         this._renderer.registerPartials(partials);
@@ -202,7 +210,7 @@ class Fluorite {
     // Compile SASS to CSS
     try {
 
-      let result = await this._renderer.compileSass(path.join(__dirname, 'themes', themeName, 'styles.scss'));
+      let result = await this._renderer.compileSass(path.join(this._config.themeDir, themeName, 'styles.scss'));
 
       // Save warnings
       warnings = result.warnings().map(warning => warning.toString());
@@ -268,7 +276,7 @@ class Fluorite {
 
         for ( const asset of themeConfig.assets ) {
 
-          await fs.copy(path.join(__dirname, 'themes', themeName, asset), path.join(outputDirPath, 'assets', 'theme', asset));
+          await fs.copy(path.join(this._config.themeDir, themeName, asset), path.join(outputDirPath, 'assets', 'theme', asset));
 
         }
 
