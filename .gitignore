@@ -3,3 +3,4 @@ themes/*/flavors/_final.scss
 sample.fdml
 docs/dist
 **/template-data.json
+.DS_Store
