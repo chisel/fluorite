@@ -16,11 +16,19 @@ function watchFiles(watcher, fl, config, spinner) {
   // Get files to watch
   let files = [];
 
-  // Add flconfig.json
-  files.push(path.join(fl.options.basePath, 'flconfig.json'));
+  // Add config files
+  if ( fs.existsSync(path.join(fl.options.basePath, 'flconfig.json')) )
+    files.push(path.join(fl.options.basePath, 'flconfig.json'));
+
+  if ( fs.existsSync(path.join(fl.options.basePath, 'flconfig.yaml')) )
+    files.push(path.join(fl.options.basePath, 'flconfig.yaml'));
+
+  if ( fs.existsSync(path.join(fl.options.basePath, 'flconfig.yml')) )
+    files.push(path.join(fl.options.basePath, 'flconfig.yml'));
 
   // Add rootContent (if any)
-  if ( fl.config.rendererOptions.multiPage ) files.push(path.join(fl.options.basePath, fl.config.basePath || '', fl.config.rootContent));
+  if ( fl.config.rendererOptions.multiPage )
+    files.push(path.join(fl.options.basePath, fl.config.basePath || '', fl.config.rootContent));
 
   // Add files in the blueprint
   let subSections = [];
@@ -103,7 +111,7 @@ program
   .command('build')
   .alias('b')
   .description('builds the docs in the output directory')
-  .option('-c --config <config>', 'a custom path to the flconfig.json file')
+  .option('-c --config <config>', 'a custom path to the flconfig.(json|yaml|yml) file')
   .action(cmd => {
 
     const spinner = new Spinner();
@@ -145,7 +153,7 @@ program
   .alias('s')
   .description('serves the built docs from the output directory')
   .option('-p --port [port]', 'the port number to start the local server on')
-  .option('-c --config <config>', 'a custom path to the flconfig.json file')
+  .option('-c --config <config>', 'a custom path to the flconfig.(json|yaml|yml) file')
   .option('-w --watch', 'watches the input files for changes and rebuilds the docs')
   .option('--skip-build', 'skips building the documentation before serving')
   .action(cmd => {
@@ -218,6 +226,7 @@ program
   .alias('t')
   .option('-a --as <name>', 'a custom name for the theme to be installed as (for add action only)')
   .option('-s --symlink', 'creates a symlink instead of copying the theme (useful for theme development and testing)')
+  .option('-y --yaml', 'uses YAML instead of JSON for all config files (for new action only')
   .description('<action: new> creates a new Fluorite theme, <action: add> installs the given directory as a Fluorite theme, <action: remove> uninstalls a theme')
   .action((action, name, cmd) => {
 
@@ -233,6 +242,13 @@ program
 
       fs.copy(path.join(__dirname, '..', '.seed', 'theme'), finalPath)
       .then(() => {
+
+        // Using JSON
+        if ( ! cmd.yaml )
+          fs.removeSync(path.join(finalPath, 'config.yaml'));
+        // Using YAML
+        else
+          fs.removeSync(path.join(finalPath, 'config.json'));
 
         spinner.stop(true);
         console.log(chalk.greenBright(`Fluorite theme ${finalName} created`));
@@ -357,6 +373,7 @@ program
   .command('new <name>')
   .alias('n')
   .description('creates a new Fluorite project')
+  .option('-y --yaml', 'uses YAML instead of JSON for all config files')
   .action((name, cmd) => {
 
     const spinner = new Spinner(`${chalk.yellow('%s')}`);
@@ -368,6 +385,13 @@ program
 
     fs.copy(path.join(__dirname, '..', '.seed', 'project'), finalPath)
     .then(() => {
+
+      // Using JSON
+      if ( ! cmd.yaml )
+        fs.removeSync(path.join(finalPath, 'flconfig.yaml'));
+      // Using YAML
+      else
+        fs.removeSync(path.join(finalPath, 'flconfig.json'));
 
       spinner.stop(true);
       console.log(chalk.greenBright(`Fluorite project ${name} created`));

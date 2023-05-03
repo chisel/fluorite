@@ -3,7 +3,7 @@
 
 // Util
 @function rem($size) {
-  @return #{$size / 16px}rem;
+  @return #{calc($size / 16px)}rem;
 }
 
 // Colors
@@ -167,7 +167,7 @@ header {
       flex-shrink: 0;
     }
     a.title {
-      width: 100%;
+      max-width: 100%;
       overflow-x: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;

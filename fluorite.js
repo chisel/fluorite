@@ -1,4 +1,5 @@
 const fs = require('fs-extra');
+const yaml = require('yaml-import');
 const path = require('path');
 const _ = require('lodash');
 const os = require('os');
@@ -39,11 +40,11 @@ class Fluorite {
 
   }
 
-  load(configPath) {
+  load(configPathOrObject) {
 
-    this._basePath = configPath ? path.dirname(configPath) : '.';
+    this._basePath = configPathOrObject && typeof configPathOrObject === 'string' ? path.dirname(configPathOrObject) : '.';
 
-    this._readConfig(configPath ? path.basename(configPath) : 'flconfig.json')
+    this._readConfig(configPathOrObject && typeof configPathOrObject === 'string' ? path.basename(configPathOrObject) : configPathOrObject)
     .then(config => {
 
       this._emit('update', 'Config was loaded');
@@ -60,11 +61,14 @@ class Fluorite {
         this._config.themeDir = null;
 
       // Load theme's config file (if any)
-      if ( fs.existsSync(path.join(this._config.themeDir, this._config.rendererOptions.theme, 'config.json')) ) {
+      const themeDirectory = path.join(this._config.themeDir, this._config.rendererOptions.theme);
 
-        this._themeConfig = this._require(path.join(this._config.themeDir, this._config.rendererOptions.theme, 'config.json'));
-
-      }
+      if ( fs.existsSync(path.join(themeDirectory, 'config.json')) )
+        this._themeConfig = this._require(path.join(themeDirectory, 'config.json'));
+      else if ( fs.existsSync(path.join(themeDirectory, 'config.yaml')) )
+        this._themeConfig = yaml.read(path.join(themeDirectory, 'config.yaml'));
+      else if ( fs.existsSync(path.join(themeDirectory, 'config.yml')) )
+        this._themeConfig = yaml.read(path.join(themeDirectory, 'config.yml'));
 
       this._emit('ready');
 
@@ -123,12 +127,16 @@ class Fluorite {
       return this._emit('error', new Error(`Could not find styles.scss of theme ${themeName}!`));
 
     // Load theme's config file (if any)
-    if ( fs.existsSync(path.join(this._config.themeDir, themeName, 'config.json')) ) {
-
+    const themeDir = path.join(this._config.themeDir, themeName);
+    
+    if ( fs.existsSync(path.join(themeDir, 'config.json')) )
       themeConfig = this._require(path.join(this._config.themeDir, themeName, 'config.json'));
-      this._themeConfig = _.cloneDeep(themeConfig);
+    else if ( fs.existsSync(path.join(themeDir, 'config.yaml')) )
+      themeConfig = yaml.read(path.join(this._config.themeDir, themeName, 'config.yaml'));
+    else if ( fs.existsSync(path.join(themeDir, 'config.yml')) )
+      themeConfig = yaml.read(path.join(this._config.themeDir, themeName, 'config.yml'));
 
-    }
+    this._themeConfig = _.cloneDeep(themeConfig);
 
     // Prepare theme's flavor (if any)
     if ( themeConfig.hasFlavors ) {
@@ -541,14 +549,49 @@ class Fluorite {
 
   }
 
-  async _readConfig(configPath) {
+  async _readConfig(configPathOrObject) {
 
     let config;
 
     // Load flconfig.json
     try {
 
-      config = this._require(path.resolve(path.join(this._basePath, configPath)));
+      // If path provided
+      if ( typeof configPathOrObject === 'string' ) {
+
+        const extension = path.extname(configPathOrObject).toLowerCase();
+
+        // If JSON file
+        if ( extension === '.json' )
+          config = this._require(path.resolve(this._basePath, configPathOrObject));
+        // If YAML file
+        else if ( extension === '.yaml' || extension === '.yml' )
+          config = yaml.read(path.resolve(this._basePath, configPathOrObject));
+        // If unsupported extension
+        else
+          throw new Error(`Invalid config file extension "${extension}"!`);
+
+      }
+      // If object provided
+      else if ( configPathOrObject && typeof configPathOrObject === 'object' && configPathOrObject.constructor === Object )
+        config = _.cloneDeep(configPathOrObject);
+      // If nothing provided
+      else {
+
+        // If flconfig.json exists
+        if ( fs.existsSync(path.resolve(this._basePath, 'flconfig.json')) )
+          config = this._require(path.resolve(this._basePath, 'flconfig.json'));
+        // If flconfig.yaml exists
+        else if ( fs.existsSync(path.resolve(this._basePath, 'flconfig.yaml')) )
+          config = yaml.read(path.resolve(this._basePath, 'flconfig.yaml'));
+        // If flconfig.yml exists
+        else if ( fs.existsSync(path.resolve(this._basePath, 'flconfig.yml')) )
+          config = yaml.read(path.resolve(this._basePath, 'flconfig.yml'));
+        // If none of the files exist
+        else
+          throw new Error('Could not find a Flourite config file!');
+
+      }
 
     }
     catch (error) {
@@ -675,6 +718,8 @@ class Fluorite {
 
       if ( ext.toLowerCase() === '.md' ) return await fs.readFile(path.resolve(path.join(this._basePath, basePath || '', contentPath)), { encoding: 'utf8' });
       if ( ext.toLowerCase() === '.json' ) return this._require(path.resolve(path.join(this._basePath, basePath || '', contentPath)));
+      if ( ext.toLowerCase() === '.yaml' ) return yaml.read(path.resolve(path.join(this._basePath, basePath || '', contentPath)));
+      if ( ext.toLowerCase() === '.yml' ) return yaml.read(path.resolve(path.join(this._basePath, basePath || '', contentPath)));
 
     }
     catch (error) {
@@ -891,6 +936,7 @@ class Fluorite {
         try {
 
           if ( ext === '.json' ) body[key || 'model'] = this._require(path.resolve(path.join(this._basePath, body.externalFile)));
+          if ( ext === '.yaml' || ext === '.yml' ) body[key || 'model'] = yaml.read(path.resolve(path.join(this._basePath, body.externalFile)));
           if ( ext === '.xml' ) body[key || 'model'] = (await fs.readFile(path.resolve(path.join(this._basePath, body.externalFile)), { encoding: 'utf8' })).trim();
 
         }

@@ -4,10 +4,11 @@ declare class Fluorite {
     basePath: string;
   };
   config: FluoriteConfig;
-  on: (event: string, cb: (...args: any[]) => void) => Fluorite;
-  load: (configPath: string) => Fluorite;
-  generate: () => Promise<void>;
-  serve: (port: number) => Promise<void>;
+  on(event: string, cb: (...args: any[]) => void): Fluorite;
+  load(configPath?: string): Fluorite;
+  load(config?: FluoriteConfig): Fluorite;
+  generate(): Promise<void>;
+  serve(port: number): Promise<void>;
 }
 
 interface ThemeConfig {

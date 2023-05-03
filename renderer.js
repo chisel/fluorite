@@ -255,7 +255,7 @@ class Renderer {
 
     if ( headerPrefix ) headerPrefix = this.urlFriendly('', headerPrefix);
 
-    return marked(raw, { headerPrefix: headerPrefix || '' });
+    return marked.parse(raw, { headerPrefix: headerPrefix || '' });
 
   }
 
@@ -420,7 +420,7 @@ class Renderer {
 
   async compileSass(filename) {
 
-    return await postcss([autoprefixer]).process(sass.renderSync({ file: filename }).css, { from: undefined });
+    return await postcss([autoprefixer]).process(sass.compile(filename).css, { from: undefined });
 
   }
 

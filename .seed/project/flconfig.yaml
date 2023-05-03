@@ -1,0 +1,17 @@
+title: Documentation Title
+basePath: src
+outputDir: dist
+blueprint:
+  - title: Welcome
+    content: welcome.md
+  - title: Quick Start
+    content: quick-start.md
+rendererOptions:
+  theme: elegance
+  multiPage: false
+themeOptions:
+  brandName: Brand Name
+  icon: src/assets/theme/logo.svg
+  favicon: src/assets/theme/favicon.ico
+  rootName: Root Content Name
+  hideProgressBar: false
