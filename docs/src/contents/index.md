@@ -29,7 +29,14 @@ blueprint:
 
 ## Versioning
 
-Each section can target a direct version or a range of versions using the `version` property of their definition object. This allows them to be included or excluded in specific versions of the generated documentation. To target a specific version, write the exact version as the value of the `version` property, and to target a range of versions, use one of the following notations at the beginning of the version: `<`, `<=`, `>`, and `=>`.
+Each section can target a direct version or a range of versions using the `version` property of their definition object. This allows them to be included or excluded in specific versions of the generated documentation.
+
+To target a specific version, write the exact version as the value of the `version` property. You can also target multiple versions by passing an array of versions.
+
+To target a range of versions for a section, you can use any of the following combinations:
+  - Use any of `>`, `<`, `>=`, and `<=` at the start of a version to define a range (e.g. `<=3.0.0`, `>1.4.0`).
+  - Use `x` to match any number in the version segment (e.g. `1.x`, `1.5.x`).
+  - Use multiple versions (an array of strings) with matching notations to define a strict range (e.g. `version: ['>=1.0.0', '<3.5.0']`)
 
 > If the version property is missing on a section definition, that section will be included in all versions of the documentation.
 
@@ -44,11 +51,12 @@ You can define which versions of the documentation should be generated at `rende
 ```json
 {
   "blueprint": [
-    { "title": "Section 1", "content": ["docs/doc1.md", "docs/api1.json"], "version": ">=1.0.0" },
+    { "title": "Section 1", "content": ["docs/doc1-v4.md", "docs/api1.json"], "version": "4.x" },
+    { "title": "Section 1", "content": ["docs/doc1.md", "docs/api1.json"], "version": [">=1", "<4"] },
     { "title": "Section 1", "content": "docs/doc1.md", "version": "<1.0.0" }
   ],
   "rendererOptions": {
-    "versions": ["0.0.5", "1.0.2"]
+    "versions": ["0.0.5", "1.0.2", "2.3.9", "3.1.12", "4.0.2"]
   }
 }
 ```
@@ -57,10 +65,17 @@ You can define which versions of the documentation should be generated at `rende
 ```yaml
 blueprint:
   - title: Section 1
+    content: 
+      - docs/doc1.md
+      - docs/api1.json
+    version: "4.x"
+  - title: Section 1
     content:
       - docs/doc1.md
       - docs/api1.json
-    version: ">=1.0.0"
+    version:
+      - ">=1"
+      - "<4"
   - title: Section 1
     content: docs/doc1.md
     version: "<1.0.0"
@@ -68,6 +83,9 @@ rendererOptions:
   versions:
     - "0.0.5"
     - "1.0.2"
+    - "2.3.9"
+    - "3.1.12"
+    - "4.0.2"
 ```
 <!-- /tab -->
 <!-- /tab-group -->

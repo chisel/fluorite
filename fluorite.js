@@ -3,6 +3,7 @@ const yaml = require('yaml-import');
 const path = require('path');
 const _ = require('lodash');
 const os = require('os');
+const semver = require('semver');
 const Renderer = require(path.join(__dirname, 'renderer.js'));
 const Server = require(path.join(__dirname, 'server.js'));
 const redirectTemplate = `
@@ -1272,38 +1273,21 @@ class Fluorite {
 
   _isIncludedInVersion(version, target) {
 
-    if ( version === "*" || target === "*" ) return true;
+    // Validation
+    if ( target === "*" ) return true;
+    if ( ! version ) return true;
+    if ( typeof version !== 'string' && (typeof version !== 'object' || version.constructor !== Array) )
+      return false;
 
-    const condition = version.match(/^[<>]?[=]?/)[0];
-    const semver = version.substr(condition.length).split('.');
-    const targetSemver = target.split('.');
+    // Sanitization
+    const range = typeof version === 'string' ? [version] : version;
 
-    if ( ! condition ) return version === target;
-    if ( condition[1] === '=' && semver.join('.') == target ) return true;
+    let isInVersion = true;
 
-    for ( let i = 0; i < targetSemver.length; i++ ) {
+    for ( const req of range )
+      isInVersion = isInVersion && semver.satisfies(target, req);
 
-      const diff = targetSemver[i] - semver[i];
-
-      if ( condition[0] === '>' ) {
-
-        if ( ! diff ) continue;
-
-        return diff > 0;
-
-      }
-
-      if ( condition[0] === '<' ) {
-
-        if ( ! diff ) continue;
-
-        return diff < 0;
-
-      }
-
-    }
-
-    return false;
+    return isInVersion;
 
   }
 
