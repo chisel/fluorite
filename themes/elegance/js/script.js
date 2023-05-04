@@ -151,7 +151,72 @@ function postLoadProcess() {
 
   });
 
-  commentParser.parse(document.querySelector('article'));
+  commentParser.register('tab-group', 'block', (nodes, params, self) => {
+
+    const commentParser = new CommentParser();
+
+    // Create tabs container
+    const tabsContainerElement = document.createElement('DIV');
+    const tabsElement = document.createElement('DIV');
+    const contentTabsContainer = document.createElement('DIV');
+    const contentTabGroup = document.createElement('DIV');
+    const contentTabSeparators = document.createElement('DIV');
+    const contentSeparator = document.createElement('DIV');
+    const viewsElement = document.createElement('DIV');
+
+    // Assign classes
+    tabsContainerElement.classList.add('content-tab-view');
+    tabsElement.classList.add('content-tabs');
+    contentTabsContainer.classList.add('content-tabs-container');
+    contentTabGroup.classList.add('content-tab-group');
+    contentTabSeparators.classList.add('content-separators');
+    contentSeparator.classList.add('content-separator');
+    viewsElement.classList.add('content-views');
+
+    commentParser.register('tab', 'block', (nodes, name) => {
+
+      // Create tab element
+      const tabElement = document.createElement('DIV');
+
+      // Configure tab element
+      tabElement.classList.add('content-tab');
+      tabElement.innerText = name;
+      tabElement.onclick = () => selectContentTab(tabElement);
+
+      // Add tab element to its container
+      contentTabGroup.appendChild(tabElement);
+
+      // Create view element
+      const viewElement = document.createElement('DIV');
+
+      // Configure view element
+      viewElement.classList.add('content-view', 'content-spacing');
+
+      for ( const node of nodes )
+        viewElement.appendChild(node);
+
+      // Add view element its container
+      viewsElement.appendChild(viewElement);
+
+    });
+
+    // Add child elements
+    contentTabsContainer.appendChild(contentTabGroup);
+    contentTabSeparators.appendChild(contentSeparator);
+    contentTabsContainer.appendChild(contentTabSeparators);
+    tabsElement.appendChild(contentTabsContainer);
+    tabsContainerElement.appendChild(tabsElement);
+    tabsContainerElement.appendChild(viewsElement);
+
+    // Add main container to page
+    self.parentElement.insertBefore(tabsContainerElement, self);
+
+    // Process tab group nodes
+    commentParser.processNodes(nodes, true, true);
+
+  });
+
+  commentParser.processSelector('article', false);
 
   // Apply .img-block to <img> which are the only child of a <p> without any text
   var imgs = document.querySelectorAll('article > p > img:only-child');
@@ -178,7 +243,7 @@ function postLoadProcess() {
   }
 
   // Remove custom scrollbar stylings in Mac
-  if ( navigator.appVersion.indexOf('Mac') !== -1 ) {
+  if ( navigator?.userAgent?.toLowerCase().match(/mac\s*os/) ) {
 
     document.querySelector('nav > .nav-container#navigationList').classList.remove('custom-scroller');
     var dropdownContainer = document.querySelector('.dropdown-container');

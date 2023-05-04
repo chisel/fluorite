@@ -1,4 +1,4 @@
-The theme you're looking at right now is Elegance! This theme is responsive, provides accent color customization through [theme options](#theme-options), allows writing [responsive Markdown](#responsive-markdown), and also [tabbed content](#tabbed-content).
+The theme you're looking at right now is Elegance! This theme is responsive, provides accent color customization through [theme options](#theme-options), and allows writing [responsive Markdown](#responsive-markdown).
 
 <!-- responsive: tablet, desktop -->
 ![Elegance Preview]({{rootPrefix}}/assets/contents/elegance-desktop.png)
@@ -41,25 +41,4 @@ This paragraph only shows up in mobile and tablet devices.
 <!-- responsive: desktop -->
 This paragraph only shows up in desktops.
 <!-- /responsive -->
-```
-
-### Tabbed Content
-
-You can put parts of a markdown document's content into multiple tabs by first defining a tab group block (`<!-- tab-group -->`) and then defining each tab as a child block with tab's name as its only argument (`<!-- tab: Tab 1 -->`).
-
-**Example:**
-```markdown
-This is a markdown document.
-
-<!-- tab-group -->
-
-<!-- tab: Tab 1 -->
-Content for tab 1
-<!-- /tab -->
-
-<!-- tab: Tab 2 -->
-Content for tab 2
-<!-- /tab -->
-
-<!-- /tab-group -->
 ```

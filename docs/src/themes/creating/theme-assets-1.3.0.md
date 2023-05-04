@@ -35,29 +35,18 @@ Since both theme assets and user assets are copied to the root directory and are
 
 Themes can extend the Fluorite configuration through `themeOptions`. Normally, any data the user defines under `themeOptions` will be passed to the template API as the `extended` object (which will be covered soon), but in some cases themes may want to let the user input some files (favicon, manifest, etc.) which needs some special handling. Since those files need to be copied into the generated documentation, we can declare those `themeOptions` extensions as user assets inside our theme configuration file.
 
-Update the `userAssets` object in `config.json` with the following values:
-
-<!-- tab-group -->
-<!-- tab: config.json -->
+Replace the `userAssets` object in `config.json` with the following values:
 ```json
 {
   "favicon-ico": "images/"
 }
 ```
-<!-- /tab -->
-<!-- tab: config.yaml -->
-```yaml
-favicon-ico: images/
-```
-<!-- /tab -->
-<!-- /tab-group -->
 
 The above configuration tells Fluorite to copy the file provided in `flconfig.json`'s `themeOptions['favicon-ico']` to the `/assets/user/images` directory. We can access this file through the template API's `extended['favicon-ico']` inside our Handlebars template.
 
 Your final theme config should look like the following:
 
-<!-- tab-group -->
-<!-- tab: config.json -->
+**config.json:**
 ```json
 {
   "hasFlavors": true,
@@ -71,18 +60,5 @@ Your final theme config should look like the following:
   }
 }
 ```
-<!-- /tab -->
-<!-- tab: config.yaml -->
-```yaml
-hasFlavors: true
-defaultFlavor: light
-assets:
-  - js
-  - css
-userAssets:
-  favicon-ico: images/
-```
-<!-- /tab -->
-<!-- /tab-group -->
 
 In the [next section]({{versionRootPrefix}}/themes/creating-a-new-theme/theme-flavors) we'll take a look at our theme's flavors.

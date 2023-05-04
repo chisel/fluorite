@@ -160,10 +160,10 @@ header {
     background: linear-gradient(90deg, var(--color-accent), var(--color-accent-secondary));
     font-size: rem(28px);
     color: map-get($palette, color-white);
+    gap: rem(20px);
     img {
       width: rem(40px);
       height: rem(40px);
-      margin-right: rem(20px);
       flex-shrink: 0;
     }
     a.title {
@@ -182,7 +182,7 @@ header {
       width: rem(150px);
       height: rem(40px);
       flex-shrink: 0;
-      margin-left: rem(20px);
+      margin-left: auto;
       padding: 0 rem(5px);
       font-size: rem(20px);
       cursor: pointer;
@@ -787,11 +787,14 @@ main {
         flex-direction: column;
         .content-view {
           display: none;
+          &.content-spacing {
+            padding-top: rem(10px);
+          }
           &.show {
             display: block;
           }
           // text/plain p styles
-          & > p {
+          &:not(.content-spacing) > p {
             padding: rem(20px);
             border-radius: rem(5px);
             background-color: map-get($palette, color-gray-lighter);

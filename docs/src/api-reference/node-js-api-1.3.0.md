@@ -24,7 +24,7 @@ fl.load('path/to/flconfig.json');
 
 ## API
 
-  - `fl.load(configPathOrObject)`: Loads Fluorite and the config file from path or object. Returns a reference to the Fluorite object for chaining.
+  - `fl.load(configPath)`: Loads Fluorite and the config file. Returns a reference to the Fluorite object for chaining.
   - `fl.generate()`: Starts building the docs. Returns a promise.
   - `fl.serve(port)`: Serves the generated docs on the specified port. Returns a promise.
   - `fl.on(eventName, callback)`: Registers an event handler. Returns a reference to the Fluorite object for chaining.

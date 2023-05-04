@@ -1,6 +1,6 @@
-REST APIs can be documented using JSON/YAML files. You can include these files in the `blueprint` of the `flconfig.json` just like the Markdown files.
+REST APIs can be documented using JSON files. You can include these files in the `blueprint` of the `flconfig.json` just like the Markdown files.
 
-A REST API documentation file may have the following properties:
+A REST API documentation JSON file may have the following properties:
 
   - **title**: The endpoint's title.
   - **description**: The endpoint's description.
@@ -27,8 +27,8 @@ A REST API documentation file may have the following properties:
       - **description**: The cookie description.
     - **body**: An array of body objects.
       - **type**: The content type of the body (`application/json`, `application/xml`, `multipart/form-data`, `application/x-www-form-urlencoded`, `text/plain`, etc.)
-      - **model**: An object for type `application/json`, or an array of property objects (similar to `queries`) with `name`, `type`, `required`, and `description` fields for types `multipart/form-data` and `application/x-www-form-urlencoded`. For type `application/xml`, use `externalFile` instead. For any other types (e.g. `text/plain`), use `description` instead.
-      - **externalFile**: The path to a model file (either `.json`, `.yaml`, `.yml`, or `.xml`.) Use this if you're not embedding the model or need to provide a XML model.
+      - **model**: A JSON object for type `application/json`, or an array of property objects (similar to `queries`) with `name`, `type`, `required`, and `description` fields for types `multipart/form-data` and `application/x-www-form-urlencoded`. For type `application/xml`, use `externalFile` instead. For any other types (e.g. `text/plain`), use `description` instead.
+      - **externalFile**: The path to a model file (either `.json` or `.xml`.) Use this if you're not embedding the model or need to provide a XML model.
       - **description**: Used for `type`s that don't need a model.
   - **response**: Namespace.
     - **headers**: Same as `request.headers`.
@@ -56,10 +56,8 @@ A REST API documentation file may have the following properties:
 
 ## Example
 
-The following object will be rendered as shown in the [REST API Example]({{versionRootPrefix}}/contents/rest-api-example):
+The following JSON object will be rendered as shown in the [REST API Example]({{versionRootPrefix}}/contents/rest-api-example):
 
-<!-- tab-group -->
-<!-- tab: JSON -->
 ```json
 {
   "title": "Add a new pet",
@@ -152,106 +150,3 @@ The following object will be rendered as shown in the [REST API Example]({{versi
   }]
 }
 ```
-<!-- /tab -->
-<!-- tab: YAML -->
-```yaml
-title: Add a new pet
-description: This endpoint adds a new pet in the database.
-auth:
-  enabled: true
-  description: Authentication is done using a bearer token obtained from the `/auth/getToken` endpoint.
-path: /pets/add/
-method: POST
-params:
-  - name: database
-    type: string
-    description: The database name to add the pet in
-queries:
-  - name: xml
-    type: boolean
-    required: false
-    description: If present, the response type would be XML instead of JSON
-response:
-  headers:
-    - name: Content-Type
-      description: The content type of the body
-  cookies:
-    - name: trackerid
-      description: The tracker ID
-  body:
-    - type: application/type
-      model:
-        success: true
-        message: string
-    - type: application/xml
-      externalFile: src/models/response.model.xml
-request:
-  headers:
-    - name: Content-Type
-      description: The content type of the body
-  cookies:
-    - name: trackerid
-      description: The tracker ID
-  body:
-    - type: application/json
-      model:
-        name: The pet name
-        type: The pet type (dog, bird, etc.)
-        breed: The pet breed (optional)
-    - type: application/xml
-      externalFile: src/models/request.model.xml
-    - type: multipart/form-data
-      model:
-        - key: name
-          type: string
-          required: true
-          description: The pet name
-        - key: type
-          type: string
-          required: true
-          description: The pet type (dog, bird, etc.)
-        - key: breed
-          type: string
-          required: false
-          description: The pet breed
-    - type: x-www-form-urlencoded
-      model:
-        - key: name
-          type: string
-          required: true
-          description: The pet name
-        - key: type
-          type: string
-          required: true
-          description: The pet type (dog, bird, etc.)
-        - key: breed
-          type: string
-          required: false
-          description: The pet breed
-    - type: text/plain
-      description: A CSV file with columns 'name', 'type', and 'breed'
-examples:
-  - path: /pets/add/petsDb?xml=true
-    response:
-      status: 200
-      headers:
-        Content-Type: application/xml
-      cookies:
-        trackerid: ge8s7ecs69er8vfseasdg0s8d6fgvsdf
-      body:
-        type: application/xml
-        externalFile: src/models/response.value.xml
-    request:
-      headers:
-        Content-Type: application/json
-      cookies:
-        trackerid: ge8s7ecs69er8vfseasdg0s8d6fgvsdf
-      body:
-        type: application/json
-        value:
-          name: Bob
-          type: Pig
-          breed: Miniature Pig
-```
-<!-- /tab -->
-<!-- /tab-group -->

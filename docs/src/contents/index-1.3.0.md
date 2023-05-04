@@ -1,4 +1,4 @@
-The documentation content consists of JSON/YAML files for documenting REST APIs and Markdown files for any other types of documentation. These content files are presented as sections defined inside the configuration file and can be bundled together.
+The documentation content consists of JSON files for documenting REST APIs and Markdown files for any other types of documentation. These content files are presented as sections defined inside the configuration file and can be bundled together.
 
 ## Sections
 
@@ -6,8 +6,7 @@ A section is a group of content files defined inside the `flconfig.json` file. E
 
 ### Example Section Definition
 
-<!-- tab-group -->
-<!-- tab: flconfig.json -->
+**flconfig.json**
 ```json
 {
   "blueprint": [
@@ -15,17 +14,6 @@ A section is a group of content files defined inside the `flconfig.json` file. E
   ]
 }
 ```
-<!-- /tab -->
-<!-- tab: flconfig.yaml -->
-```yaml
-blueprint:
-  - title: Section 1
-    content:
-      - docs/doc1.md
-      - docs/api1.json
-```
-<!-- /tab -->
-<!-- /tab-group -->
 
 ## Versioning
 
@@ -39,8 +27,7 @@ You can define which versions of the documentation should be generated at `rende
 
 ### Example Section Definition With Versioning
 
-<!-- tab-group -->
-<!-- tab: flconfig.json -->
+**flconfig.json**
 ```json
 {
   "blueprint": [
@@ -52,22 +39,3 @@ You can define which versions of the documentation should be generated at `rende
   }
 }
 ```
-<!-- /tab -->
-<!-- tab: flconfig.yaml -->
-```yaml
-blueprint:
-  - title: Section 1
-    content:
-      - docs/doc1.md
-      - docs/api1.json
-    version: ">=1.0.0"
-  - title: Section 1
-    content: docs/doc1.md
-    version: "<1.0.0"
-rendererOptions:
-  versions:
-    - "0.0.5"
-    - "1.0.2"
-```
-<!-- /tab -->
-<!-- /tab-group -->

@@ -1,41 +1,40 @@
-When you scaffold a new theme using the CLI, a utility library is created at `/js/comment-parser.js`. This library allows us to read the HTML comment nodes inside the rendered content and change the elements based on the comment syntax.
+When you scaffold a new theme using the CLI, a utility library is created at `/js/comment-parser.js`. This library allows us to read the HTML comment nodes inside the rendered content and change the elements based on the comment syntax. Make sure to familiarize yourself with [Comment Parser's API]({{versionRootPrefix}}/api-reference/comment-parser-utility) before proceeding.
 
 ## Markdown Comments
 
-The following syntax is valid inside a Markdown file:
+The following type of comments can be used inside Markdown:
 
+<!-- tab-group -->
+<!-- tab: Single Comment -->
 ```markdown
-<!-- singleElementCommand: arguments -->
+<!-- single-comment: param1, param2, ... -->
 Markdown paragraph
 ```
-
+<!-- /tab -->
+<!-- tab: Block Comment -->
 ```markdown
-<!-- blockCommand: arguments -->
-Any number of markdown content
+<!-- block-comment: param1, param2, ... -->
+Multiple markdown content
 [Link](#)
-<!-- /blockCommand -->
+<!-- /block-comment -->
 ```
-
-## Comment Parsing API
-
-The comment parser library exposes the following API:
-  - register(command, type, handler): Registers a command with a handler.
-    - `command`: The command.
-    - `type`: Either `single` or `block`.
-    - `handler`: A callback to handle the elements. This callback will be called with two arguments: a single element (if type is `single`) or an array of elements (if type is `block`) and the provided arguments.
-  - parse(container): Starts parsing all the elements inside the container, looking for comment nodes and calling registered commands' handlers.
+<!-- /tab -->
+<!-- /tab-group -->
 
 ## Defining Comments
 
-We want to register a block command named `responsive` which takes three arguments: `mobile`, `tablet`, and `desktop`. When used, all the content inside this block will be only shown on the specified views. Let's load the comment parser library in our `index.hbs` (before the theme's script) and update `/js/script.js`:
+We want to register a block command named `responsive` which takes these arguments: `mobile`, `tablet`, and `desktop`. When used, all the content inside this block will be only shown on the specified views.
 
-**index.hbs:**
+Let's load the comment parser library in our `index.hbs` (before the theme's script) and update `/js/script.js`:
+
+<!-- tab-group -->
+<!-- tab: index.hbs -->
 ```html
 {{! Comment Parser Utility }}
 <script src="{{!rootPrefix}}/assets/theme/js/comment-parser.js" charset="utf-8"></script>
 ```
-
-**/js/script.js:**
+<!-- /tab -->
+<!-- tab: /js/script.js -->
 ```js
 // On content loaded:
 window.addEventListener('load', () => {
@@ -44,7 +43,7 @@ window.addEventListener('load', () => {
   const comment = new CommentParser();
 
   // Register the 'responsive' block command
-  comment.register('responsive', 'block', (nodes, args) => {
+  comment.register('responsive', 'block', (nodes, params) => {
 
     // Iterate through each node
     for ( const node of nodes ) {
@@ -55,21 +54,23 @@ window.addEventListener('load', () => {
       const display = getComputedStyle(node).display || 'block';
 
       // Apply the Bootstrap responsive classes
-      node.classList.add(`d-${args.includes('mobile') ? display : 'none'}`);
-      node.classList.add(`d-sm-${args.includes('mobile') ? display : 'none'}`);
-      node.classList.add(`d-md-${args.includes('tablet') ? display : 'none'}`);
-      node.classList.add(`d-lg-${args.includes('desktop') ? display : 'none'}`);
-      node.classList.add(`d-xl-${args.includes('desktop') ? display : 'none'}`);
+      node.classList.add(`d-${params.includes('mobile') ? display : 'none'}`);
+      node.classList.add(`d-sm-${params.includes('mobile') ? display : 'none'}`);
+      node.classList.add(`d-md-${params.includes('tablet') ? display : 'none'}`);
+      node.classList.add(`d-lg-${params.includes('desktop') ? display : 'none'}`);
+      node.classList.add(`d-xl-${params.includes('desktop') ? display : 'none'}`);
 
     }
 
   });
 
-  // Parse the content container element
-  comment.parse(document.querySelector('.container .row .content'));
+  // Process the content container element
+  comment.processSelector('.container .row .content');
 
 });
 ```
+<!-- /tab -->
+<!-- /tab-group -->
 
 ## Result
 

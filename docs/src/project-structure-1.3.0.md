@@ -1,11 +1,11 @@
 A Fluorite project has the following possible components:
 
-  - **flconfig.(json|yaml|yml)**: The configuration file dictating how the documentation should be generated.
+  - **flconfig.json**: The configuration file dictating how the documentation should be generated.
   - **Contents**: Content files are declared inside the configuration file and can be placed anywhere (even outside of the project directory). Though, they're typically placed in the `src` directory.
     - **Markdown**: `.md` files which contain sections of the documentation.
     - **Markdown Assets**: Any assets for the Markdown documentation which are referenced inside the documentation and declared inside the configuration file (usually images). These files will be copied to the content assets directory upon generating the documentation. [Learn how to use content assets]({{versionRootPrefix}}/contents/assets).
-    - **REST API**: JSON/YAML files which document REST APIs.
-    - **API Assets**: Any external files that are referenced in a REST API documentation (XML or JSON/YAML data models.)
+    - **REST API**: JSON files which document REST APIs.
+    - **API Assets**: Any external files that are referenced in a REST API documentation (XML or JSON data models.)
   - **Theme Assets**: Files that are copied to the theme assets directory upon generating the documentation, declared in the configuration file (e.g. favicons, logos, etc.)
 
 A typical Fluorite project directory structure:
@@ -26,7 +26,7 @@ src/
   api2.json
 ```
 
-> The `flconfig` config file does not have to be placed at the project root since the CLI has the option to provide a custom path, overriding the default behavior of looking for configuration files at the project root.
+> The `flconfig.json` file does not have to be placed at the project root since the CLI has the option to provide a custom path, overriding the default behavior of looking for configuration files at the project root.
 
 ## Output Directory
 

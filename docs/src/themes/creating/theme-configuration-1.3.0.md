@@ -1,7 +1,5 @@
 The theme configuration file `config.json` is used to define some theme behaviors.
 
-<!-- tab-group -->
-<!-- tab: config.json -->
 ```json
 {
   "hasFlavors": true,
@@ -25,31 +23,6 @@ The theme configuration file `config.json` is used to define some theme behavior
   }
 }
 ```
-<!-- /tab -->
-<!-- tab: config.yaml -->
-```yaml
-hasFlavors: true
-defaultFlavor: dark
-assets:
-  - js
-userAssets:
-  favicon-ico: /images
-  favicon-16x16: /images
-  favicon-32x32: /images
-  favicon-70x70: /images
-  favicon-144x144: /images
-  favicon-150x150: /images
-  favicon-310x150: /images
-  favicon-310x310: /images
-  favicon-180x180: /images
-  favicon-192x192: /images
-  favicon-512x512: /images
-  manifest: /images
-  mask-icon: /images
-  msapplication-config: /images
-```
-<!-- /tab -->
-<!-- /tab-group -->
 
 Let's take a look at each property:
   - **hasFlavors**: A boolean indicating the theme has flavors.

@@ -1,4 +1,4 @@
-The configuration is done by a JSON (or YAML) file called `flconfig.json` (or `flconfig.yaml`/`flconfig.yml`) which usually sits at the project root. The first and the most important part of it is the blueprint.
+The configuration is done by a JSON file called `flconfig.json` which usually sits at the project root. The first and the most important part of it is the blueprint.
 
 ## Blueprint
 
@@ -11,8 +11,6 @@ The blueprint is an array of section objects which indicate the documentation st
 
 ### Blueprint Example
 
-<!-- tab-group -->
-<!-- tab: JSON -->
 ```json
 {
   "blueprint": [
@@ -25,26 +23,6 @@ The blueprint is an array of section objects which indicate the documentation st
   ]
 }
 ```
-<!-- /tab -->
-<!-- tab: YAML -->
-```yaml
-blueprint:
-  - title: Section 1
-    content: docs/section1.md
-  - title: Section 2
-    content: docs/section2.md
-    sub:
-      - title: Section 2.1
-        content: docs/section2-1.md
-      - title: Section 2.2
-        content: docs/section2-2-deprecated.md
-        version: "<1.0.0"
-      - title: Section 2.2
-        content: docs/section2-2.md
-        version: ">=1.0.0"
-```
-<!-- /tab -->
-<!-- /tab-group -->
 
 ## Options
 
@@ -71,16 +49,9 @@ The following properties are defined on the root level of the configuration file
   - `optional` **serverOptions**: A namespace for the server options.
     - `optional` **port**: The port number on which the generated documentation should be served. Defaults to `6001`.
 
-## Modular Config
-
-When using YAML files, any part of the config values can be modularized and loaded using the `!!import/single PATH` as the value. For more documentation on this, refer to [yaml-import's documentation](https://github.com/rafamel/yaml-import#yaml).
-
-> **NOTE**: When using `--watch` from the [CLI]({{versionRootPrefix}}/api-reference/cli), YAML modules won't be watched for changes.
-
 ### Example
 
-<!-- tab-group -->
-<!-- tab: Directory structure -->
+Directory structure:
 ```
 flconfig.json
 src/
@@ -94,8 +65,8 @@ src/
   rest-api.json
   welcome.md
 ```
-<!-- /tab -->
-<!-- tab: flconfig.json -->
+
+flconfig.json:
 ```json
 {
   "title": "My Documentation",
@@ -124,33 +95,3 @@ src/
   }
 }
 ```
-<!-- /tab -->
-<!-- tab: flconfig.yaml -->
-```yaml
-title: My Documentation
-basePath: src
-rootContent: welcome.md
-contentAssets:
-  assets/contents/images: images
-blueprint:
-  - title: Section 1
-    content: section1.md
-    version: "0.5.2"
-  - title: Section 1
-    content:
-      - section1.md
-      - rest-api.json
-    version: ">=1.0.0"
-rendererOptions:
-  theme: my-personal-theme
-  multiPage: true
-  versions:
-    - "0.5.2"
-    - "1.0.0"
-themeOptions:
-  favicon: src/assets/theme/favicon.png
-serverOptions:
-  port: 6002
-```
-<!-- /tab -->
-<!-- /tab-group -->

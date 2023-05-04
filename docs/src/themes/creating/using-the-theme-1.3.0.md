@@ -1,7 +1,6 @@
 With our theme finished and installed, we can scaffold a new Fluorite project using the command `fl new theme-test`. Then `cd` into the project and update the `flconfig.json` with the following configuration:
 
-<!-- tab-group -->
-<!-- tab: flconfig.json -->
+**flconfig.json:**
 ```json
 {
   "title": "Plain Theme",
@@ -23,28 +22,6 @@ With our theme finished and installed, we can scaffold a new Fluorite project us
   }
 }
 ```
-<!-- /tab -->
-<!-- tab: flconfig.yaml -->
-```yaml
-title: Plain Theme
-basePath: src
-rootContent: index.md
-outputDir: dist
-blueprint:
-  - title: Welcome
-    content: welcome.md
-  - title: Quick Start
-    content: quick-start.md
-themeOptions:
-  subtitle: Make documentation at ease!
-  favicon-ico: src/assets/theme/favicon.ico
-rendererOptions:
-  multiPage: true
-  theme: plain
-  flavor: dark
-```
-<!-- /tab -->
-<!-- /tab-group -->
 
 Let's also test our theme's responsive Markdown feature by adding a new Markdown file:
 

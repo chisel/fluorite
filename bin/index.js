@@ -226,7 +226,7 @@ program
   .alias('t')
   .option('-a --as <name>', 'a custom name for the theme to be installed as (for add action only)')
   .option('-s --symlink', 'creates a symlink instead of copying the theme (useful for theme development and testing)')
-  .option('-y --yaml', 'uses YAML instead of JSON for all config files (for new action only')
+  .option('-y --yaml', 'uses YAML instead of JSON for all config files (for new action only)')
   .description('<action: new> creates a new Fluorite theme, <action: add> installs the given directory as a Fluorite theme, <action: remove> uninstalls a theme')
   .action((action, name, cmd) => {
 

@@ -19,15 +19,3 @@ With that in mind, in order to generate the documentation we can adopt the follo
   4. Generate the documentation
 
 The [next section]({{versionRootPrefix}}/quick-start) gives you a taste of Fluorite by demonstrating a quick way to generate some documentation.
-
----
-
-### Technologies Used
-
-  - [Marked](https://github.com/markedjs/marked) for parsing Markdown
-  - [Handlebars](https://handlebarsjs.com/) for HTML templating
-  - [SASS](https://sass-lang.com/) for CSS preprocessing
-  - [Prism.js](https://prismjs.com/) for syntax highlighting
-  - [Autoprefixer](https://github.com/postcss/autoprefixer) for vendor-prefixing CSS
-  - [Terser](https://github.com/fabiosantoscode/terser) for minifying JS
-  - [Clean CSS](https://github.com/jakubpawlowicz/clean-css) for minifying CSS

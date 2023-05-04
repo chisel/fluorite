@@ -4,5 +4,5 @@ All pre-installed themes are responsive and come with different flavors and capa
 
 | Name | Flavors | Default Flavor | Extra Features |
 |:-----|:--------|:---------------|:---------------|
-| [Elegance]({{versionRootPrefix}}/themes/pre-installed/elegance) | None (allows customization through [themeOptions]({{versionRootPrefix}}/themes/pre-installed/elegance#themes-pre-installed-elegance-theme-options)) | None | Responsive Markdown, Tabbed Content |
+| [Elegance]({{versionRootPrefix}}/themes/pre-installed/elegance) | None (allows customization through [themeOptions]({{versionRootPrefix}}/themes/pre-installed/elegance#themes-pre-installed-elegance-theme-options)) | None | Responsive Markdown |
 | [Onyx]({{versionRootPrefix}}/themes/pre-installed/onyx) | dark, light, purple | dark | Responsive Markdown, Right Pane, Notes |

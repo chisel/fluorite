@@ -20,8 +20,7 @@ With that in mind, we can declare all of our asset files inside the configuratio
   index.md
 ```
 
-<!-- tab-group -->
-<!-- tab: flconfig.json -->
+**flconfig.json**
 ```json
 {
   "basePath": "src",
@@ -34,31 +33,11 @@ With that in mind, we can declare all of our asset files inside the configuratio
     { "title": "Section 1", "content": "markdown-with-assets.md", "version": "1.0.0" }
   ],
   "rendererOptions": {
-    "multiPage": true,
+    "multipage": true,
     "versions": ["0.0.5", "1.0.0"]
   }
 }
 ```
-<!-- /tab -->
-<!-- tab: flconfig.yaml -->
-```yaml
-basePath: src
-outputDir: dist
-rootContent: index.md
-contentAssets:
-  assets/contents: /
-blueprint:
-  - title: Section 1
-    content: markdown-with-assets.md
-    version: "1.0.0"
-rendererOptions:
-  multiPage: true
-  versions:
-    - "0.0.5"
-    - "1.0.0"
-```
-<!-- /tab -->
-<!-- /tab-group -->
 
 **markdown-with-assets.md**
 ```markdown
@@ -89,8 +68,6 @@ This is an image:
 
 When we are generating a single page documentation, linking to other sections of the documentation is easy. We would use anchors considering the fact that any section's anchor is prefixed with its parents' names. For instance, if we have the following blueprint:
 
-<!-- tab-group -->
-<!-- tab: flconfig.json -->
 ```json
 {
   "blueprint": [
@@ -101,20 +78,6 @@ When we are generating a single page documentation, linking to other sections of
   ]
 }
 ```
-<!-- /tab -->
-<!-- tab: flconfig.yaml -->
-```yaml
-blueprint:
-  - title: Section 1
-    content: section1.md
-    sub:
-      - title: Section 1-1
-        content: section1-1.md
-  - title: Section 2
-    content: section2.md
-```
-<!-- /tab -->
-<!-- /tab-group -->
 
 We can link to Section 1-1 from Section 2 using the `#section-1-section-1-1` anchor.
 
