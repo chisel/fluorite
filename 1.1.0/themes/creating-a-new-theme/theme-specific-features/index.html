@@ -30,6 +30,7 @@
               		c12.365,12.354,12.365,32.392,0,44.751L248.292,345.449C242.115,351.621,234.018,354.706,225.923,354.706z"/>
               </svg>            <div class="dropdown-container" onclick="stopClickBubbling(event)">
               <ul>
+                  <a href="../../../../1.4.0/themes/creating-a-new-theme/theme-specific-features"><li>1.4.0</li></a>
                   <a href="../../../../1.3.8/themes/creating-a-new-theme/theme-specific-features"><li>1.3.8</li></a>
                   <a href="../../../../1.3.3/themes/creating-a-new-theme/theme-specific-features"><li>1.3.3</li></a>
                   <a href="../../../../1.2.0/themes/creating-a-new-theme/theme-specific-features"><li>1.2.0</li></a>
@@ -56,6 +57,7 @@
       </div>
       <nav>
           <div id="versionsList" class="nav-container">
+              <a class="level-0" href="../../../../1.4.0/themes/creating-a-new-theme/theme-specific-features">1.4.0</a>
               <a class="level-0" href="../../../../1.3.8/themes/creating-a-new-theme/theme-specific-features">1.3.8</a>
               <a class="level-0" href="../../../../1.3.3/themes/creating-a-new-theme/theme-specific-features">1.3.3</a>
               <a class="level-0" href="../../../../1.2.0/themes/creating-a-new-theme/theme-specific-features">1.2.0</a>
@@ -216,11 +218,13 @@
 <h2 id="markdown-comments">Markdown Comments</h2>
 <p>The following syntax is valid inside a Markdown file:</p>
 <pre><code class="language-markdown"><span class="token comment">&lt;!-- singleElementCommand: arguments --></span>
-Markdown paragraph</code></pre>
+Markdown paragraph
+</code></pre>
 <pre><code class="language-markdown"><span class="token comment">&lt;!-- blockCommand: arguments --></span>
 Any number of markdown content
-<span class="token url">[<span class="token content">Link</span>](#)</span>
-<span class="token comment">&lt;!-- /blockCommand --></span></code></pre>
+<span class="token url">[<span class="token content">Link</span>](<span class="token url">#</span>)</span>
+<span class="token comment">&lt;!-- /blockCommand --></span>
+</code></pre>
 <h2 id="comment-parsing-api">Comment Parsing API</h2>
 <p>The comment parser library exposes the following API:</p>
 <ul>
@@ -236,7 +240,8 @@ Any number of markdown content
 <p>We want to register a block command named <code>responsive</code> which takes three arguments: <code>mobile</code>, <code>tablet</code>, and <code>desktop</code>. When used, all the content inside this block will be only shown on the specified views. Let&#39;s load the comment parser library in our <code>index.hbs</code> (before the theme&#39;s script) and update <code>/js/script.js</code>:</p>
 <p><strong>index.hbs:</strong></p>
 <pre><code class="language-html">{{! Comment Parser Utility }}
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>{{rootPrefix}}/assets/theme/js/comment-parser.js<span class="token punctuation">"</span></span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>{{rootPrefix}}/assets/theme/js/comment-parser.js<span class="token punctuation">"</span></span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+</code></pre>
 <p><strong>/js/script.js:</strong></p>
 <pre><code class="language-js"><span class="token comment">// On content loaded:</span>
 window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'load'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
@@ -269,7 +274,8 @@ window<span class="token punctuation">.</span><span class="token function">addEv
   <span class="token comment">// Parse the content container element</span>
   comment<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'.container .row .content'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
 <h2 id="result">Result</h2>
 <p>At this point our theme takes responsive markdown through HTML comments. The following is a usage example:</p>
 <pre><code class="language-markdown"><span class="token comment">&lt;!-- responsive: tablet, desktop --></span>
@@ -277,13 +283,14 @@ This paragraph will show up on tablet and desktop only.
 <span class="token comment">&lt;!-- /responsive --></span>
 <span class="token comment">&lt;!-- responsive: mobile --></span>
 This paragraph will only show up on mobile.
-<span class="token comment">&lt;!-- /responsive --></span></code></pre>
+<span class="token comment">&lt;!-- /responsive --></span>
+</code></pre>
 <p>The theme is finally ready. We&#39;ll install it in the <a href="../../../../1.1.0/themes/creating-a-new-theme/installation">next section</a>.</p>
 
         </article>
         <footer>
           <span>Generated by <a href="https://fluorite.js.org" target="_blank">Fluorite</a></span>
-          <span class="last-modified">Last modified: 8/19/2020</span>
+          <span class="last-modified">Last modified: 5/4/2023</span>
         </footer>
       </div>
     </main>

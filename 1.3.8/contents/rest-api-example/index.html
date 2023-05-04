@@ -30,6 +30,7 @@
               		c12.365,12.354,12.365,32.392,0,44.751L248.292,345.449C242.115,351.621,234.018,354.706,225.923,354.706z"/>
               </svg>            <div class="dropdown-container" onclick="stopClickBubbling(event)">
               <ul>
+                  <a href="../../../1.4.0/contents/rest-api-example"><li>1.4.0</li></a>
                   <a href="."><li>1.3.8</li></a>
                   <a href="../../../1.3.3/contents/rest-api-example"><li>1.3.3</li></a>
                   <a href="../../../1.2.0/contents/rest-api-example"><li>1.2.0</li></a>
@@ -56,6 +57,7 @@
       </div>
       <nav>
           <div id="versionsList" class="nav-container">
+              <a class="level-0" href="../../../1.4.0/contents/rest-api-example">1.4.0</a>
               <a class="level-0 selected" href=".">1.3.8</a>
               <a class="level-0" href="../../../1.3.3/contents/rest-api-example">1.3.3</a>
               <a class="level-0" href="../../../1.2.0/contents/rest-api-example">1.2.0</a>
@@ -217,10 +219,10 @@
       <div class="article-container">
         <article>
                 <h1><a id="rest-api-example">REST API Example</a></h1>
-                  <h1><a id="contents-rest-api-example-add-a-new-pet">Add a new pet</a></h1>
+                  <h1><a id="add-a-new-pet">Add a new pet</a></h1>
                   <p>This endpoint adds a new pet in the database.</p>
 
-                    <h2><a id="contents-rest-api-example-authentication">Authentication</a></h2>
+                    <h2><a id="authentication">Authentication</a></h2>
                     <p>Authentication is done using a bearer token obtained from the <code>/auth/getToken</code> endpoint.</p>
 
                     <div class="api-path blue">
@@ -272,7 +274,8 @@
   <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"The pet name"</span><span class="token punctuation">,</span>
   <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"The pet type (dog, bird, etc.)"</span><span class="token punctuation">,</span>
   <span class="token property">"breed"</span><span class="token operator">:</span> <span class="token string">"The pet breed (optional)"</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span>
+</code></pre>
 
                             <div class="body-type">
                                 <span class="body-type-name">XML</span>
@@ -281,7 +284,8 @@
                               <pre><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Data</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Property1</span><span class="token punctuation">></span></span>string<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Property1</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Property2</span><span class="token punctuation">></span></span>number<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Property2</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Data</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Data</span><span class="token punctuation">></span></span>
+</code></pre>
 
                             <div class="body-type">
                                 <span class="body-type-name">Form Data</span>
@@ -472,7 +476,8 @@
                                 <pre><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"success"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
   <span class="token property">"message"</span><span class="token operator">:</span> <span class="token string">"string"</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span>
+</code></pre>
 
                               <div class="body-type">
                                   <span class="body-type-name">XML</span>
@@ -481,7 +486,8 @@
                                 <pre><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Data</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Property1</span><span class="token punctuation">></span></span>string<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Property1</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Property2</span><span class="token punctuation">></span></span>number<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Property2</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Data</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Data</span><span class="token punctuation">></span></span>
+</code></pre>
 
                           </div>
                           <div class="content-view">
@@ -554,7 +560,8 @@
   <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Bob"</span><span class="token punctuation">,</span>
   <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"Pig"</span><span class="token punctuation">,</span>
   <span class="token property">"breed"</span><span class="token operator">:</span> <span class="token string">"Miniature Pig"</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span>
+</code></pre>
 
                               </div>
                               <div class="content-view">
@@ -622,7 +629,8 @@
                                     <pre><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Message</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Type</span><span class="token punctuation">></span></span>Success<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Type</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Text</span><span class="token punctuation">></span></span>Pet Bob was added.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Text</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Message</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Message</span><span class="token punctuation">></span></span>
+</code></pre>
 
                               </div>
                               <div class="content-view">
@@ -660,7 +668,7 @@
         </article>
         <footer>
           <span>Generated by <a href="https://fluorite.js.org" target="_blank">Fluorite</a></span>
-          <span class="last-modified">Last modified: 8/19/2020</span>
+          <span class="last-modified">Last modified: 5/4/2023</span>
         </footer>
       </div>
     </main>

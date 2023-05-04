@@ -30,6 +30,7 @@
               		c12.365,12.354,12.365,32.392,0,44.751L248.292,345.449C242.115,351.621,234.018,354.706,225.923,354.706z"/>
               </svg>            <div class="dropdown-container" onclick="stopClickBubbling(event)">
               <ul>
+                  <a href="../../../1.4.0/contents/assets"><li>1.4.0</li></a>
                   <a href="../../../1.3.8/contents/assets"><li>1.3.8</li></a>
                   <a href="../../../1.3.3/contents/assets"><li>1.3.3</li></a>
                   <a href="../../../1.2.0/contents/assets"><li>1.2.0</li></a>
@@ -56,6 +57,7 @@
       </div>
       <nav>
           <div id="versionsList" class="nav-container">
+              <a class="level-0" href="../../../1.4.0/contents/assets">1.4.0</a>
               <a class="level-0" href="../../../1.3.8/contents/assets">1.3.8</a>
               <a class="level-0" href="../../../1.3.3/contents/assets">1.3.3</a>
               <a class="level-0" href="../../../1.2.0/contents/assets">1.2.0</a>
@@ -230,7 +232,9 @@
     /contents
       image.jpg
   markdown-with-assets.md
-  index.md</code></pre><p><strong>flconfig.json</strong></p>
+  index.md
+</code></pre>
+<p><strong>flconfig.json</strong></p>
 <pre><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"basePath"</span><span class="token operator">:</span> <span class="token string">"src"</span><span class="token punctuation">,</span>
   <span class="token property">"outputDir"</span><span class="token operator">:</span> <span class="token string">"dist"</span><span class="token punctuation">,</span>
@@ -245,10 +249,12 @@
     <span class="token property">"multipage"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
     <span class="token property">"versions"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"0.0.5"</span><span class="token punctuation">,</span> <span class="token string">"1.0.0"</span><span class="token punctuation">]</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span>
+</code></pre>
 <p><strong>markdown-with-assets.md</strong></p>
 <pre><code class="language-markdown">This is an image:
-<span class="token url">![<span class="token content">Alt</span>]({{rootPrefix}}/assets/contents/image.jpg)</span></code></pre>
+<span class="token url"><span class="token operator">!</span>[<span class="token content">Alt</span>](<span class="token url">{{rootPrefix}}/assets/contents/image.jpg</span>)</span>
+</code></pre>
 <p><strong>generated files</strong></p>
 <pre><code>/dist
   /assets
@@ -259,8 +265,11 @@
   /1.0.0
     index.html
     /section-1
-      index.html</code></pre><p><strong>generated path inside /dist/1.0.0/section-1/index.html</strong></p>
-<pre><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>../../assets/contents/image.jpg<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre>
+      index.html
+</code></pre>
+<p><strong>generated path inside /dist/1.0.0/section-1/index.html</strong></p>
+<pre><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>../../assets/contents/image.jpg<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+</code></pre>
 <h2 id="linking-to-other-sections">Linking To Other Sections</h2>
 <p>When we are generating a single page documentation, linking to other sections of the documentation is easy. We would use anchors considering the fact that any section&#39;s anchor is prefixed with its parents&#39; names. For instance, if we have the following blueprint:</p>
 <pre><code class="language-json"><span class="token punctuation">{</span>
@@ -270,17 +279,19 @@
     <span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
     <span class="token punctuation">{</span> <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"Section 2"</span><span class="token punctuation">,</span> <span class="token property">"content"</span><span class="token operator">:</span> <span class="token string">"section2.md"</span> <span class="token punctuation">}</span>
   <span class="token punctuation">]</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span>
+</code></pre>
 <p>We can link to Section 1-1 from Section 2 using the <code>#section-1-section-1-1</code> anchor.</p>
 <p>Considering the same blueprint but in a multipage documentation, since each section will have its own page, we can link from Section 2 to Section 1-1 using the <code>{{versionRootPrefix}}</code> variable to link to the same version:</p>
-<pre><code class="language-markdown">This is Section 2. Visit <span class="token url">[<span class="token content">Section 1-1</span>]({{versionRootPrefix}}/section-1/section-1-1)</span>.</code></pre>
+<pre><code class="language-markdown">This is Section 2. Visit <span class="token url">[<span class="token content">Section 1-1</span>](<span class="token url">{{versionRootPrefix}}/section-1/section-1-1</span>)</span>.
+</code></pre>
 <h2 id="escaping">Escaping</h2>
 <p>If for whatever reason you need to escape those two variables, you can insert <code>!</code> at the beginning of the variables (that&#39;s how we have escaped those variables on this page!)</p>
 
         </article>
         <footer>
           <span>Generated by <a href="https://fluorite.js.org" target="_blank">Fluorite</a></span>
-          <span class="last-modified">Last modified: 8/19/2020</span>
+          <span class="last-modified">Last modified: 5/4/2023</span>
         </footer>
       </div>
     </main>
