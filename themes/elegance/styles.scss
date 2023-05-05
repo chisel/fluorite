@@ -523,7 +523,7 @@ main {
     }
     & > code,
     & *:not(pre) > code {
-      word-break: break-word;
+      // word-break: break-word;
       padding: 0 rem(6px);
       border-radius: rem(5px);
       background-color: map-get($palette, color-gray-lighter);
